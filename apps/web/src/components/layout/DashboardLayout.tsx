@@ -5,6 +5,7 @@ import { LoadBoardPage } from '@/pages/LoadBoardPage';
 import { DriversPage } from '@/pages/DriversPage';
 import { CarriersPage } from '@/pages/CarriersPage';
 import { BrokerLoadsPage } from '@/pages/BrokerLoadsPage';
+import { LiveMapPage } from '@/pages/LiveMapPage';
 
 type Page = 'dashboard' | 'loads' | 'drivers' | 'carriers' | 'broker-loads' | 'map' | 'billing' | 'documents' | 'reports';
 
@@ -77,6 +78,7 @@ export function DashboardLayout() {
             {activePage === 'broker-loads' && <BrokerLoadsPage />}
             {activePage === 'drivers'      && <DriversPage />}
             {activePage === 'carriers'     && <CarriersPage />}
+            {activePage === 'map'          && <LiveMapPage />}
           </div>
         </div>
       </main>
