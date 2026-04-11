@@ -39,12 +39,16 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
 
   loadStoredAuth: async () => {
-    const token = await SecureStore.getItemAsync('accessToken');
-    const userStr = await SecureStore.getItemAsync('user');
-    if (token && userStr) {
-      const user = JSON.parse(userStr);
-      setAuthToken(token);
-      set({ user, accessToken: token, isAuthenticated: true });
+    try {
+      const token = await SecureStore.getItemAsync('accessToken');
+      const userStr = await SecureStore.getItemAsync('user');
+      if (token && userStr) {
+        const user = JSON.parse(userStr);
+        setAuthToken(token);
+        set({ user, accessToken: token, isAuthenticated: true });
+      }
+    } catch (error) {
+      console.log('Failed to load stored auth:', error);
     }
   },
 }));

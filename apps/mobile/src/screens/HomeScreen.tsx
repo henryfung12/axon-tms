@@ -12,6 +12,7 @@ import { useAuthStore } from '../stores/auth.store';
 import { api } from '../lib/api';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { DocumentUploadScreen } from './DocumentUploadScreen';
+import { useLocationTracker } from './LocationTracker';
 
 const STATUS_LABELS: Record<string, string> = {
   ASSIGNED:   'Assigned',
@@ -40,6 +41,7 @@ const NEXT_STATUS_LABEL: Record<string, string> = {
 export function HomeScreen() {
   const { user, clearAuth } = useAuthStore();
   const [uploadingLoad, setUploadingLoad] = useState<{ id: string; loadNumber: string } | null>(null);
+  useLocationTracker(true);
   const queryClient = useQueryClient();
 
   const { data: loads, isLoading } = useQuery({

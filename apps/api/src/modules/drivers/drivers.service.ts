@@ -5,8 +5,9 @@ import { PrismaService } from '../../common/prisma/prisma.service';
 export class DriversService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(status?: string) {
     return this.prisma.driver.findMany({
+      where: status ? { status: status as any } : undefined,
       include: {
         user: {
           select: {
@@ -45,6 +46,12 @@ export class DriversService {
           take: 20,
         },
       },
+    });
+  }
+
+  async findByUserId(userId: string) {
+    return this.prisma.driver.findUnique({
+      where: { userId },
     });
   }
 
@@ -87,6 +94,25 @@ export class DriversService {
     return this.prisma.driver.update({
       where: { id },
       data: { status: status as any },
+    });
+  }
+
+  async updateLocation(userId: string, lat: number, lng: number, speed: number) {
+    const driver = await this.prisma.driver.findUnique({
+      where: { userId },
+    });
+
+    if (!driver) return null;
+
+    return this.prisma.driver.update({
+      where: { userId },
+      data: {
+        currentLat: lat,
+        currentLng: lng,
+        currentSpeed: speed,
+        lastLocationAt: new Date(),
+        status: 'DRIVING',
+      },
     });
   }
 }
