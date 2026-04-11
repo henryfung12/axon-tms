@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
 import { useAuthStore } from '../stores/auth.store';
 import { api } from '../lib/api';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { DocumentUploadScreen } from './DocumentUploadScreen';
 
 const STATUS_LABELS: Record<string, string> = {
   ASSIGNED:   'Assigned',
@@ -38,6 +39,7 @@ const NEXT_STATUS_LABEL: Record<string, string> = {
 
 export function HomeScreen() {
   const { user, clearAuth } = useAuthStore();
+  const [uploadingLoad, setUploadingLoad] = useState<{ id: string; loadNumber: string } | null>(null);
   const queryClient = useQueryClient();
 
   const { data: loads, isLoading } = useQuery({
@@ -83,6 +85,16 @@ export function HomeScreen() {
       { text: 'Sign out', style: 'destructive', onPress: clearAuth },
     ]);
   };
+
+  if (uploadingLoad) {
+    return (
+      <DocumentUploadScreen
+        loadId={uploadingLoad.id}
+        loadNumber={uploadingLoad.loadNumber}
+        onBack={() => setUploadingLoad(null)}
+      />
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -157,20 +169,28 @@ export function HomeScreen() {
 
             <View style={styles.loadFooter}>
               <Text style={styles.rate}>${load.totalRate?.toLocaleString()}</Text>
-              {nextStatus && (
+              <View style={styles.footerButtons}>
                 <TouchableOpacity
-                  style={[styles.actionBtn, statusMutation.isPending && styles.actionBtnDisabled]}
-                  onPress={() => handleStatusUpdate(load.id, load.loadNumber, nextStatus, nextLabel)}
-                  disabled={statusMutation.isPending}
+                  style={styles.docsBtn}
+                  onPress={() => setUploadingLoad({ id: load.id, loadNumber: load.loadNumber })}
                 >
-                  <Text style={styles.actionBtnText}>{nextLabel}</Text>
+                  <Text style={styles.docsBtnText}>Documents</Text>
                 </TouchableOpacity>
-              )}
-              {load.status === 'DELIVERED' && (
-                <View style={styles.deliveredTag}>
-                  <Text style={styles.deliveredText}>Load complete</Text>
-                </View>
-              )}
+                {nextStatus && (
+                  <TouchableOpacity
+                    style={[styles.actionBtn, statusMutation.isPending && styles.actionBtnDisabled]}
+                    onPress={() => handleStatusUpdate(load.id, load.loadNumber, nextStatus, nextLabel)}
+                    disabled={statusMutation.isPending}
+                  >
+                    <Text style={styles.actionBtnText}>{nextLabel}</Text>
+                  </TouchableOpacity>
+                )}
+                {load.status === 'DELIVERED' && (
+                  <View style={styles.deliveredTag}>
+                    <Text style={styles.deliveredText}>Complete</Text>
+                  </View>
+                )}
+              </View>
             </View>
           </View>
         );
@@ -205,11 +225,14 @@ const styles = StyleSheet.create({
   stopAddress: { fontSize: 13, fontWeight: '500', color: '#111827', marginTop: 1 },
   stopCity: { fontSize: 12, color: '#6b7280', marginTop: 1 },
   stopDate: { fontSize: 11, color: '#9ca3af', marginTop: 2 },
-  loadFooter: { marginTop: 16, paddingTop: 12, borderTopWidth: 1, borderTopColor: '#f3f4f6', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  rate: { fontSize: 16, fontWeight: '700', color: '#111827' },
-  actionBtn: { backgroundColor: '#2563eb', paddingHorizontal: 16, paddingVertical: 8, borderRadius: 8 },
+  loadFooter: { marginTop: 16, paddingTop: 12, borderTopWidth: 1, borderTopColor: '#f3f4f6' },
+  rate: { fontSize: 16, fontWeight: '700', color: '#111827', marginBottom: 10 },
+  footerButtons: { flexDirection: 'row', gap: 8 },
+  docsBtn: { flex: 1, borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 8, paddingVertical: 8, alignItems: 'center' },
+  docsBtnText: { fontSize: 13, color: '#374151', fontWeight: '500' },
+  actionBtn: { flex: 1, backgroundColor: '#2563eb', paddingVertical: 8, borderRadius: 8, alignItems: 'center' },
   actionBtnDisabled: { opacity: 0.6 },
   actionBtnText: { color: '#fff', fontSize: 13, fontWeight: '600' },
-  deliveredTag: { backgroundColor: '#dcfce7', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 },
+  deliveredTag: { flex: 1, backgroundColor: '#dcfce7', paddingVertical: 8, borderRadius: 8, alignItems: 'center' },
   deliveredText: { color: '#16a34a', fontSize: 13, fontWeight: '600' },
 });
