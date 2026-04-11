@@ -1,0 +1,36 @@
+{
+  "name": "gemini-express-tms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Gemini Express Transportation Management System",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:api": "turbo run dev --filter=@gemini-express/api",
+    "dev:web": "turbo run dev --filter=@gemini-express/web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rimraf node_modules",
+    "db:migrate": "turbo run db:migrate --filter=@gemini-express/api",
+    "db:studio": "turbo run db:studio --filter=@gemini-express/api",
+    "db:seed": "turbo run db:seed --filter=@gemini-express/api"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "rimraf": "^5.0.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "printWidth": 100
+  }
+}

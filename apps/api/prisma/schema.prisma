@@ -1,0 +1,380 @@
+// Gemini Express TMS — Prisma Schema
+// Run: pnpm db:generate  → regenerates the Prisma client
+// Run: pnpm db:migrate   → applies migrations to your local DB
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  DISPATCHER
+  DRIVER
+  CUSTOMER
+  ACCOUNTANT
+}
+
+enum LoadStatus {
+  PENDING
+  ASSIGNED
+  IN_TRANSIT
+  AT_STOP
+  DELIVERED
+  CANCELLED
+  TONU
+}
+
+enum StopType {
+  PICKUP
+  DELIVERY
+  FUEL_STOP
+  WAYPOINT
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+  FACTORED
+  VOID
+}
+
+enum DriverStatus {
+  AVAILABLE
+  DRIVING
+  ON_BREAK
+  OFF_DUTY
+  SLEEPER_BERTH
+  HOS_LIMIT
+  INACTIVE
+}
+
+enum DocumentType {
+  RATE_CONFIRMATION
+  BILL_OF_LADING
+  PROOF_OF_DELIVERY
+  LUMPER_RECEIPT
+  SCALE_TICKET
+  FUEL_RECEIPT
+  OTHER
+}
+
+enum CarrierStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+  REJECTED
+}
+
+enum BrokerLoadStatus {
+  PENDING
+  POSTED_TO_DAT
+  CARRIER_ASSIGNED
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+}
+
+enum CarrierPaymentStatus {
+  UNPAID
+  SCHEDULED
+  PAID
+}
+
+// ─── Users & Auth ─────────────────────────────────────────────────────────────
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  passwordHash  String
+  role          UserRole       @default(DISPATCHER)
+  firstName     String
+  lastName      String
+  phone         String?
+  isActive      Boolean        @default(true)
+  refreshTokens RefreshToken[]
+  driver        Driver?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("refresh_tokens")
+}
+
+// ─── Drivers ──────────────────────────────────────────────────────────────────
+
+model Driver {
+  id              String       @id @default(uuid())
+  userId          String       @unique
+  user            User         @relation(fields: [userId], references: [id])
+  cdlNumber       String?
+  cdlClass        String?
+  cdlExpiry       DateTime?
+  medicalExpiry   DateTime?
+  status          DriverStatus @default(AVAILABLE)
+  currentLat      Float?
+  currentLng      Float?
+  currentSpeed    Float?
+  lastLocationAt  DateTime?
+  hosHoursUsed    Float        @default(0)
+  hosCycleResetAt DateTime?
+  loads           Load[]
+  hosLogs         HosLog[]
+  documents       Document[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@map("drivers")
+}
+
+model HosLog {
+  id        String       @id @default(uuid())
+  driverId  String
+  driver    Driver       @relation(fields: [driverId], references: [id])
+  status    DriverStatus
+  startedAt DateTime
+  endedAt   DateTime?
+  notes     String?
+  createdAt DateTime     @default(now())
+
+  @@map("hos_logs")
+}
+
+// ─── Customers ────────────────────────────────────────────────────────────────
+
+model Customer {
+  id           String       @id @default(uuid())
+  name         String
+  email        String?
+  phone        String?
+  address      String?
+  city         String?
+  state        String?
+  zip          String?
+  mcNumber     String?
+  dotNumber    String?
+  creditLimit  Float?
+  paymentTerms Int          @default(30)
+  isActive     Boolean      @default(true)
+  loads        Load[]
+  brokerLoads  BrokerLoad[]
+  invoices     Invoice[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@map("customers")
+}
+
+// ─── Loads ────────────────────────────────────────────────────────────────────
+
+model Load {
+  id               String           @id @default(uuid())
+  loadNumber       String           @unique
+  customerId       String
+  customer         Customer         @relation(fields: [customerId], references: [id])
+  driverId         String?
+  driver           Driver?          @relation(fields: [driverId], references: [id])
+  status           LoadStatus       @default(PENDING)
+  commodity        String?
+  weight           Float?
+  pieces           Int?
+  temperature      Float?
+  rate             Float
+  fuelSurcharge    Float            @default(0)
+  detention        Float            @default(0)
+  totalRate        Float
+  notes            String?
+  stops            Stop[]
+  documents        Document[]
+  invoice          Invoice?
+  trackingUpdates  TrackingUpdate[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@map("loads")
+}
+
+model Stop {
+  id           String    @id @default(uuid())
+  loadId       String
+  load         Load      @relation(fields: [loadId], references: [id], onDelete: Cascade)
+  type         StopType
+  sequence     Int
+  facilityName String
+  address      String
+  city         String
+  state        String
+  zip          String
+  lat          Float?
+  lng          Float?
+  scheduledAt  DateTime?
+  arrivedAt    DateTime?
+  completedAt  DateTime?
+  notes        String?
+  createdAt    DateTime  @default(now())
+
+  @@map("stops")
+}
+
+model TrackingUpdate {
+  id        String   @id @default(uuid())
+  loadId    String
+  load      Load     @relation(fields: [loadId], references: [id])
+  lat       Float
+  lng       Float
+  speed     Float?
+  heading   Float?
+  message   String?
+  createdAt DateTime @default(now())
+
+  @@map("tracking_updates")
+}
+
+// ─── Documents ────────────────────────────────────────────────────────────────
+
+model Document {
+  id         String       @id @default(uuid())
+  type       DocumentType
+  fileName   String
+  s3Key      String
+  s3Url      String?
+  loadId     String?
+  load       Load?        @relation(fields: [loadId], references: [id])
+  driverId   String?
+  driver     Driver?      @relation(fields: [driverId], references: [id])
+  uploadedAt DateTime     @default(now())
+
+  @@map("documents")
+}
+
+// ─── Billing ──────────────────────────────────────────────────────────────────
+
+model Invoice {
+  id            String        @id @default(uuid())
+  invoiceNumber String        @unique
+  loadId        String        @unique
+  load          Load          @relation(fields: [loadId], references: [id])
+  customerId    String
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  status        InvoiceStatus @default(DRAFT)
+  subtotal      Float
+  tax           Float         @default(0)
+  total         Float
+  dueDate       DateTime
+  paidAt        DateTime?
+  factoredAt    DateTime?
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@map("invoices")
+}
+
+// ─── Brokerage ────────────────────────────────────────────────────────────────
+
+model ExternalCarrier {
+  id              String        @id @default(uuid())
+  name            String
+  mcNumber        String        @unique
+  dotNumber       String        @unique
+  email           String?
+  phone           String?
+  address         String?
+  city            String?
+  state           String?
+  zip             String?
+  status          CarrierStatus @default(PENDING)
+  rmisVerifiedAt  DateTime?
+  insuranceExpiry DateTime?
+  authorityExpiry DateTime?
+  paymentTerms    Int           @default(30)
+  preferredLanes  String?
+  notes           String?
+  brokerLoads     BrokerLoad[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@map("external_carriers")
+}
+
+model BrokerLoad {
+  id                 String               @id @default(uuid())
+  loadNumber         String               @unique
+  customerId         String
+  customer           Customer             @relation(fields: [customerId], references: [id])
+  carrierId          String?
+  carrier            ExternalCarrier?     @relation(fields: [carrierId], references: [id])
+  status             BrokerLoadStatus     @default(PENDING)
+  commodity          String?
+  weight             Float?
+  pieces             Int?
+  shipperRate        Float
+  carrierRate        Float?
+  margin             Float?
+  datPostId          String?
+  truckerToolsLoadId String?
+  cargoWiseSyncedAt  DateTime?
+  carrierPayStatus   CarrierPaymentStatus @default(UNPAID)
+  carrierPaidAt      DateTime?
+  notes              String?
+  stops              BrokerStop[]
+  datPostings        DatPosting[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+  @@map("broker_loads")
+}
+
+model BrokerStop {
+  id           String     @id @default(uuid())
+  brokerLoadId String
+  brokerLoad   BrokerLoad @relation(fields: [brokerLoadId], references: [id], onDelete: Cascade)
+  type         StopType
+  sequence     Int
+  facilityName String
+  address      String
+  city         String
+  state        String
+  zip          String
+  lat          Float?
+  lng          Float?
+  scheduledAt  DateTime?
+  arrivedAt    DateTime?
+  completedAt  DateTime?
+  notes        String?
+  createdAt    DateTime   @default(now())
+
+  @@map("broker_stops")
+}
+
+model DatPosting {
+  id           String     @id @default(uuid())
+  brokerLoadId String
+  brokerLoad   BrokerLoad @relation(fields: [brokerLoadId], references: [id])
+  datPostId    String     @unique
+  postedAt     DateTime   @default(now())
+  expiresAt    DateTime?
+  isActive     Boolean    @default(true)
+  rateOffered  Float?
+
+  @@map("dat_postings")
+}
