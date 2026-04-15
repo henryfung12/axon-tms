@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1e3a5f"/>
+  <text x="256" y="200" text-anchor="middle" fill="white" font-family="system-ui, sans-serif" font-size="160" font-weight="800">GE</text>
+  <text x="256" y="310" text-anchor="middle" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="48" font-weight="600">DRIVER</text>
+  <rect x="126" y="340" width="260" height="4" rx="2" fill="#2563eb"/>
+  <text x="256" y="410" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="system-ui, sans-serif" font-size="36" font-weight="500">🚛</text>
+</svg>
