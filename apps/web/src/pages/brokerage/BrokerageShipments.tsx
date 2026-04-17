@@ -239,6 +239,7 @@ export function BrokerageShipments() {
         <div className="flex items-center gap-1 mb-4 border-b border-gray-200">
           {[
             { id: 'activity', label: 'Activity Log', badge: '3' },
+              { id: 'notes', label: 'Notes & Exceptions' },
             { id: 'assignments', label: 'Assignments' },
             { id: 'alerts', label: 'Alerts' },
             { id: 'checkcall', label: 'Check Call' },
@@ -491,6 +492,93 @@ export function BrokerageShipments() {
         )}
 
         {/* Documents tab */}
+        {detailTab === 'notes' && (() => {
+          const STORAGE_KEY = `axon-notes-${selectedLoad.id}`;
+          type NoteSeverity = 'INFO' | 'WARNING' | 'CRITICAL';
+          type ShipmentNote = { id: string; severity: NoteSeverity; text: string; author: string; createdAt: string };
+          const loadNotes = (): ShipmentNote[] => {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+          };
+          const saveNotes = (n: ShipmentNote[]) => { localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); };
+          const NotesPanel = () => {
+            const [notes, setNotes] = useState<ShipmentNote[]>(loadNotes());
+            const [draft, setDraft] = useState('');
+            const [severity, setSeverity] = useState<NoteSeverity>('INFO');
+            const add = () => {
+              if (!draft.trim()) return;
+              const newNote: ShipmentNote = { id: Date.now().toString(), severity, text: draft.trim(), author: 'Henry Fung', createdAt: new Date().toISOString() };
+              const updated = [newNote, ...notes];
+              setNotes(updated); saveNotes(updated); setDraft(''); setSeverity('INFO');
+            };
+            const remove = (id: string) => {
+              const updated = notes.filter(n => n.id !== id);
+              setNotes(updated); saveNotes(updated);
+            };
+            const sevStyle: Record<NoteSeverity, { bg: string; border: string; label: string; dot: string }> = {
+              INFO: { bg: 'bg-blue-50', border: 'border-blue-200', label: 'Info', dot: 'bg-blue-500' },
+              WARNING: { bg: 'bg-yellow-50', border: 'border-yellow-200', label: 'Warning', dot: 'bg-yellow-500' },
+              CRITICAL: { bg: 'bg-red-50', border: 'border-red-200', label: 'Critical', dot: 'bg-red-500' },
+            };
+            const fmtDT = (d: string) => new Date(d).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+            return (
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-1">
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <h4 className="text-xs font-semibold text-gray-700 mb-3">Add Note or Exception</h4>
+                    <label className="block text-xs text-gray-500 mb-1">Severity</label>
+                    <div className="flex gap-1 mb-3">
+                      {(['INFO', 'WARNING', 'CRITICAL'] as NoteSeverity[]).map(s => (
+                        <button key={s} onClick={() => setSeverity(s)} className={`flex-1 px-2 py-1.5 text-xs font-medium rounded border ${severity === s ? sevStyle[s].bg + ' ' + sevStyle[s].border + ' text-gray-900' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}>
+                          <span className={`inline-block w-1.5 h-1.5 rounded-full mr-1.5 ${sevStyle[s].dot}`} />
+                          {sevStyle[s].label}
+                        </button>
+                      ))}
+                    </div>
+                    <label className="block text-xs text-gray-500 mb-1">Note</label>
+                    <textarea value={draft} onChange={e => setDraft(e.target.value)} rows={5} placeholder="Describe the issue, exception, or context for this shipment..." className="w-full border border-gray-300 rounded-lg px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    <button onClick={add} disabled={!draft.trim()} className="mt-3 w-full px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">Add Note</button>
+                  </div>
+                </div>
+                <div className="col-span-2">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-xs font-semibold text-gray-700">Notes & Exceptions ({notes.length})</h4>
+                    {notes.length > 0 && <span className="text-xs text-gray-400">Most recent first</span>}
+                  </div>
+                  {notes.length === 0 ? (
+                    <div className="text-center py-12 border border-dashed border-gray-200 rounded-lg">
+                      <p className="text-xs text-gray-400">No notes or exceptions yet.</p>
+                      <p className="text-xs text-gray-400 mt-1">Add one on the left to document any issues with this shipment.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {notes.map(n => {
+                        const s = sevStyle[n.severity];
+                        return (
+                          <div key={n.id} className={`${s.bg} border ${s.border} rounded-lg p-3`}>
+                            <div className="flex items-start justify-between gap-2 mb-1">
+                              <div className="flex items-center gap-2">
+                                <span className={`inline-block w-2 h-2 rounded-full ${s.dot}`} />
+                                <span className="text-xs font-semibold text-gray-800">{s.label}</span>
+                                <span className="text-xs text-gray-400">by {n.author}</span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-gray-400">{fmtDT(n.createdAt)}</span>
+                                <button onClick={() => remove(n.id)} className="text-xs text-red-500 hover:text-red-700">Delete</button>
+                              </div>
+                            </div>
+                            <p className="text-xs text-gray-700 whitespace-pre-wrap">{n.text}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          };
+          return <NotesPanel />;
+        })()}
+
         {detailTab === 'documents' && (() => {
           const docs = MOCK_DOCS[selectedLoad.id] || [];
           const fmtDT3 = (d: string) => new Date(d).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
@@ -593,7 +681,7 @@ export function BrokerageShipments() {
         })()}
 
         {/* Other tabs placeholder */}
-        {!['activity', 'documents'].includes(detailTab) && (
+        {!['activity', 'documents', 'notes'].includes(detailTab) && (
           <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
             <div className="text-2xl mb-2"></div>
             <p className="text-sm font-medium text-gray-600">{detailTab.charAt(0).toUpperCase() + detailTab.slice(1)}</p>
