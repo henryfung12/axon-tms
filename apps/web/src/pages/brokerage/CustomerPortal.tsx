@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 
-// ── Types ──────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 type PortalScreen = 'shipments' | 'tracking' | 'documents' | 'invoices' | 'quote';
 
 interface CustomerShipment {
@@ -20,13 +20,13 @@ interface CustomerDocument {
   id: string; loadNumber: string; type: string; name: string; date: string;
 }
 
-// ── Mock Data ──────────────────────────────────────────────────────
+// â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const MOCK_CUSTOMERS: Record<string, { name: string; company: string; email: string; phone: string; shipments: CustomerShipment[]; invoices: CustomerInvoice[]; documents: CustomerDocument[] }> = {
   'acme': {
     name: 'John Reynolds', company: 'Acme Manufacturing', email: 'john.r@acmemfg.com', phone: '(555) 200-1001',
     shipments: [
       { id: 's1', loadNumber: 'SH-10421', status: 'IN_TRANSIT', origin: 'Detroit', originState: 'MI', destination: 'Nashville', destinationState: 'TN', pickupDate: '2026-04-13', deliveryDate: '2026-04-13', commodity: 'Auto Parts', weight: '42,000 lbs', carrier: 'Eagle Freight Lines', equipment: 'Dry Van 53\'', rate: 2800, lastLocation: 'Bowling Green, KY', lastUpdate: '04/14/2026 8:12 PM', etaMinutes: 95 },
-      { id: 's8', loadNumber: 'SH-10428', status: 'BOOKED', origin: 'Detroit', originState: 'MI', destination: 'Columbus', destinationState: 'OH', pickupDate: '2026-04-15', deliveryDate: '2026-04-15', commodity: 'Building Materials', weight: '45,000 lbs', carrier: 'TBD', equipment: 'Dry Van 53\'', rate: 3200, lastLocation: '—', lastUpdate: '', etaMinutes: 0 },
+      { id: 's8', loadNumber: 'SH-10428', status: 'BOOKED', origin: 'Detroit', originState: 'MI', destination: 'Columbus', destinationState: 'OH', pickupDate: '2026-04-15', deliveryDate: '2026-04-15', commodity: 'Building Materials', weight: '45,000 lbs', carrier: 'TBD', equipment: 'Dry Van 53\'', rate: 3200, lastLocation: 'â€”', lastUpdate: '', etaMinutes: 0 },
       { id: 's20', loadNumber: 'SH-10415', status: 'DELIVERED', origin: 'Detroit', originState: 'MI', destination: 'Chicago', destinationState: 'IL', pickupDate: '2026-04-10', deliveryDate: '2026-04-10', commodity: 'Auto Parts', weight: '40,000 lbs', carrier: 'Midwest Express', equipment: 'Dry Van 53\'', rate: 2600, lastLocation: 'Chicago, IL', lastUpdate: '04/10/2026 3:45 PM', etaMinutes: 0 },
       { id: 's21', loadNumber: 'SH-10408', status: 'DELIVERED', origin: 'Detroit', originState: 'MI', destination: 'Indianapolis', destinationState: 'IN', pickupDate: '2026-04-08', deliveryDate: '2026-04-08', commodity: 'Engine Components', weight: '38,000 lbs', carrier: 'Thunder Road Inc.', equipment: 'Dry Van 53\'', rate: 2400, lastLocation: 'Indianapolis, IN', lastUpdate: '04/08/2026 2:30 PM', etaMinutes: 0 },
     ],
@@ -50,10 +50,10 @@ const STATUS_FLOW = ['BOOKED', 'DISPATCHED', 'PICKED_UP', 'IN_TRANSIT', 'OUT_FOR
 const STATUS_LABELS: Record<string, string> = { BOOKED: 'Booked', DISPATCHED: 'Dispatched', PICKED_UP: 'Picked Up', IN_TRANSIT: 'In Transit', OUT_FOR_DELIVERY: 'Out for Delivery', DELIVERED: 'Delivered' };
 const STATUS_COLORS: Record<string, string> = { BOOKED: 'bg-gray-100 text-gray-700', DISPATCHED: 'bg-blue-100 text-blue-800', PICKED_UP: 'bg-indigo-100 text-indigo-800', IN_TRANSIT: 'bg-yellow-100 text-yellow-800', OUT_FOR_DELIVERY: 'bg-orange-100 text-orange-800', DELIVERED: 'bg-green-100 text-green-800' };
 const INV_STATUS: Record<string, string> = { PENDING: 'bg-gray-100 text-gray-600', SENT: 'bg-blue-100 text-blue-800', PAID: 'bg-green-100 text-green-800', OVERDUE: 'bg-red-100 text-red-800' };
-function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'; }
+function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'â€”'; }
 function fmtCurrency(n: number) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2 }); }
 
-// ── Component ──────────────────────────────────────────────────────
+// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function CustomerPortal() {
   const [authed, setAuthed] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
@@ -68,7 +68,7 @@ export function CustomerPortal() {
   const handleLogin = () => {
     if (loginEmail.toLowerCase().includes('acme') || loginEmail.toLowerCase().includes('john')) {
       setCustomerId('acme'); setAuthed(true); setLoginError('');
-    } else { setLoginError('No portal account found. Contact your Gemini Express rep.'); }
+    } else { setLoginError('No portal account found. Contact your AXON TMS rep.'); }
   };
 
   const handleLogout = () => { setAuthed(false); setCustomerId(''); setSelectedShipment(null); };
@@ -78,13 +78,13 @@ export function CustomerPortal() {
     return customer.shipments.find(s => s.loadNumber.toLowerCase().includes(trackingSearch.toLowerCase()));
   }, [trackingSearch, customer]);
 
-  // ── Login Screen ─────────────────────────────────────────
+  // â”€â”€ Login Screen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (!authed) {
     return (
       <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, fontFamily: 'system-ui' }}>
         <div style={{ width: 420 }}>
           <div style={{ textAlign: 'center', marginBottom: 32 }}>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', letterSpacing: 3, marginBottom: 6 }}>GEMINI EXPRESS</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', letterSpacing: 3, marginBottom: 6 }}>AXON TMS</div>
             <div style={{ fontSize: 32, fontWeight: 800, color: 'white', marginBottom: 4 }}>Customer Portal</div>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>Track shipments, view documents, and manage invoices</p>
           </div>
@@ -95,7 +95,7 @@ export function CustomerPortal() {
             </div>
             <div style={{ marginBottom: 20 }}>
               <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>Password</label>
-              <input type="password" placeholder="••••••••" style={{ width: '100%', padding: '12px 14px', fontSize: 16, border: '1px solid #d1d5db', borderRadius: 10, outline: 'none', boxSizing: 'border-box' }} onKeyDown={e => e.key === 'Enter' && handleLogin()} />
+              <input type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" style={{ width: '100%', padding: '12px 14px', fontSize: 16, border: '1px solid #d1d5db', borderRadius: 10, outline: 'none', boxSizing: 'border-box' }} onKeyDown={e => e.key === 'Enter' && handleLogin()} />
             </div>
             {loginError && <div style={{ fontSize: 13, color: '#dc2626', padding: '8px 12px', background: '#fef2f2', borderRadius: 8, marginBottom: 12, textAlign: 'center' }}>{loginError}</div>}
             <button onClick={handleLogin} style={{ width: '100%', padding: '14px', fontSize: 16, fontWeight: 700, color: 'white', background: '#2563eb', border: 'none', borderRadius: 10, cursor: 'pointer' }}>Sign In</button>
@@ -107,7 +107,7 @@ export function CustomerPortal() {
               </div>
             </div>
           </div>
-          <p style={{ textAlign: 'center', fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 20 }}>Powered by Gemini Express TMS</p>
+          <p style={{ textAlign: 'center', fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 20 }}>Powered by AXON TMS TMS</p>
         </div>
       </div>
     );
@@ -115,14 +115,14 @@ export function CustomerPortal() {
 
   if (!customer) return null;
 
-  // ── Portal Layout ────────────────────────────────────────
+  // â”€â”€ Portal Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   return (
     <div style={{ minHeight: '100vh', background: '#f3f4f6', fontFamily: 'system-ui' }}>
       {/* Header */}
       <div style={{ background: '#1e3a5f', color: 'white', padding: '0 24px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: 56 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div><span style={{ fontSize: 10, letterSpacing: 2, opacity: 0.5 }}>GEMINI EXPRESS</span><br/><span style={{ fontSize: 15, fontWeight: 700 }}>Customer Portal</span></div>
+            <div><span style={{ fontSize: 10, letterSpacing: 2, opacity: 0.5 }}>AXON TMS</span><br/><span style={{ fontSize: 15, fontWeight: 700 }}>Customer Portal</span></div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <span style={{ fontSize: 13 }}>{customer.company}</span>
@@ -151,7 +151,7 @@ export function CustomerPortal() {
       {/* Content */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '20px 24px' }}>
 
-        {/* ── My Shipments ──────────────────────────────── */}
+        {/* â”€â”€ My Shipments â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {screen === 'shipments' && !selectedShipment && (
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 12, marginBottom: 16 }}>
@@ -181,7 +181,7 @@ export function CustomerPortal() {
                       <td style={{ padding: '10px 14px', color: '#6b7280' }}>{fmtDate(s.pickupDate)}</td>
                       <td style={{ padding: '10px 14px', color: '#6b7280' }}>{fmtDate(s.deliveryDate)}</td>
                       <td style={{ padding: '10px 14px' }}><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[s.status]}`}>{STATUS_LABELS[s.status]}</span></td>
-                      <td style={{ padding: '10px 14px', color: '#6b7280' }}>{s.lastLocation || '—'}</td>
+                      <td style={{ padding: '10px 14px', color: '#6b7280' }}>{s.lastLocation || 'â€”'}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -190,10 +190,10 @@ export function CustomerPortal() {
           </div>
         )}
 
-        {/* ── Shipment Detail ───────────────────────────── */}
+        {/* â”€â”€ Shipment Detail â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {screen === 'shipments' && selectedShipment && (
           <div>
-            <button onClick={() => setSelectedShipment(null)} style={{ fontSize: 13, color: '#2563eb', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 12 }}>← Back to Shipments</button>
+            <button onClick={() => setSelectedShipment(null)} style={{ fontSize: 13, color: '#2563eb', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 12 }}>â† Back to Shipments</button>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
               <div>
                 {/* Status Bar */}
@@ -234,14 +234,14 @@ export function CustomerPortal() {
               <div>
                 <div style={{ background: 'white', borderRadius: 10, padding: 16, marginBottom: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
                   <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Live Tracking</h4>
-                  {selectedShipment.lastLocation && selectedShipment.lastLocation !== '—' ? (
+                  {selectedShipment.lastLocation && selectedShipment.lastLocation !== 'â€”' ? (
                     <div>
                       <div style={{ background: '#eff6ff', borderRadius: 8, padding: 12, marginBottom: 8 }}>
                         <p style={{ fontSize: 14, fontWeight: 600, color: '#1e40af' }}>{selectedShipment.lastLocation}</p>
                         <p style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{selectedShipment.lastUpdate}</p>
                         <p style={{ fontSize: 11, color: '#6b7280' }}>via Trucker Tools</p>
                       </div>
-                      <div style={{ background: '#f3f4f6', borderRadius: 8, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#9ca3af', fontSize: 13 }}>🗺 Map View</span></div>
+                      <div style={{ background: '#f3f4f6', borderRadius: 8, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#9ca3af', fontSize: 13 }}>ðŸ—º Map View</span></div>
                     </div>
                   ) : (
                     <p style={{ fontSize: 13, color: '#9ca3af', textAlign: 'center', padding: 20 }}>Tracking available once shipment is picked up</p>
@@ -251,8 +251,8 @@ export function CustomerPortal() {
                   <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Documents</h4>
                   {customer.documents.filter(d => d.loadNumber === selectedShipment.loadNumber).map(d => (
                     <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 0', borderBottom: '1px solid #f3f4f6' }}>
-                      <div><p style={{ fontSize: 12, fontWeight: 500, color: '#2563eb' }}>{d.name}</p><p style={{ fontSize: 11, color: '#9ca3af' }}>{d.type} · {fmtDate(d.date)}</p></div>
-                      <button style={{ fontSize: 11, color: '#6b7280', background: '#f3f4f6', border: 'none', padding: '4px 8px', borderRadius: 4, cursor: 'pointer' }}>⬇</button>
+                      <div><p style={{ fontSize: 12, fontWeight: 500, color: '#2563eb' }}>{d.name}</p><p style={{ fontSize: 11, color: '#9ca3af' }}>{d.type} Â· {fmtDate(d.date)}</p></div>
+                      <button style={{ fontSize: 11, color: '#6b7280', background: '#f3f4f6', border: 'none', padding: '4px 8px', borderRadius: 4, cursor: 'pointer' }}>â¬‡</button>
                     </div>
                   ))}
                   {customer.documents.filter(d => d.loadNumber === selectedShipment.loadNumber).length === 0 && <p style={{ fontSize: 12, color: '#9ca3af' }}>No documents yet</p>}
@@ -262,7 +262,7 @@ export function CustomerPortal() {
           </div>
         )}
 
-        {/* ── Track Shipment ────────────────────────────── */}
+        {/* â”€â”€ Track Shipment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {screen === 'tracking' && (
           <div>
             <div style={{ background: 'white', borderRadius: 10, padding: 20, marginBottom: 16, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
@@ -284,13 +284,13 @@ export function CustomerPortal() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 16 }}>
                   <div style={{ borderLeft: '3px solid #22c55e', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#22c55e', fontWeight: 600 }}>ORIGIN</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.origin}, {trackResult.originState}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{fmtDate(trackResult.pickupDate)}</p></div>
                   <div style={{ borderLeft: '3px solid #ef4444', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#ef4444', fontWeight: 600 }}>DESTINATION</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.destination}, {trackResult.destinationState}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{fmtDate(trackResult.deliveryDate)}</p></div>
-                  <div style={{ borderLeft: '3px solid #2563eb', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#2563eb', fontWeight: 600 }}>CURRENT LOCATION</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.lastLocation || 'Awaiting update'}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{trackResult.lastUpdate || '—'}</p></div>
+                  <div style={{ borderLeft: '3px solid #2563eb', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#2563eb', fontWeight: 600 }}>CURRENT LOCATION</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.lastLocation || 'Awaiting update'}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{trackResult.lastUpdate || 'â€”'}</p></div>
                 </div>
                 {trackResult.etaMinutes > 0 && <div style={{ marginTop: 16, padding: 12, background: '#eff6ff', borderRadius: 8, textAlign: 'center' }}><p style={{ fontSize: 13, color: '#1e40af' }}>Estimated arrival in <strong>{Math.floor(trackResult.etaMinutes / 60)}h {trackResult.etaMinutes % 60}m</strong></p></div>}
               </div>
             ) : trackingSearch ? (
               <div style={{ background: 'white', borderRadius: 10, padding: 32, textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <p style={{ fontSize: 32, marginBottom: 8 }}>🔍</p>
+                <p style={{ fontSize: 32, marginBottom: 8 }}>ðŸ”</p>
                 <p style={{ fontSize: 14, color: '#6b7280' }}>No shipment found for "{trackingSearch}"</p>
                 <p style={{ fontSize: 12, color: '#9ca3af', marginTop: 4 }}>Check the shipment number and try again</p>
               </div>
@@ -298,7 +298,7 @@ export function CustomerPortal() {
           </div>
         )}
 
-        {/* ── Documents ────────────────────────────────── */}
+        {/* â”€â”€ Documents â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {screen === 'documents' && (
           <div style={{ background: 'white', borderRadius: 10, overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
             <div style={{ padding: '14px 16px', borderBottom: '1px solid #e5e7eb' }}><h3 style={{ fontSize: 15, fontWeight: 600 }}>All Documents</h3></div>
@@ -325,7 +325,7 @@ export function CustomerPortal() {
           </div>
         )}
 
-        {/* ── Invoices ─────────────────────────────────── */}
+        {/* â”€â”€ Invoices â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {screen === 'invoices' && (
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 16 }}>
@@ -362,7 +362,7 @@ export function CustomerPortal() {
           </div>
         )}
 
-        {/* ── Request Quote ─────────────────────────────── */}
+        {/* â”€â”€ Request Quote â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {screen === 'quote' && (
           <div style={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: 12, overflow: 'hidden' }}>
             <div style={{ padding: '16px 20px', borderBottom: '1px solid #e5e7eb' }}><h3 style={{ fontSize: 16, fontWeight: 700, color: '#111827' }}>Request a Quote</h3><p style={{ fontSize: 12, color: '#9ca3af', marginTop: 4 }}>Fill out the details below and we'll get back to you within 2 hours</p></div>

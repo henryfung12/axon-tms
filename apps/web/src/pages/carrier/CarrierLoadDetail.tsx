@@ -95,7 +95,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
           <div className="bg-white rounded-xl w-full max-w-md shadow-xl">
             <div className="flex items-center justify-between px-6 py-4 border-b">
               <h3 className="text-base font-medium text-gray-900">Assign Fleet to {load.loadNumber}</h3>
-              <button onClick={() => setShowAssignModal(false)} className="text-gray-400 hover:text-gray-600">✕</button>
+              <button onClick={() => setShowAssignModal(false)} className="text-gray-400 hover:text-gray-600">âœ•</button>
             </div>
             <div className="px-6 py-4">
               <label className="block text-xs font-medium text-gray-700 mb-2">Select Driver</label>
@@ -107,7 +107,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                 <option value="">Choose a driver...</option>
                 {drivers?.filter((d: any) => d.status !== 'DRIVING').map((d: any) => (
                   <option key={d.id} value={d.id}>
-                    {d.user?.firstName} {d.user?.lastName} — {d.status}
+                    {d.user?.firstName} {d.user?.lastName} â€” {d.status}
                   </option>
                 ))}
               </select>
@@ -130,11 +130,11 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="text-xs text-blue-600 hover:underline flex items-center gap-1">
-            ← Load board
+            â† Load board
           </button>
           <span className="text-gray-300">|</span>
           <h2 className="text-base font-semibold text-gray-900">
-            Load — {load.loadNumber}
+            Load â€” {load.loadNumber}
           </h2>
           <span className={`px-2.5 py-0.5 rounded text-xs font-semibold ${STATUS_COLORS[load.status]}`}>
             {statusLabel}
@@ -159,7 +159,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
           {load.status === 'IN_TRANSIT' ? 'IT' : load.status?.[0]}
         </span>
         <span className="font-medium">{pickup?.state}</span>
-        <span>→</span>
+        <span>â†’</span>
         <span className="font-medium">{delivery?.state}</span>
         {load.mileage && (
           <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">{load.mileage} mi</span>
@@ -177,8 +177,8 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
             <div className="space-y-2 text-xs">
               {[
                 { label: 'Trip #', value: load.loadNumber },
-                { label: 'Order #', value: '—' },
-                { label: 'PO #', value: '—' },
+                { label: 'Order #', value: 'â€”' },
+                { label: 'PO #', value: 'â€”' },
                 { label: 'Customer Service Rep.', value: '+ Assign', isAction: true },
                 { label: 'Account Manager', value: '+ Assign', isAction: true },
                 { label: 'Sales Manager', value: '+ Assign', isAction: true },
@@ -186,7 +186,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                 { label: 'Dispatcher', value: '+ Assign', isAction: true },
                 { label: 'Load Office', value: 'GNY' },
                 { label: 'Created By', value: 'Admin' },
-                { label: 'Date Created', value: load.createdAt ? new Date(load.createdAt).toLocaleDateString() : '—' },
+                { label: 'Date Created', value: load.createdAt ? new Date(load.createdAt).toLocaleDateString() : 'â€”' },
               ].map((item, i) => (
                 <div key={i} className="flex justify-between items-center py-1 border-b border-gray-50">
                   <span className="text-gray-500">{item.label}</span>
@@ -220,7 +220,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
               </div>
               <div>
                 <p className="text-gray-500">Sales Diff.</p>
-                <p className="font-semibold text-red-600">—$0.00</p>
+                <p className="font-semibold text-red-600">â€”$0.00</p>
               </div>
               <div>
                 <p className="text-gray-500">Posted Rate</p>
@@ -278,7 +278,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
             <div className="grid grid-cols-2 gap-4 text-xs mb-4">
               <div>
                 <p className="text-gray-500 mb-1">Invoicing Address</p>
-                <p className="text-gray-800">{load.customer?.address || '—'}</p>
+                <p className="text-gray-800">{load.customer?.address || 'â€”'}</p>
               </div>
               <div>
                 <p className="text-gray-500 mb-1">Invoicing Settings</p>
@@ -289,11 +289,11 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
             <div className="grid grid-cols-3 gap-3 text-xs py-3 border-t border-gray-100">
               <div>
                 <p className="text-gray-500">Load Weight</p>
-                <p className="font-medium text-gray-800">{load.weight ? `${load.weight.toLocaleString()} lbs` : '—'}</p>
+                <p className="font-medium text-gray-800">{load.weight ? `${load.weight.toLocaleString()} lbs` : 'â€”'}</p>
               </div>
               <div>
                 <p className="text-gray-500">Load Volume</p>
-                <p className="font-medium text-gray-800">—</p>
+                <p className="font-medium text-gray-800">â€”</p>
               </div>
               <div>
                 <p className="text-gray-500">Equipment</p>
@@ -400,7 +400,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                   <div className="flex items-start gap-3">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${stop.type === 'PICKUP' ? 'bg-blue-100' : 'bg-green-100'}`}>
                       <span className={`text-xs font-bold ${stop.type === 'PICKUP' ? 'text-blue-600' : 'text-green-600'}`}>
-                        {stop.type === 'PICKUP' ? '↑' : '↓'}
+                        {stop.type === 'PICKUP' ? 'â†‘' : 'â†“'}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -471,7 +471,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
             {load.driver ? (
               <div>
                 <p className="text-sm font-semibold text-blue-600">
-                  Gemini Express Transport Corp
+                  AXON TMS Transport Corp
                 </p>
                 <p className="text-xs text-gray-500 mb-3">Own Fleet</p>
 
@@ -484,15 +484,15 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                     <span className="text-xs px-1.5 py-0.5 bg-green-100 text-green-700 rounded font-medium">
                       {load.driver.status === 'DRIVING' ? 'Online' : 'Offline'}
                     </span>
-                    <p className="text-gray-600 mt-1">{load.driver.user?.phone || '—'}</p>
+                    <p className="text-gray-600 mt-1">{load.driver.user?.phone || 'â€”'}</p>
                   </div>
                   <div>
                     <p className="text-gray-500 mb-1">Truck</p>
-                    <p className="text-blue-600 font-medium">{load.driver.truckNumber || '—'}</p>
+                    <p className="text-blue-600 font-medium">{load.driver.truckNumber || 'â€”'}</p>
                   </div>
                   <div>
                     <p className="text-gray-500 mb-1">Trailer</p>
-                    <p className="text-blue-600 font-medium">{load.driver.trailerNumber || '—'}</p>
+                    <p className="text-blue-600 font-medium">{load.driver.trailerNumber || 'â€”'}</p>
                   </div>
                 </div>
               </div>
@@ -521,7 +521,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                     <span className="text-gray-700">
                       {load.driver.lastLocationAt
                         ? new Date(load.driver.lastLocationAt).toLocaleString()
-                        : '—'}
+                        : 'â€”'}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -529,19 +529,19 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                     <span className="text-gray-700">
                       {load.driver.currentLat
                         ? `${load.driver.currentLat.toFixed(4)}, ${load.driver.currentLng.toFixed(4)}`
-                        : '—'}
+                        : 'â€”'}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Next Stop</span>
-                    <span className="text-gray-700">{delivery?.facilityName || '—'}</span>
+                    <span className="text-gray-700">{delivery?.facilityName || 'â€”'}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-500">Next Stop ETA</span>
                     <span className="text-gray-700">
                       {delivery?.scheduledAt
                         ? new Date(delivery.scheduledAt).toLocaleDateString()
-                        : '—'}
+                        : 'â€”'}
                     </span>
                   </div>
                   <div className="flex justify-between">
@@ -549,7 +549,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
                     <span className="text-gray-700">
                       {load.driver.currentSpeed && load.driver.currentSpeed > 0
                         ? `${Math.round(load.driver.currentSpeed)} mph`
-                        : '—'}
+                        : 'â€”'}
                     </span>
                   </div>
                 </div>

@@ -28,8 +28,8 @@ export const useAuthStore = create<AuthState>()(
         set({ accessToken }),
     }),
     {
-      name: 'gemini-auth',
-      // Only persist user info — access token is short-lived
+      name: 'axon-auth',
+      // Only persist user info â€” access token is short-lived
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,

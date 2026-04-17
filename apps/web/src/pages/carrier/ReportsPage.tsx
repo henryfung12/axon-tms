@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import * as XLSX from 'xlsx';
 
-// ── Types ──────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface ReportConfig {
   id: string;
   name: string;
@@ -12,7 +12,7 @@ interface ReportConfig {
   getData: (startDate: string, endDate: string) => Record<string, any>[];
 }
 
-// ── Mock Data Generators ───────────────────────────────────────────
+// â”€â”€ Mock Data Generators â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function getLoadReport() {
   return [
     { loadNumber: 'LD-4521', status: 'In Transit', customer: 'Acme Corp - LAX', origin: 'Memphis, TN', destination: 'Nashville, TN', pickupDate: '2026-04-10', deliveryDate: '2026-04-10', driver: 'Marcus Johnson', equipment: "Van - 53'", miles: 450, lineHaul: 2800, fuelSurcharge: 280, accessorials: 120, totalRate: 3200, ratePerMile: 7.11 },
@@ -139,13 +139,13 @@ function getProfitLossReport() {
 
 function getLaneProfitReport() {
   return [
-    { lane: 'Memphis, TN → Nashville, TN', loads: 12, miles: 5400, revenue: 38400, driverPay: 15600, fuel: 6480, tolls: 240, totalCost: 22320, grossProfit: 16080, margin: '41.9%' },
-    { lane: 'Dallas, TX → Houston, TX', loads: 8, miles: 5760, revenue: 38400, driverPay: 16800, fuel: 6912, tolls: 180, totalCost: 23892, grossProfit: 14508, margin: '37.8%' },
-    { lane: 'Gary, IN → Columbus, OH', loads: 6, miles: 5340, revenue: 33600, driverPay: 14400, fuel: 6408, tolls: 520, totalCost: 21328, grossProfit: 12272, margin: '36.5%' },
-    { lane: 'Atlanta, GA → Jacksonville, FL', loads: 10, miles: 4100, revenue: 31000, driverPay: 12400, fuel: 4920, tolls: 340, totalCost: 17660, grossProfit: 13340, margin: '43.0%' },
-    { lane: 'Chicago, IL → Indianapolis, IN', loads: 7, miles: 2800, revenue: 19600, driverPay: 8400, fuel: 3360, tolls: 420, totalCost: 12180, grossProfit: 7420, margin: '37.9%' },
-    { lane: 'Denver, CO → Salt Lake City, UT', loads: 4, miles: 3920, revenue: 24800, driverPay: 10800, fuel: 4704, tolls: 120, totalCost: 15624, grossProfit: 9176, margin: '37.0%' },
-    { lane: 'Nashville, TN → Louisville, KY', loads: 9, miles: 3420, revenue: 26100, driverPay: 10800, fuel: 4104, tolls: 280, totalCost: 15184, grossProfit: 10916, margin: '41.8%' },
+    { lane: 'Memphis, TN â†’ Nashville, TN', loads: 12, miles: 5400, revenue: 38400, driverPay: 15600, fuel: 6480, tolls: 240, totalCost: 22320, grossProfit: 16080, margin: '41.9%' },
+    { lane: 'Dallas, TX â†’ Houston, TX', loads: 8, miles: 5760, revenue: 38400, driverPay: 16800, fuel: 6912, tolls: 180, totalCost: 23892, grossProfit: 14508, margin: '37.8%' },
+    { lane: 'Gary, IN â†’ Columbus, OH', loads: 6, miles: 5340, revenue: 33600, driverPay: 14400, fuel: 6408, tolls: 520, totalCost: 21328, grossProfit: 12272, margin: '36.5%' },
+    { lane: 'Atlanta, GA â†’ Jacksonville, FL', loads: 10, miles: 4100, revenue: 31000, driverPay: 12400, fuel: 4920, tolls: 340, totalCost: 17660, grossProfit: 13340, margin: '43.0%' },
+    { lane: 'Chicago, IL â†’ Indianapolis, IN', loads: 7, miles: 2800, revenue: 19600, driverPay: 8400, fuel: 3360, tolls: 420, totalCost: 12180, grossProfit: 7420, margin: '37.9%' },
+    { lane: 'Denver, CO â†’ Salt Lake City, UT', loads: 4, miles: 3920, revenue: 24800, driverPay: 10800, fuel: 4704, tolls: 120, totalCost: 15624, grossProfit: 9176, margin: '37.0%' },
+    { lane: 'Nashville, TN â†’ Louisville, KY', loads: 9, miles: 3420, revenue: 26100, driverPay: 10800, fuel: 4104, tolls: 280, totalCost: 15184, grossProfit: 10916, margin: '41.8%' },
   ];
 }
 
@@ -171,10 +171,10 @@ function getCustomerProfitReport() {
   ];
 }
 
-// ── Report Configs ─────────────────────────────────────────────────
+// â”€â”€ Report Configs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const REPORTS: ReportConfig[] = [
   {
-    id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: '📦',
+    id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: 'ðŸ“¦',
     columns: [
       { key: 'loadNumber', header: 'Load #', width: 12 }, { key: 'status', header: 'Status', width: 12 }, { key: 'customer', header: 'Customer', width: 20 },
       { key: 'origin', header: 'Origin', width: 16 }, { key: 'destination', header: 'Destination', width: 16 }, { key: 'pickupDate', header: 'Pickup Date', width: 14 },
@@ -185,7 +185,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLoadReport(),
   },
   {
-    id: 'revenue', name: 'Revenue by Customer', description: 'Revenue breakdown per customer with avg rates and payment performance', category: 'FINANCIAL', icon: '💰',
+    id: 'revenue', name: 'Revenue by Customer', description: 'Revenue breakdown per customer with avg rates and payment performance', category: 'FINANCIAL', icon: 'ðŸ’°',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'totalRevenue', header: 'Total Revenue', width: 16 },
       { key: 'avgRatePerLoad', header: 'Avg Rate/Load', width: 14 }, { key: 'avgRatePerMile', header: 'Avg $/Mile', width: 12 }, { key: 'fuelSurcharge', header: 'Total Fuel SC', width: 14 },
@@ -195,7 +195,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getRevenueReport(),
   },
   {
-    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer — current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: '📊',
+    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer â€” current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: 'ðŸ“Š',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'current', header: 'Current', width: 12 }, { key: 'days1to30', header: '1-30 Days', width: 12 },
       { key: 'days31to60', header: '31-60 Days', width: 12 }, { key: 'days61to90', header: '61-90 Days', width: 12 }, { key: 'over90', header: '90+ Days', width: 12 },
@@ -204,7 +204,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getARAgingReport(),
   },
   {
-    id: 'drivers', name: 'Driver Performance', description: 'Driver stats — loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: '👤',
+    id: 'drivers', name: 'Driver Performance', description: 'Driver stats â€” loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: 'ðŸ‘¤',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'truckNumber', header: 'Truck', width: 10 }, { key: 'status', header: 'Status', width: 12 },
       { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 }, { key: 'revenue', header: 'Revenue', width: 12 },
@@ -215,7 +215,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getDriverReport(),
   },
   {
-    id: 'fleet', name: 'Fleet Summary', description: 'Vehicle status, mileage, service schedule, insurance, and monthly costs', category: 'FLEET', icon: '🚛',
+    id: 'fleet', name: 'Fleet Summary', description: 'Vehicle status, mileage, service schedule, insurance, and monthly costs', category: 'FLEET', icon: 'ðŸš›',
     columns: [
       { key: 'unitNumber', header: 'Unit #', width: 10 }, { key: 'type', header: 'Type', width: 8 }, { key: 'make', header: 'Make', width: 14 },
       { key: 'model', header: 'Model', width: 12 }, { key: 'year', header: 'Year', width: 8 }, { key: 'mileage', header: 'Mileage', width: 12 },
@@ -226,7 +226,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getFleetReport(),
   },
   {
-    id: 'maintenance', name: 'Maintenance Log', description: 'All work orders with vendor, cost, labor, and completion status', category: 'FLEET', icon: '🔧',
+    id: 'maintenance', name: 'Maintenance Log', description: 'All work orders with vendor, cost, labor, and completion status', category: 'FLEET', icon: 'ðŸ”§',
     columns: [
       { key: 'woNumber', header: 'WO #', width: 16 }, { key: 'unit', header: 'Unit', width: 10 }, { key: 'type', header: 'Type', width: 14 },
       { key: 'priority', header: 'Priority', width: 12 }, { key: 'status', header: 'Status', width: 14 }, { key: 'vendor', header: 'Vendor', width: 22 },
@@ -236,7 +236,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getMaintenanceReport(),
   },
   {
-    id: 'incidents', name: 'Safety Incidents', description: 'Incident log with severity, preventability, and cost impact', category: 'SAFETY', icon: '🛡',
+    id: 'incidents', name: 'Safety Incidents', description: 'Incident log with severity, preventability, and cost impact', category: 'SAFETY', icon: 'ðŸ›¡',
     columns: [
       { key: 'incidentNumber', header: 'Incident #', width: 16 }, { key: 'type', header: 'Type', width: 18 }, { key: 'severity', header: 'Severity', width: 10 },
       { key: 'date', header: 'Date', width: 14 }, { key: 'driver', header: 'Driver', width: 18 }, { key: 'unit', header: 'Unit', width: 10 },
@@ -246,7 +246,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getIncidentReport(),
   },
   {
-    id: 'profit-loss', name: 'Profit & Loss Statement', description: 'Monthly P&L with revenue, direct costs, gross profit, operating expenses, and net income', category: 'FINANCIAL', icon: '📈',
+    id: 'profit-loss', name: 'Profit & Loss Statement', description: 'Monthly P&L with revenue, direct costs, gross profit, operating expenses, and net income', category: 'FINANCIAL', icon: 'ðŸ“ˆ',
     columns: [
       { key: 'category', header: 'Category', width: 18 }, { key: 'lineItem', header: 'Line Item', width: 30 },
       { key: 'month1', header: 'Feb 2026', width: 14 }, { key: 'month2', header: 'Mar 2026', width: 14 }, { key: 'month3', header: 'Apr 2026', width: 14 },
@@ -255,7 +255,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getProfitLossReport(),
   },
   {
-    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability — revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: '🛣',
+    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability â€” revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: 'ðŸ›£',
     columns: [
       { key: 'lane', header: 'Lane', width: 30 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -265,7 +265,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLaneProfitReport(),
   },
   {
-    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability — revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: '💵',
+    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability â€” revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: 'ðŸ’µ',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -275,7 +275,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getDriverProfitReport(),
   },
   {
-    id: 'profit-customer', name: 'Profitability by Customer', description: 'Customer-level profitability with margin analysis and payment performance', category: 'FINANCIAL', icon: '🏢',
+    id: 'profit-customer', name: 'Profitability by Customer', description: 'Customer-level profitability with margin analysis and payment performance', category: 'FINANCIAL', icon: 'ðŸ¢',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'revenue', header: 'Revenue', width: 14 },
       { key: 'costs', header: 'Costs', width: 12 }, { key: 'profit', header: 'Profit', width: 12 }, { key: 'margin', header: 'Margin %', width: 10 },
@@ -302,7 +302,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   DRIVER: 'bg-purple-100 text-purple-800',
 };
 
-// ── Component ──────────────────────────────────────────────────────
+// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function ReportsPage() {
   const [selectedReport, setSelectedReport] = useState<ReportConfig | null>(null);
   const [categoryFilter, setCategoryFilter] = useState('All');
@@ -356,7 +356,7 @@ export function ReportsPage() {
       XLSX.utils.book_append_sheet(wb, ws, report.name.slice(0, 31));
 
       const dateStr = new Date().toISOString().split('T')[0];
-      XLSX.writeFile(wb, `Gemini_Express_${report.id}_${dateStr}.xlsx`);
+      XLSX.writeFile(wb, `AXON_TMS_${report.id}_${dateStr}.xlsx`);
     } finally {
       setExporting(false);
     }
@@ -364,7 +364,7 @@ export function ReportsPage() {
 
   return (
     <div>
-      {/* ── Header ──────────────────────────────────────────── */}
+      {/* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-gray-900">Reports</h2>
         <div className="flex items-center gap-3">
@@ -377,7 +377,7 @@ export function ReportsPage() {
         </div>
       </div>
 
-      {/* ── Category Filters ────────────────────────────────── */}
+      {/* â”€â”€ Category Filters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="flex gap-1 mb-4">
         {['All', 'OPERATIONS', 'FINANCIAL', 'DRIVER', 'FLEET', 'SAFETY'].map(c => (
           <button
@@ -391,7 +391,7 @@ export function ReportsPage() {
       </div>
 
       {!selectedReport ? (
-        /* ── Report Cards Grid ─────────────────────────────── */
+        /* â”€â”€ Report Cards Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         <div className="grid grid-cols-3 gap-4">
           {filteredReports.map(report => (
             <div
@@ -427,7 +427,7 @@ export function ReportsPage() {
           ))}
         </div>
       ) : (
-        /* ── Report Preview ────────────────────────────────── */
+        /* â”€â”€ Report Preview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         <div>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -435,13 +435,13 @@ export function ReportsPage() {
                 onClick={() => setSelectedReport(null)}
                 className="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200"
               >
-                ← Back to Reports
+                â† Back to Reports
               </button>
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
                   <span>{selectedReport.icon}</span> {selectedReport.name}
                 </h3>
-                <p className="text-xs text-gray-400">{reportData.length} rows · {startDate} to {endDate}</p>
+                <p className="text-xs text-gray-400">{reportData.length} rows Â· {startDate} to {endDate}</p>
               </div>
             </div>
             <button
@@ -449,7 +449,7 @@ export function ReportsPage() {
               disabled={exporting}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700 disabled:opacity-50"
             >
-              {exporting ? 'Exporting...' : '⬇ Download Excel'}
+              {exporting ? 'Exporting...' : 'â¬‡ Download Excel'}
             </button>
           </div>
 

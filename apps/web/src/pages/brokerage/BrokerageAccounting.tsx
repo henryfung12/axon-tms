@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import * as XLSX from 'xlsx';
 
-// ── Types ──────────────────────────────────────────────────────────
+// Ã¢â€â‚¬Ã¢â€â‚¬ Types Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 type AcctTab = 'ar_aging' | 'ap_aging' | 'invoices' | 'bills' | 'payments' | 'cargowise' | 'factoring';
 
 interface Invoice {
@@ -24,7 +24,7 @@ interface Payment {
   date: string; checkNumber: string; status: 'CLEARED' | 'PENDING' | 'FAILED';
 }
 
-// ── Mock Data ──────────────────────────────────────────────────────
+// Ã¢â€â‚¬Ã¢â€â‚¬ Mock Data Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 const MOCK_INVOICES: Invoice[] = [
   { id: 'inv1', invoiceNumber: 'INV-20260401', loadNumber: 'SH-10421', customer: 'Acme Manufacturing', invoiceDate: '2026-04-01', dueDate: '2026-05-01', amount: 2800, paid: 0, balance: 2800, status: 'SENT', daysPastDue: 0 },
   { id: 'inv2', invoiceNumber: 'INV-20260402', loadNumber: 'SH-10422', customer: 'Heartland Foods', invoiceDate: '2026-04-02', dueDate: '2026-05-02', amount: 3400, paid: 0, balance: 3400, status: 'SENT', daysPastDue: 0 },
@@ -59,7 +59,7 @@ const MOCK_PAYMENTS: Payment[] = [
   { id: 'py6', type: 'AP', refNumber: 'BL-EFL-4521', entity: 'Eagle Freight Lines', loadNumber: 'SH-10421', amount: 2200, method: 'FACTORING', date: '2026-04-14', checkNumber: '', status: 'PENDING' },
 ];
 
-// ── CargoWise Sync Data ───────────────────────────────────────────
+// Ã¢â€â‚¬Ã¢â€â‚¬ CargoWise Sync Data Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 interface CWSyncRecord {
   id: string; type: 'AR_INVOICE' | 'AP_BILL'; refNumber: string; loadNumber: string; entity: string;
   amount: number; cwJobNumber: string; syncStatus: 'NOT_SYNCED' | 'PUSHED' | 'JOB_CREATED' | 'INVOICE_MATCHED' | 'SENT' | 'CLOSED' | 'ERROR';
@@ -83,7 +83,7 @@ const CW_STATUS_FLOW = ['NOT_SYNCED', 'PUSHED', 'JOB_CREATED', 'INVOICE_MATCHED'
 const CW_STATUS_BADGE: Record<string, string> = { NOT_SYNCED: 'bg-gray-100 text-gray-500', PUSHED: 'bg-blue-100 text-blue-800', JOB_CREATED: 'bg-indigo-100 text-indigo-800', INVOICE_MATCHED: 'bg-purple-100 text-purple-800', SENT: 'bg-orange-100 text-orange-800', CLOSED: 'bg-green-100 text-green-800', ERROR: 'bg-red-100 text-red-800' };
 const CW_STATUS_LABEL: Record<string, string> = { NOT_SYNCED: 'Not Synced', PUSHED: 'Pushed to CW', JOB_CREATED: 'Job Created', INVOICE_MATCHED: 'Invoice Matched', SENT: 'Sent & Pending', CLOSED: 'Closed & Paid', ERROR: 'Error' };
 
-// ── Factoring / Quick-Pay Data ────────────────────────────────────
+// Ã¢â€â‚¬Ã¢â€â‚¬ Factoring / Quick-Pay Data Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 interface FactoringRecord {
   id: string; billNumber: string; loadNumber: string; carrier: string; amount: number;
   factoringCompany: string; factoringStatus: 'PENDING' | 'SUBMITTED' | 'APPROVED' | 'FUNDED' | 'REJECTED' | 'RECOURSE';
@@ -92,29 +92,29 @@ interface FactoringRecord {
 }
 
 const MOCK_FACTORING: FactoringRecord[] = [
-  { id: 'f1', billNumber: 'BL-EFL-4521', loadNumber: 'SH-10421', carrier: 'Eagle Freight Lines', amount: 2200, factoringCompany: 'RTS Financial', factoringStatus: 'FUNDED', submittedAt: '2026-04-13T14:00:00Z', fundedAt: '2026-04-13T16:00:00Z', fee: 66.00, feeType: 'PERCENT', netAmount: 2134.00, paymentMethod: 'QUICK_PAY', remitTo: 'RTS Financial Services', notes: 'Quick pay — funded same day' },
+  { id: 'f1', billNumber: 'BL-EFL-4521', loadNumber: 'SH-10421', carrier: 'Eagle Freight Lines', amount: 2200, factoringCompany: 'RTS Financial', factoringStatus: 'FUNDED', submittedAt: '2026-04-13T14:00:00Z', fundedAt: '2026-04-13T16:00:00Z', fee: 66.00, feeType: 'PERCENT', netAmount: 2134.00, paymentMethod: 'QUICK_PAY', remitTo: 'RTS Financial Services', notes: 'Quick pay Ã¢â‚¬â€ funded same day' },
   { id: 'f2', billNumber: 'BL-EFL-4427', loadNumber: 'SH-10427', carrier: 'Eagle Freight Lines', amount: 2100, factoringCompany: 'RTS Financial', factoringStatus: 'SUBMITTED', submittedAt: '2026-04-14T10:00:00Z', fundedAt: '', fee: 63.00, feeType: 'PERCENT', netAmount: 2037.00, paymentMethod: 'QUICK_PAY', remitTo: 'RTS Financial Services', notes: 'Awaiting RTS approval' },
-  { id: 'f3', billNumber: 'BL-ACC-4522', loadNumber: 'SH-10422', carrier: 'Arctic Cold Carriers', amount: 2800, factoringCompany: '', factoringStatus: 'PENDING', submittedAt: '', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 2800, paymentMethod: 'STANDARD', remitTo: 'Arctic Cold Carriers', notes: 'No factoring — Net 15 direct pay' },
-  { id: 'f4', billNumber: 'BL-THR-4425', loadNumber: 'SH-10425', carrier: 'Thunder Road Inc.', amount: 1200, factoringCompany: '', factoringStatus: 'PENDING', submittedAt: '', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 1200, paymentMethod: 'STANDARD', remitTo: 'Thunder Road Inc.', notes: 'Net 30 — no factoring' },
-  { id: 'f5', billNumber: 'BL-LSL-4431', loadNumber: 'SH-10431', carrier: 'Lone Star Logistics', amount: 1100, factoringCompany: 'OTR Solutions', factoringStatus: 'FUNDED', submittedAt: '2026-03-09T12:00:00Z', fundedAt: '2026-03-09T14:00:00Z', fee: 33.00, feeType: 'PERCENT', netAmount: 1067.00, paymentMethod: 'QUICK_PAY', remitTo: 'OTR Solutions', notes: 'Quick pay — funded same day' },
+  { id: 'f3', billNumber: 'BL-ACC-4522', loadNumber: 'SH-10422', carrier: 'Arctic Cold Carriers', amount: 2800, factoringCompany: '', factoringStatus: 'PENDING', submittedAt: '', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 2800, paymentMethod: 'STANDARD', remitTo: 'Arctic Cold Carriers', notes: 'No factoring Ã¢â‚¬â€ Net 15 direct pay' },
+  { id: 'f4', billNumber: 'BL-THR-4425', loadNumber: 'SH-10425', carrier: 'Thunder Road Inc.', amount: 1200, factoringCompany: '', factoringStatus: 'PENDING', submittedAt: '', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 1200, paymentMethod: 'STANDARD', remitTo: 'Thunder Road Inc.', notes: 'Net 30 Ã¢â‚¬â€ no factoring' },
+  { id: 'f5', billNumber: 'BL-LSL-4431', loadNumber: 'SH-10431', carrier: 'Lone Star Logistics', amount: 1100, factoringCompany: 'OTR Solutions', factoringStatus: 'FUNDED', submittedAt: '2026-03-09T12:00:00Z', fundedAt: '2026-03-09T14:00:00Z', fee: 33.00, feeType: 'PERCENT', netAmount: 1067.00, paymentMethod: 'QUICK_PAY', remitTo: 'OTR Solutions', notes: 'Quick pay Ã¢â‚¬â€ funded same day' },
   { id: 'f6', billNumber: 'BL-MET-4426', loadNumber: 'SH-10426', carrier: 'Midwest Express Trucking', amount: 1050, factoringCompany: '', factoringStatus: 'PENDING', submittedAt: '', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 1050, paymentMethod: 'STANDARD', remitTo: 'Midwest Express Trucking', notes: 'Net 30 direct' },
-  { id: 'f7', billNumber: 'BL-ACC-4432', loadNumber: 'SH-10432', carrier: 'Arctic Cold Carriers', amount: 2500, factoringCompany: 'TriumphPay', factoringStatus: 'APPROVED', submittedAt: '2026-04-14T08:00:00Z', fundedAt: '', fee: 50.00, feeType: 'FLAT', netAmount: 2450.00, paymentMethod: 'SAME_DAY', remitTo: 'TriumphPay Network', notes: 'TriumphPay approved — pending funding' },
-  { id: 'f8', billNumber: 'BL-SFS-4433', loadNumber: 'SH-10420', carrier: 'Summit Flatbed Services', amount: 3200, factoringCompany: 'TriumphPay', factoringStatus: 'REJECTED', submittedAt: '2026-04-12T09:00:00Z', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 3200, paymentMethod: 'QUICK_PAY', remitTo: 'TriumphPay Network', notes: 'Rejected — carrier insurance expired. Resubmit after renewal.' },
+  { id: 'f7', billNumber: 'BL-ACC-4432', loadNumber: 'SH-10432', carrier: 'Arctic Cold Carriers', amount: 2500, factoringCompany: 'TriumphPay', factoringStatus: 'APPROVED', submittedAt: '2026-04-14T08:00:00Z', fundedAt: '', fee: 50.00, feeType: 'FLAT', netAmount: 2450.00, paymentMethod: 'SAME_DAY', remitTo: 'TriumphPay Network', notes: 'TriumphPay approved Ã¢â‚¬â€ pending funding' },
+  { id: 'f8', billNumber: 'BL-SFS-4433', loadNumber: 'SH-10420', carrier: 'Summit Flatbed Services', amount: 3200, factoringCompany: 'TriumphPay', factoringStatus: 'REJECTED', submittedAt: '2026-04-12T09:00:00Z', fundedAt: '', fee: 0, feeType: 'FLAT', netAmount: 3200, paymentMethod: 'QUICK_PAY', remitTo: 'TriumphPay Network', notes: 'Rejected Ã¢â‚¬â€ carrier insurance expired. Resubmit after renewal.' },
 ];
 
 const FACTORING_STATUS_BADGE: Record<string, string> = { PENDING: 'bg-gray-100 text-gray-600', SUBMITTED: 'bg-blue-100 text-blue-800', APPROVED: 'bg-indigo-100 text-indigo-800', FUNDED: 'bg-green-100 text-green-800', REJECTED: 'bg-red-100 text-red-800', RECOURSE: 'bg-orange-100 text-orange-800' };
 const FACTORING_COMPANY_BADGE: Record<string, string> = { 'TriumphPay': 'bg-purple-100 text-purple-800', 'RTS Financial': 'bg-blue-100 text-blue-800', 'OTR Solutions': 'bg-teal-100 text-teal-800' };
 const PAY_METHOD_LABEL: Record<string, string> = { QUICK_PAY: 'Quick Pay (2-4 hrs)', SAME_DAY: 'Same Day', STANDARD: 'Standard (Net terms)' };
 
-// ── Helpers ────────────────────────────────────────────────────────
+// Ã¢â€â‚¬Ã¢â€â‚¬ Helpers Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 function fmtCurrency(n: number) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'; }
+function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Ã¢â‚¬â€'; }
 
 const INV_STATUS: Record<string, string> = { DRAFT: 'bg-gray-100 text-gray-600', SENT: 'bg-blue-100 text-blue-800', PAID: 'bg-green-100 text-green-800', PARTIAL: 'bg-yellow-100 text-yellow-800', OVERDUE: 'bg-red-100 text-red-800', VOID: 'bg-gray-200 text-gray-500' };
 const BILL_STATUS: Record<string, string> = { PENDING: 'bg-yellow-100 text-yellow-800', APPROVED: 'bg-blue-100 text-blue-800', PAID: 'bg-green-100 text-green-800', DISPUTED: 'bg-red-100 text-red-800', VOID: 'bg-gray-200 text-gray-500' };
 const PAY_METHOD: Record<string, string> = { ACH: 'bg-blue-100 text-blue-800', CHECK: 'bg-gray-100 text-gray-700', WIRE: 'bg-purple-100 text-purple-800', QUICK_PAY: 'bg-orange-100 text-orange-800', FACTORING: 'bg-teal-100 text-teal-800' };
 
-// ── Component ──────────────────────────────────────────────────────
+// Ã¢â€â‚¬Ã¢â€â‚¬ Component Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 export function BrokerageAccounting() {
   const [activeTab, setActiveTab] = useState<AcctTab>('ar_aging');
 
@@ -165,19 +165,19 @@ export function BrokerageAccounting() {
       data = MOCK_BILLS.map(b => ({ 'Bill #': b.billNumber, Load: b.loadNumber, Carrier: b.carrier, 'Bill Date': b.billDate, 'Due Date': b.dueDate, Amount: b.amount, Paid: b.paid, Balance: b.balance, Status: b.status, Terms: b.paymentTerms }));
       name = 'AP_Bills';
     } else {
-      data = MOCK_PAYMENTS.map(p => ({ Type: p.type, Ref: p.refNumber, Entity: p.entity, Load: p.loadNumber, Amount: p.amount, Method: p.method, Date: p.date, 'Check #': p.checkNumber || '—', Status: p.status }));
+      data = MOCK_PAYMENTS.map(p => ({ Type: p.type, Ref: p.refNumber, Entity: p.entity, Load: p.loadNumber, Amount: p.amount, Method: p.method, Date: p.date, 'Check #': p.checkNumber || 'Ã¢â‚¬â€', Status: p.status }));
       name = 'Payments';
     }
     const ws = XLSX.utils.json_to_sheet(data); const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, name);
-    XLSX.writeFile(wb, `Gemini_Brokerage_${name}_${new Date().toISOString().split('T')[0]}.xlsx`);
+    XLSX.writeFile(wb, `AXON_Brokerage_${name}_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-gray-900">Brokerage Accounting</h2>
-        <button onClick={exportTable} className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">⬇ Export to Excel</button>
+        <button onClick={exportTable} className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Ã¢Â¬â€¡ Export to Excel</button>
       </div>
 
       {/* Summary Cards */}
@@ -200,7 +200,7 @@ export function BrokerageAccounting() {
         ))}
       </div>
 
-      {/* ── AR Aging ──────────────────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ AR Aging Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'ar_aging' && (
         <div>
           {/* Aging Buckets */}
@@ -256,10 +256,10 @@ export function BrokerageAccounting() {
             </div>
             <div className="grid grid-cols-4 gap-3 mb-3">
               {[
-                { trigger: '7 days past due', template: 'Friendly Reminder', subject: 'Invoice [#] — Payment Reminder', enabled: true, sent: '3 sent today' },
-                { trigger: '30 days past due', template: 'First Notice', subject: 'Invoice [#] — Past Due Notice', enabled: true, sent: '2 sent this week' },
-                { trigger: '60 days past due', template: 'Escalation', subject: 'URGENT: Invoice [#] — 60 Days Past Due', enabled: true, sent: '1 sent' },
-                { trigger: '90+ days past due', template: 'Final Notice', subject: 'FINAL NOTICE: Invoice [#] — Collections Warning', enabled: true, sent: '0 this period' },
+                { trigger: '7 days past due', template: 'Friendly Reminder', subject: 'Invoice [#] Ã¢â‚¬â€ Payment Reminder', enabled: true, sent: '3 sent today' },
+                { trigger: '30 days past due', template: 'First Notice', subject: 'Invoice [#] Ã¢â‚¬â€ Past Due Notice', enabled: true, sent: '2 sent this week' },
+                { trigger: '60 days past due', template: 'Escalation', subject: 'URGENT: Invoice [#] Ã¢â‚¬â€ 60 Days Past Due', enabled: true, sent: '1 sent' },
+                { trigger: '90+ days past due', template: 'Final Notice', subject: 'FINAL NOTICE: Invoice [#] Ã¢â‚¬â€ Collections Warning', enabled: true, sent: '0 this period' },
               ].map((d, i) => (
                 <div key={i} className="rounded-lg p-3 border border-gray-200 bg-white">
                   <div className="flex items-center justify-between mb-1.5"><span className="text-xs font-bold text-gray-800">{d.trigger}</span><label className="relative inline-flex items-center cursor-pointer"><input type="checkbox" defaultChecked={d.enabled} className="sr-only peer" /><div className="w-8 h-4 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-green-600" /></label></div>
@@ -269,12 +269,12 @@ export function BrokerageAccounting() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-4 text-xs text-gray-400"><span>CC: accounting@geminiexpress.com</span><span>·</span><span>Auto-send daily at 9:00 AM EST</span><span>·</span><span>Skip weekends & holidays</span></div>
+            <div className="flex items-center gap-4 text-xs text-gray-400"><span>CC: accounting@axontms.com</span><span>Ã‚Â·</span><span>Auto-send daily at 9:00 AM EST</span><span>Ã‚Â·</span><span>Skip weekends & holidays</span></div>
           </div>
         </div>
       )}
 
-      {/* ── AP Aging ──────────────────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ AP Aging Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'ap_aging' && (
         <div>
           <div className="grid grid-cols-4 gap-3 mb-4">
@@ -312,7 +312,7 @@ export function BrokerageAccounting() {
         </div>
       )}
 
-      {/* ── All Invoices ─────────────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ All Invoices Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'invoices' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <table className="w-full text-sm"><thead><tr className="bg-gray-50 border-b border-gray-200">
@@ -334,7 +334,7 @@ export function BrokerageAccounting() {
                 <td className="px-3 py-2.5 text-gray-600">{fmtDate(inv.invoiceDate)}</td>
                 <td className="px-3 py-2.5 text-gray-600">{fmtDate(inv.dueDate)}</td>
                 <td className="px-3 py-2.5 text-right text-gray-700">{fmtCurrency(inv.amount)}</td>
-                <td className="px-3 py-2.5 text-right text-green-600">{inv.paid > 0 ? fmtCurrency(inv.paid) : '—'}</td>
+                <td className="px-3 py-2.5 text-right text-green-600">{inv.paid > 0 ? fmtCurrency(inv.paid) : 'Ã¢â‚¬â€'}</td>
                 <td className="px-3 py-2.5 text-right font-semibold text-gray-900">{fmtCurrency(inv.balance)}</td>
                 <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${INV_STATUS[inv.status]}`}>{inv.status}</span></td>
               </tr>
@@ -348,7 +348,7 @@ export function BrokerageAccounting() {
         </div>
       )}
 
-      {/* ── Carrier Bills ────────────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Carrier Bills Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'bills' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <table className="w-full text-sm"><thead><tr className="bg-gray-50 border-b border-gray-200">
@@ -372,7 +372,7 @@ export function BrokerageAccounting() {
                 <td className="px-3 py-2.5 text-gray-600">{fmtDate(b.dueDate)}</td>
                 <td className="px-3 py-2.5 text-gray-600">{b.paymentTerms}</td>
                 <td className="px-3 py-2.5 text-right text-gray-700">{fmtCurrency(b.amount)}</td>
-                <td className="px-3 py-2.5 text-right text-green-600">{b.paid > 0 ? fmtCurrency(b.paid) : '—'}</td>
+                <td className="px-3 py-2.5 text-right text-green-600">{b.paid > 0 ? fmtCurrency(b.paid) : 'Ã¢â‚¬â€'}</td>
                 <td className="px-3 py-2.5 text-right font-semibold text-gray-900">{fmtCurrency(b.balance)}</td>
                 <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${BILL_STATUS[b.status]}`}>{b.status}</span></td>
               </tr>
@@ -386,7 +386,7 @@ export function BrokerageAccounting() {
         </div>
       )}
 
-      {/* ── Payments ─────────────────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Payments Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'payments' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <table className="w-full text-sm"><thead><tr className="bg-gray-50 border-b border-gray-200">
@@ -409,7 +409,7 @@ export function BrokerageAccounting() {
                 <td className="px-3 py-2.5 text-right font-semibold text-gray-900">{fmtCurrency(p.amount)}</td>
                 <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${PAY_METHOD[p.method]}`}>{p.method.replace('_', ' ')}</span></td>
                 <td className="px-3 py-2.5 text-gray-600">{fmtDate(p.date)}</td>
-                <td className="px-3 py-2.5 text-gray-500 font-mono">{p.checkNumber || '—'}</td>
+                <td className="px-3 py-2.5 text-gray-500 font-mono">{p.checkNumber || 'Ã¢â‚¬â€'}</td>
                 <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${p.status === 'CLEARED' ? 'bg-green-100 text-green-800' : p.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>{p.status}</span></td>
               </tr>
             ))}
@@ -421,7 +421,7 @@ export function BrokerageAccounting() {
         </div>
       )}
 
-      {/* ── CargoWise Sync ───────────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ CargoWise Sync Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'cargowise' && (
         <div>
           {/* Sync Status Cards */}
@@ -454,7 +454,7 @@ export function BrokerageAccounting() {
               {CW_STATUS_FLOW.map((status, i) => (
                 <div key={status} className="flex items-center flex-1">
                   <div className={`flex-1 h-2 rounded-full ${MOCK_CW_SYNC.filter(r => CW_STATUS_FLOW.indexOf(r.syncStatus) >= i).length > 0 ? 'bg-blue-500' : 'bg-gray-200'}`} />
-                  {i < CW_STATUS_FLOW.length - 1 && <span className="text-gray-300 mx-0.5">›</span>}
+                  {i < CW_STATUS_FLOW.length - 1 && <span className="text-gray-300 mx-0.5">Ã¢â‚¬Âº</span>}
                 </div>
               ))}
             </div>
@@ -470,7 +470,7 @@ export function BrokerageAccounting() {
               <h4 className="text-sm font-semibold text-gray-900 mb-3">CargoWise Connection</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between py-2 px-3 bg-green-50 rounded-lg border border-green-200">
-                  <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" /><span className="text-sm font-semibold text-green-800">Connected — Live Sync Active</span></div>
+                  <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" /><span className="text-sm font-semibold text-green-800">Connected Ã¢â‚¬â€ Live Sync Active</span></div>
                   <span className="text-xs text-green-600">Heartbeat: 2 min ago</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
@@ -481,7 +481,7 @@ export function BrokerageAccounting() {
                 </div>
                 <div className="bg-gray-50 rounded-lg p-2.5">
                   <div className="flex justify-between text-xs mb-1"><span className="text-gray-500">Today's Sync Activity</span><span className="text-gray-700 font-medium">148 transactions</span></div>
-                  <div className="flex gap-3 text-xs"><span className="text-green-600">↑ 82 pushed</span><span className="text-blue-600">↓ 66 pulled</span><span className="text-red-600">✕ 1 error</span></div>
+                  <div className="flex gap-3 text-xs"><span className="text-green-600">Ã¢â€ â€˜ 82 pushed</span><span className="text-blue-600">Ã¢â€ â€œ 66 pulled</span><span className="text-red-600">Ã¢Å“â€¢ 1 error</span></div>
                 </div>
               </div>
             </div>
@@ -491,15 +491,15 @@ export function BrokerageAccounting() {
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Automatic Sync Triggers</h4>
               <div className="space-y-1.5">
                 {[
-                  { event: 'Shipment Created', desc: 'Auto-create CW Forwarding Job when new shipment is entered', direction: '↑ Push', enabled: true, module: 'Shipments' },
-                  { event: 'Carrier Assigned', desc: 'Push carrier details and rate to CW job when carrier is booked', direction: '↑ Push', enabled: true, module: 'Shipments' },
-                  { event: 'Status Changed', desc: 'Sync pickup, in-transit, delivered status to CW milestones', direction: '↑ Push', enabled: true, module: 'Operations' },
-                  { event: 'Invoice Generated', desc: 'Auto-create AR invoice in CW when shipment invoice is finalized', direction: '↑ Push', enabled: true, module: 'AR' },
-                  { event: 'Carrier Bill Approved', desc: 'Auto-create AP voucher in CW when carrier bill is approved', direction: '↑ Push', enabled: true, module: 'AP' },
-                  { event: 'Payment Received', desc: 'Pull payment data from CW when customer pays invoice', direction: '↓ Pull', enabled: true, module: 'AR' },
-                  { event: 'Payment Sent', desc: 'Pull payment confirmation from CW after carrier is paid', direction: '↓ Pull', enabled: true, module: 'AP' },
-                  { event: 'CW Job Updated', desc: 'Pull any manual CW changes back to TMS (rates, dates, refs)', direction: '↓ Pull', enabled: true, module: 'Sync' },
-                  { event: 'Document Attached', desc: 'Push BOL, POD, rate con to CW document management', direction: '↑ Push', enabled: false, module: 'Documents' },
+                  { event: 'Shipment Created', desc: 'Auto-create CW Forwarding Job when new shipment is entered', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'Shipments' },
+                  { event: 'Carrier Assigned', desc: 'Push carrier details and rate to CW job when carrier is booked', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'Shipments' },
+                  { event: 'Status Changed', desc: 'Sync pickup, in-transit, delivered status to CW milestones', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'Operations' },
+                  { event: 'Invoice Generated', desc: 'Auto-create AR invoice in CW when shipment invoice is finalized', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'AR' },
+                  { event: 'Carrier Bill Approved', desc: 'Auto-create AP voucher in CW when carrier bill is approved', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'AP' },
+                  { event: 'Payment Received', desc: 'Pull payment data from CW when customer pays invoice', direction: 'Ã¢â€ â€œ Pull', enabled: true, module: 'AR' },
+                  { event: 'Payment Sent', desc: 'Pull payment confirmation from CW after carrier is paid', direction: 'Ã¢â€ â€œ Pull', enabled: true, module: 'AP' },
+                  { event: 'CW Job Updated', desc: 'Pull any manual CW changes back to TMS (rates, dates, refs)', direction: 'Ã¢â€ â€œ Pull', enabled: true, module: 'Sync' },
+                  { event: 'Document Attached', desc: 'Push BOL, POD, rate con to CW document management', direction: 'Ã¢â€ â€˜ Push', enabled: false, module: 'Documents' },
                 ].map(t => (
                   <div key={t.event} className="flex items-center justify-between py-1.5 px-3 bg-gray-50 rounded-lg">
                     <div className="flex-1 min-w-0">
@@ -532,7 +532,7 @@ export function BrokerageAccounting() {
               </div>
             </div>
             <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping — AR</h4>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping Ã¢â‚¬â€ AR</h4>
               <div className="space-y-1 text-xs">
                 {[
                   { tms: 'Shipment ID', cw: 'Job Reference' },
@@ -545,14 +545,14 @@ export function BrokerageAccounting() {
                 ].map(m => (
                   <div key={m.tms} className="flex items-center gap-2 py-1 px-2 bg-gray-50 rounded">
                     <span className="flex-1 text-gray-700 font-medium">{m.tms}</span>
-                    <span className="text-gray-300">→</span>
+                    <span className="text-gray-300">Ã¢â€ â€™</span>
                     <span className="flex-1 text-blue-600">{m.cw}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping — AP</h4>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping Ã¢â‚¬â€ AP</h4>
               <div className="space-y-1 text-xs">
                 {[
                   { tms: 'Load Number', cw: 'Job Reference' },
@@ -565,7 +565,7 @@ export function BrokerageAccounting() {
                 ].map(m => (
                   <div key={m.tms} className="flex items-center gap-2 py-1 px-2 bg-gray-50 rounded">
                     <span className="flex-1 text-gray-700 font-medium">{m.tms}</span>
-                    <span className="text-gray-300">→</span>
+                    <span className="text-gray-300">Ã¢â€ â€™</span>
                     <span className="flex-1 text-blue-600">{m.cw}</span>
                   </div>
                 ))}
@@ -600,20 +600,20 @@ export function BrokerageAccounting() {
                   <td className="px-3 py-2.5 text-gray-700">{r.loadNumber}</td>
                   <td className="px-3 py-2.5 text-gray-700">{r.entity}</td>
                   <td className="px-3 py-2.5 text-right font-medium text-gray-900">{fmtCurrency(r.amount)}</td>
-                  <td className="px-3 py-2.5 font-mono text-xs text-gray-500">{r.cwJobNumber || '—'}</td>
+                  <td className="px-3 py-2.5 font-mono text-xs text-gray-500">{r.cwJobNumber || 'Ã¢â‚¬â€'}</td>
                   <td className="px-3 py-2.5">
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${CW_STATUS_BADGE[r.syncStatus]}`}>{CW_STATUS_LABEL[r.syncStatus]}</span>
                     {r.errorMessage && <p className="text-xs text-red-500 mt-1">{r.errorMessage}</p>}
                   </td>
-                  <td className="px-3 py-2.5 text-gray-500 text-xs">{r.lastSyncAt ? fmtDate(r.lastSyncAt) : '—'}</td>
+                  <td className="px-3 py-2.5 text-gray-500 text-xs">{r.lastSyncAt ? fmtDate(r.lastSyncAt) : 'Ã¢â‚¬â€'}</td>
                   <td className="px-3 py-2.5">
-                    {r.syncStatus === 'NOT_SYNCED' && <span className="text-xs text-yellow-600 font-medium">⏳ Queued</span>}
+                    {r.syncStatus === 'NOT_SYNCED' && <span className="text-xs text-yellow-600 font-medium">Ã¢ÂÂ³ Queued</span>}
                     {r.syncStatus === 'ERROR' && <button className="px-2 py-1 text-xs text-red-600 bg-red-50 rounded hover:bg-red-100">Retry Now</button>}
-                    {r.syncStatus === 'PUSHED' && <span className="text-xs text-blue-600 font-medium">⟳ Processing</span>}
-                    {r.syncStatus === 'JOB_CREATED' && <span className="text-xs text-indigo-600 font-medium">⟳ Awaiting match</span>}
-                    {r.syncStatus === 'INVOICE_MATCHED' && <span className="text-xs text-purple-600 font-medium">✓ Matched</span>}
-                    {r.syncStatus === 'SENT' && <span className="text-xs text-orange-600 font-medium">✓ Sent</span>}
-                    {r.syncStatus === 'CLOSED' && <span className="text-xs text-green-600 font-medium">✓ Complete</span>}
+                    {r.syncStatus === 'PUSHED' && <span className="text-xs text-blue-600 font-medium">Ã¢Å¸Â³ Processing</span>}
+                    {r.syncStatus === 'JOB_CREATED' && <span className="text-xs text-indigo-600 font-medium">Ã¢Å¸Â³ Awaiting match</span>}
+                    {r.syncStatus === 'INVOICE_MATCHED' && <span className="text-xs text-purple-600 font-medium">Ã¢Å“â€œ Matched</span>}
+                    {r.syncStatus === 'SENT' && <span className="text-xs text-orange-600 font-medium">Ã¢Å“â€œ Sent</span>}
+                    {r.syncStatus === 'CLOSED' && <span className="text-xs text-green-600 font-medium">Ã¢Å“â€œ Complete</span>}
                   </td>
                 </tr>
               ))}
@@ -627,15 +627,15 @@ export function BrokerageAccounting() {
         </div>
       )}
 
-      {/* ── Factoring / Quick-Pay ────────────────────── */}
+      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Factoring / Quick-Pay Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
       {activeTab === 'factoring' && (
         <div>
           {/* Provider Cards */}
           <div className="grid grid-cols-3 gap-4 mb-4">
             {[
-              { name: 'TriumphPay', logo: '🏦', color: 'purple', status: 'Connected', desc: 'Automated carrier payment network — audit, match, pay', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'TriumphPay'), fee: 'Flat $50/load' },
-              { name: 'RTS Financial', logo: '💳', color: 'blue', desc: 'Quick-pay factoring — same-day carrier funding', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'RTS Financial'), fee: '3% of invoice' },
-              { name: 'OTR Solutions', logo: '🚛', color: 'teal', desc: 'Carrier factoring and fuel card programs', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'OTR Solutions'), fee: '3% of invoice' },
+              { name: 'TriumphPay', logo: 'Ã°Å¸ÂÂ¦', color: 'purple', status: 'Connected', desc: 'Automated carrier payment network Ã¢â‚¬â€ audit, match, pay', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'TriumphPay'), fee: 'Flat $50/load' },
+              { name: 'RTS Financial', logo: 'Ã°Å¸â€™Â³', color: 'blue', desc: 'Quick-pay factoring Ã¢â‚¬â€ same-day carrier funding', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'RTS Financial'), fee: '3% of invoice' },
+              { name: 'OTR Solutions', logo: 'Ã°Å¸Å¡â€º', color: 'teal', desc: 'Carrier factoring and fuel card programs', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'OTR Solutions'), fee: '3% of invoice' },
             ].map(p => {
               const funded = p.records.filter(r => r.factoringStatus === 'FUNDED');
               const pending = p.records.filter(r => ['SUBMITTED', 'APPROVED'].includes(r.factoringStatus));
@@ -695,17 +695,17 @@ export function BrokerageAccounting() {
                   <td className="px-3 py-2.5 text-gray-700">{f.loadNumber}</td>
                   <td className="px-3 py-2.5 text-gray-700">{f.carrier}</td>
                   <td className="px-3 py-2.5 text-right font-medium text-gray-900">{fmtCurrency(f.amount)}</td>
-                  <td className="px-3 py-2.5">{f.factoringCompany ? <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${FACTORING_COMPANY_BADGE[f.factoringCompany] || 'bg-gray-100 text-gray-700'}`}>{f.factoringCompany}</span> : <span className="text-xs text-gray-400">Direct — {f.remitTo}</span>}</td>
+                  <td className="px-3 py-2.5">{f.factoringCompany ? <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${FACTORING_COMPANY_BADGE[f.factoringCompany] || 'bg-gray-100 text-gray-700'}`}>{f.factoringCompany}</span> : <span className="text-xs text-gray-400">Direct Ã¢â‚¬â€ {f.remitTo}</span>}</td>
                   <td className="px-3 py-2.5 text-xs text-gray-600">{PAY_METHOD_LABEL[f.paymentMethod]}</td>
-                  <td className="px-3 py-2.5 text-right text-xs">{f.fee > 0 ? <span className="text-red-600">-{fmtCurrency(f.fee)}</span> : <span className="text-gray-300">—</span>}</td>
+                  <td className="px-3 py-2.5 text-right text-xs">{f.fee > 0 ? <span className="text-red-600">-{fmtCurrency(f.fee)}</span> : <span className="text-gray-300">Ã¢â‚¬â€</span>}</td>
                   <td className="px-3 py-2.5 text-right font-medium text-gray-900">{fmtCurrency(f.netAmount)}</td>
                   <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${FACTORING_STATUS_BADGE[f.factoringStatus]}`}>{f.factoringStatus}</span></td>
                   <td className="px-3 py-2.5">
                     {f.factoringStatus === 'PENDING' && !f.factoringCompany && <button className="px-2 py-1 text-xs text-blue-600 bg-blue-50 rounded hover:bg-blue-100">Submit to Factor</button>}
                     {f.factoringStatus === 'PENDING' && f.factoringCompany && <span className="text-xs text-gray-400">Direct pay</span>}
-                    {f.factoringStatus === 'SUBMITTED' && <span className="text-xs text-blue-600">⟳ Processing</span>}
-                    {f.factoringStatus === 'APPROVED' && <span className="text-xs text-indigo-600">⏳ Funding</span>}
-                    {f.factoringStatus === 'FUNDED' && <span className="text-xs text-green-600 font-medium">✓ Paid</span>}
+                    {f.factoringStatus === 'SUBMITTED' && <span className="text-xs text-blue-600">Ã¢Å¸Â³ Processing</span>}
+                    {f.factoringStatus === 'APPROVED' && <span className="text-xs text-indigo-600">Ã¢ÂÂ³ Funding</span>}
+                    {f.factoringStatus === 'FUNDED' && <span className="text-xs text-green-600 font-medium">Ã¢Å“â€œ Paid</span>}
                     {f.factoringStatus === 'REJECTED' && <button className="px-2 py-1 text-xs text-red-600 bg-red-50 rounded hover:bg-red-100">Resubmit</button>}
                   </td>
                 </tr>

@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// ── Types ──────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 type ELDProvider = 'motive' | 'samsara';
 
 interface MapVehicle {
@@ -18,7 +18,7 @@ interface TrackingLink {
   duration: number; createdAt: string; expiresAt: string; url: string; active: boolean;
 }
 
-// ── Mock Data ──────────────────────────────────────────────────────
+// â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const MOCK_VEHICLES: MapVehicle[] = [
   { id: 'v1', unitNumber: 'T-1042', type: 'TRUCK', driverName: 'Marcus Johnson', provider: 'motive', lat: 35.1495, lng: -90.0490, city: 'Memphis', state: 'TN', speed: 62, heading: 'NE', engineStatus: 'ON', fuelLevelPct: 68, odometerToday: 284, lastUpdate: '2026-04-13T12:30:00Z', loadNumber: 'LD-4521', destination: 'Nashville, TN', eta: '2:30 PM', make: 'Freightliner', model: 'Cascadia', year: 2022, trailerNumber: 'TR-2201' },
   { id: 'v2', unitNumber: 'T-1038', type: 'TRUCK', driverName: 'Sarah Chen', provider: 'samsara', lat: 32.7767, lng: -96.7970, city: 'Dallas', state: 'TX', speed: 0, heading: 'N', engineStatus: 'IDLE', fuelLevelPct: 82, odometerToday: 0, lastUpdate: '2026-04-13T12:28:00Z', loadNumber: 'LD-4522', destination: 'Houston, TX', eta: '6:00 PM', make: 'Peterbilt', model: '579', year: 2024, trailerNumber: 'TR-2204' },
@@ -31,11 +31,11 @@ const MOCK_VEHICLES: MapVehicle[] = [
 ];
 
 const MOCK_LINKS: TrackingLink[] = [
-  { id: 'tl1', unitNumber: 'T-1042', loadNumber: 'LD-4521', customerName: 'Acme Corp - LAX', customerEmail: 'logistics@acmelax.com', duration: 24, createdAt: '2026-04-13T06:00:00Z', expiresAt: '2026-04-14T06:00:00Z', url: 'https://track.geminiexpress.com/s/a8f2k9x', active: true },
-  { id: 'tl2', unitNumber: 'T-1055', loadNumber: 'LD-4523', customerName: 'Acme Corp - EWR', customerEmail: 'dispatch@acmeewr.com', duration: 12, createdAt: '2026-04-13T04:00:00Z', expiresAt: '2026-04-13T16:00:00Z', url: 'https://track.geminiexpress.com/s/b3m7p2w', active: true },
+  { id: 'tl1', unitNumber: 'T-1042', loadNumber: 'LD-4521', customerName: 'Acme Corp - LAX', customerEmail: 'logistics@acmelax.com', duration: 24, createdAt: '2026-04-13T06:00:00Z', expiresAt: '2026-04-14T06:00:00Z', url: 'https://track.axontms.com/s/a8f2k9x', active: true },
+  { id: 'tl2', unitNumber: 'T-1055', loadNumber: 'LD-4523', customerName: 'Acme Corp - EWR', customerEmail: 'dispatch@acmeewr.com', duration: 12, createdAt: '2026-04-13T04:00:00Z', expiresAt: '2026-04-13T16:00:00Z', url: 'https://track.axontms.com/s/b3m7p2w', active: true },
 ];
 
-// ── Helpers ────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PROV: Record<string, { bg: string; text: string; label: string }> = { motive: { bg: 'bg-orange-100', text: 'text-orange-800', label: 'Motive' }, samsara: { bg: 'bg-teal-100', text: 'text-teal-800', label: 'Samsara' } };
 const ENG_C: Record<string, string> = { ON: '#22c55e', OFF: '#9ca3af', IDLE: '#eab308' };
 const ENG_L: Record<string, string> = { ON: 'Running', OFF: 'Off', IDLE: 'Idle' };
@@ -54,7 +54,7 @@ ${load}
 <div style="margin-top:8px"><button onclick="window.__shareTL__('${v.id}')" style="width:100%;padding:5px 0;font-size:11px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;cursor:pointer">Share Tracking Link</button></div></div>`;
 }
 
-// ── Component ──────────────────────────────────────────────────────
+// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export function LiveMapPage() {
   const mapElRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -105,7 +105,7 @@ export function LiveMapPage() {
   const createLink = () => {
     if (!trkVehicle || !lnkCust) return;
     const now = new Date(); const exp = new Date(now.getTime() + lnkDur * 3600000);
-    setLinks(p => [{ id: `tl${Date.now()}`, unitNumber: trkVehicle.unitNumber, loadNumber: lnkLoad || trkVehicle.loadNumber || '', customerName: lnkCust, customerEmail: lnkEmail, duration: lnkDur, createdAt: now.toISOString(), expiresAt: exp.toISOString(), url: `https://track.geminiexpress.com/s/${Math.random().toString(36).slice(2,10)}`, active: true }, ...p]);
+    setLinks(p => [{ id: `tl${Date.now()}`, unitNumber: trkVehicle.unitNumber, loadNumber: lnkLoad || trkVehicle.loadNumber || '', customerName: lnkCust, customerEmail: lnkEmail, duration: lnkDur, createdAt: now.toISOString(), expiresAt: exp.toISOString(), url: `https://track.axontms.com/s/${Math.random().toString(36).slice(2,10)}`, active: true }, ...p]);
     setShowModal(false); setLnkCust(''); setLnkEmail(''); setLnkDur(24); setLnkLoad(''); setTrkVehicle(null); setShowLinks(true);
   };
 
@@ -148,7 +148,7 @@ export function LiveMapPage() {
                 <span className="text-xs text-gray-400">{v.city}, {v.state}</span>
                 {v.speed > 0 && <span className="text-xs text-blue-600 font-medium">{v.speed}mph</span>}
               </div>
-              {v.loadNumber && <div className="ml-4 mt-1 flex items-center gap-1"><span className="text-xs text-blue-600 font-medium">{v.loadNumber}</span><span className="text-xs text-gray-400">→ {v.destination}</span></div>}
+              {v.loadNumber && <div className="ml-4 mt-1 flex items-center gap-1"><span className="text-xs text-blue-600 font-medium">{v.loadNumber}</span><span className="text-xs text-gray-400">â†’ {v.destination}</span></div>}
             </button>
           ))}
         </div>
@@ -167,19 +167,19 @@ export function LiveMapPage() {
             <div className="absolute top-4 right-4 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-[1000] max-h-96 overflow-hidden flex flex-col">
               <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
                 <h3 className="text-xs font-semibold text-gray-900">Tracking Links</h3>
-                <button onClick={() => setShowLinks(false)} className="text-gray-400 hover:text-gray-600">×</button>
+                <button onClick={() => setShowLinks(false)} className="text-gray-400 hover:text-gray-600">Ã—</button>
               </div>
               <div className="overflow-y-auto flex-1 p-2">
                 {links.length === 0 && <p className="text-xs text-gray-400 text-center py-4">No tracking links yet.</p>}
                 {links.map(lk => (
                   <div key={lk.id} className={`p-3 rounded-lg mb-2 ${lk.active ? 'bg-blue-50 border border-blue-100' : 'bg-gray-50 border border-gray-100 opacity-60'}`}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-semibold text-gray-900">{lk.unitNumber} · {lk.loadNumber}</span>
+                      <span className="text-xs font-semibold text-gray-900">{lk.unitNumber} Â· {lk.loadNumber}</span>
                       <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${lk.active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500'}`}>{lk.active ? 'Active' : 'Revoked'}</span>
                     </div>
                     <p className="text-xs text-gray-600">{lk.customerName}</p>
                     <p className="text-xs text-gray-400">{lk.customerEmail}</p>
-                    <div className="flex items-center gap-2 mt-1.5 text-xs text-gray-400"><span>Duration: {lk.duration}h</span><span>·</span><span>Expires: {fmtDT(lk.expiresAt)}</span></div>
+                    <div className="flex items-center gap-2 mt-1.5 text-xs text-gray-400"><span>Duration: {lk.duration}h</span><span>Â·</span><span>Expires: {fmtDT(lk.expiresAt)}</span></div>
                     <div className="flex items-center gap-2 mt-2">
                       <input type="text" value={lk.url} readOnly className="flex-1 text-xs font-mono bg-white border border-gray-200 rounded px-2 py-1 text-gray-600" onClick={e => (e.target as HTMLInputElement).select()} />
                       <button onClick={() => navigator.clipboard.writeText(lk.url)} className="px-2 py-1 text-xs font-medium text-blue-600 bg-blue-50 rounded hover:bg-blue-100">Copy</button>
@@ -202,8 +202,8 @@ export function LiveMapPage() {
             </div>
             <div className="px-6 py-4 space-y-4">
               <div className="bg-gray-50 rounded-lg p-3">
-                <div className="flex items-center gap-2 mb-1"><span className="text-xs font-semibold text-gray-900">{trkVehicle.unitNumber}</span><span className="text-xs text-gray-500">·</span><span className="text-xs text-gray-600">{trkVehicle.driverName}</span></div>
-                <p className="text-xs text-gray-500">{trkVehicle.city}, {trkVehicle.state} → {trkVehicle.destination || 'No active load'}</p>
+                <div className="flex items-center gap-2 mb-1"><span className="text-xs font-semibold text-gray-900">{trkVehicle.unitNumber}</span><span className="text-xs text-gray-500">Â·</span><span className="text-xs text-gray-600">{trkVehicle.driverName}</span></div>
+                <p className="text-xs text-gray-500">{trkVehicle.city}, {trkVehicle.state} â†’ {trkVehicle.destination || 'No active load'}</p>
               </div>
               <div><label className="block text-xs font-medium text-gray-700 mb-1">Load Number</label><input type="text" value={lnkLoad} onChange={e => setLnkLoad(e.target.value)} placeholder="LD-0000" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" /></div>
               <div><label className="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label><input type="text" value={lnkCust} onChange={e => setLnkCust(e.target.value)} placeholder="Acme Corp" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" /></div>
