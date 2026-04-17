@@ -1,31 +1,31 @@
-import { useState } from ''react'';
-import { useMutation } from ''@tanstack/react-query'';
-import { api } from ''@/lib/api'';
-import { useAuthStore } from ''@/stores/auth.store'';
-import type { LoginResponse } from ''@/types'';
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "@/lib/api";
+import { useAuthStore } from "@/stores/auth.store";
+import type { LoginResponse } from "@/types";
 
 export function LoginPage() {
-  const [email, setEmail] = useState('''');
-  const [password, setPassword] = useState('''');
-  const [error, setError] = useState('''');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const setAuth = useAuthStore((s) => s.setAuth);
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: { email: string; password: string }) => {
-      const { data } = await api.post<LoginResponse>(''/auth/login'', credentials);
+      const { data } = await api.post<LoginResponse>("/auth/login", credentials);
       return data;
     },
     onSuccess: (data) => {
       setAuth(data.user, data.accessToken);
     },
     onError: () => {
-      setError(''Invalid email or password. Please try again.'');
+      setError("Invalid email or password. Please try again.");
     },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('''');
+    setError("");
     loginMutation.mutate({ email, password });
   };
 
@@ -33,9 +33,7 @@ export function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-semibold text-gray-900">
-            AXON TMS
-          </h1>
+          <h1 className="text-2xl font-semibold text-gray-900">AXON TMS</h1>
           <p className="text-sm text-gray-500 mt-1">Transportation Management System</p>
         </div>
 
@@ -86,7 +84,7 @@ export function LoginPage() {
               disabled={loginMutation.isPending}
               className="w-full py-2.5 px-4 bg-brand-600 text-white text-sm font-medium rounded-lg hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loginMutation.isPending ? ''Signing in...'' : ''Sign in''}
+              {loginMutation.isPending ? "Signing in..." : "Sign in"}
             </button>
           </form>
         </div>
