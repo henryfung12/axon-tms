@@ -1,0 +1,48 @@
+{
+  "name": "@gemini-express/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@react-leaflet/core": "2.1.0",
+    "@tanstack/react-query": "^5.28.0",
+    "@tanstack/react-router": "^1.23.0",
+    "@types/leaflet": "^1.9.21",
+    "@vis.gl/react-google-maps": "^1.8.3",
+    "axios": "^1.15.0",
+    "clsx": "^2.1.0",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.10",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.72.1",
+    "react-leaflet": "4.2.1",
+    "recharts": "^3.8.1",
+    "tailwind-merge": "^2.2.2",
+    "xlsx": "^0.18.5",
+    "zod": "^4.3.6",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/react": "^18.2.73",
+    "@types/react-dom": "^18.2.23",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6"
+  }
+}
