@@ -351,7 +351,7 @@ export function DispatchPlanner() {
         <div className="flex-1 overflow-auto">
           <div className="flex min-w-max">
             {/* Driver column (sticky left) */}
-            <div className="w-56 flex-shrink-0 bg-white border-r border-gray-200 sticky left-0 z-20">
+            <div className="w-64 flex-shrink-0 bg-white border-r border-gray-200">
               {/* Time header spacer */}
               <div className="h-10 border-b border-gray-200 bg-gray-50 px-3 flex items-center">
                 <span className="text-xs font-medium text-gray-500">Driver</span>
