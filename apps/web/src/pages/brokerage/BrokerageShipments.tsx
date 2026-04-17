@@ -485,25 +485,25 @@ export function BrokerageShipments() {
                 <span></span>
                 <h3 className="text-sm font-semibold text-gray-800">Alerts</h3>
               </div>
-              {(() => { let alerts: any[] = []; try { alerts = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || '[]'); } catch { alerts = []; } if (alerts.length === 0) { return {(() => {
-                  let alerts: any[] = [];
-                  try { alerts = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || "[]"); } catch { alerts = []; }
-                  if (alerts.length === 0) return <p className="text-xs text-gray-400">No alerts for this shipment.</p>;
-                  const sevDot: Record<string, string> = { INFO: "bg-blue-500", WARNING: "bg-yellow-500", CRITICAL: "bg-red-500" };
-                  const sevLabel: Record<string, string> = { INFO: "Info", WARNING: "Warning", CRITICAL: "Critical" };
-                  return (<div className="space-y-2">
-                    {alerts.slice(0, 5).map((a: any) => (
-                      <div key={a.id} className="flex items-start gap-2 py-1">
-                        <span className={`inline-block w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0 ${sevDot[a.severity]}`} />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-medium text-gray-800">{sevLabel[a.severity]}</p>
-                          <p className="text-xs text-gray-600 truncate">{a.text}</p>
-                        </div>
+              {(() => {
+                let alerts: any[] = [];
+                try { alerts = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || "[]"); } catch { alerts = []; }
+                if (alerts.length === 0) return <p className="text-xs text-gray-400">No alerts for this shipment.</p>;
+                const sevDot: Record<string, string> = { INFO: "bg-blue-500", WARNING: "bg-yellow-500", CRITICAL: "bg-red-500" };
+                const sevLabel: Record<string, string> = { INFO: "Info", WARNING: "Warning", CRITICAL: "Critical" };
+                return (<div className="space-y-2">
+                  {alerts.slice(0, 5).map((a: any) => (
+                    <div key={a.id} className="flex items-start gap-2 py-1">
+                      <span className={`inline-block w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0 ${sevDot[a.severity]}`} />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-gray-800">{sevLabel[a.severity]}</p>
+                        <p className="text-xs text-gray-600 truncate">{a.text}</p>
                       </div>
-                    ))}
-                    {alerts.length > 5 && <button onClick={() => setDetailTab("notes")} className="text-xs text-blue-600 hover:underline mt-1">View all {alerts.length} alerts</button>}
-                  </div>);
-                })()}; } const sevDot: Record<string, string> = { INFO: 'bg-blue-500', WARNING: 'bg-yellow-500', CRITICAL: 'bg-red-500' }; const sevLabel: Record<string, string> = { INFO: 'Info', WARNING: 'Warning', CRITICAL: 'Critical' }; return (<div className="space-y-2">{alerts.slice(0, 5).map((a: any) => (<div key={a.id} className="flex items-start gap-2 py-1"><span className={`inline-block w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0 ${sevDot[a.severity]}`} /><div className="flex-1 min-w-0"><p className="text-xs font-medium text-gray-800">{sevLabel[a.severity]}</p><p className="text-xs text-gray-600 truncate">{a.text}</p></div></div>))}{alerts.length > 5 && (<button onClick={() => setDetailTab('notes')} className="text-xs text-blue-600 hover:underline mt-1">View all {alerts.length} alerts</button>)}</div>); })()}
+                    </div>
+                  ))}
+                  {alerts.length > 5 && <button onClick={() => setDetailTab("notes")} className="text-xs text-blue-600 hover:underline mt-1">View all {alerts.length} alerts</button>}
+                </div>);
+              })()}
             </div>
           </div>
         </div>
