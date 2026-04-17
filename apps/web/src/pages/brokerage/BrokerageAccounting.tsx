@@ -269,7 +269,7 @@ export function BrokerageAccounting() {
                 </div>
               ))}
             </div>
-            <div className="flex items-center gap-4 text-xs text-gray-400"><span>CC: accounting@axontms.com</span><span>Ã‚Â·</span><span>Auto-send daily at 9:00 AM EST</span><span>Ã‚Â·</span><span>Skip weekends & holidays</span></div>
+            <div className="flex items-center gap-4 text-xs text-gray-400"><span>CC: accounting@axontms.com</span><span>Ã‚·</span><span>Auto-send daily at 9:00 AM EST</span><span>Ã‚·</span><span>Skip weekends & holidays</span></div>
           </div>
         </div>
       )}
@@ -481,7 +481,7 @@ export function BrokerageAccounting() {
                 </div>
                 <div className="bg-gray-50 rounded-lg p-2.5">
                   <div className="flex justify-between text-xs mb-1"><span className="text-gray-500">Today's Sync Activity</span><span className="text-gray-700 font-medium">148 transactions</span></div>
-                  <div className="flex gap-3 text-xs"><span className="text-green-600">Ã¢â€ â€˜ 82 pushed</span><span className="text-blue-600">Ã¢â€ â€œ 66 pulled</span><span className="text-red-600">Ã¢Å“â€¢ 1 error</span></div>
+                  <div className="flex gap-3 text-xs"><span className="text-green-600">Ã¢â€ ‘ 82 pushed</span><span className="text-blue-600">Ã¢â€ “ 66 pulled</span><span className="text-red-600">Ã¢Å“• 1 error</span></div>
                 </div>
               </div>
             </div>
@@ -491,15 +491,15 @@ export function BrokerageAccounting() {
               <h4 className="text-sm font-semibold text-gray-900 mb-3">Automatic Sync Triggers</h4>
               <div className="space-y-1.5">
                 {[
-                  { event: 'Shipment Created', desc: 'Auto-create CW Forwarding Job when new shipment is entered', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'Shipments' },
-                  { event: 'Carrier Assigned', desc: 'Push carrier details and rate to CW job when carrier is booked', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'Shipments' },
-                  { event: 'Status Changed', desc: 'Sync pickup, in-transit, delivered status to CW milestones', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'Operations' },
-                  { event: 'Invoice Generated', desc: 'Auto-create AR invoice in CW when shipment invoice is finalized', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'AR' },
-                  { event: 'Carrier Bill Approved', desc: 'Auto-create AP voucher in CW when carrier bill is approved', direction: 'Ã¢â€ â€˜ Push', enabled: true, module: 'AP' },
-                  { event: 'Payment Received', desc: 'Pull payment data from CW when customer pays invoice', direction: 'Ã¢â€ â€œ Pull', enabled: true, module: 'AR' },
-                  { event: 'Payment Sent', desc: 'Pull payment confirmation from CW after carrier is paid', direction: 'Ã¢â€ â€œ Pull', enabled: true, module: 'AP' },
-                  { event: 'CW Job Updated', desc: 'Pull any manual CW changes back to TMS (rates, dates, refs)', direction: 'Ã¢â€ â€œ Pull', enabled: true, module: 'Sync' },
-                  { event: 'Document Attached', desc: 'Push BOL, POD, rate con to CW document management', direction: 'Ã¢â€ â€˜ Push', enabled: false, module: 'Documents' },
+                  { event: 'Shipment Created', desc: 'Auto-create CW Forwarding Job when new shipment is entered', direction: 'Ã¢â€ ‘ Push', enabled: true, module: 'Shipments' },
+                  { event: 'Carrier Assigned', desc: 'Push carrier details and rate to CW job when carrier is booked', direction: 'Ã¢â€ ‘ Push', enabled: true, module: 'Shipments' },
+                  { event: 'Status Changed', desc: 'Sync pickup, in-transit, delivered status to CW milestones', direction: 'Ã¢â€ ‘ Push', enabled: true, module: 'Operations' },
+                  { event: 'Invoice Generated', desc: 'Auto-create AR invoice in CW when shipment invoice is finalized', direction: 'Ã¢â€ ‘ Push', enabled: true, module: 'AR' },
+                  { event: 'Carrier Bill Approved', desc: 'Auto-create AP voucher in CW when carrier bill is approved', direction: 'Ã¢â€ ‘ Push', enabled: true, module: 'AP' },
+                  { event: 'Payment Received', desc: 'Pull payment data from CW when customer pays invoice', direction: 'Ã¢â€ “ Pull', enabled: true, module: 'AR' },
+                  { event: 'Payment Sent', desc: 'Pull payment confirmation from CW after carrier is paid', direction: 'Ã¢â€ “ Pull', enabled: true, module: 'AP' },
+                  { event: 'CW Job Updated', desc: 'Pull any manual CW changes back to TMS (rates, dates, refs)', direction: 'Ã¢â€ “ Pull', enabled: true, module: 'Sync' },
+                  { event: 'Document Attached', desc: 'Push BOL, POD, rate con to CW document management', direction: 'Ã¢â€ ‘ Push', enabled: false, module: 'Documents' },
                 ].map(t => (
                   <div key={t.event} className="flex items-center justify-between py-1.5 px-3 bg-gray-50 rounded-lg">
                     <div className="flex-1 min-w-0">
@@ -545,7 +545,7 @@ export function BrokerageAccounting() {
                 ].map(m => (
                   <div key={m.tms} className="flex items-center gap-2 py-1 px-2 bg-gray-50 rounded">
                     <span className="flex-1 text-gray-700 font-medium">{m.tms}</span>
-                    <span className="text-gray-300">Ã¢â€ â€™</span>
+                    <span className="text-gray-300">Ã¢â€ ’</span>
                     <span className="flex-1 text-blue-600">{m.cw}</span>
                   </div>
                 ))}
@@ -565,7 +565,7 @@ export function BrokerageAccounting() {
                 ].map(m => (
                   <div key={m.tms} className="flex items-center gap-2 py-1 px-2 bg-gray-50 rounded">
                     <span className="flex-1 text-gray-700 font-medium">{m.tms}</span>
-                    <span className="text-gray-300">Ã¢â€ â€™</span>
+                    <span className="text-gray-300">Ã¢â€ ’</span>
                     <span className="flex-1 text-blue-600">{m.cw}</span>
                   </div>
                 ))}
@@ -611,9 +611,9 @@ export function BrokerageAccounting() {
                     {r.syncStatus === 'ERROR' && <button className="px-2 py-1 text-xs text-red-600 bg-red-50 rounded hover:bg-red-100">Retry Now</button>}
                     {r.syncStatus === 'PUSHED' && <span className="text-xs text-blue-600 font-medium">Ã¢Å¸Â³ Processing</span>}
                     {r.syncStatus === 'JOB_CREATED' && <span className="text-xs text-indigo-600 font-medium">Ã¢Å¸Â³ Awaiting match</span>}
-                    {r.syncStatus === 'INVOICE_MATCHED' && <span className="text-xs text-purple-600 font-medium">Ã¢Å“â€œ Matched</span>}
-                    {r.syncStatus === 'SENT' && <span className="text-xs text-orange-600 font-medium">Ã¢Å“â€œ Sent</span>}
-                    {r.syncStatus === 'CLOSED' && <span className="text-xs text-green-600 font-medium">Ã¢Å“â€œ Complete</span>}
+                    {r.syncStatus === 'INVOICE_MATCHED' && <span className="text-xs text-purple-600 font-medium">Ã¢Å““ Matched</span>}
+                    {r.syncStatus === 'SENT' && <span className="text-xs text-orange-600 font-medium">Ã¢Å““ Sent</span>}
+                    {r.syncStatus === 'CLOSED' && <span className="text-xs text-green-600 font-medium">Ã¢Å““ Complete</span>}
                   </td>
                 </tr>
               ))}
@@ -634,7 +634,7 @@ export function BrokerageAccounting() {
           <div className="grid grid-cols-3 gap-4 mb-4">
             {[
               { name: 'TriumphPay', logo: 'Ã°Å¸ÂÂ¦', color: 'purple', status: 'Connected', desc: 'Automated carrier payment network Ã¢â‚¬â€ audit, match, pay', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'TriumphPay'), fee: 'Flat $50/load' },
-              { name: 'RTS Financial', logo: 'Ã°Å¸â€™Â³', color: 'blue', desc: 'Quick-pay factoring Ã¢â‚¬â€ same-day carrier funding', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'RTS Financial'), fee: '3% of invoice' },
+              { name: 'RTS Financial', logo: 'Ã°Å¸’Â³', color: 'blue', desc: 'Quick-pay factoring Ã¢â‚¬â€ same-day carrier funding', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'RTS Financial'), fee: '3% of invoice' },
               { name: 'OTR Solutions', logo: 'Ã°Å¸Å¡â€º', color: 'teal', desc: 'Carrier factoring and fuel card programs', status: 'Connected', records: MOCK_FACTORING.filter(f => f.factoringCompany === 'OTR Solutions'), fee: '3% of invoice' },
             ].map(p => {
               const funded = p.records.filter(r => r.factoringStatus === 'FUNDED');
@@ -705,7 +705,7 @@ export function BrokerageAccounting() {
                     {f.factoringStatus === 'PENDING' && f.factoringCompany && <span className="text-xs text-gray-400">Direct pay</span>}
                     {f.factoringStatus === 'SUBMITTED' && <span className="text-xs text-blue-600">Ã¢Å¸Â³ Processing</span>}
                     {f.factoringStatus === 'APPROVED' && <span className="text-xs text-indigo-600">Ã¢ÂÂ³ Funding</span>}
-                    {f.factoringStatus === 'FUNDED' && <span className="text-xs text-green-600 font-medium">Ã¢Å“â€œ Paid</span>}
+                    {f.factoringStatus === 'FUNDED' && <span className="text-xs text-green-600 font-medium">Ã¢Å““ Paid</span>}
                     {f.factoringStatus === 'REJECTED' && <button className="px-2 py-1 text-xs text-red-600 bg-red-50 rounded hover:bg-red-100">Resubmit</button>}
                   </td>
                 </tr>

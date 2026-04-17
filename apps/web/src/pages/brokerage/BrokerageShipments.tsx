@@ -20,23 +20,23 @@ const STATUS_LABELS: Record<string, string> = {
   CANCELLED: 'Cancelled',
 };
 
-// â”€â”€ Mock Shipments (used when API returns empty) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Shipments (used when API returns empty) ─
 const MOCK_SHIPMENTS = [
-  { id: 's1', loadNumber: 'SH-10421', status: 'IN_TRANSIT', shipperRate: 2800, carrierRate: 2200, commodity: 'Auto Parts â€” Palletized', weight: 42000, customer: { name: 'Acme Manufacturing' }, carrier: { name: 'Eagle Freight Lines' }, createdAt: '2026-04-13T08:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Acme Detroit Plant', address: '4200 Industrial Pkwy', city: 'Detroit', state: 'MI', zip: '48201', scheduledAt: '2026-04-13T06:00:00Z' }, { type: 'DELIVERY', facilityName: 'Midwest Distribution', address: '8800 Commerce Dr', city: 'Nashville', state: 'TN', zip: '37210', scheduledAt: '2026-04-13T16:00:00Z' }] },
+  { id: 's1', loadNumber: 'SH-10421', status: 'IN_TRANSIT', shipperRate: 2800, carrierRate: 2200, commodity: 'Auto Parts — Palletized', weight: 42000, customer: { name: 'Acme Manufacturing' }, carrier: { name: 'Eagle Freight Lines' }, createdAt: '2026-04-13T08:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Acme Detroit Plant', address: '4200 Industrial Pkwy', city: 'Detroit', state: 'MI', zip: '48201', scheduledAt: '2026-04-13T06:00:00Z' }, { type: 'DELIVERY', facilityName: 'Midwest Distribution', address: '8800 Commerce Dr', city: 'Nashville', state: 'TN', zip: '37210', scheduledAt: '2026-04-13T16:00:00Z' }] },
   { id: 's2', loadNumber: 'SH-10422', status: 'CARRIER_ASSIGNED', shipperRate: 3400, carrierRate: 2800, commodity: 'Refrigerated Produce', weight: 38000, customer: { name: 'Heartland Foods' }, carrier: { name: 'Arctic Cold Carriers' }, createdAt: '2026-04-13T10:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Heartland Warehouse', address: '1200 Foodway Blvd', city: 'Kansas City', state: 'MO', zip: '64101', scheduledAt: '2026-04-14T07:00:00Z' }, { type: 'DELIVERY', facilityName: 'Fresh Market Dallas', address: '5500 Market St', city: 'Dallas', state: 'TX', zip: '75201', scheduledAt: '2026-04-14T18:00:00Z' }] },
   { id: 's3', loadNumber: 'SH-10423', status: 'IN_TRANSIT', shipperRate: 1800, carrierRate: 1350, commodity: 'Consumer Electronics', weight: 32000, customer: { name: 'Pacific Retail Group' }, carrier: { name: 'Midwest Express Trucking' }, createdAt: '2026-04-12T14:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Pacific Retail DC', address: '1500 Retail Ave', city: 'Los Angeles', state: 'CA', zip: '90012', scheduledAt: '2026-04-12T08:00:00Z' }, { type: 'DELIVERY', facilityName: 'Phoenix Hub', address: '3300 Distribution Dr', city: 'Phoenix', state: 'AZ', zip: '85001', scheduledAt: '2026-04-12T18:00:00Z' }] },
-  { id: 's4', loadNumber: 'SH-10424', status: 'PENDING', shipperRate: 2200, carrierRate: 0, commodity: 'Steel Coils â€” Flatbed', weight: 48000, customer: { name: 'Southeastern Steel' }, carrier: null, createdAt: '2026-04-14T06:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'SE Steel Mill', address: '7700 Steel Way', city: 'Birmingham', state: 'AL', zip: '35201', scheduledAt: '2026-04-15T08:00:00Z' }, { type: 'DELIVERY', facilityName: 'Gulf Coast Fabricators', address: '2200 Harbor Rd', city: 'Jacksonville', state: 'FL', zip: '32201', scheduledAt: '2026-04-15T20:00:00Z' }] },
+  { id: 's4', loadNumber: 'SH-10424', status: 'PENDING', shipperRate: 2200, carrierRate: 0, commodity: 'Steel Coils — Flatbed', weight: 48000, customer: { name: 'Southeastern Steel' }, carrier: null, createdAt: '2026-04-14T06:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'SE Steel Mill', address: '7700 Steel Way', city: 'Birmingham', state: 'AL', zip: '35201', scheduledAt: '2026-04-15T08:00:00Z' }, { type: 'DELIVERY', facilityName: 'Gulf Coast Fabricators', address: '2200 Harbor Rd', city: 'Jacksonville', state: 'FL', zip: '32201', scheduledAt: '2026-04-15T20:00:00Z' }] },
   { id: 's5', loadNumber: 'SH-10425', status: 'DELIVERED', shipperRate: 1600, carrierRate: 1200, commodity: 'Industrial Chemicals', weight: 44000, customer: { name: 'Great Lakes Chemicals' }, carrier: { name: 'Thunder Road Inc.' }, createdAt: '2026-04-10T09:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'GL Chemical Plant', address: '900 Lake Shore Dr', city: 'Cleveland', state: 'OH', zip: '44101', scheduledAt: '2026-04-10T06:00:00Z' }, { type: 'DELIVERY', facilityName: 'Midwest Chem Depot', address: '3300 Depot Rd', city: 'Pittsburgh', state: 'PA', zip: '15201', scheduledAt: '2026-04-10T14:00:00Z' }] },
-  { id: 's6', loadNumber: 'SH-10426', status: 'IN_TRANSIT', shipperRate: 1400, carrierRate: 1050, commodity: 'Dry Goods â€” Palletized', weight: 36000, customer: { name: 'NorthPoint Logistics' }, carrier: { name: 'Midwest Express Trucking' }, createdAt: '2026-04-13T11:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'NorthPoint Chicago', address: '2100 Commerce Blvd', city: 'Chicago', state: 'IL', zip: '60601', scheduledAt: '2026-04-13T10:00:00Z' }, { type: 'DELIVERY', facilityName: 'Indy Warehouse', address: '4400 Storage Ln', city: 'Indianapolis', state: 'IN', zip: '46201', scheduledAt: '2026-04-13T16:00:00Z' }] },
+  { id: 's6', loadNumber: 'SH-10426', status: 'IN_TRANSIT', shipperRate: 1400, carrierRate: 1050, commodity: 'Dry Goods — Palletized', weight: 36000, customer: { name: 'NorthPoint Logistics' }, carrier: { name: 'Midwest Express Trucking' }, createdAt: '2026-04-13T11:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'NorthPoint Chicago', address: '2100 Commerce Blvd', city: 'Chicago', state: 'IL', zip: '60601', scheduledAt: '2026-04-13T10:00:00Z' }, { type: 'DELIVERY', facilityName: 'Indy Warehouse', address: '4400 Storage Ln', city: 'Indianapolis', state: 'IN', zip: '46201', scheduledAt: '2026-04-13T16:00:00Z' }] },
   { id: 's7', loadNumber: 'SH-10427', status: 'CARRIER_ASSIGNED', shipperRate: 2600, carrierRate: 2100, commodity: 'Medical Supplies', weight: 28000, customer: { name: 'Summit Healthcare' }, carrier: { name: 'Eagle Freight Lines' }, createdAt: '2026-04-14T07:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Summit Med Supply', address: '300 Health Pkwy', city: 'Nashville', state: 'TN', zip: '37201', scheduledAt: '2026-04-14T08:30:00Z' }, { type: 'DELIVERY', facilityName: 'Regional Medical Center', address: '1100 Medical Dr', city: 'Louisville', state: 'KY', zip: '40201', scheduledAt: '2026-04-14T15:00:00Z' }] },
   { id: 's8', loadNumber: 'SH-10428', status: 'PENDING', shipperRate: 3200, carrierRate: 0, commodity: 'Building Materials', weight: 45000, customer: { name: 'Acme Manufacturing' }, carrier: null, createdAt: '2026-04-14T09:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Acme Supply Yard', address: '800 Builders Rd', city: 'Detroit', state: 'MI', zip: '48202', scheduledAt: '2026-04-15T06:00:00Z' }, { type: 'DELIVERY', facilityName: 'Columbus Construction', address: '5500 Build Ave', city: 'Columbus', state: 'OH', zip: '43201', scheduledAt: '2026-04-15T14:00:00Z' }] },
   { id: 's9', loadNumber: 'SH-10429', status: 'DELIVERED', shipperRate: 1200, carrierRate: 900, commodity: 'Medical Equipment', weight: 22000, customer: { name: 'Summit Healthcare' }, carrier: { name: 'Thunder Road Inc.' }, createdAt: '2026-04-09T08:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Summit Med Supply', address: '300 Health Pkwy', city: 'Nashville', state: 'TN', zip: '37201', scheduledAt: '2026-04-09T08:00:00Z' }, { type: 'DELIVERY', facilityName: 'Memphis General Hospital', address: '2200 Hospital Blvd', city: 'Memphis', state: 'TN', zip: '38101', scheduledAt: '2026-04-09T14:00:00Z' }] },
   { id: 's10', loadNumber: 'SH-10430', status: 'POSTED_TO_DAT', shipperRate: 2400, carrierRate: 0, commodity: 'Automotive Parts', weight: 40000, customer: { name: 'Pacific Retail Group' }, carrier: null, createdAt: '2026-04-14T05:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Pacific Auto Parts', address: '6600 Auto Way', city: 'Houston', state: 'TX', zip: '77001', scheduledAt: '2026-04-15T07:00:00Z' }, { type: 'DELIVERY', facilityName: 'SE Auto Depot', address: '1800 Depot St', city: 'Atlanta', state: 'GA', zip: '30301', scheduledAt: '2026-04-15T20:00:00Z' }] },
   { id: 's11', loadNumber: 'SH-10431', status: 'DELIVERED', shipperRate: 1500, carrierRate: 1100, commodity: 'Paper Products', weight: 34000, customer: { name: 'NorthPoint Logistics' }, carrier: { name: 'Lone Star Logistics' }, createdAt: '2026-04-08T10:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Delta Paper Mill', address: '4400 Paper Ln', city: 'Memphis', state: 'TN', zip: '38103', scheduledAt: '2026-04-08T06:00:00Z' }, { type: 'DELIVERY', facilityName: 'NorthPoint Chicago', address: '2100 Commerce Blvd', city: 'Chicago', state: 'IL', zip: '60601', scheduledAt: '2026-04-08T18:00:00Z' }] },
-  { id: 's12', loadNumber: 'SH-10432', status: 'IN_TRANSIT', shipperRate: 3100, carrierRate: 2500, commodity: 'Frozen Foods â€” Reefer', weight: 41000, customer: { name: 'Heartland Foods' }, carrier: { name: 'Arctic Cold Carriers' }, createdAt: '2026-04-13T04:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Heartland Cold Storage', address: '3300 Freeze Dr', city: 'Omaha', state: 'NE', zip: '68101', scheduledAt: '2026-04-13T05:00:00Z' }, { type: 'DELIVERY', facilityName: 'Denver Fresh Market', address: '7700 Market Blvd', city: 'Denver', state: 'CO', zip: '80201', scheduledAt: '2026-04-13T18:00:00Z' }] },
+  { id: 's12', loadNumber: 'SH-10432', status: 'IN_TRANSIT', shipperRate: 3100, carrierRate: 2500, commodity: 'Frozen Foods — Reefer', weight: 41000, customer: { name: 'Heartland Foods' }, carrier: { name: 'Arctic Cold Carriers' }, createdAt: '2026-04-13T04:00:00Z', stops: [{ type: 'PICKUP', facilityName: 'Heartland Cold Storage', address: '3300 Freeze Dr', city: 'Omaha', state: 'NE', zip: '68101', scheduledAt: '2026-04-13T05:00:00Z' }, { type: 'DELIVERY', facilityName: 'Denver Fresh Market', address: '7700 Market Blvd', city: 'Denver', state: 'CO', zip: '80201', scheduledAt: '2026-04-13T18:00:00Z' }] },
 ];
 
-// â”€â”€ Mock Trucker Tools Location History â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Trucker Tools Location History ─
 const MOCK_TRACKING: Record<string, { provider: string; lastUpdate: string; lastLocation: string; delivery: string; pings: { time: string; location: string }[] }> = {
   's1': { provider: 'Trucker Tools', lastUpdate: '04/14/2026 08:12 PM', lastLocation: 'BOWLING GREEN, KY 42101 US', delivery: '8800 Commerce Dr, Nashville, TN 37210', pings: [{ time: '4/14/2026 20:12', location: 'BOWLING GREEN, KY 42101 US' }, { time: '4/14/2026 19:57', location: 'BOWLING GREEN, KY 42101' }, { time: '4/14/2026 19:42', location: 'FRANKLIN, KY 42134 US' }, { time: '4/14/2026 19:27', location: 'FRANKLIN, KY 42134' }, { time: '4/14/2026 19:12', location: 'PORTLAND, TN 37148 US' }, { time: '4/14/2026 18:57', location: 'PORTLAND, TN 37148' }, { time: '4/14/2026 18:42', location: 'SPRINGFIELD, TN 37172 US' }, { time: '4/14/2026 18:27', location: 'SPRINGFIELD, TN 37172' }, { time: '4/14/2026 18:12', location: 'CLARKSVILLE, TN 37040 US' }, { time: '4/14/2026 17:57', location: 'CLARKSVILLE, TN 37040' }, { time: '4/14/2026 17:42', location: 'OAK GROVE, KY 42262 US' }, { time: '4/14/2026 17:12', location: 'HOPKINSVILLE, KY 42240 US' }, { time: '4/14/2026 16:42', location: 'MADISONVILLE, KY 42431 US' }, { time: '4/14/2026 16:12', location: 'HENDERSON, KY 42420 US' }, { time: '4/14/2026 15:42', location: 'EVANSVILLE, IN 47708 US' }] },
   's3': { provider: 'Trucker Tools', lastUpdate: '04/14/2026 06:30 PM', lastLocation: 'QUARTZSITE, AZ 85346 US', delivery: '3300 Distribution Dr, Phoenix, AZ 85001', pings: [{ time: '4/14/2026 18:30', location: 'QUARTZSITE, AZ 85346 US' }, { time: '4/14/2026 18:00', location: 'BLYTHE, CA 92225 US' }, { time: '4/14/2026 17:30', location: 'DESERT CENTER, CA 92239 US' }, { time: '4/14/2026 17:00', location: 'INDIO, CA 92201 US' }, { time: '4/14/2026 16:30', location: 'PALM SPRINGS, CA 92262 US' }, { time: '4/14/2026 16:00', location: 'BEAUMONT, CA 92223 US' }] },
@@ -44,7 +44,7 @@ const MOCK_TRACKING: Record<string, { provider: string; lastUpdate: string; last
   's12': { provider: 'Trucker Tools', lastUpdate: '04/14/2026 11:00 AM', lastLocation: 'NORTH PLATTE, NE 69101 US', delivery: '7700 Market Blvd, Denver, CO 80201', pings: [{ time: '4/14/2026 11:00', location: 'NORTH PLATTE, NE 69101 US' }, { time: '4/14/2026 10:30', location: 'GOTHENBURG, NE 69138 US' }, { time: '4/14/2026 10:00', location: 'KEARNEY, NE 68847 US' }, { time: '4/14/2026 09:30', location: 'GRAND ISLAND, NE 68801 US' }, { time: '4/14/2026 09:00', location: 'YORK, NE 68467 US' }, { time: '4/14/2026 08:30', location: 'LINCOLN, NE 68501 US' }, { time: '4/14/2026 08:00', location: 'OMAHA, NE 68101 US' }] },
 };
 
-// â”€â”€ Mock Documents per Shipment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Documents per Shipment ─
 interface ShipmentDoc { id: string; type: string; name: string; uploadedBy: string; uploadedAt: string; status: string; fileSize: string; }
 
 const MOCK_DOCS: Record<string, ShipmentDoc[]> = {
@@ -92,7 +92,7 @@ const DOC_LABELS: Record<string, { label: string; icon: string; color: string }>
 };
 const DOC_STATUS_BADGE: Record<string, string> = { RECEIVED: 'bg-blue-100 text-blue-800', APPROVED: 'bg-green-100 text-green-800', PENDING: 'bg-yellow-100 text-yellow-800', REJECTED: 'bg-red-100 text-red-800' };
 
-// â”€â”€ Load Board Posting Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Load Board Posting Data ─
 interface LoadBoardPosting { board: 'DAT' | 'TRUCKSTOP'; postedAt: string; views: number; contacts: number; rate: number; status: 'ACTIVE' | 'COVERED' | 'EXPIRED'; }
 
 const MOCK_POSTINGS: Record<string, LoadBoardPosting[]> = {
@@ -264,7 +264,7 @@ export function BrokerageShipments() {
           ))}
         </div>
 
-        {/* 3-column detail â€” Activity Log tab */}
+        {/* 3-column detail — Activity Log tab */}
         {detailTab === 'activity' && (
         <div className="grid grid-cols-12 gap-4">
           {/* Left: Customer */}
@@ -274,7 +274,7 @@ export function BrokerageShipments() {
                 <span>ðŸ¢</span> <span>End Customer</span>
               </div>
               <h3 className="text-base font-bold text-blue-600 mb-2">{selectedLoad.customer?.name?.toUpperCase()}</h3>
-              <p className="text-xs text-gray-600">{selectedLoad.customer?.address || 'â€”'}</p>
+              <p className="text-xs text-gray-600">{selectedLoad.customer?.address || '—'}</p>
               <div className="mt-3 pt-3 border-t border-gray-100 text-xs space-y-1">
                 <div className="flex justify-between">
                   <span className="text-gray-500">Credit Status:</span>
@@ -282,7 +282,7 @@ export function BrokerageShipments() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Credit Limit:</span>
-                  <span className="font-medium">â€”</span>
+                  <span className="font-medium">—</span>
                 </div>
                 <div className="flex justify-between text-blue-600">
                   <span>Total Due</span>
@@ -306,11 +306,11 @@ export function BrokerageShipments() {
                 </div>
                 <div>
                   <p className="text-gray-500 mb-1">Carrier Rep</p>
-                  <p className="font-medium">â€”</p>
+                  <p className="font-medium">—</p>
                 </div>
                 <div>
                   <p className="text-gray-500 mb-1">Customer PO</p>
-                  <p className="font-medium">â€”</p>
+                  <p className="font-medium">—</p>
                 </div>
               </div>
             </div>
@@ -398,7 +398,7 @@ export function BrokerageShipments() {
                       >
                         <option value="">Select carrier...</option>
                         {carriers?.filter((c: any) => c.status === 'ACTIVE').map((c: any) => (
-                          <option key={c.id} value={c.id}>{c.name} â€” {c.mcNumber}</option>
+                          <option key={c.id} value={c.id}>{c.name} — {c.mcNumber}</option>
                         ))}
                       </select>
                       <input
@@ -498,7 +498,7 @@ export function BrokerageShipments() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <h3 className="text-sm font-semibold text-gray-900">Documents â€” {selectedLoad.loadNumber}</h3>
+                  <h3 className="text-sm font-semibold text-gray-900">Documents — {selectedLoad.loadNumber}</h3>
                   <span className="text-xs text-gray-400">{docs.length} file{docs.length !== 1 ? 's' : ''}</span>
                 </div>
                 <div className="flex gap-2">
@@ -571,13 +571,13 @@ export function BrokerageShipments() {
               {showDocUpload && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowDocUpload(false)}>
                   <div className="bg-white rounded-xl w-full max-w-md shadow-2xl" onClick={e => e.stopPropagation()}>
-                    <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Upload Document â€” {selectedLoad.loadNumber}</h2></div>
+                    <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Upload Document — {selectedLoad.loadNumber}</h2></div>
                     <div className="px-6 py-4 space-y-4">
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Document Type</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option value="">Select type...</option><option>Bill of Lading (BOL)</option><option>Proof of Delivery (POD)</option><option>Rate Confirmation</option><option>Carrier Packet</option><option>Invoice</option><option>Lumper Receipt</option><option>Scale Ticket</option><option>Insurance Certificate</option><option>Other</option></select></div>
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
                         <div className="text-3xl mb-2">ðŸ“¤</div>
                         <p className="text-sm font-medium text-gray-700">Drag & drop files here</p>
-                        <p className="text-xs text-gray-400 mt-1">or click to browse â€” PDF, JPG, PNG up to 10 MB</p>
+                        <p className="text-xs text-gray-400 mt-1">or click to browse — PDF, JPG, PNG up to 10 MB</p>
                       </div>
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Notes (optional)</label><textarea className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" rows={2} placeholder="Any notes about this document..." /></div>
                     </div>
@@ -601,7 +601,7 @@ export function BrokerageShipments() {
           </div>
         )}
 
-        {/* â”€â”€ Location History Modal (Trucker Tools) â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Location History Modal (Trucker Tools) ─ */}
         {showLocationHistory && (() => {
           const tracking = MOCK_TRACKING[selectedLoad.id];
           return (
@@ -868,7 +868,7 @@ export function BrokerageShipments() {
                   ? minutesAgo < 60 ? `${minutesAgo} minutes ago`
                   : minutesAgo < 1440 ? `${Math.floor(minutesAgo / 60)} hours ago`
                   : `${Math.floor(minutesAgo / 1440)} days ago`
-                  : 'â€”';
+                  : '—';
 
                 return (
                   <tr key={load.id} className={`border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
@@ -881,16 +881,16 @@ export function BrokerageShipments() {
                       </button>
                     </td>
                     <td className="px-3 py-2 text-gray-700">{load.customer?.name}</td>
-                    <td className="px-3 py-2 text-gray-600">{pickup?.scheduledAt ? new Date(pickup.scheduledAt).toLocaleDateString() : 'â€”'}</td>
-                    <td className="px-3 py-2 text-gray-600">{delivery?.scheduledAt ? new Date(delivery.scheduledAt).toLocaleDateString() : 'â€”'}</td>
-                    <td className="px-3 py-2 text-gray-700 uppercase">{pickup?.city || 'â€”'}</td>
-                    <td className="px-3 py-2 text-gray-700 uppercase">{pickup?.state || 'â€”'}</td>
-                    <td className="px-3 py-2 text-gray-700 uppercase">{delivery?.city || 'â€”'}</td>
-                    <td className="px-3 py-2 text-gray-700 uppercase">{delivery?.state || 'â€”'}</td>
+                    <td className="px-3 py-2 text-gray-600">{pickup?.scheduledAt ? new Date(pickup.scheduledAt).toLocaleDateString() : '—'}</td>
+                    <td className="px-3 py-2 text-gray-600">{delivery?.scheduledAt ? new Date(delivery.scheduledAt).toLocaleDateString() : '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 uppercase">{pickup?.city || '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 uppercase">{pickup?.state || '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 uppercase">{delivery?.city || '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 uppercase">{delivery?.state || '—'}</td>
                     <td className="px-3 py-2">
                       {load.carrier
                         ? <span className="text-blue-600">ðŸš› {load.carrier.name}</span>
-                        : <span className="text-gray-400">â€”</span>
+                        : <span className="text-gray-400">—</span>
                       }
                     </td>
                     <td className="px-3 py-2">
@@ -901,7 +901,7 @@ export function BrokerageShipments() {
                     <td className="px-3 py-2 text-gray-500">{timeAgo}</td>
                     <td className="px-3 py-2">
                       <span className={`font-medium ${margin > 0 ? 'text-green-600' : margin < 0 ? 'text-red-600' : 'text-gray-500'}`}>
-                        {load.carrierRate ? `$${margin.toLocaleString()}` : 'â€”'}
+                        {load.carrierRate ? `$${margin.toLocaleString()}` : '—'}
                       </span>
                     </td>
                     <td className="px-3 py-2">
@@ -920,7 +920,7 @@ export function BrokerageShipments() {
                         if (!load.carrier && ['PENDING', 'POSTED_TO_DAT'].includes(load.status)) {
                           return <div className="flex gap-1"><button onClick={e => { e.stopPropagation(); setMatchLoadId(load.id); setShowCarrierMatch(true); }} className="px-2 py-1 text-xs font-semibold text-green-600 bg-green-50 rounded hover:bg-green-100">Match</button><button onClick={e => { e.stopPropagation(); setPostingLoadId(load.id); setShowPostModal(true); }} className="px-2 py-1 text-xs font-semibold text-blue-600 bg-blue-50 rounded hover:bg-blue-100">Post</button></div>;
                         }
-                        return <span className="text-xs text-gray-300">â€”</span>;
+                        return <span className="text-xs text-gray-300">—</span>;
                       })()}
                     </td>
                   </tr>
@@ -934,7 +934,7 @@ export function BrokerageShipments() {
         </div>
       </div>
 
-      {/* â”€â”€ Post to Load Board Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Post to Load Board Modal ─ */}
       {showPostModal && (() => {
         const postLoad = allLoads.find((l: any) => l.id === postingLoadId);
         if (!postLoad) return null;
@@ -944,7 +944,7 @@ export function BrokerageShipments() {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowPostModal(false)}>
             <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="px-6 py-4 border-b border-gray-200">
-                <h2 className="text-sm font-semibold text-gray-900">Post to Load Boards â€” {postLoad.loadNumber}</h2>
+                <h2 className="text-sm font-semibold text-gray-900">Post to Load Boards — {postLoad.loadNumber}</h2>
                 <p className="text-xs text-gray-400 mt-0.5">{pickup?.city}, {pickup?.state} â†’ {delivery?.city}, {delivery?.state}</p>
               </div>
               <div className="px-6 py-4 space-y-4">
@@ -953,9 +953,9 @@ export function BrokerageShipments() {
                   <div><span className="text-gray-400">Equipment</span><br/><strong>{postLoad.commodity?.includes('Reefer') || postLoad.commodity?.includes('Refrigerated') ? 'Reefer' : postLoad.commodity?.includes('Flatbed') ? 'Flatbed' : 'Dry Van'}</strong></div>
                   <div><span className="text-gray-400">Weight</span><br/><strong>{(postLoad.weight || 0).toLocaleString()} lbs</strong></div>
                   <div><span className="text-gray-400">Rate</span><br/><strong className="text-green-600">${(postLoad.shipperRate || 0).toLocaleString()}</strong></div>
-                  <div><span className="text-gray-400">Pickup</span><br/><strong>{pickup?.scheduledAt ? new Date(pickup.scheduledAt).toLocaleDateString() : 'â€”'}</strong></div>
-                  <div><span className="text-gray-400">Delivery</span><br/><strong>{delivery?.scheduledAt ? new Date(delivery.scheduledAt).toLocaleDateString() : 'â€”'}</strong></div>
-                  <div><span className="text-gray-400">Miles</span><br/><strong>â€”</strong></div>
+                  <div><span className="text-gray-400">Pickup</span><br/><strong>{pickup?.scheduledAt ? new Date(pickup.scheduledAt).toLocaleDateString() : '—'}</strong></div>
+                  <div><span className="text-gray-400">Delivery</span><br/><strong>{delivery?.scheduledAt ? new Date(delivery.scheduledAt).toLocaleDateString() : '—'}</strong></div>
+                  <div><span className="text-gray-400">Miles</span><br/><strong>—</strong></div>
                 </div>
 
                 {/* Select Load Boards */}
@@ -966,7 +966,7 @@ export function BrokerageShipments() {
                       <input type="checkbox" checked={postBoards.dat} onChange={e => setPostBoards(p => ({ ...p, dat: e.target.checked }))} className="w-4 h-4 rounded text-blue-600" />
                       <div className="flex-1">
                         <div className="flex items-center gap-2"><span className="px-2 py-0.5 bg-blue-600 text-white text-xs font-bold rounded">DAT</span><span className="text-sm font-medium text-gray-800">DAT One</span></div>
-                        <p className="text-xs text-gray-400 mt-0.5">Post to DAT load board â€” largest carrier network</p>
+                        <p className="text-xs text-gray-400 mt-0.5">Post to DAT load board — largest carrier network</p>
                       </div>
                       <div className="w-2 h-2 rounded-full bg-green-500" title="Connected" />
                     </label>
@@ -974,7 +974,7 @@ export function BrokerageShipments() {
                       <input type="checkbox" checked={postBoards.truckstop} onChange={e => setPostBoards(p => ({ ...p, truckstop: e.target.checked }))} className="w-4 h-4 rounded text-orange-600" />
                       <div className="flex-1">
                         <div className="flex items-center gap-2"><span className="px-2 py-0.5 bg-orange-500 text-white text-xs font-bold rounded">TS</span><span className="text-sm font-medium text-gray-800">Truckstop.com</span></div>
-                        <p className="text-xs text-gray-400 mt-0.5">Post to Truckstop load board â€” direct carrier matching</p>
+                        <p className="text-xs text-gray-400 mt-0.5">Post to Truckstop load board — direct carrier matching</p>
                       </div>
                       <div className="w-2 h-2 rounded-full bg-green-500" title="Connected" />
                     </label>
@@ -1014,7 +1014,7 @@ export function BrokerageShipments() {
         );
       })()}
 
-      {/* â”€â”€ Automated Carrier Matching Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Automated Carrier Matching Modal ─ */}
       {showCarrierMatch && (() => {
         const matchLoad = allLoads.find((l: any) => l.id === matchLoadId);
         if (!matchLoad) return null;
@@ -1024,18 +1024,18 @@ export function BrokerageShipments() {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowCarrierMatch(false)}>
             <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
               <div className="px-6 py-4 border-b border-gray-200">
-                <h2 className="text-sm font-semibold text-gray-900">Carrier Match â€” {matchLoad.loadNumber}</h2>
-                <p className="text-xs text-gray-400 mt-0.5">{pickup?.city}, {pickup?.state} â†’ {delivery?.city}, {delivery?.state} Â· ${matchLoad.shipperRate?.toLocaleString()}</p>
+                <h2 className="text-sm font-semibold text-gray-900">Carrier Match — {matchLoad.loadNumber}</h2>
+                <p className="text-xs text-gray-400 mt-0.5">{pickup?.city}, {pickup?.state} â†’ {delivery?.city}, {delivery?.state} · ${matchLoad.shipperRate?.toLocaleString()}</p>
               </div>
               <div className="px-6 py-4">
                 <p className="text-xs font-semibold text-gray-700 mb-3">Recommended Carriers (ranked by score)</p>
                 <div className="space-y-2">
                   {[
-                    { name: 'Eagle Freight Lines', mc: 'MC-123456', score: 96, onTime: 98, loads: 24, avgRate: 2150, lastRate: 2200, insurance: 'Current', safety: 'Satisfactory', reason: 'Top performer on this lane â€” 24 loads, 98% on-time' },
-                    { name: 'Midwest Express Trucking', mc: 'MC-234567', score: 91, onTime: 94, loads: 18, avgRate: 2050, lastRate: 2100, insurance: 'Current', safety: 'Satisfactory', reason: 'Consistent on similar lanes â€” competitive rates' },
-                    { name: 'Thunder Road Inc.', mc: 'MC-445566', score: 87, onTime: 92, loads: 12, avgRate: 1950, lastRate: 2000, insurance: 'Current', safety: 'Satisfactory', reason: 'Good capacity â€” 3 trucks in origin area' },
-                    { name: 'Arctic Cold Carriers', mc: 'MC-554321', score: 84, onTime: 90, loads: 8, avgRate: 2300, lastRate: 2400, insurance: 'Current', safety: 'Satisfactory', reason: 'Reefer specialist â€” higher rates but reliable' },
-                    { name: 'Lone Star Logistics', mc: 'MC-667788', score: 72, onTime: 85, loads: 5, avgRate: 1850, lastRate: 1900, insurance: 'Expiring', safety: 'Conditional', reason: 'Lower cost but conditional safety â€” review before booking' },
+                    { name: 'Eagle Freight Lines', mc: 'MC-123456', score: 96, onTime: 98, loads: 24, avgRate: 2150, lastRate: 2200, insurance: 'Current', safety: 'Satisfactory', reason: 'Top performer on this lane — 24 loads, 98% on-time' },
+                    { name: 'Midwest Express Trucking', mc: 'MC-234567', score: 91, onTime: 94, loads: 18, avgRate: 2050, lastRate: 2100, insurance: 'Current', safety: 'Satisfactory', reason: 'Consistent on similar lanes — competitive rates' },
+                    { name: 'Thunder Road Inc.', mc: 'MC-445566', score: 87, onTime: 92, loads: 12, avgRate: 1950, lastRate: 2000, insurance: 'Current', safety: 'Satisfactory', reason: 'Good capacity — 3 trucks in origin area' },
+                    { name: 'Arctic Cold Carriers', mc: 'MC-554321', score: 84, onTime: 90, loads: 8, avgRate: 2300, lastRate: 2400, insurance: 'Current', safety: 'Satisfactory', reason: 'Reefer specialist — higher rates but reliable' },
+                    { name: 'Lone Star Logistics', mc: 'MC-667788', score: 72, onTime: 85, loads: 5, avgRate: 1850, lastRate: 1900, insurance: 'Expiring', safety: 'Conditional', reason: 'Lower cost but conditional safety — review before booking' },
                   ].map((c, i) => (
                     <div key={i} className={`flex items-center gap-3 p-3 rounded-lg border ${i === 0 ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'} hover:shadow-sm`}>
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${c.score >= 90 ? 'bg-green-600 text-white' : c.score >= 80 ? 'bg-blue-600 text-white' : 'bg-yellow-500 text-white'}`}>{c.score}</div>

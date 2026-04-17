@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Types ─
 type SettingsSection = 'profile' | 'company' | 'users' | 'integrations' | 'edi' | 'email' | 'billing' | 'api' | 'developer_portal';
 type UserRole = 'FULL_ADMIN' | 'ADMIN' | 'MANAGER' | 'OPERATIONS' | 'ACCOUNTING';
 
 interface TeamMember {
   id: string; firstName: string; lastName: string; email: string; phone: string;
   role: UserRole; status: 'ACTIVE' | 'INVITED' | 'DISABLED'; lastLogin: string; avatar: string;
-  cfsLocation: string; // CFS station restriction â€” empty means ALL locations
+  cfsLocation: string; // CFS station restriction — empty means ALL locations
 }
 
 interface APIKey {
@@ -21,7 +21,7 @@ interface Integration {
   lastSync: string; icon: string; description: string;
 }
 
-// â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Data ─
 const MOCK_TEAM: TeamMember[] = [
   { id: 'u1', firstName: 'Jake', lastName: 'Martinez', email: 'jake.martinez@axontms.com', phone: '(555) 100-0001', role: 'FULL_ADMIN', status: 'ACTIVE', lastLogin: '2026-04-13T12:30:00Z', avatar: 'JM', cfsLocation: '' },
   { id: 'u2', firstName: 'Henry', lastName: 'Fung', email: 'henry.fung@axontms.com', phone: '(555) 100-0002', role: 'FULL_ADMIN', status: 'ACTIVE', lastLogin: '2026-04-13T14:00:00Z', avatar: 'HF', cfsLocation: '' },
@@ -34,9 +34,9 @@ const MOCK_TEAM: TeamMember[] = [
 ];
 
 const MOCK_API_KEYS: APIKey[] = [
-  { id: 'ak1', name: 'GeminiProd', description: 'Production â€” full API access', clientId: 'kkwAojxFs2ccslyxyGx1NYALNJD9Qb', clientSecret: 'â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢', createdAt: '2026-01-15', lastUsed: '2026-04-13T12:00:00Z', expiresAt: null, status: 'ACTIVE', permissions: ['loads.read', 'loads.write', 'drivers.read', 'drivers.write', 'assets.read', 'assets.write', 'tracking.read', 'accounting.read', 'accounting.write', 'reports.read', 'webhooks.manage'] },
-  { id: 'ak2', name: 'StagingTest', description: 'Staging â€” limited read access', clientId: 'XiQjGNEsc8m5Pns5aMsYUKlcBk4zRt', clientSecret: 'â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢', createdAt: '2026-03-01', lastUsed: '2026-04-10T09:00:00Z', expiresAt: '2026-09-24', status: 'ACTIVE', permissions: ['loads.read', 'drivers.read', 'assets.read', 'tracking.read', 'reports.read'] },
-  { id: 'ak3', name: 'OldPartnerKey', description: 'Deprecated partner integration', clientId: 'x1y2z3aBcDeFgHiJkLmNoPqRsTuVwX', clientSecret: 'â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢', createdAt: '2025-06-10', lastUsed: '2025-12-01T14:00:00Z', expiresAt: '2026-01-01', status: 'REVOKED', permissions: ['loads.read', 'tracking.read'] },
+  { id: 'ak1', name: 'GeminiProd', description: 'Production — full API access', clientId: 'kkwAojxFs2ccslyxyGx1NYALNJD9Qb', clientSecret: '••••••••••••••••••••••••••••••', createdAt: '2026-01-15', lastUsed: '2026-04-13T12:00:00Z', expiresAt: null, status: 'ACTIVE', permissions: ['loads.read', 'loads.write', 'drivers.read', 'drivers.write', 'assets.read', 'assets.write', 'tracking.read', 'accounting.read', 'accounting.write', 'reports.read', 'webhooks.manage'] },
+  { id: 'ak2', name: 'StagingTest', description: 'Staging — limited read access', clientId: 'XiQjGNEsc8m5Pns5aMsYUKlcBk4zRt', clientSecret: '••••••••••••••••••••••••••••••', createdAt: '2026-03-01', lastUsed: '2026-04-10T09:00:00Z', expiresAt: '2026-09-24', status: 'ACTIVE', permissions: ['loads.read', 'drivers.read', 'assets.read', 'tracking.read', 'reports.read'] },
+  { id: 'ak3', name: 'OldPartnerKey', description: 'Deprecated partner integration', clientId: 'x1y2z3aBcDeFgHiJkLmNoPqRsTuVwX', clientSecret: '••••••••••••••••••••••••••••••', createdAt: '2025-06-10', lastUsed: '2025-12-01T14:00:00Z', expiresAt: '2026-01-01', status: 'REVOKED', permissions: ['loads.read', 'tracking.read'] },
 ];
 
 const MOCK_INTEGRATIONS: Integration[] = [
@@ -44,18 +44,18 @@ const MOCK_INTEGRATIONS: Integration[] = [
   { id: 'int2', name: 'Motive (KeepTruckin)', provider: 'Motive Technologies', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:32:00Z', icon: 'ðŸŸ ', description: 'GPS tracking, HOS, IFTA mileage, fuel cards, dashcam events.' },
   { id: 'int3', name: 'Samsara', provider: 'Samsara Inc.', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:28:00Z', icon: 'ðŸŸ¢', description: 'GPS tracking, HOS, IFTA mileage, AI dashcam, temperature monitoring.' },
   { id: 'int4', name: 'QuickBooks Online', provider: 'Intuit', type: 'Accounting', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ’°', description: 'Sync invoices, payments, and chart of accounts.' },
-  { id: 'int5', name: 'TriumphPay', provider: 'Triumph Financial', type: 'Factoring / Payments', status: 'CONNECTED', lastSync: '2026-04-14T10:00:00Z', icon: 'ðŸ¦', description: 'Automated carrier payment network â€” audit, match, and pay carriers.' },
-  { id: 'int5b', name: 'RTS Financial', provider: 'RTS Financial Services', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-14T09:30:00Z', icon: 'ðŸ’³', description: 'Quick-pay factoring â€” same-day carrier funding with 3% fee.' },
+  { id: 'int5', name: 'TriumphPay', provider: 'Triumph Financial', type: 'Factoring / Payments', status: 'CONNECTED', lastSync: '2026-04-14T10:00:00Z', icon: 'ðŸ¦', description: 'Automated carrier payment network — audit, match, and pay carriers.' },
+  { id: 'int5b', name: 'RTS Financial', provider: 'RTS Financial Services', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-14T09:30:00Z', icon: 'ðŸ’³', description: 'Quick-pay factoring — same-day carrier funding with 3% fee.' },
   { id: 'int5c', name: 'OTR Solutions', provider: 'OTR Solutions Inc.', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-13T14:00:00Z', icon: 'ðŸš›', description: 'Carrier factoring, fuel card programs, and quick-pay services.' },
   { id: 'int6', name: 'DAT Load Board', provider: 'DAT Solutions', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T11:00:00Z', icon: 'ðŸ“‹', description: 'Post loads, search trucks, rate intelligence.' },
   { id: 'int7', name: 'Truckstop.com', provider: 'Truckstop', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T10:30:00Z', icon: 'ðŸš›', description: 'Load posting, rate analytics, carrier onboarding.' },
-  { id: 'int8', name: 'RMIS (Registry Monitoring)', provider: 'RMIS', type: 'Carrier Compliance', status: 'CONNECTED', lastSync: '2026-04-12T06:00:00Z', icon: 'ðŸ›¡', description: 'Automated carrier monitoring â€” insurance, authority, safety scores.' },
-  { id: 'int9', name: 'I-PASS', provider: 'Illinois Tollway', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T06:00:00Z', icon: 'ðŸ›£', description: 'Illinois Tollway transponder integration â€” automatic toll tracking, transaction history, and account balance sync.' },
-  { id: 'int10', name: 'E-ZPass New York', provider: 'NY Thruway Authority', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T05:30:00Z', icon: 'ðŸ›£', description: 'E-ZPass NY toll transactions â€” automated toll tracking across NY, NJ, PA, and 18 other E-ZPass states.' },
-  { id: 'int11', name: 'Bestpass', provider: 'Bestpass / Fleetworthy', type: 'Tolls', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ·', description: 'Consolidated toll management â€” single account for all toll roads, bridges, and tunnels nationwide.' },
+  { id: 'int8', name: 'RMIS (Registry Monitoring)', provider: 'RMIS', type: 'Carrier Compliance', status: 'CONNECTED', lastSync: '2026-04-12T06:00:00Z', icon: 'ðŸ›¡', description: 'Automated carrier monitoring — insurance, authority, safety scores.' },
+  { id: 'int9', name: 'I-PASS', provider: 'Illinois Tollway', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T06:00:00Z', icon: 'ðŸ›£', description: 'Illinois Tollway transponder integration — automatic toll tracking, transaction history, and account balance sync.' },
+  { id: 'int10', name: 'E-ZPass New York', provider: 'NY Thruway Authority', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T05:30:00Z', icon: 'ðŸ›£', description: 'E-ZPass NY toll transactions — automated toll tracking across NY, NJ, PA, and 18 other E-ZPass states.' },
+  { id: 'int11', name: 'Bestpass', provider: 'Bestpass / Fleetworthy', type: 'Tolls', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ·', description: 'Consolidated toll management — single account for all toll roads, bridges, and tunnels nationwide.' },
 ];
 
-// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Helpers ─
 const ROLE_BADGES: Record<UserRole, { bg: string; text: string; label: string }> = {
   FULL_ADMIN: { bg: 'bg-red-100', text: 'text-red-800', label: 'Full Admin' },
   ADMIN: { bg: 'bg-purple-100', text: 'text-purple-800', label: 'Admin' },
@@ -74,10 +74,10 @@ const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
 
 const INT_STATUS: Record<string, string> = { CONNECTED: 'bg-green-100 text-green-800', DISCONNECTED: 'bg-gray-100 text-gray-500', ERROR: 'bg-red-100 text-red-800' };
 
-function fmtDT(d: string) { if (!d) return 'â€”'; const t = new Date(d); return `${t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} ${t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}`; }
-function fmtDate(d: string) { if (!d) return 'â€”'; return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+function fmtDT(d: string) { if (!d) return '—'; const t = new Date(d); return `${t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} ${t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}`; }
+function fmtDate(d: string) { if (!d) return '—'; return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
 
-// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Component ─
 export function SettingsPage() {
   const [section, setSection] = useState<SettingsSection>('company');
   const [showInviteModal, setShowInviteModal] = useState(false);
@@ -118,7 +118,7 @@ export function SettingsPage() {
       {/* Content */}
       <div className="flex-1 py-6 pr-6 max-w-4xl">
 
-        {/* â”€â”€ Company Profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Company Profile ─ */}
         {section === 'company' && (
           <div>
             <h3 className="text-base font-semibold text-gray-900 mb-4">Company Profile</h3>
@@ -144,7 +144,7 @@ export function SettingsPage() {
           </div>
         )}
 
-        {/* â”€â”€ Users & Access â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Users & Access ─ */}
         {section === 'users' && (
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -160,7 +160,7 @@ export function SettingsPage() {
                   <div key={role} className="text-xs">
                     <span className={`inline-block px-2 py-0.5 rounded-full font-medium mb-1.5 ${ROLE_BADGES[role].bg} ${ROLE_BADGES[role].text}`}>{ROLE_BADGES[role].label}</span>
                     <ul className="space-y-0.5">
-                      {perms.map(p => <li key={p} className="text-gray-500">â€¢ {p}</li>)}
+                      {perms.map(p => <li key={p} className="text-gray-500">• {p}</li>)}
                     </ul>
                   </div>
                 ))}
@@ -271,7 +271,7 @@ export function SettingsPage() {
                   { page: 'API Access / EDI', perms: ['full', 'edit', 'none', 'none', 'none'] },
                   { page: 'Audit Trail', perms: ['full', 'full', 'view', 'none', 'view'] },
                 ].map((row, i) => {
-                  const permIcon: Record<string, { icon: string; color: string }> = { full: { icon: 'âœ“', color: 'text-green-600 bg-green-50' }, edit: { icon: 'âœŽ', color: 'text-blue-600 bg-blue-50' }, view: { icon: 'ðŸ‘', color: 'text-gray-500 bg-gray-50' }, none: { icon: 'â€”', color: 'text-gray-300 bg-white' } };
+                  const permIcon: Record<string, { icon: string; color: string }> = { full: { icon: 'âœ“', color: 'text-green-600 bg-green-50' }, edit: { icon: 'âœŽ', color: 'text-blue-600 bg-blue-50' }, view: { icon: 'ðŸ‘', color: 'text-gray-500 bg-gray-50' }, none: { icon: '—', color: 'text-gray-300 bg-white' } };
                   return (
                     <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
                       <td className="px-3 py-2 font-medium text-gray-800">{row.page}</td>
@@ -284,7 +284,7 @@ export function SettingsPage() {
                 <span><span className="text-green-600 font-bold">âœ“</span> Full Access</span>
                 <span><span className="text-blue-600 font-bold">âœŽ</span> Edit</span>
                 <span><span className="text-gray-500">ðŸ‘</span> View Only</span>
-                <span><span className="text-gray-300">â€”</span> No Access</span>
+                <span><span className="text-gray-300">—</span> No Access</span>
               </div>
             </div>
 
@@ -300,12 +300,12 @@ export function SettingsPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { station: 'JFK â€” John F. Kennedy Intl', city: 'New York, NY', users: MOCK_TEAM.filter(u => u.cfsLocation === 'JFK'), color: 'border-blue-200 bg-blue-50' },
-                    { station: 'MIA â€” Miami Intl', city: 'Miami, FL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'MIA'), color: 'border-orange-200 bg-orange-50' },
-                    { station: 'ORD â€” O\'Hare Intl', city: 'Chicago, IL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'ORD'), color: 'border-green-200 bg-green-50' },
-                    { station: 'LAX â€” Los Angeles Intl', city: 'Los Angeles, CA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
-                    { station: 'ATL â€” Hartsfield-Jackson', city: 'Atlanta, GA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
-                    { station: 'DFW â€” Dallas/Fort Worth', city: 'Dallas, TX', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
+                    { station: 'JFK — John F. Kennedy Intl', city: 'New York, NY', users: MOCK_TEAM.filter(u => u.cfsLocation === 'JFK'), color: 'border-blue-200 bg-blue-50' },
+                    { station: 'MIA — Miami Intl', city: 'Miami, FL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'MIA'), color: 'border-orange-200 bg-orange-50' },
+                    { station: 'ORD — O\'Hare Intl', city: 'Chicago, IL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'ORD'), color: 'border-green-200 bg-green-50' },
+                    { station: 'LAX — Los Angeles Intl', city: 'Los Angeles, CA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
+                    { station: 'ATL — Hartsfield-Jackson', city: 'Atlanta, GA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
+                    { station: 'DFW — Dallas/Fort Worth', city: 'Dallas, TX', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
                   ].map((loc, i) => (
                     <div key={i} className={`rounded-lg border p-3 ${loc.color}`}>
                       <div className="flex items-center justify-between mb-2">
@@ -327,18 +327,18 @@ export function SettingsPage() {
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3 text-xs text-gray-500 space-y-1">
                   <p><strong>Access rules:</strong></p>
-                  <p>â€¢ <strong>Full Admin / Admin:</strong> See all CFS locations â€” no restriction</p>
-                  <p>â€¢ <strong>Manager:</strong> Assigned location only â€” can view/edit orders, dispatch, customs for their station</p>
-                  <p>â€¢ <strong>Operations:</strong> Assigned location only â€” can only see and process shipments at their CFS station</p>
-                  <p>â€¢ <strong>Accounting:</strong> All locations (billing is cross-location) â€” but CFS operations read-only</p>
-                  <p>â€¢ <strong>Data filtered:</strong> Import Orders, Export Orders, Warehouse, Customs, Dispatch, Billing â€” all filtered by user's CFS location</p>
+                  <p>• <strong>Full Admin / Admin:</strong> See all CFS locations — no restriction</p>
+                  <p>• <strong>Manager:</strong> Assigned location only — can view/edit orders, dispatch, customs for their station</p>
+                  <p>• <strong>Operations:</strong> Assigned location only — can only see and process shipments at their CFS station</p>
+                  <p>• <strong>Accounting:</strong> All locations (billing is cross-location) — but CFS operations read-only</p>
+                  <p>• <strong>Data filtered:</strong> Import Orders, Export Orders, Warehouse, Customs, Dispatch, Billing — all filtered by user's CFS location</p>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* â”€â”€ Integrations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Integrations ─ */}
         {section === 'integrations' && (
           <div>
             <h3 className="text-base font-semibold text-gray-900 mb-4">Integrations</h3>
@@ -371,21 +371,21 @@ export function SettingsPage() {
           </div>
         )}
 
-        {/* â”€â”€ EDI & Visibility â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ EDI & Visibility ─ */}
         {section === 'edi' && (() => {
           const EDI_TRANSACTIONS = [
-            { id: 'e1', type: '204', direction: 'IN', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'ACCEPTED', timestamp: '2026-04-14T09:15:00Z', details: 'Load tender â€” Detroit, MI â†’ Columbus, OH, 45,000 lbs' },
-            { id: 'e2', type: '990', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'SENT', timestamp: '2026-04-14T09:16:00Z', details: 'Tender accepted â€” auto-response' },
-            { id: 'e3', type: '214', direction: 'OUT', partner: 'Heartland Foods', ref: 'SH-10432', status: 'SENT', timestamp: '2026-04-14T08:30:00Z', details: 'Status: In Transit â€” Omaha, NE' },
-            { id: 'e4', type: '214', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10421', status: 'SENT', timestamp: '2026-04-14T08:00:00Z', details: 'Status: In Transit â€” Bowling Green, KY' },
-            { id: 'e5', type: '204', direction: 'IN', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'ACCEPTED', timestamp: '2026-04-14T05:10:00Z', details: 'Load tender â€” Houston, TX â†’ Atlanta, GA, 40,000 lbs' },
-            { id: 'e6', type: '990', direction: 'OUT', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'SENT', timestamp: '2026-04-14T05:11:00Z', details: 'Tender accepted â€” auto-response' },
-            { id: 'e7', type: '210', direction: 'OUT', partner: 'Great Lakes Chemicals', ref: 'SH-10425', status: 'SENT', timestamp: '2026-04-13T16:00:00Z', details: 'Invoice $1,600.00 â€” INV-20260310' },
+            { id: 'e1', type: '204', direction: 'IN', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'ACCEPTED', timestamp: '2026-04-14T09:15:00Z', details: 'Load tender — Detroit, MI â†’ Columbus, OH, 45,000 lbs' },
+            { id: 'e2', type: '990', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'SENT', timestamp: '2026-04-14T09:16:00Z', details: 'Tender accepted — auto-response' },
+            { id: 'e3', type: '214', direction: 'OUT', partner: 'Heartland Foods', ref: 'SH-10432', status: 'SENT', timestamp: '2026-04-14T08:30:00Z', details: 'Status: In Transit — Omaha, NE' },
+            { id: 'e4', type: '214', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10421', status: 'SENT', timestamp: '2026-04-14T08:00:00Z', details: 'Status: In Transit — Bowling Green, KY' },
+            { id: 'e5', type: '204', direction: 'IN', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'ACCEPTED', timestamp: '2026-04-14T05:10:00Z', details: 'Load tender — Houston, TX â†’ Atlanta, GA, 40,000 lbs' },
+            { id: 'e6', type: '990', direction: 'OUT', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'SENT', timestamp: '2026-04-14T05:11:00Z', details: 'Tender accepted — auto-response' },
+            { id: 'e7', type: '210', direction: 'OUT', partner: 'Great Lakes Chemicals', ref: 'SH-10425', status: 'SENT', timestamp: '2026-04-13T16:00:00Z', details: 'Invoice $1,600.00 — INV-20260310' },
             { id: 'e8', type: '997', direction: 'IN', partner: 'Great Lakes Chemicals', ref: 'SH-10425', status: 'ACKNOWLEDGED', timestamp: '2026-04-13T16:05:00Z', details: 'Functional ACK for 210 invoice' },
-            { id: 'e9', type: '214', direction: 'OUT', partner: 'NorthPoint Logistics', ref: 'SH-10426', status: 'SENT', timestamp: '2026-04-13T14:15:00Z', details: 'Status: In Transit â€” Lafayette, IN' },
-            { id: 'e10', type: '210', direction: 'OUT', partner: 'Summit Healthcare', ref: 'SH-10429', status: 'SENT', timestamp: '2026-04-12T15:00:00Z', details: 'Invoice $1,200.00 â€” INV-20260301' },
-            { id: 'e11', type: '204', direction: 'IN', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'REJECTED', timestamp: '2026-04-11T14:00:00Z', details: 'Load tender rejected â€” no flatbed capacity available' },
-            { id: 'e12', type: '990', direction: 'OUT', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'SENT', timestamp: '2026-04-11T14:01:00Z', details: 'Tender declined â€” reason: capacity' },
+            { id: 'e9', type: '214', direction: 'OUT', partner: 'NorthPoint Logistics', ref: 'SH-10426', status: 'SENT', timestamp: '2026-04-13T14:15:00Z', details: 'Status: In Transit — Lafayette, IN' },
+            { id: 'e10', type: '210', direction: 'OUT', partner: 'Summit Healthcare', ref: 'SH-10429', status: 'SENT', timestamp: '2026-04-12T15:00:00Z', details: 'Invoice $1,200.00 — INV-20260301' },
+            { id: 'e11', type: '204', direction: 'IN', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'REJECTED', timestamp: '2026-04-11T14:00:00Z', details: 'Load tender rejected — no flatbed capacity available' },
+            { id: 'e12', type: '990', direction: 'OUT', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'SENT', timestamp: '2026-04-11T14:01:00Z', details: 'Tender declined — reason: capacity' },
           ];
           const TYPE_BADGE: Record<string, string> = { '204': 'bg-blue-100 text-blue-800', '990': 'bg-purple-100 text-purple-800', '214': 'bg-green-100 text-green-800', '210': 'bg-orange-100 text-orange-800', '997': 'bg-gray-100 text-gray-700' };
           const TYPE_LABEL: Record<string, string> = { '204': 'Load Tender', '990': 'Tender Response', '214': 'Status Update', '210': 'Invoice', '997': 'Func. ACK' };
@@ -394,7 +394,7 @@ export function SettingsPage() {
           return (
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div><h3 className="text-base font-semibold text-gray-900">EDI & Visibility</h3><p className="text-xs text-gray-400 mt-0.5">Electronic Data Interchange â€” load tenders, status updates, and invoices</p></div>
+              <div><h3 className="text-base font-semibold text-gray-900">EDI & Visibility</h3><p className="text-xs text-gray-400 mt-0.5">Electronic Data Interchange — load tenders, status updates, and invoices</p></div>
             </div>
 
             {/* EDI Summary Cards */}
@@ -515,7 +515,7 @@ export function SettingsPage() {
           );
         })()}
 
-        {/* â”€â”€ Email â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Email ─ */}
         {section === 'email' && (
           <div>
             <h3 className="text-base font-semibold text-gray-900 mb-4">Email Settings</h3>
@@ -541,7 +541,7 @@ export function SettingsPage() {
           </div>
         )}
 
-        {/* â”€â”€ API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ API ─ */}
         {section === 'api' && (
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -619,7 +619,7 @@ export function SettingsPage() {
           </div>
         )}
 
-        {/* â”€â”€ Developer Portal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Developer Portal ─ */}
         {section === 'developer_portal' && (
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -717,7 +717,7 @@ Content-Type: application/json`}
                         <div key={ep.path + ep.method} className="flex items-center gap-3 py-1.5 px-3 bg-gray-50 rounded">
                           <span className={`px-2 py-0.5 rounded text-xs font-mono font-bold ${ep.method === 'GET' ? 'bg-blue-100 text-blue-700' : ep.method === 'POST' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>{ep.method}</span>
                           <code className="text-xs font-mono text-gray-700">{ep.path}</code>
-                          <span className="text-xs text-gray-400 ml-auto">â€” {ep.desc}</span>
+                          <span className="text-xs text-gray-400 ml-auto">— {ep.desc}</span>
                         </div>
                       ))}
                     </div>
@@ -747,7 +747,7 @@ Content-Type: application/json`}
           </div>
         )}
 
-        {/* â”€â”€ Billing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ Billing ─ */}
         {section === 'billing' && (
           <div>
             <h3 className="text-base font-semibold text-gray-900 mb-4">Billing</h3>
@@ -778,7 +778,7 @@ Content-Type: application/json`}
           </div>
         )}
 
-        {/* â”€â”€ My Profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+        {/* ─ My Profile ─ */}
         {section === 'profile' && (
           <div>
             <h3 className="text-base font-semibold text-gray-900 mb-4">My Profile</h3>
@@ -806,7 +806,7 @@ Content-Type: application/json`}
         )}
       </div>
 
-      {/* â”€â”€ Invite User Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Invite User Modal ─ */}
       {showInviteModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowInviteModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
@@ -865,12 +865,12 @@ Content-Type: application/json`}
                   <p className="text-xs text-violet-600 mb-3">Operations and Manager users can only see CFS data for their assigned location. Select the CFS station this user will operate from.</p>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { code: 'JFK', name: 'JFK â€” New York', airport: 'John F. Kennedy Intl' },
-                      { code: 'MIA', name: 'MIA â€” Miami', airport: 'Miami Intl' },
-                      { code: 'ORD', name: 'ORD â€” Chicago', airport: "O'Hare Intl" },
-                      { code: 'LAX', name: 'LAX â€” Los Angeles', airport: 'Los Angeles Intl' },
-                      { code: 'ATL', name: 'ATL â€” Atlanta', airport: 'Hartsfield-Jackson' },
-                      { code: 'DFW', name: 'DFW â€” Dallas', airport: 'Dallas/Fort Worth' },
+                      { code: 'JFK', name: 'JFK — New York', airport: 'John F. Kennedy Intl' },
+                      { code: 'MIA', name: 'MIA — Miami', airport: 'Miami Intl' },
+                      { code: 'ORD', name: 'ORD — Chicago', airport: "O'Hare Intl" },
+                      { code: 'LAX', name: 'LAX — Los Angeles', airport: 'Los Angeles Intl' },
+                      { code: 'ATL', name: 'ATL — Atlanta', airport: 'Hartsfield-Jackson' },
+                      { code: 'DFW', name: 'DFW — Dallas', airport: 'Dallas/Fort Worth' },
                     ].map(loc => (
                       <label key={loc.code} className="flex items-center gap-2 p-2.5 rounded-lg border border-violet-200 bg-white cursor-pointer hover:bg-violet-50">
                         <input type="radio" name="cfsLocation" value={loc.code} className="text-violet-600" />
@@ -887,7 +887,7 @@ Content-Type: application/json`}
 
               {['FULL_ADMIN', 'ADMIN'].includes(inviteRole) && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs text-green-800">
-                  <strong>Full Admin / Admin</strong> â€” This user will automatically have access to all modules and all CFS locations. No location restriction needed.
+                  <strong>Full Admin / Admin</strong> — This user will automatically have access to all modules and all CFS locations. No location restriction needed.
                 </div>
               )}
             </div>
@@ -899,7 +899,7 @@ Content-Type: application/json`}
         </div>
       )}
 
-      {/* â”€â”€ Create API Key Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Create API Key Modal ─ */}
       {showKeyModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowKeyModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-sm shadow-2xl" onClick={e => e.stopPropagation()}>

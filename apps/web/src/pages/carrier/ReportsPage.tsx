@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import * as XLSX from 'xlsx';
 
-// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Types ─
 interface ReportConfig {
   id: string;
   name: string;
@@ -12,7 +12,7 @@ interface ReportConfig {
   getData: (startDate: string, endDate: string) => Record<string, any>[];
 }
 
-// â”€â”€ Mock Data Generators â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Data Generators ─
 function getLoadReport() {
   return [
     { loadNumber: 'LD-4521', status: 'In Transit', customer: 'Acme Corp - LAX', origin: 'Memphis, TN', destination: 'Nashville, TN', pickupDate: '2026-04-10', deliveryDate: '2026-04-10', driver: 'Marcus Johnson', equipment: "Van - 53'", miles: 450, lineHaul: 2800, fuelSurcharge: 280, accessorials: 120, totalRate: 3200, ratePerMile: 7.11 },
@@ -171,7 +171,7 @@ function getCustomerProfitReport() {
   ];
 }
 
-// â”€â”€ Report Configs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Report Configs ─
 const REPORTS: ReportConfig[] = [
   {
     id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: 'ðŸ“¦',
@@ -195,7 +195,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getRevenueReport(),
   },
   {
-    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer â€” current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: 'ðŸ“Š',
+    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer — current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: 'ðŸ“Š',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'current', header: 'Current', width: 12 }, { key: 'days1to30', header: '1-30 Days', width: 12 },
       { key: 'days31to60', header: '31-60 Days', width: 12 }, { key: 'days61to90', header: '61-90 Days', width: 12 }, { key: 'over90', header: '90+ Days', width: 12 },
@@ -204,7 +204,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getARAgingReport(),
   },
   {
-    id: 'drivers', name: 'Driver Performance', description: 'Driver stats â€” loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: 'ðŸ‘¤',
+    id: 'drivers', name: 'Driver Performance', description: 'Driver stats — loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: 'ðŸ‘¤',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'truckNumber', header: 'Truck', width: 10 }, { key: 'status', header: 'Status', width: 12 },
       { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 }, { key: 'revenue', header: 'Revenue', width: 12 },
@@ -255,7 +255,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getProfitLossReport(),
   },
   {
-    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability â€” revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: 'ðŸ›£',
+    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability — revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: 'ðŸ›£',
     columns: [
       { key: 'lane', header: 'Lane', width: 30 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -265,7 +265,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLaneProfitReport(),
   },
   {
-    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability â€” revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: 'ðŸ’µ',
+    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability — revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: 'ðŸ’µ',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -302,7 +302,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   DRIVER: 'bg-purple-100 text-purple-800',
 };
 
-// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Component ─
 export function ReportsPage() {
   const [selectedReport, setSelectedReport] = useState<ReportConfig | null>(null);
   const [categoryFilter, setCategoryFilter] = useState('All');
@@ -364,7 +364,7 @@ export function ReportsPage() {
 
   return (
     <div>
-      {/* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Header ─ */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-gray-900">Reports</h2>
         <div className="flex items-center gap-3">
@@ -377,7 +377,7 @@ export function ReportsPage() {
         </div>
       </div>
 
-      {/* â”€â”€ Category Filters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Category Filters ─ */}
       <div className="flex gap-1 mb-4">
         {['All', 'OPERATIONS', 'FINANCIAL', 'DRIVER', 'FLEET', 'SAFETY'].map(c => (
           <button
@@ -391,7 +391,7 @@ export function ReportsPage() {
       </div>
 
       {!selectedReport ? (
-        /* â”€â”€ Report Cards Grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* ─ Report Cards Grid ─ */
         <div className="grid grid-cols-3 gap-4">
           {filteredReports.map(report => (
             <div
@@ -427,7 +427,7 @@ export function ReportsPage() {
           ))}
         </div>
       ) : (
-        /* â”€â”€ Report Preview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+        /* ─ Report Preview ─ */
         <div>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
@@ -441,7 +441,7 @@ export function ReportsPage() {
                 <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
                   <span>{selectedReport.icon}</span> {selectedReport.name}
                 </h3>
-                <p className="text-xs text-gray-400">{reportData.length} rows Â· {startDate} to {endDate}</p>
+                <p className="text-xs text-gray-400">{reportData.length} rows · {startDate} to {endDate}</p>
               </div>
             </div>
             <button

@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 
-// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Types ─
 interface MonthlyData {
   year: number; month: string; monthNum: number; buy: number; sell: number; margin: number;
   marginPct: number; shipments: number; commission: number; netMargin: number;
@@ -10,7 +10,7 @@ interface MonthlyData {
 type ReportType = 'profitability_by_month' | 'profitability_by_customer' | 'profitability_by_lane' | 'shipped_report' | 'carrier_summary' | 'customer_trends' | 'inactive_customer' | 'accounting_concerns' | 'commissions_linking';
 type DateType = 'pickup_date' | 'delivery_date' | 'invoice_date' | 'created_date';
 
-// â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Data ─
 const MONTHLY_DATA: MonthlyData[] = [
   { year: 2026, month: 'Apr', monthNum: 4, buy: 379782.50, sell: 442640.00, margin: 62857.50, marginPct: 14.2, shipments: 396, commission: 0, netMargin: 62857.50 },
   { year: 2026, month: 'Mar', monthNum: 3, buy: 745759.75, sell: 844875.00, margin: 99115.25, marginPct: 11.7, shipments: 813, commission: 0, netMargin: 99115.25 },
@@ -58,10 +58,10 @@ const REPORT_TYPES: { id: ReportType; label: string; section: string }[] = [
   { id: 'commissions_linking', label: 'Commissions Linking Report', section: 'Reports' },
 ];
 
-// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Helpers ─
 function fmtCurrency(n: number) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
-// â”€â”€ Bar Chart Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Bar Chart Component ─
 function ProfitabilityChart({ data }: { data: MonthlyData[] }) {
   const chartData = [...data].reverse();
   const maxVal = Math.max(...chartData.map(d => d.sell));
@@ -102,7 +102,7 @@ function ProfitabilityChart({ data }: { data: MonthlyData[] }) {
   );
 }
 
-// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Component ─
 export function BrokerageReports() {
   const [reportType, setReportType] = useState<ReportType>('profitability_by_month');
   const [dateType, setDateType] = useState<DateType>('pickup_date');
@@ -234,7 +234,7 @@ export function BrokerageReports() {
         </div>
       </div>
 
-      {/* â”€â”€ Profitability By Month â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Profitability By Month ─ */}
       {reportType === 'profitability_by_month' && (
         <>
           <div style={{ display: 'flex', gap: 16 }}>
@@ -300,7 +300,7 @@ export function BrokerageReports() {
         </>
       )}
 
-      {/* â”€â”€ Profitability By Customer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Profitability By Customer ─ */}
       {reportType === 'profitability_by_customer' && (
         <div style={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', fontSize: 14, fontWeight: 600, color: '#1f2937', borderBottom: '1px solid #e5e7eb' }}>Profitability By Customer</div>
@@ -341,7 +341,7 @@ export function BrokerageReports() {
         </div>
       )}
 
-      {/* â”€â”€ Profitability By Lane â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Profitability By Lane ─ */}
       {reportType === 'profitability_by_lane' && (
         <div style={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', fontSize: 14, fontWeight: 600, color: '#1f2937', borderBottom: '1px solid #e5e7eb' }}>Profitability By Lane</div>
@@ -382,7 +382,7 @@ export function BrokerageReports() {
         </div>
       )}
 
-      {/* â”€â”€ Placeholder for other report types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Placeholder for other report types ─ */}
       {!['profitability_by_month', 'profitability_by_customer', 'profitability_by_lane'].includes(reportType) && (
         <div style={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: 10, padding: 40, textAlign: 'center' }}>
           <div style={{ fontSize: 32, marginBottom: 12 }}>ðŸ“Š</div>

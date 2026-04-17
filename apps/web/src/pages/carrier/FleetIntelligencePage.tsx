@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import * as XLSX from 'xlsx';
 
-// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Types ─
 type ELDProvider = 'motive' | 'samsara';
 type ActiveTab = 'overview' | 'ifta' | 'hut' | 'cameras' | 'fuel' | 'hos' | 'tolls';
 
@@ -40,7 +40,7 @@ interface HOSSnapshot {
   lastStatusChange: string; violationsThisWeek: number;
 }
 
-// â”€â”€ Mock Data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Mock Data ─
 const MOCK_TRACKING: VehicleTracking[] = [
   { unitNumber: 'T-1042', type: 'TRUCK', driverName: 'Marcus Johnson', provider: 'motive', lat: 35.1495, lng: -90.0490, city: 'Memphis', state: 'TN', speed: 62, heading: 'NE', engineStatus: 'ON', lastUpdate: '2026-04-13T12:30:00Z', odometerToday: 284, fuelLevelPct: 68, dtcCodes: 0 },
   { unitNumber: 'T-1038', type: 'TRUCK', driverName: 'Sarah Chen', provider: 'samsara', lat: 32.7767, lng: -96.7970, city: 'Dallas', state: 'TX', speed: 0, heading: 'N', engineStatus: 'IDLE', lastUpdate: '2026-04-13T12:28:00Z', odometerToday: 0, fuelLevelPct: 82, dtcCodes: 0 },
@@ -96,7 +96,7 @@ const MOCK_CAMERA_EVENTS: CameraEvent[] = [
 const MOCK_FUEL: FuelTransaction[] = [
   { id: 'f1', date: '2026-04-13T07:15:00Z', unitNumber: 'T-1042', driverName: 'Marcus Johnson', provider: 'motive', stationName: 'Pilot Travel Center #412', city: 'Memphis', state: 'TN', gallons: 98.4, pricePerGallon: 3.82, totalCost: 375.89, fuelType: 'DIESEL', odometer: 223816, cardLast4: '4421', flagged: false, flagReason: '' },
   { id: 'f2', date: '2026-04-12T18:30:00Z', unitNumber: 'T-1070', driverName: 'Robert Brown', provider: 'motive', stationName: 'Love\'s #508', city: 'Nashville', state: 'TN', gallons: 82.1, pricePerGallon: 3.79, totalCost: 311.16, fuelType: 'DIESEL', odometer: 189388, cardLast4: '4421', flagged: false, flagReason: '' },
-  { id: 'f3', date: '2026-04-12T14:45:00Z', unitNumber: 'T-1055', driverName: 'James Williams', provider: 'motive', stationName: 'TA #198', city: 'Terre Haute', state: 'IN', gallons: 112.6, pricePerGallon: 3.85, totalCost: 433.51, fuelType: 'DIESEL', odometer: 312188, cardLast4: '4433', flagged: true, flagReason: 'Over 110 gal â€” exceeds tank capacity alert' },
+  { id: 'f3', date: '2026-04-12T14:45:00Z', unitNumber: 'T-1055', driverName: 'James Williams', provider: 'motive', stationName: 'TA #198', city: 'Terre Haute', state: 'IN', gallons: 112.6, pricePerGallon: 3.85, totalCost: 433.51, fuelType: 'DIESEL', odometer: 312188, cardLast4: '4433', flagged: true, flagReason: 'Over 110 gal — exceeds tank capacity alert' },
   { id: 'f4', date: '2026-04-12T06:00:00Z', unitNumber: 'T-1042', driverName: 'Marcus Johnson', provider: 'motive', stationName: 'Pilot Travel Center #412', city: 'Memphis', state: 'TN', gallons: 12.5, pricePerGallon: 4.22, totalCost: 52.75, fuelType: 'DEF', odometer: 223532, cardLast4: '4421', flagged: false, flagReason: '' },
   { id: 'f5', date: '2026-04-11T15:20:00Z', unitNumber: 'T-1029', driverName: 'David Kim', provider: 'motive', stationName: 'Flying J #742', city: 'Chicago', state: 'IL', gallons: 94.8, pricePerGallon: 3.91, totalCost: 370.67, fuelType: 'DIESEL', odometer: 142506, cardLast4: '4447', flagged: false, flagReason: '' },
   { id: 'f6', date: '2026-04-11T09:10:00Z', unitNumber: 'T-1070', driverName: 'Robert Brown', provider: 'motive', stationName: 'TA #201', city: 'Nashville', state: 'TN', gallons: 76.3, pricePerGallon: 3.84, totalCost: 292.99, fuelType: 'DIESEL', odometer: 189076, cardLast4: '4421', flagged: false, flagReason: '' },
@@ -141,7 +141,7 @@ const TOLL_PROVIDER_BADGES: Record<string, { bg: string; text: string; label: st
   BESTPASS: { bg: 'bg-teal-100', text: 'text-teal-800', label: 'Bestpass' },
 };
 
-// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Helpers ─
 const PROVIDER_COLORS = { motive: { bg: 'bg-orange-100', text: 'text-orange-800', dot: 'bg-orange-500', label: 'Motive' }, samsara: { bg: 'bg-teal-100', text: 'text-teal-800', dot: 'bg-teal-500', label: 'Samsara' } };
 const ENGINE_STATUS = { ON: 'text-green-600', OFF: 'text-gray-400', IDLE: 'text-yellow-600' };
 const HOS_STATUS_DOT: Record<string, string> = { DRIVING: 'bg-green-500', ON_DUTY: 'bg-blue-500', SLEEPER: 'bg-yellow-500', OFF_DUTY: 'bg-gray-400' };
@@ -152,7 +152,7 @@ const CAMERA_TYPE_LABELS: Record<string, string> = { HARSH_BRAKING: 'Harsh braki
 function formatDateTime(d: string): string { const dt = new Date(d); return `${dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} ${dt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`; }
 function formatTime(d: string): string { return new Date(d).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
 
-// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─ Component ─
 export function FleetIntelligencePage() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
   const [providerFilter, setProviderFilter] = useState<'all' | ELDProvider>('all');
@@ -281,7 +281,7 @@ export function FleetIntelligencePage() {
 
   return (
     <div>
-      {/* â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Header ─ */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-semibold text-gray-900">Fleet Intelligence</h2>
@@ -303,15 +303,15 @@ export function FleetIntelligencePage() {
         </div>
       </div>
 
-      {/* â”€â”€ Summary Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Summary Cards ─ */}
       <div className="grid grid-cols-5 gap-3 mb-4">
         <div className="bg-white border border-gray-200 rounded-lg p-3">
           <p className="text-xs text-gray-400 mb-1">Fleet Status</p>
           <p className="text-xl font-bold text-gray-900">{stats.totalVehicles}</p>
           <div className="flex gap-2 mt-1.5 text-xs">
-            <span className="text-green-600">{stats.moving} moving</span><span className="text-gray-300">Â·</span>
+            <span className="text-green-600">{stats.moving} moving</span><span className="text-gray-300">·</span>
             <span className="text-yellow-600">{stats.idle} idle</span>
-            {stats.dtcAlerts > 0 && <><span className="text-gray-300">Â·</span><span className="text-red-500">{stats.dtcAlerts} DTC</span></>}
+            {stats.dtcAlerts > 0 && <><span className="text-gray-300">·</span><span className="text-red-500">{stats.dtcAlerts} DTC</span></>}
           </div>
         </div>
         <div className="bg-white border border-gray-200 rounded-lg p-3">
@@ -336,7 +336,7 @@ export function FleetIntelligencePage() {
         </div>
       </div>
 
-      {/* â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Tabs ─ */}
       <div className="flex gap-1 mb-4">
         {TABS.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-1.5 text-xs rounded font-medium transition-colors ${activeTab === tab.id ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>
@@ -345,7 +345,7 @@ export function FleetIntelligencePage() {
         ))}
       </div>
 
-      {/* â”€â”€ Overview Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Overview Tab ─ */}
       {activeTab === 'overview' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
@@ -371,9 +371,9 @@ export function FleetIntelligencePage() {
                     <td className="px-3 py-2.5 text-gray-700">{v.driverName}</td>
                     <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${PROVIDER_COLORS[v.provider].bg} ${PROVIDER_COLORS[v.provider].text}`}>{PROVIDER_COLORS[v.provider].label}</span></td>
                     <td className="px-3 py-2.5 text-gray-600">{v.city}, {v.state}</td>
-                    <td className="px-3 py-2.5 text-right text-gray-700">{v.speed > 0 ? `${v.speed} mph` : 'â€”'}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{v.speed > 0 ? `${v.speed} mph` : '—'}</td>
                     <td className={`px-3 py-2.5 font-medium ${ENGINE_STATUS[v.engineStatus]}`}>{v.engineStatus === 'ON' ? 'Running' : v.engineStatus === 'IDLE' ? 'Idle' : 'Off'}</td>
-                    <td className="px-3 py-2.5 text-right text-gray-700">{v.odometerToday > 0 ? `${v.odometerToday} mi` : 'â€”'}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{v.odometerToday > 0 ? `${v.odometerToday} mi` : '—'}</td>
                     <td className="px-3 py-2.5 text-right"><span className={`font-medium ${v.fuelLevelPct < 25 ? 'text-red-600' : v.fuelLevelPct < 50 ? 'text-yellow-600' : 'text-gray-700'}`}>{v.fuelLevelPct}%</span></td>
                     <td className="px-3 py-2.5">{v.dtcCodes > 0 ? <span className="px-2 py-0.5 bg-red-100 text-red-800 rounded-full text-xs font-medium">{v.dtcCodes} code{v.dtcCodes > 1 ? 's' : ''}</span> : <span className="text-green-600">Clear</span>}</td>
                     <td className="px-3 py-2.5 text-gray-500">{formatTime(v.lastUpdate)}</td>
@@ -385,11 +385,11 @@ export function FleetIntelligencePage() {
         </div>
       )}
 
-      {/* â”€â”€ IFTA Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ IFTA Tab ─ */}
       {activeTab === 'ifta' && (
         <>
           <div className="flex items-center justify-between mb-3">
-            <p className="text-xs text-gray-500">IFTA Account: <span className="font-mono font-semibold text-blue-700">IFTA-TN-62441</span> â€” mileage and fuel tax by state, sourced from ELD data (pulled from Assets)</p>
+            <p className="text-xs text-gray-500">IFTA Account: <span className="font-mono font-semibold text-blue-700">IFTA-TN-62441</span> — mileage and fuel tax by state, sourced from ELD data (pulled from Assets)</p>
             <button onClick={exportIFTA} className="flex items-center gap-2 px-4 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700">â¬‡ Export IFTA to Excel</button>
           </div>
           <div className="flex items-center gap-2 mb-3 bg-white border border-gray-200 rounded-lg px-4 py-2">
@@ -451,11 +451,11 @@ export function FleetIntelligencePage() {
         </>
       )}
 
-      {/* â”€â”€ HUT Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ HUT Tab ─ */}
       {activeTab === 'hut' && (
         <>
           <div className="flex items-center justify-between mb-3">
-            <p className="text-xs text-gray-500">Highway Use Tax by vehicle â€” HUT permit numbers pulled from Assets. Enter receipt # after filing.</p>
+            <p className="text-xs text-gray-500">Highway Use Tax by vehicle — HUT permit numbers pulled from Assets. Enter receipt # after filing.</p>
             <button onClick={exportHUT} className="flex items-center gap-2 px-4 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700">â¬‡ Export HUT to Excel</button>
           </div>
           <div className="flex items-center gap-2 mb-3 bg-white border border-gray-200 rounded-lg px-4 py-2">
@@ -535,7 +535,7 @@ export function FleetIntelligencePage() {
         </>
       )}
 
-      {/* â”€â”€ Cameras Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Cameras Tab ─ */}
       {activeTab === 'cameras' && (
         <>
           <div className="flex gap-1 mb-3">
@@ -580,7 +580,7 @@ export function FleetIntelligencePage() {
         </>
       )}
 
-      {/* â”€â”€ Fuel Cards Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Fuel Cards Tab ─ */}
       {activeTab === 'fuel' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
@@ -605,7 +605,7 @@ export function FleetIntelligencePage() {
                     <td className="px-3 py-2.5 text-right text-gray-700">{f.gallons.toFixed(1)}</td>
                     <td className="px-3 py-2.5 text-right text-gray-600">${f.pricePerGallon.toFixed(2)}</td>
                     <td className="px-3 py-2.5 text-right font-medium text-gray-900">${f.totalCost.toFixed(2)}</td>
-                    <td className="px-3 py-2.5 text-gray-500 font-mono">â€¢â€¢â€¢â€¢ {f.cardLast4}</td>
+                    <td className="px-3 py-2.5 text-gray-500 font-mono">•••• {f.cardLast4}</td>
                     <td className="px-3 py-2.5">{f.flagged ? <span className="px-2 py-0.5 bg-red-100 text-red-800 rounded-full text-xs font-medium" title={f.flagReason}>Flagged</span> : <span className="text-green-600">OK</span>}</td>
                   </tr>
                 ))}
@@ -621,7 +621,7 @@ export function FleetIntelligencePage() {
         </div>
       )}
 
-      {/* â”€â”€ HOS Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ HOS Tab ─ */}
       {activeTab === 'hos' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
@@ -656,7 +656,7 @@ export function FleetIntelligencePage() {
         </div>
       )}
 
-      {/* â”€â”€ Tolls Tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ Tolls Tab ─ */}
       {activeTab === 'tolls' && (
         <>
           <div className="flex items-center justify-between mb-3">

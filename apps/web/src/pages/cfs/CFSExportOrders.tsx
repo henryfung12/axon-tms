@@ -14,13 +14,13 @@ interface ExportOrder {
 }
 
 const MOCK_EXPORTS: ExportOrder[] = [
-  { id: 'exp1', orderNumber: 'JFK-EXP-0501', mawb: '180-44210501', hawb: 'GE-E-20260414-001', airline: 'Korean Air', flightNumber: 'KE 081', departureAirport: 'JFK', destinationAirport: 'ICN', departureDate: '2026-04-15', departureTime: '01:30', cutoffTime: '2026-04-14T18:00:00Z', terminal: 'Terminal 1', building: 'Bldg 75', shipper: 'US Tech Export Corp', shipperCity: 'Newark', shipperState: 'NJ', consignee: 'Seoul Electronics Ltd', pieces: 8, weight: '1,600 kg', commodity: 'Server Equipment', dims: '120x80x100 cm', status: 'TSA_CLEARED', tsaStatus: 'CLEARED', screeningMethod: 'XRAY', assignedDriver: 'Marcus Johnson', assignedVehicle: 'T-1042', hoursUntilCutoff: 4, notes: 'High value â€” requires airline acceptance signature' },
+  { id: 'exp1', orderNumber: 'JFK-EXP-0501', mawb: '180-44210501', hawb: 'GE-E-20260414-001', airline: 'Korean Air', flightNumber: 'KE 081', departureAirport: 'JFK', destinationAirport: 'ICN', departureDate: '2026-04-15', departureTime: '01:30', cutoffTime: '2026-04-14T18:00:00Z', terminal: 'Terminal 1', building: 'Bldg 75', shipper: 'US Tech Export Corp', shipperCity: 'Newark', shipperState: 'NJ', consignee: 'Seoul Electronics Ltd', pieces: 8, weight: '1,600 kg', commodity: 'Server Equipment', dims: '120x80x100 cm', status: 'TSA_CLEARED', tsaStatus: 'CLEARED', screeningMethod: 'XRAY', assignedDriver: 'Marcus Johnson', assignedVehicle: 'T-1042', hoursUntilCutoff: 4, notes: 'High value — requires airline acceptance signature' },
   { id: 'exp2', orderNumber: 'JFK-EXP-0502', mawb: '176-88100502', hawb: 'GE-E-20260414-002', airline: 'Cathay Pacific', flightNumber: 'CX 841', departureAirport: 'JFK', destinationAirport: 'HKG', departureDate: '2026-04-15', departureTime: '02:15', cutoffTime: '2026-04-14T19:00:00Z', terminal: 'Terminal 1', building: 'Bldg 151', shipper: 'NY Fashion Export LLC', shipperCity: 'New York', shipperState: 'NY', consignee: 'HK Garment Import Co.', pieces: 32, weight: '4,200 kg', commodity: 'Textile / Fashion', dims: '80x60x80 cm', status: 'CONSOLIDATED', tsaStatus: 'CLEARED', screeningMethod: 'ETD', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 5, notes: 'Consolidation of 4 shippers into 1 MAWB' },
-  { id: 'exp3', orderNumber: 'JFK-EXP-0503', mawb: '131-22100503', hawb: 'GE-E-20260414-003', airline: 'Emirates', flightNumber: 'EK 203', departureAirport: 'JFK', destinationAirport: 'DXB', departureDate: '2026-04-14', departureTime: '23:45', cutoffTime: '2026-04-14T16:00:00Z', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'American Auto Parts Inc.', shipperCity: 'Edison', shipperState: 'NJ', consignee: 'Gulf Auto Trading LLC', pieces: 20, weight: '3,800 kg', commodity: 'Auto Parts', dims: '100x80x60 cm', status: 'TSA_SCREENING', tsaStatus: 'SCREENING', screeningMethod: 'XRAY', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 2, notes: 'URGENT â€” cutoff in 2 hours' },
-  { id: 'exp4', orderNumber: 'ORD-EXP-0220', mawb: '618-55100504', hawb: 'GE-E-20260414-004', airline: 'ANA', flightNumber: 'NH 111', departureAirport: 'ORD', destinationAirport: 'NRT', departureDate: '2026-04-15', departureTime: '11:30', cutoffTime: '2026-04-15T04:00:00Z', terminal: 'Terminal 5', building: 'Cargo Area F', shipper: 'Midwest Machinery Inc.', shipperCity: 'Chicago', shipperState: 'IL', consignee: 'Tokyo Industrial Corp', pieces: 4, weight: '2,800 kg', commodity: 'Industrial Equipment â€” Heavy', dims: '200x150x130 cm', status: 'CARGO_RECEIVED', tsaStatus: 'NOT_SCREENED', screeningMethod: '', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 14, notes: 'Oversize â€” requires special cargo acceptance' },
-  { id: 'exp5', orderNumber: 'MIA-EXP-0180', mawb: '235-77100505', hawb: 'GE-E-20260414-005', airline: 'LATAM', flightNumber: 'LA 501', departureAirport: 'MIA', destinationAirport: 'GRU', departureDate: '2026-04-14', departureTime: '22:00', cutoffTime: '2026-04-14T15:00:00Z', terminal: 'Terminal N', building: 'MIA Cargo', shipper: 'US Pharma Export', shipperCity: 'Tampa', shipperState: 'FL', consignee: 'Brasil Farma Distribution', pieces: 10, weight: '680 kg', commodity: 'Pharmaceutical â€” Cold Chain', dims: '60x40x40 cm', status: 'DISPATCHED_TO_TERMINAL', tsaStatus: 'CLEARED', screeningMethod: 'KNOWN_SHIPPER', assignedDriver: 'Robert Brown', assignedVehicle: 'T-1070', hoursUntilCutoff: 1, notes: 'CRITICAL â€” temp controlled 2-8Â°C, driver en route to MIA' },
-  { id: 'exp6', orderNumber: 'JFK-EXP-0498', mawb: '074-33100506', hawb: 'GE-E-20260413-006', airline: 'KLM', flightNumber: 'KL 643', departureAirport: 'JFK', destinationAirport: 'AMS', departureDate: '2026-04-13', departureTime: '20:30', cutoffTime: '2026-04-13T14:00:00Z', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'East Coast Chemical', shipperCity: 'Philadelphia', shipperState: 'PA', consignee: 'Amsterdam Chemical BV', pieces: 6, weight: '1,200 kg', commodity: 'DG â€” Chemical Samples', dims: '60x40x50 cm', status: 'DEPARTED', tsaStatus: 'CLEARED', screeningMethod: 'PHYSICAL', assignedDriver: 'David Kim', assignedVehicle: 'T-1029', hoursUntilCutoff: 0, notes: 'DG Class 8 â€” corrosive. Departed on KL 643.' },
-  { id: 'exp7', orderNumber: 'ATL-EXP-0095', mawb: '057-11100507', hawb: 'GE-E-20260414-007', airline: 'Delta Cargo', flightNumber: 'DL 201', departureAirport: 'ATL', destinationAirport: 'LHR', departureDate: '2026-04-15', departureTime: '18:00', cutoffTime: '2026-04-15T10:00:00Z', terminal: 'Cargo Complex', building: 'ATL Cargo Bldg', shipper: 'Georgia Peach Farms', shipperCity: 'Atlanta', shipperState: 'GA', consignee: 'London Fresh Markets PLC', pieces: 50, weight: '5,200 kg', commodity: 'Perishable â€” Fresh Produce', dims: '100x80x60 cm', status: 'BOOKING_CONFIRMED', tsaStatus: 'NOT_SCREENED', screeningMethod: '', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 20, notes: 'Perishable â€” temp 34Â°F. Pickup from farm scheduled 4/15 6 AM.' },
+  { id: 'exp3', orderNumber: 'JFK-EXP-0503', mawb: '131-22100503', hawb: 'GE-E-20260414-003', airline: 'Emirates', flightNumber: 'EK 203', departureAirport: 'JFK', destinationAirport: 'DXB', departureDate: '2026-04-14', departureTime: '23:45', cutoffTime: '2026-04-14T16:00:00Z', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'American Auto Parts Inc.', shipperCity: 'Edison', shipperState: 'NJ', consignee: 'Gulf Auto Trading LLC', pieces: 20, weight: '3,800 kg', commodity: 'Auto Parts', dims: '100x80x60 cm', status: 'TSA_SCREENING', tsaStatus: 'SCREENING', screeningMethod: 'XRAY', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 2, notes: 'URGENT — cutoff in 2 hours' },
+  { id: 'exp4', orderNumber: 'ORD-EXP-0220', mawb: '618-55100504', hawb: 'GE-E-20260414-004', airline: 'ANA', flightNumber: 'NH 111', departureAirport: 'ORD', destinationAirport: 'NRT', departureDate: '2026-04-15', departureTime: '11:30', cutoffTime: '2026-04-15T04:00:00Z', terminal: 'Terminal 5', building: 'Cargo Area F', shipper: 'Midwest Machinery Inc.', shipperCity: 'Chicago', shipperState: 'IL', consignee: 'Tokyo Industrial Corp', pieces: 4, weight: '2,800 kg', commodity: 'Industrial Equipment — Heavy', dims: '200x150x130 cm', status: 'CARGO_RECEIVED', tsaStatus: 'NOT_SCREENED', screeningMethod: '', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 14, notes: 'Oversize — requires special cargo acceptance' },
+  { id: 'exp5', orderNumber: 'MIA-EXP-0180', mawb: '235-77100505', hawb: 'GE-E-20260414-005', airline: 'LATAM', flightNumber: 'LA 501', departureAirport: 'MIA', destinationAirport: 'GRU', departureDate: '2026-04-14', departureTime: '22:00', cutoffTime: '2026-04-14T15:00:00Z', terminal: 'Terminal N', building: 'MIA Cargo', shipper: 'US Pharma Export', shipperCity: 'Tampa', shipperState: 'FL', consignee: 'Brasil Farma Distribution', pieces: 10, weight: '680 kg', commodity: 'Pharmaceutical — Cold Chain', dims: '60x40x40 cm', status: 'DISPATCHED_TO_TERMINAL', tsaStatus: 'CLEARED', screeningMethod: 'KNOWN_SHIPPER', assignedDriver: 'Robert Brown', assignedVehicle: 'T-1070', hoursUntilCutoff: 1, notes: 'CRITICAL — temp controlled 2-8°C, driver en route to MIA' },
+  { id: 'exp6', orderNumber: 'JFK-EXP-0498', mawb: '074-33100506', hawb: 'GE-E-20260413-006', airline: 'KLM', flightNumber: 'KL 643', departureAirport: 'JFK', destinationAirport: 'AMS', departureDate: '2026-04-13', departureTime: '20:30', cutoffTime: '2026-04-13T14:00:00Z', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'East Coast Chemical', shipperCity: 'Philadelphia', shipperState: 'PA', consignee: 'Amsterdam Chemical BV', pieces: 6, weight: '1,200 kg', commodity: 'DG — Chemical Samples', dims: '60x40x50 cm', status: 'DEPARTED', tsaStatus: 'CLEARED', screeningMethod: 'PHYSICAL', assignedDriver: 'David Kim', assignedVehicle: 'T-1029', hoursUntilCutoff: 0, notes: 'DG Class 8 — corrosive. Departed on KL 643.' },
+  { id: 'exp7', orderNumber: 'ATL-EXP-0095', mawb: '057-11100507', hawb: 'GE-E-20260414-007', airline: 'Delta Cargo', flightNumber: 'DL 201', departureAirport: 'ATL', destinationAirport: 'LHR', departureDate: '2026-04-15', departureTime: '18:00', cutoffTime: '2026-04-15T10:00:00Z', terminal: 'Cargo Complex', building: 'ATL Cargo Bldg', shipper: 'Georgia Peach Farms', shipperCity: 'Atlanta', shipperState: 'GA', consignee: 'London Fresh Markets PLC', pieces: 50, weight: '5,200 kg', commodity: 'Perishable — Fresh Produce', dims: '100x80x60 cm', status: 'BOOKING_CONFIRMED', tsaStatus: 'NOT_SCREENED', screeningMethod: '', assignedDriver: '', assignedVehicle: '', hoursUntilCutoff: 20, notes: 'Perishable — temp 34°F. Pickup from farm scheduled 4/15 6 AM.' },
 ];
 
 const STATUS_BADGE: Record<string, { label: string; color: string }> = {
@@ -43,7 +43,7 @@ const TSA_BADGE: Record<string, { label: string; color: string }> = {
   EXEMPT: { label: 'Exempt (Known Shipper)', color: 'bg-blue-100 text-blue-800' },
 };
 
-function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'â€”'; }
+function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
 
 export function CFSExportOrders() {
   const [statusFilter, setStatusFilter] = useState('All');
@@ -112,7 +112,7 @@ export function CFSExportOrders() {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Export Orders â€” Terminal Delivery</h2>
+        <h2 className="text-lg font-semibold text-gray-900">Export Orders — Terminal Delivery</h2>
         <div className="flex gap-2">
           <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search MAWB, airline, consignee..." className="w-64 border border-gray-300 rounded-lg px-3 py-1.5 text-sm" />
           <button onClick={() => setShowKSP(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ”’ KSP Management</button>
@@ -164,7 +164,7 @@ export function CFSExportOrders() {
                   <td className="px-3 py-2.5 text-gray-600">{o.commodity}</td>
                   <td className="px-3 py-2.5 text-right text-gray-700">{o.pieces} pcs<br/><span className="text-gray-400">{o.weight}</span></td>
                   <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded-full text-xs font-medium ${TSA_BADGE[o.tsaStatus].color}`}>{TSA_BADGE[o.tsaStatus].label}</span></td>
-                  <td className="px-3 py-2.5">{o.hoursUntilCutoff > 0 ? <span className={`text-xs font-bold ${o.hoursUntilCutoff <= 2 ? 'text-red-600' : o.hoursUntilCutoff <= 4 ? 'text-yellow-600' : 'text-gray-600'}`}>{o.hoursUntilCutoff}h</span> : <span className="text-xs text-gray-400">â€”</span>}</td>
+                  <td className="px-3 py-2.5">{o.hoursUntilCutoff > 0 ? <span className={`text-xs font-bold ${o.hoursUntilCutoff <= 2 ? 'text-red-600' : o.hoursUntilCutoff <= 4 ? 'text-yellow-600' : 'text-gray-600'}`}>{o.hoursUntilCutoff}h</span> : <span className="text-xs text-gray-400">—</span>}</td>
                   <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGE[o.status].color}`}>{STATUS_BADGE[o.status].label}</span></td>
                 </tr>
               ))}
@@ -173,12 +173,12 @@ export function CFSExportOrders() {
         </div>
       </div>
 
-      {/* â”€â”€ MAWB Upload Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ─ MAWB Upload Modal ─ */}
       {showUploadZone && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => { setShowUploadZone(false); setParsedMAWB(null); }}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-sm font-semibold text-gray-900">Upload Air Waybill (MAWB) â€” Auto-Create Export Order</h2>
+              <h2 className="text-sm font-semibold text-gray-900">Upload Air Waybill (MAWB) — Auto-Create Export Order</h2>
               <p className="text-xs text-gray-400 mt-0.5">Upload an Air Waybill to auto-populate export shipment data</p>
             </div>
 
@@ -193,7 +193,7 @@ export function CFSExportOrders() {
                 >
                   <p className="text-4xl mb-3">âœˆï¸</p>
                   <p className="text-lg font-semibold text-gray-800">Drop Air Waybill (MAWB) file here or click to browse</p>
-                  <p className="text-sm text-gray-500 mt-2">PDF, TIF, JPG, or scanned image â€” we'll auto-extract all fields</p>
+                  <p className="text-sm text-gray-500 mt-2">PDF, TIF, JPG, or scanned image — we'll auto-extract all fields</p>
                   <div className="flex items-center justify-center gap-4 mt-4">
                     <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium">Air Waybill</span>
                     <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium">MAWB</span>
@@ -216,13 +216,13 @@ export function CFSExportOrders() {
               <div className="px-6 py-4 space-y-4">
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3">
                   <span className="text-2xl">âœ…</span>
-                  <div><p className="text-sm font-bold text-green-800">Air Waybill Parsed Successfully</p><p className="text-xs text-green-600">All fields extracted â€” review and confirm to create export order</p></div>
+                  <div><p className="text-sm font-bold text-green-800">Air Waybill Parsed Successfully</p><p className="text-xs text-green-600">All fields extracted — review and confirm to create export order</p></div>
                 </div>
 
                 {/* AWB Header */}
                 <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-xs font-bold text-orange-700 uppercase tracking-wide">Air Waybill â€” Not Negotiable</h4>
+                    <h4 className="text-xs font-bold text-orange-700 uppercase tracking-wide">Air Waybill — Not Negotiable</h4>
                     <span className="text-xs text-gray-500">Original 2 (for Consignee)</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -336,7 +336,7 @@ export function CFSExportOrders() {
         <div className="mt-3 bg-orange-600 text-white rounded-lg p-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-sm font-bold">{selectedIds.size} order{selectedIds.size > 1 ? 's' : ''} selected</span>
-            <span className="text-xs text-orange-200">{selectedOrders.reduce((s, o) => s + o.pieces, 0)} total pieces Â· {selectedOrders.map(o => o.departureAirport).filter((v, i, a) => a.indexOf(v) === i).join(', ')}</span>
+            <span className="text-xs text-orange-200">{selectedOrders.reduce((s, o) => s + o.pieces, 0)} total pieces · {selectedOrders.map(o => o.departureAirport).filter((v, i, a) => a.indexOf(v) === i).join(', ')}</span>
           </div>
           <div className="flex gap-2">
             <button onClick={() => setShowAssignModal(true)} className="px-4 py-1.5 text-sm font-semibold bg-white text-orange-700 rounded-lg hover:bg-orange-50">ðŸš› Assign Driver & Truck</button>
@@ -365,7 +365,7 @@ export function CFSExportOrders() {
                         <td className="px-3 py-2 font-mono font-medium text-gray-900">{o.mawb}</td>
                         <td className="px-3 py-2 text-gray-700">{o.airline} {o.flightNumber}</td>
                         <td className="px-3 py-2 text-gray-600">{o.departureAirport} {o.building}</td>
-                        <td className="px-3 py-2"><span className={`font-bold ${o.hoursUntilCutoff <= 2 ? 'text-red-600' : o.hoursUntilCutoff <= 4 ? 'text-yellow-600' : 'text-gray-600'}`}>{o.hoursUntilCutoff > 0 ? `${o.hoursUntilCutoff}h` : 'â€”'}</span></td>
+                        <td className="px-3 py-2"><span className={`font-bold ${o.hoursUntilCutoff <= 2 ? 'text-red-600' : o.hoursUntilCutoff <= 4 ? 'text-yellow-600' : 'text-gray-600'}`}>{o.hoursUntilCutoff > 0 ? `${o.hoursUntilCutoff}h` : '—'}</span></td>
                         <td className="px-3 py-2 text-right text-gray-800">{o.pieces}</td>
                         <td className="px-3 py-2 text-right text-gray-600">{o.weight}</td>
                         <td className="px-2"><button onClick={() => toggleSelect(o.id)} className="text-gray-400 hover:text-red-500">âœ•</button></td>
@@ -379,7 +379,7 @@ export function CFSExportOrders() {
                   </table>
                 </div>
                 {selectedOrders.some(o => o.hoursUntilCutoff > 0 && o.hoursUntilCutoff <= 3) && (
-                  <div className="mt-2 bg-red-50 border border-red-200 rounded-lg p-2.5"><p className="text-xs font-bold text-red-800">âš  Time-critical shipments included â€” earliest cutoff in {Math.min(...selectedOrders.filter(o => o.hoursUntilCutoff > 0).map(o => o.hoursUntilCutoff))} hours</p></div>
+                  <div className="mt-2 bg-red-50 border border-red-200 rounded-lg p-2.5"><p className="text-xs font-bold text-red-800">âš  Time-critical shipments included — earliest cutoff in {Math.min(...selectedOrders.filter(o => o.hoursUntilCutoff > 0).map(o => o.hoursUntilCutoff))} hours</p></div>
                 )}
               </div>
 
@@ -400,12 +400,12 @@ export function CFSExportOrders() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Assign Vehicle *</label>
                   <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                     <option value="">Select vehicle...</option>
-                    <option>T-1029 â€” Sprinter Van</option>
-                    <option>T-1042 â€” 24ft Box Truck</option>
-                    <option>T-1055 â€” 26ft Box Truck</option>
-                    <option>T-1070 â€” 53' Dry Van</option>
-                    <option>T-1082 â€” Reefer Truck</option>
-                    <option>T-1090 â€” Flatbed</option>
+                    <option>T-1029 — Sprinter Van</option>
+                    <option>T-1042 — 24ft Box Truck</option>
+                    <option>T-1055 — 26ft Box Truck</option>
+                    <option>T-1070 — 53' Dry Van</option>
+                    <option>T-1082 — Reefer Truck</option>
+                    <option>T-1090 — Flatbed</option>
                   </select>
                 </div>
               </div>
@@ -443,7 +443,7 @@ export function CFSExportOrders() {
                     {[...selectedOrders].sort((a, b) => (a.hoursUntilCutoff || 999) - (b.hoursUntilCutoff || 999)).map((o, i) => (
                       <div key={o.id} className={`flex items-center gap-3 py-2 px-3 rounded-lg border ${o.hoursUntilCutoff <= 2 && o.hoursUntilCutoff > 0 ? 'bg-red-50 border-red-200' : 'bg-gray-50 border-gray-200'}`}>
                         <span className="w-6 h-6 bg-orange-600 text-white text-xs font-bold rounded-full flex items-center justify-center">{i + 1}</span>
-                        <div className="flex-1"><span className="text-xs font-semibold text-gray-800">{o.departureAirport} â€” {o.building}</span><br/><span className="text-xs text-gray-400">{o.mawb} Â· {o.airline} {o.flightNumber} Â· Cutoff: {o.hoursUntilCutoff > 0 ? `${o.hoursUntilCutoff}h` : 'â€”'}</span></div>
+                        <div className="flex-1"><span className="text-xs font-semibold text-gray-800">{o.departureAirport} — {o.building}</span><br/><span className="text-xs text-gray-400">{o.mawb} · {o.airline} {o.flightNumber} · Cutoff: {o.hoursUntilCutoff > 0 ? `${o.hoursUntilCutoff}h` : '—'}</span></div>
                         <span className="text-gray-300 text-sm cursor-grab">â˜°</span>
                       </div>
                     ))}
@@ -479,7 +479,7 @@ export function CFSExportOrders() {
                 </div>
               )}
               <div className="bg-orange-50 rounded-lg p-3"><p className="text-xs text-orange-600 font-semibold mb-1">Airway Bills</p><div className="flex justify-between text-xs"><span className="text-gray-500">MAWB</span><span className="font-mono font-bold text-gray-900">{selectedOrder.mawb}</span></div><div className="flex justify-between text-xs mt-1"><span className="text-gray-500">HAWB</span><span className="font-mono font-bold text-gray-900">{selectedOrder.hawb}</span></div></div>
-              <div className="grid grid-cols-2 gap-3"><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Airline / Flight</p><p className="text-sm font-semibold">{selectedOrder.airline} â€” {selectedOrder.flightNumber}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Route</p><p className="text-sm font-semibold">{selectedOrder.departureAirport} â†’ {selectedOrder.destinationAirport}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Departure</p><p className="text-sm font-semibold">{fmtDate(selectedOrder.departureDate)} {selectedOrder.departureTime}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Terminal / Bldg</p><p className="text-sm font-semibold">{selectedOrder.terminal} â€” {selectedOrder.building}</p></div></div>
+              <div className="grid grid-cols-2 gap-3"><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Airline / Flight</p><p className="text-sm font-semibold">{selectedOrder.airline} — {selectedOrder.flightNumber}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Route</p><p className="text-sm font-semibold">{selectedOrder.departureAirport} â†’ {selectedOrder.destinationAirport}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Departure</p><p className="text-sm font-semibold">{fmtDate(selectedOrder.departureDate)} {selectedOrder.departureTime}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Terminal / Bldg</p><p className="text-sm font-semibold">{selectedOrder.terminal} — {selectedOrder.building}</p></div></div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">TSA Screening</h4><div className="bg-gray-50 rounded-lg p-3 space-y-1.5 text-xs"><div className="flex justify-between"><span className="text-gray-500">Status</span><span className={`px-2 py-0.5 rounded-full font-medium ${TSA_BADGE[selectedOrder.tsaStatus].color}`}>{TSA_BADGE[selectedOrder.tsaStatus].label}</span></div>{selectedOrder.screeningMethod && <div className="flex justify-between"><span className="text-gray-500">Method</span><span className="text-gray-800">{selectedOrder.screeningMethod === 'KNOWN_SHIPPER' ? 'Known Shipper (Exempt)' : selectedOrder.screeningMethod}</span></div>}</div></div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Cargo</h4><div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2 text-xs"><div className="flex justify-between"><span className="text-gray-500">Commodity</span><span className="text-gray-800">{selectedOrder.commodity}</span></div><div className="flex justify-between"><span className="text-gray-500">Pieces</span><span className="text-gray-800">{selectedOrder.pieces}</span></div><div className="flex justify-between"><span className="text-gray-500">Weight</span><span className="text-gray-800">{selectedOrder.weight}</span></div><div className="flex justify-between"><span className="text-gray-500">Dims</span><span className="text-gray-800">{selectedOrder.dims}</span></div></div></div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Shipper / Consignee</h4><div className="bg-gray-50 rounded-lg p-3 space-y-1.5 text-xs"><div><span className="text-gray-400">Shipper:</span> <span className="font-medium">{selectedOrder.shipper}</span> <span className="text-gray-400">({selectedOrder.shipperCity}, {selectedOrder.shipperState})</span></div><div><span className="text-gray-400">Consignee:</span> <span className="font-medium">{selectedOrder.consignee}</span></div></div></div>
@@ -506,7 +506,7 @@ export function CFSExportOrders() {
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3"><p className="text-xs text-gray-400">Pending Approval</p><p className="text-xl font-bold text-yellow-600">3</p></div>
                 <div className="bg-red-50 border border-red-200 rounded-lg p-3"><p className="text-xs text-gray-400">Expired / Revoked</p><p className="text-xl font-bold text-red-600">1</p></div>
               </div>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3"><p className="text-xs font-bold text-blue-800 mb-1">AXON TMS â€” CCSP Certification</p><p className="text-xs text-blue-600">IAC # GEX-12345 Â· Certification Expiry: Dec 31, 2026 Â· TSA Region: Northeast</p></div>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3"><p className="text-xs font-bold text-blue-800 mb-1">AXON TMS — CCSP Certification</p><p className="text-xs text-blue-600">IAC # GEX-12345 · Certification Expiry: Dec 31, 2026 · TSA Region: Northeast</p></div>
               <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200">
                 <th className="text-left px-3 py-2.5 font-medium text-gray-500">Shipper</th>
                 <th className="text-left px-3 py-2.5 font-medium text-gray-500">KSP ID</th>
@@ -526,10 +526,10 @@ export function CFSExportOrders() {
                 ].map((s, i) => (
                   <tr key={i} className={`border-b border-gray-100 ${s.status === 'EXPIRED' ? 'bg-red-50' : s.status === 'PENDING' ? 'bg-yellow-50' : ''}`}>
                     <td className="px-3 py-2.5 font-medium text-gray-900">{s.shipper}</td>
-                    <td className="px-3 py-2.5 font-mono text-gray-600">{s.kspId || 'â€”'}</td>
+                    <td className="px-3 py-2.5 font-mono text-gray-600">{s.kspId || '—'}</td>
                     <td className="px-3 py-2.5 text-gray-600">{s.screening}</td>
-                    <td className="px-3 py-2.5 text-gray-500">{s.approved || 'â€”'}</td>
-                    <td className="px-3 py-2.5 text-gray-500">{s.expiry || 'â€”'}</td>
+                    <td className="px-3 py-2.5 text-gray-500">{s.approved || '—'}</td>
+                    <td className="px-3 py-2.5 text-gray-500">{s.expiry || '—'}</td>
                     <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${s.status === 'APPROVED' ? 'bg-green-100 text-green-800' : s.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>{s.status}</span></td>
                   </tr>
                 ))}
