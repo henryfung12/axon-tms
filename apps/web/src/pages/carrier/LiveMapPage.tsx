@@ -110,7 +110,7 @@ export function LiveMapPage() {
   };
 
   return (
-    <div className="flex flex-col -m-6" style={{ height: 'calc(100vh - 40px)' }}>
+    <div className="flex flex-col" style={{ height: 'calc(100vh - 40px)' }}>
       <div className="bg-white border-b border-gray-200 px-6 py-2.5 flex-shrink-0 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <h2 className="text-sm font-semibold text-gray-900">Live Map</h2>
