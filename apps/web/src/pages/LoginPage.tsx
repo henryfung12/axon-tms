@@ -1,28 +1,32 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "@/lib/api";
 import { useAuthStore } from "@/stores/auth.store";
+import type { LoginResponse } from "@/types";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const setAuth = useAuthStore((s) => s.setAuth);
+
+  const loginMutation = useMutation({
+    mutationFn: async (credentials: { email: string; password: string }) => {
+      const { data } = await api.post<LoginResponse>("/auth/login", credentials);
+      return data;
+    },
+    onSuccess: (data) => {
+      setAuth(data.user, data.accessToken);
+    },
+    onError: () => {
+      setError("Invalid email or password. Please try again.");
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    // Demo mode - accept any credentials, set fake admin user
-    setTimeout(() => {
-      setAuth(
-        {
-          id: "demo-user-001",
-          email: email || "admin@axontms.com",
-          firstName: "Demo",
-          lastName: "User",
-          role: "ADMIN",
-        },
-        "demo-access-token"
-      );
-    }, 300);
+    setError("");
+    loginMutation.mutate({ email, password });
   };
 
   return (
@@ -36,6 +40,12 @@ export function LoginPage() {
         <div className="bg-white border border-gray-200 rounded-xl p-8">
           <h2 className="text-lg font-medium text-gray-900 mb-6">Sign in to your account</h2>
 
+          {error && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -45,6 +55,7 @@ export function LoginPage() {
                 id="email"
                 type="email"
                 autoComplete="email"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
@@ -60,6 +71,7 @@ export function LoginPage() {
                 id="password"
                 type="password"
                 autoComplete="current-password"
+                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
@@ -69,15 +81,11 @@ export function LoginPage() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loginMutation.isPending}
               className="w-full py-2.5 px-4 bg-brand-600 text-white text-sm font-medium rounded-lg hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {loginMutation.isPending ? "Signing in..." : "Sign in"}
             </button>
-
-            <p className="text-center text-xs text-gray-400 pt-2">
-              Demo mode - any credentials will work
-            </p>
           </form>
         </div>
 
