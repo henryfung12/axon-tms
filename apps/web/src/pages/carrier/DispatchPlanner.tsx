@@ -305,7 +305,7 @@ export function DispatchPlanner() {
   const nowPosition = nowHour * HOUR_WIDTH;
 
   return (
-    <div className="h-full flex flex-col -m-6">
+    <div className="h-full flex flex-col">
       {/* ── Header ────────────────────────────────────────────── */}
       <div className="bg-white border-b border-gray-200 px-6 py-3 flex-shrink-0">
         <div className="flex items-center justify-between mb-3">
