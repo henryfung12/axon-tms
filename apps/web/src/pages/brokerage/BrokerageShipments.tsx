@@ -485,7 +485,25 @@ export function BrokerageShipments() {
                 <span></span>
                 <h3 className="text-sm font-semibold text-gray-800">Alerts</h3>
               </div>
-              <p className="text-xs text-gray-400">No alerts for this shipment.</p>
+              {(() => { let alerts: any[] = []; try { alerts = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || '[]'); } catch { alerts = []; } if (alerts.length === 0) { return {(() => {
+                  let alerts: any[] = [];
+                  try { alerts = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || "[]"); } catch { alerts = []; }
+                  if (alerts.length === 0) return <p className="text-xs text-gray-400">No alerts for this shipment.</p>;
+                  const sevDot: Record<string, string> = { INFO: "bg-blue-500", WARNING: "bg-yellow-500", CRITICAL: "bg-red-500" };
+                  const sevLabel: Record<string, string> = { INFO: "Info", WARNING: "Warning", CRITICAL: "Critical" };
+                  return (<div className="space-y-2">
+                    {alerts.slice(0, 5).map((a: any) => (
+                      <div key={a.id} className="flex items-start gap-2 py-1">
+                        <span className={`inline-block w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0 ${sevDot[a.severity]}`} />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs font-medium text-gray-800">{sevLabel[a.severity]}</p>
+                          <p className="text-xs text-gray-600 truncate">{a.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                    {alerts.length > 5 && <button onClick={() => setDetailTab("notes")} className="text-xs text-blue-600 hover:underline mt-1">View all {alerts.length} alerts</button>}
+                  </div>);
+                })()}; } const sevDot: Record<string, string> = { INFO: 'bg-blue-500', WARNING: 'bg-yellow-500', CRITICAL: 'bg-red-500' }; const sevLabel: Record<string, string> = { INFO: 'Info', WARNING: 'Warning', CRITICAL: 'Critical' }; return (<div className="space-y-2">{alerts.slice(0, 5).map((a: any) => (<div key={a.id} className="flex items-start gap-2 py-1"><span className={`inline-block w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0 ${sevDot[a.severity]}`} /><div className="flex-1 min-w-0"><p className="text-xs font-medium text-gray-800">{sevLabel[a.severity]}</p><p className="text-xs text-gray-600 truncate">{a.text}</p></div></div>))}{alerts.length > 5 && (<button onClick={() => setDetailTab('notes')} className="text-xs text-blue-600 hover:underline mt-1">View all {alerts.length} alerts</button>)}</div>); })()}
             </div>
           </div>
         </div>
@@ -680,8 +698,60 @@ export function BrokerageShipments() {
           );
         })()}
 
+        {detailTab === 'alerts' && (() => {
+          let alerts: any[] = [];
+          try { alerts = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || "[]"); } catch { alerts = []; }
+          const sevStyle: Record<string, { bg: string; border: string; label: string; dot: string }> = {
+            INFO: { bg: "bg-blue-50", border: "border-blue-200", label: "Info", dot: "bg-blue-500" },
+            WARNING: { bg: "bg-yellow-50", border: "border-yellow-200", label: "Warning", dot: "bg-yellow-500" },
+            CRITICAL: { bg: "bg-red-50", border: "border-red-200", label: "Critical", dot: "bg-red-500" },
+          };
+          const fmtDT = (d: string) => new Date(d).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" });
+          const counts = {
+            INFO: alerts.filter((a: any) => a.severity === "INFO").length,
+            WARNING: alerts.filter((a: any) => a.severity === "WARNING").length,
+            CRITICAL: alerts.filter((a: any) => a.severity === "CRITICAL").length,
+          };
+          return (
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold text-gray-800">Alerts ({alerts.length})</h3>
+                <div className="flex items-center gap-3 text-xs">
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500" /> {counts.CRITICAL} Critical</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500" /> {counts.WARNING} Warning</span>
+                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-blue-500" /> {counts.INFO} Info</span>
+                </div>
+              </div>
+              {alerts.length === 0 ? (
+                <div className="bg-white border border-dashed border-gray-200 rounded-lg p-12 text-center">
+                  <p className="text-sm text-gray-500 font-medium">No alerts for this shipment</p>
+                  <p className="text-xs text-gray-400 mt-1">Alerts are auto-populated from notes and exceptions. Add one from the <button onClick={() => setDetailTab("notes")} className="text-blue-600 hover:underline">Notes & Exceptions tab</button>.</p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {alerts.map((a: any) => {
+                    const s = sevStyle[a.severity] || sevStyle.INFO;
+                    return (
+                      <div key={a.id} className={`${s.bg} border ${s.border} rounded-lg p-3`}>
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <div className="flex items-center gap-2">
+                            <span className={`inline-block w-2 h-2 rounded-full ${s.dot}`} />
+                            <span className="text-xs font-semibold text-gray-800">{s.label}</span>
+                            <span className="text-xs text-gray-400">by {a.author}</span>
+                          </div>
+                          <span className="text-xs text-gray-400">{fmtDT(a.createdAt)}</span>
+                        </div>
+                        <p className="text-xs text-gray-700 whitespace-pre-wrap">{a.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })()}
         {/* Other tabs placeholder */}
-        {!['activity', 'documents', 'notes'].includes(detailTab) && (
+        {!['activity', 'documents', 'notes', 'alerts'].includes(detailTab) && (
           <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
             <div className="text-2xl mb-2"></div>
             <p className="text-sm font-medium text-gray-600">{detailTab.charAt(0).toUpperCase() + detailTab.slice(1)}</p>
