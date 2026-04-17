@@ -295,7 +295,7 @@ export function BrokerageReports() {
 
           {/* Print button */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 12 }}>
-            <button onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 13, color: '#374151', background: 'white', border: '1px solid #d1d5db', borderRadius: 8, cursor: 'pointer' }}>ðŸ–¨ Print</button>
+            <button onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 13, color: '#374151', background: 'white', border: '1px solid #d1d5db', borderRadius: 8, cursor: 'pointer' }}>Print</button>
           </div>
         </>
       )}
@@ -385,7 +385,7 @@ export function BrokerageReports() {
       {/* ─ Placeholder for other report types ─ */}
       {!['profitability_by_month', 'profitability_by_customer', 'profitability_by_lane'].includes(reportType) && (
         <div style={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: 10, padding: 40, textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>ðŸ“Š</div>
+          <div style={{ fontSize: 32, marginBottom: 12 }}></div>
           <div style={{ fontSize: 16, fontWeight: 600, color: '#6b7280' }}>{reportLabel}</div>
           <p style={{ fontSize: 13, color: '#9ca3af', marginTop: 8 }}>Select date range and click "Create Report" to generate</p>
         </div>

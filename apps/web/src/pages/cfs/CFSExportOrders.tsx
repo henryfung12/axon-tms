@@ -115,8 +115,8 @@ export function CFSExportOrders() {
         <h2 className="text-lg font-semibold text-gray-900">Export Orders — Terminal Delivery</h2>
         <div className="flex gap-2">
           <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search MAWB, airline, consignee..." className="w-64 border border-gray-300 rounded-lg px-3 py-1.5 text-sm" />
-          <button onClick={() => setShowKSP(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ”’ KSP Management</button>
-          <button onClick={() => { setShowUploadZone(true); setParsedMAWB(null); }} className="px-4 py-1.5 text-sm font-semibold text-orange-700 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100">ðŸ“„ Upload MAWB</button>
+          <button onClick={() => setShowKSP(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">KSP Management</button>
+          <button onClick={() => { setShowUploadZone(true); setParsedMAWB(null); }} className="px-4 py-1.5 text-sm font-semibold text-orange-700 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100">Upload MAWB</button>
           <button className="px-4 py-1.5 text-sm font-semibold text-white bg-orange-600 rounded-lg hover:bg-orange-700">+ New Export</button>
         </div>
       </div>
@@ -191,7 +191,7 @@ export function CFSExportOrders() {
                   className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-colors ${dragOver ? 'border-orange-500 bg-orange-50' : 'border-gray-300 hover:border-orange-400 hover:bg-orange-50'}`}
                   onClick={handleMAWBUpload}
                 >
-                  <p className="text-4xl mb-3">âœˆï¸</p>
+                  <p className="text-4xl mb-3">ˆï¸</p>
                   <p className="text-lg font-semibold text-gray-800">Drop Air Waybill (MAWB) file here or click to browse</p>
                   <p className="text-sm text-gray-500 mt-2">PDF, TIF, JPG, or scanned image — we'll auto-extract all fields</p>
                   <div className="flex items-center justify-center gap-4 mt-4">
@@ -339,7 +339,7 @@ export function CFSExportOrders() {
             <span className="text-xs text-orange-200">{selectedOrders.reduce((s, o) => s + o.pieces, 0)} total pieces · {selectedOrders.map(o => o.departureAirport).filter((v, i, a) => a.indexOf(v) === i).join(', ')}</span>
           </div>
           <div className="flex gap-2">
-            <button onClick={() => setShowAssignModal(true)} className="px-4 py-1.5 text-sm font-semibold bg-white text-orange-700 rounded-lg hover:bg-orange-50">ðŸš› Assign Driver & Truck</button>
+            <button onClick={() => setShowAssignModal(true)} className="px-4 py-1.5 text-sm font-semibold bg-white text-orange-700 rounded-lg hover:bg-orange-50">Assign Driver & Truck</button>
             <button onClick={() => setSelectedIds(new Set())} className="px-3 py-1.5 text-sm text-orange-200 hover:text-white">Clear</button>
           </div>
         </div>
@@ -414,12 +414,12 @@ export function CFSExportOrders() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Truck / Equipment Type *</label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { type: 'Sprinter Van', icon: 'ðŸš', desc: 'Up to 3,500 lbs' },
-                    { type: '24ft Box Truck', icon: 'ðŸš›', desc: 'Up to 10,000 lbs' },
-                    { type: '26ft Box Truck', icon: 'ðŸš›', desc: 'Up to 12,000 lbs' },
-                    { type: '53\' Dry Van', icon: 'ðŸ“¦', desc: 'Up to 44,000 lbs' },
-                    { type: 'Reefer Truck', icon: 'â„ï¸', desc: 'Temp controlled' },
-                    { type: 'Flatbed', icon: 'ðŸ›»', desc: 'Oversize cargo' },
+                    { type: 'Sprinter Van', icon: '', desc: 'Up to 3,500 lbs' },
+                    { type: '24ft Box Truck', icon: '', desc: 'Up to 10,000 lbs' },
+                    { type: '26ft Box Truck', icon: '', desc: 'Up to 12,000 lbs' },
+                    { type: '53\' Dry Van', icon: '', desc: 'Up to 44,000 lbs' },
+                    { type: 'Reefer Truck', icon: 'ï¸', desc: 'Temp controlled' },
+                    { type: 'Flatbed', icon: '', desc: 'Oversize cargo' },
                   ].map(t => (
                     <label key={t.type} className="flex items-center gap-2 p-2.5 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                       <input type="radio" name="export_truck_type" className="text-orange-600" />
@@ -499,7 +499,7 @@ export function CFSExportOrders() {
       {showKSP && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowKSP(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ”’ Known Shipper Program (KSP) / TSA CCSP</h2><p className="text-xs text-gray-400 mt-0.5">TSA Certified Cargo Screening Program compliance management</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Known Shipper Program (KSP) / TSA CCSP</h2><p className="text-xs text-gray-400 mt-0.5">TSA Certified Cargo Screening Program compliance management</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-3 gap-3">
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3"><p className="text-xs text-gray-400">KSP Approved</p><p className="text-xl font-bold text-green-600">12</p></div>

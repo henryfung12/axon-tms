@@ -118,8 +118,8 @@ export function CFSBilling() {
         <div><h2 className="text-lg font-semibold text-gray-900">Unified Billing</h2><p className="text-xs text-gray-400 mt-0.5">All jobs across Carrier, Brokerage & CFS — linked via CargoWise organization codes</p></div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 border border-green-200 rounded-lg"><div className="w-2 h-2 rounded-full bg-green-500" /><span className="text-xs font-medium text-green-800">CargoWise Linked</span></div>
-          <button onClick={() => setShowCreditMemo(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“ Credit Memo</button>
-          <button onClick={() => setShowInvoicePDF(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“„ Invoice PDF</button>
+          <button onClick={() => setShowCreditMemo(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Credit Memo</button>
+          <button onClick={() => setShowInvoicePDF(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Invoice PDF</button>
           <button className="px-4 py-1.5 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">+ Generate Invoice</button>
         </div>
       </div>
@@ -428,7 +428,7 @@ export function CFSBilling() {
       {showCreditMemo && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowCreditMemo(false)}>
           <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“ Create Credit Memo / Adjustment</h2></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Create Credit Memo / Adjustment</h2></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Type</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>Credit Memo</option><option>Debit Memo</option><option>Rate Adjustment</option><option>Billing Correction</option></select></div>
@@ -450,7 +450,7 @@ export function CFSBilling() {
       {showInvoicePDF && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowInvoicePDF(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“„ Invoice PDF — Preview & Send</h2></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Invoice PDF — Preview & Send</h2></div>
             <div className="px-6 py-4">
               <div className="border border-gray-300 rounded-lg p-8 bg-white" style={{ fontFamily: 'serif' }}>
                 <div className="flex justify-between items-start mb-6">
@@ -468,7 +468,7 @@ export function CFSBilling() {
             </div>
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
               <button onClick={() => setShowInvoicePDF(false)} className="px-4 py-2 text-sm text-gray-600">Close</button>
-              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">⬇ Download PDF</button><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">ðŸ–¨ Print</button><button className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">ðŸ“§ Email to Client</button></div>
+              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">⬇ Download PDF</button><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">Print</button><button className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">Email to Client</button></div>
             </div>
           </div>
         </div>

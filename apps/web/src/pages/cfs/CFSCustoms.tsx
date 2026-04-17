@@ -45,12 +45,12 @@ const CUSTOMS_BADGE: Record<string, { label: string; color: string }> = {
   LIQUIDATED: { label: 'Liquidated', color: 'bg-gray-100 text-gray-700' },
 };
 const HOLD_BADGE: Record<string, { label: string; color: string; icon: string }> = {
-  FDA: { label: 'FDA', color: 'bg-red-600 text-white', icon: 'ðŸ¥' },
-  USDA: { label: 'USDA', color: 'bg-green-700 text-white', icon: 'ðŸŒ¿' },
-  CBP: { label: 'CBP', color: 'bg-blue-800 text-white', icon: 'ðŸ›‚' },
-  TSA: { label: 'TSA', color: 'bg-gray-800 text-white', icon: 'ðŸ”’' },
-  EPA: { label: 'EPA', color: 'bg-teal-700 text-white', icon: 'â™»ï¸' },
-  FCC: { label: 'FCC', color: 'bg-indigo-700 text-white', icon: 'ðŸ“¡' },
+  FDA: { label: 'FDA', color: 'bg-red-600 text-white', icon: '' },
+  USDA: { label: 'USDA', color: 'bg-green-700 text-white', icon: '' },
+  CBP: { label: 'CBP', color: 'bg-blue-800 text-white', icon: '' },
+  TSA: { label: 'TSA', color: 'bg-gray-800 text-white', icon: '' },
+  EPA: { label: 'EPA', color: 'bg-teal-700 text-white', icon: 'ï¸' },
+  FCC: { label: 'FCC', color: 'bg-indigo-700 text-white', icon: '' },
   MULTI: { label: 'Multi-Agency', color: 'bg-purple-700 text-white', icon: '⚠' },
 };
 const ISF_BADGE: Record<string, string> = { NOT_REQUIRED: 'bg-gray-100 text-gray-500', NOT_FILED: 'bg-red-100 text-red-800', FILED: 'bg-blue-100 text-blue-800', ACCEPTED: 'bg-green-100 text-green-800', REJECTED: 'bg-red-100 text-red-800', AMENDED: 'bg-yellow-100 text-yellow-800' };
@@ -92,9 +92,9 @@ export function CFSCustoms() {
       <div className="flex items-center justify-between mb-4">
         <div><h2 className="text-lg font-semibold text-gray-900">Customs & Compliance</h2><p className="text-xs text-gray-400 mt-0.5">ISF filing, customs clearance, agency holds, and exam management</p></div>
         <div className="flex gap-2">
-          <button onClick={() => setShowDutyCalc(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ’° Duty Calculator</button>
-          <button onClick={() => setShowACE(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ› ACE Portal</button>
-          <button className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“‹ File ISF</button>
+          <button onClick={() => setShowDutyCalc(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Duty Calculator</button>
+          <button onClick={() => setShowACE(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ACE Portal</button>
+          <button className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">File ISF</button>
           <button className="px-4 py-1.5 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">+ New Entry</button>
         </div>
       </div>
@@ -167,7 +167,7 @@ export function CFSCustoms() {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
                   {e.holdType && <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${HOLD_BADGE[e.holdType].color}`}>{HOLD_BADGE[e.holdType].icon} {HOLD_BADGE[e.holdType].label} HOLD</span>}
-                  {e.examType && <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white">ðŸ” {e.examType} EXAM</span>}
+                  {e.examType && <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white">{e.examType} EXAM</span>}
                   <span className="text-sm font-bold text-gray-900">{e.orderNumber}</span>
                   <span className="font-mono text-xs text-gray-400">{e.mawb}</span>
                 </div>
@@ -181,7 +181,7 @@ export function CFSCustoms() {
                 <span>{e.pieces} pcs · {e.weight}</span>
                 <span>Assigned: <strong className="text-gray-700">{e.assignedTo}</strong></span>
               </div>
-              <div className="flex gap-1.5 mt-2">{e.documents.filter(d => d.status === 'PENDING').map((d, i) => <span key={i} className="px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">ðŸ“„ {d.type} — Pending</span>)}</div>
+              <div className="flex gap-1.5 mt-2">{e.documents.filter(d => d.status === 'PENDING').map((d, i) => <span key={i} className="px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">{d.type} — Pending</span>)}</div>
             </div>
           ))}
         </div>
@@ -230,7 +230,7 @@ export function CFSCustoms() {
               {MOCK_ENTRIES.filter(e => e.examType).map(e => (
                 <div key={e.id} className="bg-white border border-orange-200 rounded-lg p-4 border-l-4 border-l-orange-500">
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3"><span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white">ðŸ” {e.examType} Examination</span><span className="text-sm font-bold">{e.orderNumber}</span></div>
+                    <div className="flex items-center gap-3"><span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-orange-600 text-white">{e.examType} Examination</span><span className="text-sm font-bold">{e.orderNumber}</span></div>
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${CUSTOMS_BADGE[e.customsStatus].color}`}>{CUSTOMS_BADGE[e.customsStatus].label}</span>
                   </div>
                   <div className="grid grid-cols-4 gap-3 mb-3">
@@ -283,7 +283,7 @@ export function CFSCustoms() {
               {/* Timeline */}
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Timeline</h4><div className="bg-gray-50 rounded-lg p-3 space-y-1 text-xs"><div className="flex justify-between"><span className="text-gray-500">Filed</span><span>{fmtDate(selectedEntry.filedDate)}</span></div><div className="flex justify-between"><span className="text-gray-500">Released</span><span className={selectedEntry.releasedDate ? 'text-green-600 font-medium' : ''}>{fmtDate(selectedEntry.releasedDate)}</span></div></div></div>
               {/* Documents */}
-              <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Documents ({selectedEntry.documents.length})</h4><div className="space-y-1">{selectedEntry.documents.map((d, i) => (<div key={i} className="flex items-center justify-between py-1.5 px-2.5 bg-gray-50 rounded-lg"><div className="flex items-center gap-2"><span className={`text-xs font-bold ${d.status === 'APPROVED' ? 'text-green-600' : d.status === 'PENDING' ? 'text-yellow-600' : 'text-gray-400'}`}>{d.status === 'APPROVED' ? '✓' : d.status === 'PENDING' ? 'âŸ³' : '○'}</span><div><p className="text-xs font-medium text-blue-600">{d.name}</p><p className="text-xs text-gray-400">{d.type}</p></div></div><span className={`text-xs font-medium ${d.status === 'APPROVED' ? 'text-green-600' : 'text-yellow-600'}`}>{d.status}</span></div>))}</div></div>
+              <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Documents ({selectedEntry.documents.length})</h4><div className="space-y-1">{selectedEntry.documents.map((d, i) => (<div key={i} className="flex items-center justify-between py-1.5 px-2.5 bg-gray-50 rounded-lg"><div className="flex items-center gap-2"><span className={`text-xs font-bold ${d.status === 'APPROVED' ? 'text-green-600' : d.status === 'PENDING' ? 'text-yellow-600' : 'text-gray-400'}`}>{d.status === 'APPROVED' ? '✓' : d.status === 'PENDING' ? '' : '○'}</span><div><p className="text-xs font-medium text-blue-600">{d.name}</p><p className="text-xs text-gray-400">{d.type}</p></div></div><span className={`text-xs font-medium ${d.status === 'APPROVED' ? 'text-green-600' : 'text-yellow-600'}`}>{d.status}</span></div>))}</div></div>
               {selectedEntry.notes && <div><h4 className="text-xs font-semibold text-gray-700 mb-1">Notes</h4><p className="text-xs text-gray-600 bg-yellow-50 border border-yellow-200 rounded-lg p-3">{selectedEntry.notes}</p></div>}
             </div>
             <div className="px-5 py-4 border-t border-gray-200 flex gap-2">
@@ -300,7 +300,7 @@ export function CFSCustoms() {
       {showDutyCalc && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowDutyCalc(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ’° Duty & Tax Calculator — HTS Lookup</h2><p className="text-xs text-gray-400 mt-0.5">Calculate estimated duties, taxes, and fees based on HTS classification</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Duty & Tax Calculator — HTS Lookup</h2><p className="text-xs text-gray-400 mt-0.5">Calculate estimated duties, taxes, and fees based on HTS classification</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-3 gap-3">
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">HTS Code *</label><input type="text" defaultValue="8542.31.0000" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-mono" /><p className="text-xs text-gray-400 mt-0.5">Electronic integrated circuits</p></div>
@@ -326,7 +326,7 @@ export function CFSCustoms() {
       {showACE && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowACE(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ› ACE — Automated Commercial Environment</h2><p className="text-xs text-gray-400 mt-0.5">Direct filing integration with CBP ACE portal</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ACE — Automated Commercial Environment</h2><p className="text-xs text-gray-400 mt-0.5">Direct filing integration with CBP ACE portal</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-green-500" /><div><p className="text-sm font-bold text-green-800">ACE Connected — AXON TMS Transport Corp</p><p className="text-xs text-green-600">Filer Code: AGS · Bond Type: Continuous · Last Sync: 2 min ago</p></div></div>
 

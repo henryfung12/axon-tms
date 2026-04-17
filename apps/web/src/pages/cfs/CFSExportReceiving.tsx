@@ -230,8 +230,8 @@ const CONDITION_BADGE: Record<CargoCondition, { label: string; color: string; ic
   GOOD: { label: 'Good', color: 'bg-green-100 text-green-800', icon: '✓' },
   MINOR_DAMAGE: { label: 'Minor Damage', color: 'bg-yellow-100 text-yellow-800', icon: '⚠' },
   MAJOR_DAMAGE: { label: 'Major Damage', color: 'bg-red-100 text-red-800', icon: '⚠' },
-  WET: { label: 'Wet/Water', color: 'bg-blue-100 text-blue-800', icon: 'ðŸ’§' },
-  REPACKED: { label: 'Repacked', color: 'bg-purple-100 text-purple-800', icon: 'ðŸ“¦' },
+  WET: { label: 'Wet/Water', color: 'bg-blue-100 text-blue-800', icon: '' },
+  REPACKED: { label: 'Repacked', color: 'bg-purple-100 text-purple-800', icon: '' },
 };
 
 const fmtWeight = (kg: number) => `${kg.toLocaleString()} kg`;
@@ -290,7 +290,7 @@ export function CFSExportReceiving() {
         </div>
         <div className="flex gap-2">
           <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search RCV#, client, AWB, reference..." className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm w-80" />
-          <button className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“Š Client Reports</button>
+          <button className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Client Reports</button>
           <button onClick={() => setShowReceiveModal(true)} className="px-4 py-1.5 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">+ Receive Cargo</button>
         </div>
       </div>
@@ -366,7 +366,7 @@ export function CFSExportReceiving() {
                       {p.linkedAWB ? (
                         <div><div className="font-mono text-violet-600 text-xs">{p.linkedAWB}</div><div className="text-xs text-gray-500">{p.linkedExportOrder} → {p.destinationAirport}</div></div>
                       ) : (
-                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowLinkAWBModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">ðŸ”— Link AWB</button>
+                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowLinkAWBModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">Link AWB</button>
                       )}
                     </td>
                     <td className="px-3 py-2.5"><span className="font-mono text-gray-700 text-xs">{p.storageLocation}</span><div className="text-xs text-gray-400">Day {p.storageDays}</div></td>
@@ -375,7 +375,7 @@ export function CFSExportReceiving() {
                       {p.reportSentToClient ? (
                         <span className="text-xs text-green-600 font-medium">✓ Sent</span>
                       ) : (
-                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowSendReportModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">ðŸ“§ Send</button>
+                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowSendReportModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">Send</button>
                       )}
                     </td>
                   </tr>
@@ -404,8 +404,8 @@ export function CFSExportReceiving() {
                   <div className="text-right"><p className="text-lg font-bold text-gray-900">{p.pieces} pcs</p><p className="text-xs text-gray-500">{p.weight} kg · {p.cbm.toFixed(2)} CBM</p></div>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => { setPieceToLink(p); setShowLinkAWBModal(true); }} className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">ðŸ”— Link to AWB & Export Order</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“§ Email Client for AWB</button>
+                  <button onClick={() => { setPieceToLink(p); setShowLinkAWBModal(true); }} className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">Link to AWB & Export Order</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Email Client for AWB</button>
                   <button onClick={() => setSelectedPiece(p)} className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:underline">View Details</button>
                 </div>
               </div>
@@ -431,7 +431,7 @@ export function CFSExportReceiving() {
                   </div>
                   <div className="flex gap-2">
                     <button className="px-3 py-1.5 text-xs font-medium text-white bg-violet-600 rounded-lg">View Photos</button>
-                    <button onClick={() => { setPieceToLink(p); setShowSendReportModal(true); }} className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg">ðŸ“§ Send Report</button>
+                    <button onClick={() => { setPieceToLink(p); setShowSendReportModal(true); }} className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg">Send Report</button>
                   </div>
                 </div>
               </div>
@@ -478,7 +478,7 @@ export function CFSExportReceiving() {
       {showReceiveModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowReceiveModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“¦ Receive New Export Cargo — On-Hand Entry</h2><p className="text-xs text-gray-400 mt-0.5">Record incoming export cargo, weight, dimensions, and condition</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Receive New Export Cargo — On-Hand Entry</h2><p className="text-xs text-gray-400 mt-0.5">Record incoming export cargo, weight, dimensions, and condition</p></div>
             <div className="px-6 py-4 space-y-4">
               {/* Client Info */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
@@ -550,11 +550,11 @@ export function CFSExportReceiving() {
 
               {/* Photos */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-2">ðŸ“· Photo Documentation (Required)</label>
+                <label className="block text-xs font-medium text-gray-700 mb-2">Photo Documentation (Required)</label>
                 <div className="grid grid-cols-4 gap-2">
                   {['Overview', 'Labels/Markings', 'Piece Count', 'Damage (if any)'].map((label, i) => (
                     <div key={i} className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-violet-400 hover:bg-violet-50">
-                      <p className="text-2xl mb-1">ðŸ“·</p>
+                      <p className="text-2xl mb-1"></p>
                       <p className="text-xs text-gray-600 font-medium">{label}</p>
                       <p className="text-xs text-gray-400 mt-0.5">Tap to capture</p>
                     </div>
@@ -598,7 +598,7 @@ export function CFSExportReceiving() {
       {showLinkAWBModal && pieceToLink && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowLinkAWBModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ”— Link {pieceToLink.receivingNumber} to AWB</h2><p className="text-xs text-gray-400 mt-0.5">{pieceToLink.clientName} · {pieceToLink.pieces} pcs · {pieceToLink.weight} kg</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Link {pieceToLink.receivingNumber} to AWB</h2><p className="text-xs text-gray-400 mt-0.5">{pieceToLink.clientName} · {pieceToLink.pieces} pcs · {pieceToLink.weight} kg</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <label className="block text-xs font-medium text-gray-700 mb-1">Search Existing AWBs for {pieceToLink.clientName}</label>
@@ -638,7 +638,7 @@ export function CFSExportReceiving() {
       {showSendReportModal && pieceToLink && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowSendReportModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“§ Send On-Hand Report to Client</h2></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Send On-Hand Report to Client</h2></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Recipient Email *</label><input type="email" defaultValue={`ops@${pieceToLink.clientCwOrg.toLowerCase()}.com`} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
@@ -680,22 +680,22 @@ export function CFSExportReceiving() {
                     <p><span className="text-gray-500">Export Order:</span> <strong>{pieceToLink.linkedExportOrder}</strong> → {pieceToLink.destinationAirport}</p>
                   </div>
                 )}
-                <p className="text-xs text-gray-500">ðŸ“· {pieceToLink.photos.length} photos attached · Storage location: {pieceToLink.storageLocation}</p>
+                <p className="text-xs text-gray-500">{pieceToLink.photos.length} photos attached · Storage location: {pieceToLink.storageLocation}</p>
               </div>
 
               {/* Attachments */}
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-2">Attachments</label>
                 <div className="space-y-1">
-                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">ðŸ“„ On-Hand Report PDF</span></label>
-                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">ðŸ“· {pieceToLink.photos.length} cargo photos</span></label>
+                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">On-Hand Report PDF</span></label>
+                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">{pieceToLink.photos.length} cargo photos</span></label>
                   {pieceToLink.condition !== 'GOOD' && <label className="flex items-center gap-2 py-1.5 px-2 bg-yellow-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">⚠ Damage report with photos</span></label>}
                 </div>
               </div>
             </div>
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
               <button onClick={() => setShowSendReportModal(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button>
-              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">ðŸ“„ Download PDF</button><button onClick={() => setShowSendReportModal(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">ðŸ“§ Send to Client</button></div>
+              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">Download PDF</button><button onClick={() => setShowSendReportModal(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">Send to Client</button></div>
             </div>
           </div>
         </div>
@@ -750,16 +750,16 @@ export function CFSExportReceiving() {
                 </div>
               )}
 
-              <div><h3 className="text-xs font-bold text-gray-700 mb-2">ðŸ“· Photos ({selectedPiece.photos.length})</h3>
+              <div><h3 className="text-xs font-bold text-gray-700 mb-2">Photos ({selectedPiece.photos.length})</h3>
                 <div className="grid grid-cols-3 gap-2">
                   {selectedPiece.photos.map((photo, i) => (
-                    <div key={i} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-400 border border-gray-200">ðŸ“·<br/>{photo.substring(0, 15)}</div>
+                    <div key={i} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-400 border border-gray-200"><br/>{photo.substring(0, 15)}</div>
                   ))}
                 </div>
               </div>
 
               {selectedPiece.linkedAWB ? (
-                <div><h3 className="text-xs font-bold text-gray-700 mb-2">ðŸ”— Linked Export</h3>
+                <div><h3 className="text-xs font-bold text-gray-700 mb-2">Linked Export</h3>
                   <div className="bg-violet-50 border border-violet-200 rounded-lg p-3 text-xs space-y-1">
                     <div className="flex justify-between"><span className="text-gray-500">AWB</span><span className="font-mono text-violet-600 font-bold">{selectedPiece.linkedAWB}</span></div>
                     <div className="flex justify-between"><span className="text-gray-500">Export Order</span><span className="text-gray-900 font-medium">{selectedPiece.linkedExportOrder}</span></div>
@@ -767,7 +767,7 @@ export function CFSExportReceiving() {
                   </div>
                 </div>
               ) : (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3"><p className="text-xs font-bold text-yellow-800 mb-2">⚠ Not linked to AWB yet</p><button onClick={() => { setPieceToLink(selectedPiece); setShowLinkAWBModal(true); }} className="w-full px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">ðŸ”— Link to AWB Now</button></div>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3"><p className="text-xs font-bold text-yellow-800 mb-2">⚠ Not linked to AWB yet</p><button onClick={() => { setPieceToLink(selectedPiece); setShowLinkAWBModal(true); }} className="w-full px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">Link to AWB Now</button></div>
               )}
 
               <div><h3 className="text-xs font-bold text-gray-700 mb-2">Storage & Handling</h3>
@@ -786,9 +786,9 @@ export function CFSExportReceiving() {
               )}
 
               <div className="flex gap-2 pt-3 border-t border-gray-200">
-                <button onClick={() => { setPieceToLink(selectedPiece); setShowSendReportModal(true); }} className="flex-1 px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-lg hover:bg-violet-700">ðŸ“§ Send Report</button>
+                <button onClick={() => { setPieceToLink(selectedPiece); setShowSendReportModal(true); }} className="flex-1 px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-lg hover:bg-violet-700">Send Report</button>
                 <button className="flex-1 px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">✎ Edit</button>
-                <button className="px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">ðŸ–¨</button>
+                <button className="px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50"></button>
               </div>
             </div>
           </div>

@@ -80,15 +80,15 @@ const MOCK_DOCS: Record<string, ShipmentDoc[]> = {
 };
 
 const DOC_LABELS: Record<string, { label: string; icon: string; color: string }> = {
-  BOL: { label: 'Bill of Lading', icon: 'ðŸ“‹', color: 'bg-blue-100 text-blue-800' },
+  BOL: { label: 'Bill of Lading', icon: '', color: 'bg-blue-100 text-blue-800' },
   POD: { label: 'Proof of Delivery', icon: '✅', color: 'bg-green-100 text-green-800' },
-  RATE_CON: { label: 'Rate Confirmation', icon: 'ðŸ’°', color: 'bg-purple-100 text-purple-800' },
-  CARRIER_PACKET: { label: 'Carrier Packet', icon: 'ðŸ“¦', color: 'bg-orange-100 text-orange-800' },
-  INVOICE: { label: 'Invoice', icon: 'ðŸ§¾', color: 'bg-yellow-100 text-yellow-800' },
-  LUMPER: { label: 'Lumper Receipt', icon: 'ðŸ·', color: 'bg-teal-100 text-teal-800' },
+  RATE_CON: { label: 'Rate Confirmation', icon: '', color: 'bg-purple-100 text-purple-800' },
+  CARRIER_PACKET: { label: 'Carrier Packet', icon: '', color: 'bg-orange-100 text-orange-800' },
+  INVOICE: { label: 'Invoice', icon: '', color: 'bg-yellow-100 text-yellow-800' },
+  LUMPER: { label: 'Lumper Receipt', icon: '', color: 'bg-teal-100 text-teal-800' },
   SCALE_TICKET: { label: 'Scale Ticket', icon: '⚖', color: 'bg-gray-100 text-gray-700' },
-  INSURANCE_CERT: { label: 'Insurance Cert', icon: 'ðŸ›¡', color: 'bg-indigo-100 text-indigo-800' },
-  OTHER: { label: 'Other', icon: 'ðŸ“Ž', color: 'bg-gray-100 text-gray-500' },
+  INSURANCE_CERT: { label: 'Insurance Cert', icon: '', color: 'bg-indigo-100 text-indigo-800' },
+  OTHER: { label: 'Other', icon: '', color: 'bg-gray-100 text-gray-500' },
 };
 const DOC_STATUS_BADGE: Record<string, string> = { RECEIVED: 'bg-blue-100 text-blue-800', APPROVED: 'bg-green-100 text-green-800', PENDING: 'bg-yellow-100 text-yellow-800', REJECTED: 'bg-red-100 text-red-800' };
 
@@ -208,7 +208,7 @@ export function BrokerageShipments() {
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <button onClick={() => setSelectedId(null)} className="text-xs text-blue-600 hover:underline">â† Return to List</button>
+            <button onClick={() => setSelectedId(null)} className="text-xs text-blue-600 hover:underline">Return to List</button>
             <h2 className="text-base font-semibold text-gray-900">Truckload: {selectedLoad.loadNumber}</h2>
           </div>
           <div className="flex gap-2">
@@ -271,7 +271,7 @@ export function BrokerageShipments() {
           <div className="col-span-3">
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2 text-xs text-gray-500">
-                <span>ðŸ¢</span> <span>End Customer</span>
+                <span></span> <span>End Customer</span>
               </div>
               <h3 className="text-base font-bold text-blue-600 mb-2">{selectedLoad.customer?.name?.toUpperCase()}</h3>
               <p className="text-xs text-gray-600">{selectedLoad.customer?.address || '—'}</p>
@@ -296,7 +296,7 @@ export function BrokerageShipments() {
           <div className="col-span-6 space-y-3">
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs text-gray-500">ðŸ“‹</span>
+                <span className="text-xs text-gray-500"></span>
                 <h3 className="text-sm font-semibold text-gray-800">Shipment References</h3>
               </div>
               <div className="grid grid-cols-3 gap-3 text-xs">
@@ -319,7 +319,7 @@ export function BrokerageShipments() {
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <span>ðŸ </span>
+                  <span></span>
                   <h3 className="text-sm font-semibold text-gray-800">First Pickup</h3>
                 </div>
                 <button className="text-xs text-blue-600 hover:underline">+ Add Stop</button>
@@ -347,7 +347,7 @@ export function BrokerageShipments() {
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <span>ðŸ </span>
+                  <span></span>
                   <h3 className="text-sm font-semibold text-gray-800">Last Drop</h3>
                 </div>
                 <button className="text-xs text-blue-600 hover:underline">+ Add Stop</button>
@@ -378,7 +378,7 @@ export function BrokerageShipments() {
               <div className="border border-gray-200 rounded-lg p-3 mb-3">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-400">ðŸš›</span>
+                    <span className="text-gray-400"></span>
                     <span className="text-sm font-semibold text-gray-700">Linehaul</span>
                     <span className="text-sm font-semibold text-blue-600">
                       {selectedLoad.carrier?.name?.toUpperCase() || 'UNASSIGNED'}
@@ -437,7 +437,7 @@ export function BrokerageShipments() {
                 {/* Pricing Knowledge Base */}
                 <div className="mt-3 pt-3 border-t border-gray-100">
                   <div className="grid grid-cols-4 gap-2 text-xs">
-                    <span className="text-gray-500 font-medium">ðŸ“Š Pricing</span>
+                    <span className="text-gray-500 font-medium">Pricing</span>
                     <span className="text-right text-gray-500 font-medium">Buy</span>
                     <span className="text-right text-gray-500 font-medium">Sell</span>
                     <span className="text-right text-gray-500 font-medium">Margin</span>
@@ -481,7 +481,7 @@ export function BrokerageShipments() {
           <div className="col-span-3">
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-3">
-                <span>ðŸ””</span>
+                <span></span>
                 <h3 className="text-sm font-semibold text-gray-800">Alerts</h3>
               </div>
               <p className="text-xs text-gray-400">No alerts for this shipment.</p>
@@ -502,7 +502,7 @@ export function BrokerageShipments() {
                   <span className="text-xs text-gray-400">{docs.length} file{docs.length !== 1 ? 's' : ''}</span>
                 </div>
                 <div className="flex gap-2">
-                  <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“¥ Download All</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Download All</button>
                   <button onClick={() => setShowDocUpload(true)} className="px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">+ Upload Document</button>
                 </div>
               </div>
@@ -561,7 +561,7 @@ export function BrokerageShipments() {
                 </div>
               ) : (
                 <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
-                  <div className="text-3xl mb-2">ðŸ“</div>
+                  <div className="text-3xl mb-2"></div>
                   <p className="text-sm text-gray-600 font-medium">No documents uploaded yet</p>
                   <p className="text-xs text-gray-400 mt-1">Upload BOL, POD, rate confirmation, or other documents</p>
                 </div>
@@ -575,7 +575,7 @@ export function BrokerageShipments() {
                     <div className="px-6 py-4 space-y-4">
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Document Type</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option value="">Select type...</option><option>Bill of Lading (BOL)</option><option>Proof of Delivery (POD)</option><option>Rate Confirmation</option><option>Carrier Packet</option><option>Invoice</option><option>Lumper Receipt</option><option>Scale Ticket</option><option>Insurance Certificate</option><option>Other</option></select></div>
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
-                        <div className="text-3xl mb-2">ðŸ“¤</div>
+                        <div className="text-3xl mb-2"></div>
                         <p className="text-sm font-medium text-gray-700">Drag & drop files here</p>
                         <p className="text-xs text-gray-400 mt-1">or click to browse — PDF, JPG, PNG up to 10 MB</p>
                       </div>
@@ -595,7 +595,7 @@ export function BrokerageShipments() {
         {/* Other tabs placeholder */}
         {!['activity', 'documents'].includes(detailTab) && (
           <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
-            <div className="text-2xl mb-2">ðŸ“‹</div>
+            <div className="text-2xl mb-2"></div>
             <p className="text-sm font-medium text-gray-600">{detailTab.charAt(0).toUpperCase() + detailTab.slice(1)}</p>
             <p className="text-xs text-gray-400 mt-1">Content for this tab</p>
           </div>
@@ -618,7 +618,7 @@ export function BrokerageShipments() {
                     {/* Left: Map Placeholder */}
                     <div className="w-1/2 bg-gray-100 relative flex items-center justify-center">
                       <div className="text-center">
-                        <div className="text-4xl mb-3">ðŸ—º</div>
+                        <div className="text-4xl mb-3"></div>
                         <p className="text-sm text-gray-500 font-medium">Map View</p>
                         <p className="text-xs text-gray-400 mt-1">Powered by Google Maps</p>
                         <p className="text-xs text-gray-400">Trucker Tools Integration</p>
@@ -654,7 +654,7 @@ export function BrokerageShipments() {
                         <table className="w-full text-xs">
                           <thead className="sticky top-0 bg-gray-50">
                             <tr className="border-b border-gray-200">
-                              <th className="text-left px-4 py-2.5 font-semibold text-gray-600">â± Your Time</th>
+                              <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Your Time</th>
                               <th className="text-left px-4 py-2.5 font-semibold text-gray-600">Location</th>
                             </tr>
                           </thead>
@@ -672,7 +672,7 @@ export function BrokerageShipments() {
                   </div>
                 ) : (
                   <div className="p-12 text-center">
-                    <div className="text-4xl mb-3">ðŸ“¡</div>
+                    <div className="text-4xl mb-3"></div>
                     <p className="text-sm font-medium text-gray-600">No tracking data available</p>
                     <p className="text-xs text-gray-400 mt-2">Tracking is initiated when the carrier confirms via Trucker Tools</p>
                     <button className="mt-4 px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700">Request Tracking</button>
@@ -722,7 +722,7 @@ export function BrokerageShipments() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="border border-gray-200 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-gray-700 mb-2">ðŸ  Origin Information</p>
+                  <p className="text-xs font-semibold text-gray-700 mb-2">Origin Information</p>
                   <div className="space-y-2">
                     <input value={form.pickupFacility} onChange={e => setF('pickupFacility', e.target.value)} placeholder="Company Name" className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs" />
                     <input value={form.pickupAddress} onChange={e => setF('pickupAddress', e.target.value)} placeholder="Street Address" className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs" />
@@ -735,7 +735,7 @@ export function BrokerageShipments() {
                   </div>
                 </div>
                 <div className="border border-gray-200 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-gray-700 mb-2">ðŸ  Destination Information</p>
+                  <p className="text-xs font-semibold text-gray-700 mb-2">Destination Information</p>
                   <div className="space-y-2">
                     <input value={form.deliveryFacility} onChange={e => setF('deliveryFacility', e.target.value)} placeholder="Company Name" className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs" />
                     <input value={form.deliveryAddress} onChange={e => setF('deliveryAddress', e.target.value)} placeholder="Street Address" className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs" />
@@ -889,7 +889,7 @@ export function BrokerageShipments() {
                     <td className="px-3 py-2 text-gray-700 uppercase">{delivery?.state || '—'}</td>
                     <td className="px-3 py-2">
                       {load.carrier
-                        ? <span className="text-blue-600">ðŸš› {load.carrier.name}</span>
+                        ? <span className="text-blue-600">{load.carrier.name}</span>
                         : <span className="text-gray-400">—</span>
                       }
                     </td>

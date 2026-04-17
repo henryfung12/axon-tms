@@ -193,7 +193,7 @@ export function CustomerPortal() {
         {/* ─ Shipment Detail ─ */}
         {screen === 'shipments' && selectedShipment && (
           <div>
-            <button onClick={() => setSelectedShipment(null)} style={{ fontSize: 13, color: '#2563eb', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 12 }}>â† Back to Shipments</button>
+            <button onClick={() => setSelectedShipment(null)} style={{ fontSize: 13, color: '#2563eb', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 12 }}>Back to Shipments</button>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
               <div>
                 {/* Status Bar */}
@@ -241,7 +241,7 @@ export function CustomerPortal() {
                         <p style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{selectedShipment.lastUpdate}</p>
                         <p style={{ fontSize: 11, color: '#6b7280' }}>via Trucker Tools</p>
                       </div>
-                      <div style={{ background: '#f3f4f6', borderRadius: 8, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#9ca3af', fontSize: 13 }}>ðŸ—º Map View</span></div>
+                      <div style={{ background: '#f3f4f6', borderRadius: 8, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#9ca3af', fontSize: 13 }}>Map View</span></div>
                     </div>
                   ) : (
                     <p style={{ fontSize: 13, color: '#9ca3af', textAlign: 'center', padding: 20 }}>Tracking available once shipment is picked up</p>
@@ -290,7 +290,7 @@ export function CustomerPortal() {
               </div>
             ) : trackingSearch ? (
               <div style={{ background: 'white', borderRadius: 10, padding: 32, textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <p style={{ fontSize: 32, marginBottom: 8 }}>ðŸ”</p>
+                <p style={{ fontSize: 32, marginBottom: 8 }}></p>
                 <p style={{ fontSize: 14, color: '#6b7280' }}>No shipment found for "{trackingSearch}"</p>
                 <p style={{ fontSize: 12, color: '#9ca3af', marginTop: 4 }}>Check the shipment number and try again</p>
               </div>

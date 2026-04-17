@@ -130,7 +130,7 @@ export function CarrierLoadDetail({ loadId, onBack }: Props) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="text-xs text-blue-600 hover:underline flex items-center gap-1">
-            â† Load board
+            Load board
           </button>
           <span className="text-gray-300">|</span>
           <h2 className="text-base font-semibold text-gray-900">

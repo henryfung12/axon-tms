@@ -174,7 +174,7 @@ function getCustomerProfitReport() {
 // ─ Report Configs ─
 const REPORTS: ReportConfig[] = [
   {
-    id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: 'ðŸ“¦',
+    id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: '',
     columns: [
       { key: 'loadNumber', header: 'Load #', width: 12 }, { key: 'status', header: 'Status', width: 12 }, { key: 'customer', header: 'Customer', width: 20 },
       { key: 'origin', header: 'Origin', width: 16 }, { key: 'destination', header: 'Destination', width: 16 }, { key: 'pickupDate', header: 'Pickup Date', width: 14 },
@@ -185,7 +185,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLoadReport(),
   },
   {
-    id: 'revenue', name: 'Revenue by Customer', description: 'Revenue breakdown per customer with avg rates and payment performance', category: 'FINANCIAL', icon: 'ðŸ’°',
+    id: 'revenue', name: 'Revenue by Customer', description: 'Revenue breakdown per customer with avg rates and payment performance', category: 'FINANCIAL', icon: '',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'totalRevenue', header: 'Total Revenue', width: 16 },
       { key: 'avgRatePerLoad', header: 'Avg Rate/Load', width: 14 }, { key: 'avgRatePerMile', header: 'Avg $/Mile', width: 12 }, { key: 'fuelSurcharge', header: 'Total Fuel SC', width: 14 },
@@ -195,7 +195,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getRevenueReport(),
   },
   {
-    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer — current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: 'ðŸ“Š',
+    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer — current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: '',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'current', header: 'Current', width: 12 }, { key: 'days1to30', header: '1-30 Days', width: 12 },
       { key: 'days31to60', header: '31-60 Days', width: 12 }, { key: 'days61to90', header: '61-90 Days', width: 12 }, { key: 'over90', header: '90+ Days', width: 12 },
@@ -204,7 +204,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getARAgingReport(),
   },
   {
-    id: 'drivers', name: 'Driver Performance', description: 'Driver stats — loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: 'ðŸ‘¤',
+    id: 'drivers', name: 'Driver Performance', description: 'Driver stats — loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: '',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'truckNumber', header: 'Truck', width: 10 }, { key: 'status', header: 'Status', width: 12 },
       { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 }, { key: 'revenue', header: 'Revenue', width: 12 },
@@ -215,7 +215,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getDriverReport(),
   },
   {
-    id: 'fleet', name: 'Fleet Summary', description: 'Vehicle status, mileage, service schedule, insurance, and monthly costs', category: 'FLEET', icon: 'ðŸš›',
+    id: 'fleet', name: 'Fleet Summary', description: 'Vehicle status, mileage, service schedule, insurance, and monthly costs', category: 'FLEET', icon: '',
     columns: [
       { key: 'unitNumber', header: 'Unit #', width: 10 }, { key: 'type', header: 'Type', width: 8 }, { key: 'make', header: 'Make', width: 14 },
       { key: 'model', header: 'Model', width: 12 }, { key: 'year', header: 'Year', width: 8 }, { key: 'mileage', header: 'Mileage', width: 12 },
@@ -226,7 +226,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getFleetReport(),
   },
   {
-    id: 'maintenance', name: 'Maintenance Log', description: 'All work orders with vendor, cost, labor, and completion status', category: 'FLEET', icon: 'ðŸ”§',
+    id: 'maintenance', name: 'Maintenance Log', description: 'All work orders with vendor, cost, labor, and completion status', category: 'FLEET', icon: '',
     columns: [
       { key: 'woNumber', header: 'WO #', width: 16 }, { key: 'unit', header: 'Unit', width: 10 }, { key: 'type', header: 'Type', width: 14 },
       { key: 'priority', header: 'Priority', width: 12 }, { key: 'status', header: 'Status', width: 14 }, { key: 'vendor', header: 'Vendor', width: 22 },
@@ -236,7 +236,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getMaintenanceReport(),
   },
   {
-    id: 'incidents', name: 'Safety Incidents', description: 'Incident log with severity, preventability, and cost impact', category: 'SAFETY', icon: 'ðŸ›¡',
+    id: 'incidents', name: 'Safety Incidents', description: 'Incident log with severity, preventability, and cost impact', category: 'SAFETY', icon: '',
     columns: [
       { key: 'incidentNumber', header: 'Incident #', width: 16 }, { key: 'type', header: 'Type', width: 18 }, { key: 'severity', header: 'Severity', width: 10 },
       { key: 'date', header: 'Date', width: 14 }, { key: 'driver', header: 'Driver', width: 18 }, { key: 'unit', header: 'Unit', width: 10 },
@@ -246,7 +246,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getIncidentReport(),
   },
   {
-    id: 'profit-loss', name: 'Profit & Loss Statement', description: 'Monthly P&L with revenue, direct costs, gross profit, operating expenses, and net income', category: 'FINANCIAL', icon: 'ðŸ“ˆ',
+    id: 'profit-loss', name: 'Profit & Loss Statement', description: 'Monthly P&L with revenue, direct costs, gross profit, operating expenses, and net income', category: 'FINANCIAL', icon: 'ˆ',
     columns: [
       { key: 'category', header: 'Category', width: 18 }, { key: 'lineItem', header: 'Line Item', width: 30 },
       { key: 'month1', header: 'Feb 2026', width: 14 }, { key: 'month2', header: 'Mar 2026', width: 14 }, { key: 'month3', header: 'Apr 2026', width: 14 },
@@ -255,7 +255,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getProfitLossReport(),
   },
   {
-    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability — revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: 'ðŸ›£',
+    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability — revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: '',
     columns: [
       { key: 'lane', header: 'Lane', width: 30 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -265,7 +265,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLaneProfitReport(),
   },
   {
-    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability — revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: 'ðŸ’µ',
+    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability — revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: '',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -275,7 +275,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getDriverProfitReport(),
   },
   {
-    id: 'profit-customer', name: 'Profitability by Customer', description: 'Customer-level profitability with margin analysis and payment performance', category: 'FINANCIAL', icon: 'ðŸ¢',
+    id: 'profit-customer', name: 'Profitability by Customer', description: 'Customer-level profitability with margin analysis and payment performance', category: 'FINANCIAL', icon: '',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'revenue', header: 'Revenue', width: 14 },
       { key: 'costs', header: 'Costs', width: 12 }, { key: 'profit', header: 'Profit', width: 12 }, { key: 'margin', header: 'Margin %', width: 10 },
@@ -435,7 +435,7 @@ export function ReportsPage() {
                 onClick={() => setSelectedReport(null)}
                 className="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200"
               >
-                â† Back to Reports
+                Back to Reports
               </button>
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">

@@ -242,7 +242,7 @@ export function BrokerageClaims() {
               </div>
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Description *</label><textarea className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" rows={3} placeholder="Describe the incident, damage, or loss..." /></div>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-red-400 hover:bg-red-50">
-                <p className="text-sm text-gray-600">ðŸ“¸ Upload photos, BOL, rejection notices, or other evidence</p>
+                <p className="text-sm text-gray-600">Upload photos, BOL, rejection notices, or other evidence</p>
                 <p className="text-xs text-gray-400 mt-1">PDF, JPG, PNG, ZIP — up to 25 MB</p>
               </div>
               <div className="grid grid-cols-2 gap-4">

@@ -245,7 +245,7 @@ export function AssetsPage() {
               placeholder="Search unit, make, VIN, driver..."
               className="w-64 border border-gray-300 rounded-lg px-3 py-1.5 text-xs pl-8 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
-            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs">ðŸ”</span>
+            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></span>
           </div>
           <button
             onClick={() => setShowAddModal(true)}
@@ -267,7 +267,7 @@ export function AssetsPage() {
           onDrop={e => { e.preventDefault(); e.currentTarget.classList.remove('border-blue-400', 'bg-blue-50'); setShowCOI(true); }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-lg group-hover:bg-blue-200 transition-colors">ðŸ“‹</div>
+            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-lg group-hover:bg-blue-200 transition-colors"></div>
             <div>
               <p className="text-sm font-semibold text-gray-800">Company COI</p>
               <p className="text-xs text-gray-400">ACORD 25 Certificate</p>
@@ -288,7 +288,7 @@ export function AssetsPage() {
           onDrop={e => { e.preventDefault(); e.currentTarget.classList.remove('border-green-400', 'bg-green-50'); setShowInsCards(true); }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-lg group-hover:bg-green-200 transition-colors">ðŸªª</div>
+            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-lg group-hover:bg-green-200 transition-colors"></div>
             <div>
               <p className="text-sm font-semibold text-gray-800">Insurance Cards</p>
               <p className="text-xs text-gray-400">VIN auto-match</p>
@@ -309,7 +309,7 @@ export function AssetsPage() {
           onDrop={e => { e.preventDefault(); e.currentTarget.classList.remove('border-amber-400', 'bg-amber-50'); setShowRegCards(true); }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-lg group-hover:bg-amber-200 transition-colors">ðŸ“„</div>
+            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-lg group-hover:bg-amber-200 transition-colors"></div>
             <div>
               <p className="text-sm font-semibold text-gray-800">Registration Cards</p>
               <p className="text-xs text-gray-400">VIN auto-match</p>
@@ -327,7 +327,7 @@ export function AssetsPage() {
           className="group bg-white border-2 border-dashed border-gray-200 rounded-xl p-4 cursor-pointer hover:border-violet-400 hover:bg-violet-50 transition-all"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center text-lg group-hover:bg-violet-200 transition-colors">ðŸ”§</div>
+            <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center text-lg group-hover:bg-violet-200 transition-colors"></div>
             <div>
               <p className="text-sm font-semibold text-gray-800">PM Schedule</p>
               <p className="text-xs text-gray-400">Maintenance & inspections</p>
@@ -802,7 +802,7 @@ export function AssetsPage() {
                   <div className="space-y-1.5">{(selectedAsset.insuranceCards || []).map(c => (
                     <div key={c.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
                       <div><p className="text-xs font-medium text-gray-800">{c.state} — {c.carrier}</p><p className="text-xs text-gray-400">Policy: {c.policyNumber} · {c.effectiveDate} → {c.expirationDate}</p></div>
-                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Insurance Card (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ“± Send</button></div>
+                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Insurance Card (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">Send</button></div>
                     </div>
                   ))}</div>
                 </div>
@@ -815,7 +815,7 @@ export function AssetsPage() {
                   <div className="space-y-1.5">{(selectedAsset.registrationCards || []).map(c => (
                     <div key={c.id} className={`flex items-center justify-between py-2 px-3 rounded-lg ${new Date(c.expiry) < new Date('2026-04-14') ? 'bg-red-50' : 'bg-gray-50'}`}>
                       <div><p className="text-xs font-medium text-gray-800">{c.state} — {c.plateNumber}</p><p className="text-xs text-gray-400">VIN: {c.vin} · {c.year} {c.make}</p><p className="text-xs text-gray-400">Expires: <span className={new Date(c.expiry) < new Date('2026-04-14') ? 'text-red-600 font-bold' : ''}>{new Date(c.expiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span></p></div>
-                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Registration (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ“± Send</button></div>
+                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Registration (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">Send</button></div>
                     </div>
                   ))}</div>
                 </div>
@@ -972,7 +972,7 @@ export function AssetsPage() {
                 <h4 className="text-xs font-semibold text-green-800">Insurance Card</h4>
                 <p className="text-xs text-green-600">Upload the state insurance ID card — VIN will be auto-verified</p>
                 <div className="border-2 border-dashed border-green-300 rounded-lg p-4 text-center cursor-pointer hover:border-green-500 hover:bg-green-100">
-                  <p className="text-lg mb-1">ðŸªª</p>
+                  <p className="text-lg mb-1"></p>
                   <p className="text-xs font-medium text-gray-700">Drop insurance card or click to browse</p>
                   <p className="text-xs text-gray-400">PDF, JPG, PNG — will auto-scan VIN and link to this asset</p>
                 </div>
@@ -983,7 +983,7 @@ export function AssetsPage() {
                 <h4 className="text-xs font-semibold text-amber-800">Registration Card</h4>
                 <p className="text-xs text-amber-600">Upload the state vehicle registration — VIN will be auto-verified and matched</p>
                 <div className="border-2 border-dashed border-amber-300 rounded-lg p-4 text-center cursor-pointer hover:border-amber-500 hover:bg-amber-100">
-                  <p className="text-lg mb-1">ðŸ“„</p>
+                  <p className="text-lg mb-1"></p>
                   <p className="text-xs font-medium text-gray-700">Drop registration card or click to browse</p>
                   <p className="text-xs text-gray-400">Plate #, VIN, expiry, and weight will be auto-extracted</p>
                 </div>
@@ -1137,7 +1137,7 @@ export function AssetsPage() {
               </tbody></table>
 
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50" onClick={() => {}}>
-                <p className="text-2xl mb-2">ðŸ“‹</p>
+                <p className="text-2xl mb-2"></p>
                 <p className="text-sm font-semibold text-gray-700">Upload Updated COI</p>
                 <p className="text-xs text-gray-400 mt-1">Drop ACORD 25 PDF here or click to browse</p>
               </div>
@@ -1162,7 +1162,7 @@ export function AssetsPage() {
                 {insCardParsing ? (
                   <div><div className="inline-block w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-3" /><p className="text-sm font-semibold text-gray-700">Scanning insurance cards...</p><p className="text-xs text-gray-400">Extracting VIN#, policy, dates, and matching to fleet</p></div>
                 ) : (
-                  <div><p className="text-2xl mb-2">ðŸªª</p><p className="text-sm font-semibold text-gray-700">Upload Insurance Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG — supports batch upload of multiple cards</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
+                  <div><p className="text-2xl mb-2"></p><p className="text-sm font-semibold text-gray-700">Upload Insurance Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG — supports batch upload of multiple cards</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
                 )}
               </div>
 
@@ -1223,7 +1223,7 @@ export function AssetsPage() {
                 {regCardParsing ? (
                   <div><div className="inline-block w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-3" /><p className="text-sm font-semibold text-gray-700">Scanning registration cards...</p><p className="text-xs text-gray-400">Extracting VIN#, plate, expiry, and matching to fleet</p></div>
                 ) : (
-                  <div><p className="text-2xl mb-2">ðŸ“„</p><p className="text-sm font-semibold text-gray-700">Upload Registration Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG — supports batch upload</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
+                  <div><p className="text-2xl mb-2"></p><p className="text-sm font-semibold text-gray-700">Upload Registration Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG — supports batch upload</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
                 )}
               </div>
 
@@ -1263,7 +1263,7 @@ export function AssetsPage() {
                         {c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}
                         {new Date(c.expiry) < new Date('2026-04-14') && <span className="px-1.5 py-0.5 bg-red-100 text-red-800 text-xs font-bold rounded">EXPIRED</span>}
                         <button className="text-xs text-blue-600">View</button>
-                        <button onClick={() => { setSendDocType(`Registration (${c.state} — ${t.unitNumber})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ“± Send</button>
+                        <button onClick={() => { setSendDocType(`Registration (${c.state} — ${t.unitNumber})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">Send</button>
                       </div>
                     </div>
                   )))}
@@ -1287,14 +1287,14 @@ export function AssetsPage() {
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Select Driver</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">{selectedAsset?.assignedDriverName ? <option>{selectedAsset.assignedDriverName} (assigned)</option> : <option>Select driver...</option>}<option>Marcus Johnson</option><option>Sarah Chen</option><option>Robert Brown</option><option>James Williams</option><option>David Kim</option><option>Emily Taylor</option><option>Lisa Nguyen</option></select></div>
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Delivery Method</label>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-3 p-3 border border-violet-200 bg-violet-50 rounded-lg cursor-pointer"><input type="radio" name="sendMethod" defaultChecked className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ“± Push to Driver Mobile App</span><p className="text-xs text-gray-400">Document will appear in driver's Documents tab</p></div></label>
-                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ“§ Email</span><p className="text-xs text-gray-400">Send as PDF attachment to driver's email</p></div></label>
-                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ’¬ SMS / Text</span><p className="text-xs text-gray-400">Send download link via text message</p></div></label>
+                  <label className="flex items-center gap-3 p-3 border border-violet-200 bg-violet-50 rounded-lg cursor-pointer"><input type="radio" name="sendMethod" defaultChecked className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">Push to Driver Mobile App</span><p className="text-xs text-gray-400">Document will appear in driver's Documents tab</p></div></label>
+                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">Email</span><p className="text-xs text-gray-400">Send as PDF attachment to driver's email</p></div></label>
+                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">SMS / Text</span><p className="text-xs text-gray-400">Send download link via text message</p></div></label>
                 </div>
               </div>
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Message (optional)</label><textarea className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" rows={2} placeholder="Keep this in your truck at all times..." /></div>
             </div>
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200"><button onClick={() => setShowSendToDriver(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button><button onClick={() => setShowSendToDriver(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700">ðŸ“± Send to Driver</button></div>
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200"><button onClick={() => setShowSendToDriver(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button><button onClick={() => setShowSendToDriver(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700">Send to Driver</button></div>
           </div>
         </div>
       )}

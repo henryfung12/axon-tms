@@ -40,19 +40,19 @@ const MOCK_API_KEYS: APIKey[] = [
 ];
 
 const MOCK_INTEGRATIONS: Integration[] = [
-  { id: 'int1', name: 'CargoWise One', provider: 'WiseTech Global', type: 'Accounting / TMS', status: 'CONNECTED', lastSync: '2026-04-13T12:30:00Z', icon: 'ðŸ“Š', description: 'Push loads, sync invoices, and manage AR/AP through CargoWise.' },
-  { id: 'int2', name: 'Motive (KeepTruckin)', provider: 'Motive Technologies', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:32:00Z', icon: 'ðŸŸ ', description: 'GPS tracking, HOS, IFTA mileage, fuel cards, dashcam events.' },
-  { id: 'int3', name: 'Samsara', provider: 'Samsara Inc.', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:28:00Z', icon: 'ðŸŸ¢', description: 'GPS tracking, HOS, IFTA mileage, AI dashcam, temperature monitoring.' },
-  { id: 'int4', name: 'QuickBooks Online', provider: 'Intuit', type: 'Accounting', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ’°', description: 'Sync invoices, payments, and chart of accounts.' },
-  { id: 'int5', name: 'TriumphPay', provider: 'Triumph Financial', type: 'Factoring / Payments', status: 'CONNECTED', lastSync: '2026-04-14T10:00:00Z', icon: 'ðŸ¦', description: 'Automated carrier payment network — audit, match, and pay carriers.' },
-  { id: 'int5b', name: 'RTS Financial', provider: 'RTS Financial Services', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-14T09:30:00Z', icon: 'ðŸ’³', description: 'Quick-pay factoring — same-day carrier funding with 3% fee.' },
-  { id: 'int5c', name: 'OTR Solutions', provider: 'OTR Solutions Inc.', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-13T14:00:00Z', icon: 'ðŸš›', description: 'Carrier factoring, fuel card programs, and quick-pay services.' },
-  { id: 'int6', name: 'DAT Load Board', provider: 'DAT Solutions', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T11:00:00Z', icon: 'ðŸ“‹', description: 'Post loads, search trucks, rate intelligence.' },
-  { id: 'int7', name: 'Truckstop.com', provider: 'Truckstop', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T10:30:00Z', icon: 'ðŸš›', description: 'Load posting, rate analytics, carrier onboarding.' },
-  { id: 'int8', name: 'RMIS (Registry Monitoring)', provider: 'RMIS', type: 'Carrier Compliance', status: 'CONNECTED', lastSync: '2026-04-12T06:00:00Z', icon: 'ðŸ›¡', description: 'Automated carrier monitoring — insurance, authority, safety scores.' },
-  { id: 'int9', name: 'I-PASS', provider: 'Illinois Tollway', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T06:00:00Z', icon: 'ðŸ›£', description: 'Illinois Tollway transponder integration — automatic toll tracking, transaction history, and account balance sync.' },
-  { id: 'int10', name: 'E-ZPass New York', provider: 'NY Thruway Authority', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T05:30:00Z', icon: 'ðŸ›£', description: 'E-ZPass NY toll transactions — automated toll tracking across NY, NJ, PA, and 18 other E-ZPass states.' },
-  { id: 'int11', name: 'Bestpass', provider: 'Bestpass / Fleetworthy', type: 'Tolls', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ·', description: 'Consolidated toll management — single account for all toll roads, bridges, and tunnels nationwide.' },
+  { id: 'int1', name: 'CargoWise One', provider: 'WiseTech Global', type: 'Accounting / TMS', status: 'CONNECTED', lastSync: '2026-04-13T12:30:00Z', icon: '', description: 'Push loads, sync invoices, and manage AR/AP through CargoWise.' },
+  { id: 'int2', name: 'Motive (KeepTruckin)', provider: 'Motive Technologies', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:32:00Z', icon: '', description: 'GPS tracking, HOS, IFTA mileage, fuel cards, dashcam events.' },
+  { id: 'int3', name: 'Samsara', provider: 'Samsara Inc.', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:28:00Z', icon: '', description: 'GPS tracking, HOS, IFTA mileage, AI dashcam, temperature monitoring.' },
+  { id: 'int4', name: 'QuickBooks Online', provider: 'Intuit', type: 'Accounting', status: 'DISCONNECTED', lastSync: '', icon: '', description: 'Sync invoices, payments, and chart of accounts.' },
+  { id: 'int5', name: 'TriumphPay', provider: 'Triumph Financial', type: 'Factoring / Payments', status: 'CONNECTED', lastSync: '2026-04-14T10:00:00Z', icon: '', description: 'Automated carrier payment network — audit, match, and pay carriers.' },
+  { id: 'int5b', name: 'RTS Financial', provider: 'RTS Financial Services', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-14T09:30:00Z', icon: '', description: 'Quick-pay factoring — same-day carrier funding with 3% fee.' },
+  { id: 'int5c', name: 'OTR Solutions', provider: 'OTR Solutions Inc.', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-13T14:00:00Z', icon: '', description: 'Carrier factoring, fuel card programs, and quick-pay services.' },
+  { id: 'int6', name: 'DAT Load Board', provider: 'DAT Solutions', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T11:00:00Z', icon: '', description: 'Post loads, search trucks, rate intelligence.' },
+  { id: 'int7', name: 'Truckstop.com', provider: 'Truckstop', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T10:30:00Z', icon: '', description: 'Load posting, rate analytics, carrier onboarding.' },
+  { id: 'int8', name: 'RMIS (Registry Monitoring)', provider: 'RMIS', type: 'Carrier Compliance', status: 'CONNECTED', lastSync: '2026-04-12T06:00:00Z', icon: '', description: 'Automated carrier monitoring — insurance, authority, safety scores.' },
+  { id: 'int9', name: 'I-PASS', provider: 'Illinois Tollway', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T06:00:00Z', icon: '', description: 'Illinois Tollway transponder integration — automatic toll tracking, transaction history, and account balance sync.' },
+  { id: 'int10', name: 'E-ZPass New York', provider: 'NY Thruway Authority', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T05:30:00Z', icon: '', description: 'E-ZPass NY toll transactions — automated toll tracking across NY, NJ, PA, and 18 other E-ZPass states.' },
+  { id: 'int11', name: 'Bestpass', provider: 'Bestpass / Fleetworthy', type: 'Tolls', status: 'DISCONNECTED', lastSync: '', icon: '', description: 'Consolidated toll management — single account for all toll roads, bridges, and tunnels nationwide.' },
 ];
 
 // ─ Helpers ─
@@ -90,15 +90,15 @@ export function SettingsPage() {
   const [newKeyName, setNewKeyName] = useState('');
 
   const NAV: { id: SettingsSection; label: string; icon: string }[] = [
-    { id: 'company', label: 'Company Profile', icon: 'ðŸ¢' },
-    { id: 'users', label: 'Users & Access', icon: 'ðŸ‘¥' },
-    { id: 'integrations', label: 'Integrations', icon: 'ðŸ”—' },
-    { id: 'edi', label: 'EDI & Visibility', icon: 'ðŸ“¡' },
+    { id: 'company', label: 'Company Profile', icon: '' },
+    { id: 'users', label: 'Users & Access', icon: '' },
+    { id: 'integrations', label: 'Integrations', icon: '' },
+    { id: 'edi', label: 'EDI & Visibility', icon: '' },
     { id: 'email', label: 'Email', icon: '✉' },
-    { id: 'api', label: 'API Access', icon: 'ðŸ”‘' },
-    { id: 'developer_portal', label: 'Developer Portal', icon: 'ðŸ“–' },
-    { id: 'billing', label: 'Billing', icon: 'ðŸ’³' },
-    { id: 'profile', label: 'My Profile', icon: 'ðŸ‘¤' },
+    { id: 'api', label: 'API Access', icon: '' },
+    { id: 'developer_portal', label: 'Developer Portal', icon: '' },
+    { id: 'billing', label: 'Billing', icon: '' },
+    { id: 'profile', label: 'My Profile', icon: '' },
   ];
 
   return (
@@ -216,10 +216,10 @@ export function SettingsPage() {
                             <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">All</span>
                           ) : (
                             <>
-                              {['OPERATIONS', 'MANAGER'].includes(u.role) && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">ðŸš›</span>}
-                              {u.role !== 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800">ðŸ“¦</span>}
+                              {['OPERATIONS', 'MANAGER'].includes(u.role) && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"></span>}
+                              {u.role !== 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800"></span>}
                               {u.cfsLocation && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-violet-100 text-violet-800">✈</span>}
-                              {u.role === 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">ðŸ’°</span>}
+                              {u.role === 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800"></span>}
                             </>
                           )}
                         </div>
@@ -271,7 +271,7 @@ export function SettingsPage() {
                   { page: 'API Access / EDI', perms: ['full', 'edit', 'none', 'none', 'none'] },
                   { page: 'Audit Trail', perms: ['full', 'full', 'view', 'none', 'view'] },
                 ].map((row, i) => {
-                  const permIcon: Record<string, { icon: string; color: string }> = { full: { icon: '✓', color: 'text-green-600 bg-green-50' }, edit: { icon: '✎', color: 'text-blue-600 bg-blue-50' }, view: { icon: 'ðŸ‘', color: 'text-gray-500 bg-gray-50' }, none: { icon: '—', color: 'text-gray-300 bg-white' } };
+                  const permIcon: Record<string, { icon: string; color: string }> = { full: { icon: '✓', color: 'text-green-600 bg-green-50' }, edit: { icon: '✎', color: 'text-blue-600 bg-blue-50' }, view: { icon: '', color: 'text-gray-500 bg-gray-50' }, none: { icon: '—', color: 'text-gray-300 bg-white' } };
                   return (
                     <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
                       <td className="px-3 py-2 font-medium text-gray-800">{row.page}</td>
@@ -283,7 +283,7 @@ export function SettingsPage() {
               <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex gap-4 text-xs text-gray-400">
                 <span><span className="text-green-600 font-bold">✓</span> Full Access</span>
                 <span><span className="text-blue-600 font-bold">✎</span> Edit</span>
-                <span><span className="text-gray-500">ðŸ‘</span> View Only</span>
+                <span><span className="text-gray-500"></span> View Only</span>
                 <span><span className="text-gray-300">—</span> No Access</span>
               </div>
             </div>
@@ -570,8 +570,8 @@ export function SettingsPage() {
                           {daysLeft !== null && daysLeft > 0 && <span className={`text-xs ${daysLeft <= 30 ? 'text-red-600 font-medium' : 'text-gray-400'}`}>Expires in {daysLeft} days</span>}
                           {daysLeft === null && k.status === 'ACTIVE' && <span className="text-xs text-gray-400">No expiration date</span>}
                           {k.status === 'ACTIVE' && <>
-                            <button className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Edit"><span className="text-xs">âœ</span></button>
-                            <button className="p-1.5 text-gray-400 hover:text-red-600 rounded hover:bg-red-50" title="Delete"><span className="text-xs">ðŸ—‘</span></button>
+                            <button className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Edit"><span className="text-xs"></span></button>
+                            <button className="p-1.5 text-gray-400 hover:text-red-600 rounded hover:bg-red-50" title="Delete"><span className="text-xs"></span></button>
                           </>}
                         </div>
                       </div>
@@ -581,15 +581,15 @@ export function SettingsPage() {
                           <label className="block text-xs font-medium text-gray-500 mb-1">Client ID</label>
                           <div className="flex items-center gap-2">
                             <input type="text" readOnly value={k.clientId} className="flex-1 bg-gray-50 border border-gray-200 rounded px-3 py-1.5 text-xs font-mono text-gray-700" onClick={e => (e.target as HTMLInputElement).select()} />
-                            <button onClick={() => navigator.clipboard.writeText(k.clientId)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy">ðŸ“‹</button>
+                            <button onClick={() => navigator.clipboard.writeText(k.clientId)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy"></button>
                           </div>
                         </div>
                         <div>
                           <label className="block text-xs font-medium text-gray-500 mb-1">Client Secret</label>
                           <div className="flex items-center gap-2">
                             <input type={visibleSecrets[k.id] ? 'text' : 'password'} readOnly value={k.clientSecret} className="flex-1 bg-gray-50 border border-gray-200 rounded px-3 py-1.5 text-xs font-mono text-gray-700" />
-                            <button onClick={() => setVisibleSecrets(p => ({ ...p, [k.id]: !p[k.id] }))} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Show/Hide">ðŸ‘</button>
-                            <button onClick={() => navigator.clipboard.writeText(k.clientSecret)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy">ðŸ“‹</button>
+                            <button onClick={() => setVisibleSecrets(p => ({ ...p, [k.id]: !p[k.id] }))} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Show/Hide"></button>
+                            <button onClick={() => navigator.clipboard.writeText(k.clientSecret)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy"></button>
                           </div>
                         </div>
                       </div>
@@ -636,12 +636,12 @@ export function SettingsPage() {
             {/* Quick Links */}
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-white border border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-sm transition-all cursor-pointer">
-                <div className="text-2xl mb-2">ðŸ </div>
+                <div className="text-2xl mb-2"></div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Getting Started</h4>
                 <p className="text-xs text-gray-500">Authentication, base URL, versioning, and your first API call.</p>
               </div>
               <div className="bg-white border border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-sm transition-all cursor-pointer">
-                <div className="text-2xl mb-2">â“</div>
+                <div className="text-2xl mb-2"></div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Stay Informed</h4>
                 <p className="text-xs text-gray-500">Changelog, release notes, and API status updates.</p>
               </div>
@@ -759,7 +759,7 @@ Content-Type: application/json`}
               <hr />
               <h4 className="text-xs font-semibold text-gray-700">Payment Method</h4>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div className="flex items-center gap-3"><span className="text-lg">ðŸ’³</span><div><p className="text-xs font-medium text-gray-800">Visa ending in 4242</p><p className="text-xs text-gray-400">Expires 12/2028</p></div></div>
+                <div className="flex items-center gap-3"><span className="text-lg"></span><div><p className="text-xs font-medium text-gray-800">Visa ending in 4242</p><p className="text-xs text-gray-400">Expires 12/2028</p></div></div>
                 <button className="px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100">Update</button>
               </div>
               <hr />
@@ -844,10 +844,10 @@ Content-Type: application/json`}
                 <p className="text-xs text-blue-600 mb-3">Select which modules this user can access. Full Admin / Admin have access to all modules by default.</p>
                 <div className="grid grid-cols-4 gap-2">
                   {[
-                    { id: 'carrier', label: 'Carrier', icon: 'ðŸš›', color: 'border-blue-300 bg-blue-100 text-blue-800' },
-                    { id: 'brokerage', label: 'Brokerage', icon: 'ðŸ“¦', color: 'border-emerald-300 bg-emerald-100 text-emerald-800' },
+                    { id: 'carrier', label: 'Carrier', icon: '', color: 'border-blue-300 bg-blue-100 text-blue-800' },
+                    { id: 'brokerage', label: 'Brokerage', icon: '', color: 'border-emerald-300 bg-emerald-100 text-emerald-800' },
                     { id: 'cfs', label: 'CFS / Air', icon: '✈', color: 'border-violet-300 bg-violet-100 text-violet-800' },
-                    { id: 'billing', label: 'Billing', icon: 'ðŸ’°', color: 'border-amber-300 bg-amber-100 text-amber-800' },
+                    { id: 'billing', label: 'Billing', icon: '', color: 'border-amber-300 bg-amber-100 text-amber-800' },
                   ].map(mod => (
                     <label key={mod.id} className={`flex flex-col items-center p-3 rounded-lg border-2 cursor-pointer transition-all hover:shadow-sm ${mod.color}`}>
                       <input type="checkbox" defaultChecked={['FULL_ADMIN', 'ADMIN'].includes(inviteRole)} className="mb-1.5 rounded" />

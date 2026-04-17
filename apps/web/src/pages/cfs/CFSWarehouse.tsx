@@ -102,8 +102,8 @@ export function CFSWarehouse() {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold text-gray-900">CFS Warehouse</h2>
         <div className="flex items-center gap-2">
-          <button onClick={() => setShowBarcodePrint(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ· Print Labels</button>
-          <button onClick={() => setShowPhotoCapture(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“· Photo Capture</button>
+          <button onClick={() => setShowBarcodePrint(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Print Labels</button>
+          <button onClick={() => setShowPhotoCapture(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">Photo Capture</button>
           <button className="px-4 py-1.5 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">+ Receive Cargo</button>
         </div>
       </div>
@@ -153,7 +153,7 @@ export function CFSWarehouse() {
                   <td className="px-3 py-2.5 font-mono text-gray-700">{i.location}</td>
                   <td className="px-3 py-2.5 font-mono text-blue-600 font-medium">{i.hawb}</td>
                   <td className="px-3 py-2.5 text-gray-700">{i.consignee}<br/><span className="text-gray-400">{i.consigneeCity}, {i.consigneeState}</span></td>
-                  <td className="px-3 py-2.5 text-gray-600">{i.commodity}{i.hazmat && <span className="ml-1 text-red-600 font-bold">☣</span>}{i.highValue && <span className="ml-1 text-yellow-600 font-bold">ðŸ’Ž</span>}</td>
+                  <td className="px-3 py-2.5 text-gray-600">{i.commodity}{i.hazmat && <span className="ml-1 text-red-600 font-bold">☣</span>}{i.highValue && <span className="ml-1 text-yellow-600 font-bold"></span>}</td>
                   <td className="px-3 py-2.5 text-right font-medium text-gray-900">{i.pieces}</td>
                   <td className="px-3 py-2.5 text-right text-gray-600">{i.weight}</td>
                   <td className="px-3 py-2.5 text-gray-600">{i.temperature}</td>
@@ -214,7 +214,7 @@ export function CFSWarehouse() {
               <div key={job.id} className={`bg-white border rounded-lg p-4 ${job.status === 'IN_PROGRESS' ? 'border-violet-200' : 'border-gray-200'}`}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold text-white ${job.type === 'CONSOLIDATION' ? 'bg-orange-500' : 'bg-purple-500'}`}>{job.type === 'CONSOLIDATION' ? 'ðŸ“¥ CONSOL' : 'ðŸ“¤ DECON'}</span>
+                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold text-white ${job.type === 'CONSOLIDATION' ? 'bg-orange-500' : 'bg-purple-500'}`}>{job.type === 'CONSOLIDATION' ? 'CONSOL' : 'DECON'}</span>
                     <div><p className="text-sm font-bold text-gray-900">{job.jobNumber}</p><p className="text-xs text-gray-400">MAWB: {job.mawb}</p></div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -258,7 +258,7 @@ export function CFSWarehouse() {
                       <div key={i.id} className="flex items-center justify-between py-1.5 px-3 bg-gray-50 rounded text-xs">
                         <div className="flex items-center gap-3">
                           <span className="font-mono text-gray-500">{i.location}</span>
-                          <span className="font-medium text-gray-800">{i.commodity}{i.hazmat && ' ☣'}{i.highValue && ' ðŸ’Ž'}</span>
+                          <span className="font-medium text-gray-800">{i.commodity}{i.hazmat && ' ☣'}{i.highValue && ' '}</span>
                         </div>
                         <div className="flex items-center gap-3">
                           <span className="text-gray-600">{i.pieces} pcs · {i.weight}</span>
@@ -281,7 +281,7 @@ export function CFSWarehouse() {
           <div className="relative w-[460px] bg-white shadow-2xl h-full overflow-y-auto border-l border-gray-200" onClick={e => e.stopPropagation()}>
             <div className="px-5 py-4 border-b border-gray-200">
               <div className="flex items-center justify-between mb-2"><div className="flex items-center gap-2"><span className={`inline-block w-7 h-7 rounded text-white text-xs font-bold text-center leading-7 ${ZONE_COLORS[selectedItem.zone]}`}>{selectedItem.zone}</span><h3 className="text-sm font-bold text-gray-900">{selectedItem.location}</h3></div><button onClick={() => setSelectedItem(null)} className="text-gray-400 hover:text-gray-600 text-lg">×</button></div>
-              <div className="flex items-center gap-2"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGE[selectedItem.status].color}`}>{STATUS_BADGE[selectedItem.status].label}</span>{selectedItem.hazmat && <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">☣ Hazmat</span>}{selectedItem.highValue && <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">ðŸ’Ž High Value</span>}</div>
+              <div className="flex items-center gap-2"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGE[selectedItem.status].color}`}>{STATUS_BADGE[selectedItem.status].label}</span>{selectedItem.hazmat && <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">☣ Hazmat</span>}{selectedItem.highValue && <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">High Value</span>}</div>
             </div>
             <div className="px-5 py-4 space-y-4">
               <div className="bg-violet-50 rounded-lg p-3"><div className="flex justify-between text-xs"><span className="text-gray-500">HAWB</span><span className="font-mono font-bold text-gray-900">{selectedItem.hawb}</span></div><div className="flex justify-between text-xs mt-1"><span className="text-gray-500">MAWB</span><span className="font-mono font-bold text-gray-900">{selectedItem.mawb}</span></div><div className="flex justify-between text-xs mt-1"><span className="text-gray-500">Order</span><span className="font-mono font-bold text-blue-600">{selectedItem.orderNumber}</span></div></div>
@@ -304,7 +304,7 @@ export function CFSWarehouse() {
       {showBarcodePrint && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowBarcodePrint(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ· Print Barcode Labels</h2><p className="text-xs text-gray-400 mt-0.5">Generate labels for pieces — scan-to-confirm receiving</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Print Barcode Labels</h2><p className="text-xs text-gray-400 mt-0.5">Generate labels for pieces — scan-to-confirm receiving</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div><label className="block text-sm font-medium text-gray-700 mb-1">Select Cargo</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">{MOCK_INVENTORY.map(i => <option key={i.id} value={i.id}>{i.mawb} — {i.consignee} ({i.pieces} pcs)</option>)}</select></div>
@@ -331,7 +331,7 @@ export function CFSWarehouse() {
             </div>
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
               <button onClick={() => setShowBarcodePrint(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button>
-              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">Preview PDF</button><button className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700">ðŸ–¨ Print 12 Labels</button></div>
+              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">Preview PDF</button><button className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700">Print 12 Labels</button></div>
             </div>
           </div>
         </div>
@@ -341,13 +341,13 @@ export function CFSWarehouse() {
       {showPhotoCapture && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowPhotoCapture(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“· Photo Capture — Receiving Inspection</h2><p className="text-xs text-gray-400 mt-0.5">Document cargo condition at receiving for damage claims</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Photo Capture — Receiving Inspection</h2><p className="text-xs text-gray-400 mt-0.5">Document cargo condition at receiving for damage claims</p></div>
             <div className="px-6 py-4 space-y-4">
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Select Cargo</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">{MOCK_INVENTORY.map(i => <option key={i.id} value={i.id}>{i.mawb} — {i.consignee} ({i.pieces} pcs)</option>)}</select></div>
               <div className="grid grid-cols-3 gap-3">
                 {['Overall Cargo', 'Damage Close-Up', 'Label / Markings'].map((label, i) => (
                   <div key={i} className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-violet-400 hover:bg-violet-50">
-                    <p className="text-2xl mb-2">ðŸ“·</p>
+                    <p className="text-2xl mb-2"></p>
                     <p className="text-xs font-semibold text-gray-700">{label}</p>
                     <p className="text-xs text-gray-400 mt-1">Click or drop image</p>
                   </div>
