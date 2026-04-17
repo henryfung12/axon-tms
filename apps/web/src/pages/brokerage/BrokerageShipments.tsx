@@ -144,6 +144,7 @@ export function BrokerageShipments() {
   const [assignCarrierRate, setAssignCarrierRate] = useState('');
   const [showLocationHistory, setShowLocationHistory] = useState(false);
   const [detailTab, setDetailTab] = useState('activity');
+  const [notesFilter, setNotesFilter] = useState<{INFO: boolean; WARNING: boolean; CRITICAL: boolean}>({ INFO: true, WARNING: true, CRITICAL: true });
   const [showDocUpload, setShowDocUpload] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
   const [postingLoadId, setPostingLoadId] = useState<string | null>(null);
@@ -502,6 +503,43 @@ export function BrokerageShipments() {
                     </div>
                   ))}
                   {alerts.length > 5 && <button onClick={() => setDetailTab("notes")} className="text-xs text-blue-600 hover:underline mt-1">View all {alerts.length} alerts</button>}
+                </div>);
+              })()}
+            </div>
+            <div className="bg-white border border-gray-200 rounded-lg p-4 mt-4">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-gray-800">Notes & Exceptions</h3>
+              </div>
+              <div className="flex items-center gap-1 mb-3">
+                {(['INFO', 'WARNING', 'CRITICAL'] as const).map(sev => {
+                  const active = notesFilter[sev];
+                  const onStyles: Record<string, string> = { INFO: 'bg-blue-100 text-blue-700 border-blue-300', WARNING: 'bg-yellow-100 text-yellow-700 border-yellow-300', CRITICAL: 'bg-red-100 text-red-700 border-red-300' };
+                  const offStyle = 'bg-gray-50 text-gray-400 border-gray-200';
+                  const labels: Record<string, string> = { INFO: 'Info', WARNING: 'Warning', CRITICAL: 'Critical' };
+                  return (<button key={sev} onClick={() => setNotesFilter(prev => ({ ...prev, [sev]: !prev[sev] }))} className={`text-xs px-2 py-0.5 rounded-full border ${active ? onStyles[sev] : offStyle}`}>{labels[sev]}</button>);
+                })}
+              </div>
+              {(() => {
+                let notes: any[] = [];
+                try { notes = JSON.parse(localStorage.getItem(`axon-notes-${selectedLoad.id}`) || '[]'); } catch { notes = []; }
+                if (notes.length === 0) return <p className="text-xs text-gray-400">No notes or exceptions yet.</p>;
+                const filtered = notes.filter((n: any) => notesFilter[n.severity as 'INFO' | 'WARNING' | 'CRITICAL']);
+                if (filtered.length === 0) return <p className="text-xs text-gray-400">No notes match the selected filters.</p>;
+                const sevDot: Record<string, string> = { INFO: 'bg-blue-500', WARNING: 'bg-yellow-500', CRITICAL: 'bg-red-500' };
+                const sevLabel: Record<string, string> = { INFO: 'Info', WARNING: 'Warning', CRITICAL: 'Critical' };
+                return (<div className="space-y-2 max-h-64 overflow-y-auto">
+                  {filtered.map((n: any) => (
+                    <div key={n.id} className="flex items-start gap-2 py-1 border-b border-gray-100 last:border-0">
+                      <span className={`inline-block w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0 ${sevDot[n.severity]}`} />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-xs font-medium text-gray-800">{sevLabel[n.severity]}</p>
+                          <p className="text-xs text-gray-400">{n.author}</p>
+                        </div>
+                        <p className="text-xs text-gray-600">{n.text}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>);
               })()}
             </div>
