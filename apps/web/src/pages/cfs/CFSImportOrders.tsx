@@ -14,14 +14,14 @@ interface ImportOrder {
 }
 
 const MOCK_IMPORTS: ImportOrder[] = [
-  { id: 'imp1', orderNumber: 'JFK-IMP-0901', mawb: '176-82445521', hawb: 'GE-H-20260414-001', airline: 'Korean Air', flightNumber: 'KE 082', originAirport: 'ICN', arrivalAirport: 'JFK', arrivalDate: '2026-04-14', arrivalTime: '06:30', terminal: 'Terminal 1', building: 'Bldg 75', shipper: 'Samsung Electronics Co.', consignee: 'Tech Distributors LLC', consigneeCity: 'Edison', consigneeState: 'NJ', pieces: 12, weight: '2,400 kg', commodity: 'Electronic Components', dims: '120x80x100 cm', status: 'CUSTOMS_CLEARED', customsStatus: 'CLEARED', storageStart: '2026-04-14', storageDays: 0, assignedDriver: 'Marcus Johnson', assignedVehicle: 'T-1042', isfFiled: true, notes: 'High value — requires signature at delivery' },
-  { id: 'imp2', orderNumber: 'JFK-IMP-0902', mawb: '180-99321100', hawb: 'GE-H-20260414-002', airline: 'Cathay Pacific', flightNumber: 'CX 840', originAirport: 'HKG', arrivalAirport: 'JFK', arrivalDate: '2026-04-14', arrivalTime: '08:15', terminal: 'Terminal 1', building: 'Bldg 151', shipper: 'Global Textile Co.', consignee: 'NY Fashion Import Inc.', consigneeCity: 'New York', consigneeState: 'NY', pieces: 48, weight: '6,200 kg', commodity: 'Textile / Garments', dims: '80x60x80 cm', status: 'AT_CFS', customsStatus: 'CLEARED', storageStart: '2026-04-14', storageDays: 0, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'Deconsolidation required — 6 consignees' },
-  { id: 'imp3', orderNumber: 'JFK-IMP-0892', mawb: '131-55782100', hawb: 'GE-H-20260413-008', airline: 'Emirates', flightNumber: 'EK 202', originAirport: 'DXB', arrivalAirport: 'JFK', arrivalDate: '2026-04-13', arrivalTime: '14:20', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'Arabian Fresh Foods', consignee: 'Gourmet Imports USA', consigneeCity: 'Brooklyn', consigneeState: 'NY', pieces: 24, weight: '3,800 kg', commodity: 'Perishable — Fresh Dates', dims: '100x80x60 cm', status: 'CUSTOMS_HOLD', customsStatus: 'HOLD_FDA', storageStart: '2026-04-13', storageDays: 1, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'FDA hold — perishable goods require prior notice and inspection' },
-  { id: 'imp4', orderNumber: 'ORD-IMP-0445', mawb: '618-44210098', hawb: 'GE-H-20260414-003', airline: 'ANA', flightNumber: 'NH 112', originAirport: 'NRT', arrivalAirport: 'ORD', arrivalDate: '2026-04-14', arrivalTime: '10:45', terminal: 'Terminal 5', building: 'Cargo Area F', shipper: 'Honda Motor Co.', consignee: 'Midwest Auto Parts Inc.', consigneeCity: 'Indianapolis', consigneeState: 'IN', pieces: 8, weight: '1,800 kg', commodity: 'Auto Parts — Engine', dims: '150x100x80 cm', status: 'DISPATCHED', customsStatus: 'CLEARED', storageStart: '', storageDays: 0, assignedDriver: 'David Kim', assignedVehicle: 'T-1029', isfFiled: true, notes: '' },
-  { id: 'imp5', orderNumber: 'MIA-IMP-0321', mawb: '235-11887400', hawb: 'GE-H-20260414-004', airline: 'LATAM', flightNumber: 'LA 500', originAirport: 'GRU', arrivalAirport: 'MIA', arrivalDate: '2026-04-14', arrivalTime: '07:00', terminal: 'Terminal N', building: 'MIA Cargo', shipper: 'Farmacêutica Brasil', consignee: 'US Pharma Distribution', consigneeCity: 'Tampa', consigneeState: 'FL', pieces: 6, weight: '420 kg', commodity: 'Pharmaceutical — Cold Chain', dims: '60x40x40 cm', status: 'ARRIVED', customsStatus: 'PENDING', storageStart: '2026-04-14', storageDays: 0, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'Temp controlled — must maintain 2-8°C. FDA prior notice filed.' },
-  { id: 'imp6', orderNumber: 'JFK-IMP-0880', mawb: '074-66190283', hawb: 'GE-H-20260412-005', airline: 'KLM', flightNumber: 'KL 642', originAirport: 'AMS', arrivalAirport: 'JFK', arrivalDate: '2026-04-12', arrivalTime: '15:30', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'Philips Medical BV', consignee: 'NJ Medical Supply', consigneeCity: 'Newark', consigneeState: 'NJ', pieces: 3, weight: '890 kg', commodity: 'Medical Equipment', dims: '200x100x120 cm', status: 'DELIVERED', customsStatus: 'CLEARED', storageStart: '2026-04-12', storageDays: 0, assignedDriver: 'Robert Brown', assignedVehicle: 'T-1070', isfFiled: true, notes: 'Delivered 4/13 9:30 AM — signed by receiver' },
-  { id: 'imp7', orderNumber: 'DFW-IMP-0210', mawb: '297-88100345', hawb: 'GE-H-20260414-006', airline: 'Lufthansa', flightNumber: 'LH 438', originAirport: 'FRA', arrivalAirport: 'DFW', arrivalDate: '2026-04-14', arrivalTime: '13:00', terminal: 'Terminal D', building: 'DFW Cargo', shipper: 'Bosch GmbH', consignee: 'Texas Industrial Supply', consigneeCity: 'Houston', consigneeState: 'TX', pieces: 16, weight: '3,200 kg', commodity: 'Industrial Machinery Parts', dims: '110x90x85 cm', status: 'MANIFESTED', customsStatus: 'PENDING', storageStart: '', storageDays: 0, assignedDriver: '', assignedVehicle: '', isfFiled: false, notes: 'ISF not yet filed — flight arriving 1:00 PM' },
-  { id: 'imp8', orderNumber: 'ATL-IMP-0156', mawb: '057-22441890', hawb: 'GE-H-20260413-007', airline: 'Delta Cargo', flightNumber: 'DL 200', originAirport: 'CDG', arrivalAirport: 'ATL', arrivalDate: '2026-04-13', arrivalTime: '16:45', terminal: 'Cargo Complex', building: 'ATL Cargo Bldg', shipper: 'Château Wines SARL', consignee: 'Southeast Wine Imports', consigneeCity: 'Atlanta', consigneeState: 'GA', pieces: 40, weight: '4,600 kg', commodity: 'Wine — Temperature Sensitive', dims: '80x60x100 cm', status: 'READY_PICKUP', customsStatus: 'RELEASED', storageStart: '2026-04-13', storageDays: 1, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'TTB approved. Temp controlled storage. Ready for pickup.' },
+  { id: 'imp1', orderNumber: 'JFK-IMP-0901', mawb: '176-82445521', hawb: 'GE-H-20260414-001', airline: 'Korean Air', flightNumber: 'KE 082', originAirport: 'ICN', arrivalAirport: 'JFK', arrivalDate: '2026-04-14', arrivalTime: '06:30', terminal: 'Terminal 1', building: 'Bldg 75', shipper: 'Samsung Electronics Co.', consignee: 'Tech Distributors LLC', consigneeCity: 'Edison', consigneeState: 'NJ', pieces: 12, weight: '2,400 kg', commodity: 'Electronic Components', dims: '120x80x100 cm', status: 'CUSTOMS_CLEARED', customsStatus: 'CLEARED', storageStart: '2026-04-14', storageDays: 0, assignedDriver: 'Marcus Johnson', assignedVehicle: 'T-1042', isfFiled: true, notes: 'High value  requires signature at delivery' },
+  { id: 'imp2', orderNumber: 'JFK-IMP-0902', mawb: '180-99321100', hawb: 'GE-H-20260414-002', airline: 'Cathay Pacific', flightNumber: 'CX 840', originAirport: 'HKG', arrivalAirport: 'JFK', arrivalDate: '2026-04-14', arrivalTime: '08:15', terminal: 'Terminal 1', building: 'Bldg 151', shipper: 'Global Textile Co.', consignee: 'NY Fashion Import Inc.', consigneeCity: 'New York', consigneeState: 'NY', pieces: 48, weight: '6,200 kg', commodity: 'Textile / Garments', dims: '80x60x80 cm', status: 'AT_CFS', customsStatus: 'CLEARED', storageStart: '2026-04-14', storageDays: 0, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'Deconsolidation required  6 consignees' },
+  { id: 'imp3', orderNumber: 'JFK-IMP-0892', mawb: '131-55782100', hawb: 'GE-H-20260413-008', airline: 'Emirates', flightNumber: 'EK 202', originAirport: 'DXB', arrivalAirport: 'JFK', arrivalDate: '2026-04-13', arrivalTime: '14:20', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'Arabian Fresh Foods', consignee: 'Gourmet Imports USA', consigneeCity: 'Brooklyn', consigneeState: 'NY', pieces: 24, weight: '3,800 kg', commodity: 'Perishable  Fresh Dates', dims: '100x80x60 cm', status: 'CUSTOMS_HOLD', customsStatus: 'HOLD_FDA', storageStart: '2026-04-13', storageDays: 1, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'FDA hold  perishable goods require prior notice and inspection' },
+  { id: 'imp4', orderNumber: 'ORD-IMP-0445', mawb: '618-44210098', hawb: 'GE-H-20260414-003', airline: 'ANA', flightNumber: 'NH 112', originAirport: 'NRT', arrivalAirport: 'ORD', arrivalDate: '2026-04-14', arrivalTime: '10:45', terminal: 'Terminal 5', building: 'Cargo Area F', shipper: 'Honda Motor Co.', consignee: 'Midwest Auto Parts Inc.', consigneeCity: 'Indianapolis', consigneeState: 'IN', pieces: 8, weight: '1,800 kg', commodity: 'Auto Parts  Engine', dims: '150x100x80 cm', status: 'DISPATCHED', customsStatus: 'CLEARED', storageStart: '', storageDays: 0, assignedDriver: 'David Kim', assignedVehicle: 'T-1029', isfFiled: true, notes: '' },
+  { id: 'imp5', orderNumber: 'MIA-IMP-0321', mawb: '235-11887400', hawb: 'GE-H-20260414-004', airline: 'LATAM', flightNumber: 'LA 500', originAirport: 'GRU', arrivalAirport: 'MIA', arrivalDate: '2026-04-14', arrivalTime: '07:00', terminal: 'Terminal N', building: 'MIA Cargo', shipper: 'Farmacêutica Brasil', consignee: 'US Pharma Distribution', consigneeCity: 'Tampa', consigneeState: 'FL', pieces: 6, weight: '420 kg', commodity: 'Pharmaceutical  Cold Chain', dims: '60x40x40 cm', status: 'ARRIVED', customsStatus: 'PENDING', storageStart: '2026-04-14', storageDays: 0, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'Temp controlled  must maintain 2-8°C. FDA prior notice filed.' },
+  { id: 'imp6', orderNumber: 'JFK-IMP-0880', mawb: '074-66190283', hawb: 'GE-H-20260412-005', airline: 'KLM', flightNumber: 'KL 642', originAirport: 'AMS', arrivalAirport: 'JFK', arrivalDate: '2026-04-12', arrivalTime: '15:30', terminal: 'Terminal 4', building: 'Bldg 22', shipper: 'Philips Medical BV', consignee: 'NJ Medical Supply', consigneeCity: 'Newark', consigneeState: 'NJ', pieces: 3, weight: '890 kg', commodity: 'Medical Equipment', dims: '200x100x120 cm', status: 'DELIVERED', customsStatus: 'CLEARED', storageStart: '2026-04-12', storageDays: 0, assignedDriver: 'Robert Brown', assignedVehicle: 'T-1070', isfFiled: true, notes: 'Delivered 4/13 9:30 AM  signed by receiver' },
+  { id: 'imp7', orderNumber: 'DFW-IMP-0210', mawb: '297-88100345', hawb: 'GE-H-20260414-006', airline: 'Lufthansa', flightNumber: 'LH 438', originAirport: 'FRA', arrivalAirport: 'DFW', arrivalDate: '2026-04-14', arrivalTime: '13:00', terminal: 'Terminal D', building: 'DFW Cargo', shipper: 'Bosch GmbH', consignee: 'Texas Industrial Supply', consigneeCity: 'Houston', consigneeState: 'TX', pieces: 16, weight: '3,200 kg', commodity: 'Industrial Machinery Parts', dims: '110x90x85 cm', status: 'MANIFESTED', customsStatus: 'PENDING', storageStart: '', storageDays: 0, assignedDriver: '', assignedVehicle: '', isfFiled: false, notes: 'ISF not yet filed  flight arriving 1:00 PM' },
+  { id: 'imp8', orderNumber: 'ATL-IMP-0156', mawb: '057-22441890', hawb: 'GE-H-20260413-007', airline: 'Delta Cargo', flightNumber: 'DL 200', originAirport: 'CDG', arrivalAirport: 'ATL', arrivalDate: '2026-04-13', arrivalTime: '16:45', terminal: 'Cargo Complex', building: 'ATL Cargo Bldg', shipper: 'Château Wines SARL', consignee: 'Southeast Wine Imports', consigneeCity: 'Atlanta', consigneeState: 'GA', pieces: 40, weight: '4,600 kg', commodity: 'Wine  Temperature Sensitive', dims: '80x60x100 cm', status: 'READY_PICKUP', customsStatus: 'RELEASED', storageStart: '2026-04-13', storageDays: 1, assignedDriver: '', assignedVehicle: '', isfFiled: true, notes: 'TTB approved. Temp controlled storage. Ready for pickup.' },
 ];
 
 const STATUS_BADGE: Record<string, { label: string; color: string }> = {
@@ -48,7 +48,7 @@ const CUSTOMS_BADGE: Record<string, { label: string; color: string }> = {
   RELEASED: { label: 'Released', color: 'bg-green-100 text-green-800' },
 };
 
-function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
+function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''; }
 
 export function CFSImportOrders() {
   const [statusFilter, setStatusFilter] = useState('All');
@@ -62,9 +62,9 @@ export function CFSImportOrders() {
   const [showPartialPickups, setShowPartialPickups] = useState(true);
 
   const PARTIAL_PICKUPS = [
-    { id: 'pp1', orderNumber: 'JFK-IMP-0892', mawb: '131-55782100', consignee: 'Gourmet Imports USA', totalPieces: 24, pickedUp: 16, remaining: 8, weight: '1,200 kg', reason: 'Cargo not ready — 8 pcs still under FDA hold', pickupDate: '2026-04-14', scheduledFollowUp: '2026-04-15', assignedTo: 'Chen Xia', driver: '', status: 'PENDING_FOLLOWUP' as const },
-    { id: 'pp2', orderNumber: 'JFK-IMP-0880', mawb: '074-66190283', consignee: 'NJ Medical Supply', totalPieces: 3, pickedUp: 2, remaining: 1, weight: '290 kg', reason: 'Missing 1 carton — airline locating in terminal', pickupDate: '2026-04-13', scheduledFollowUp: '2026-04-15', assignedTo: 'Maria Santos', driver: '', status: 'PENDING_FOLLOWUP' as const },
-    { id: 'pp3', orderNumber: 'ATL-IMP-0156', mawb: '057-22441890', consignee: 'Southeast Wine Imports', totalPieces: 40, pickedUp: 0, remaining: 40, weight: '4,600 kg', reason: 'Terminal closed — arrived after cutoff', pickupDate: '2026-04-14', scheduledFollowUp: '2026-04-15', assignedTo: 'Jake Martinez', driver: '', status: 'SCHEDULED' as const },
+    { id: 'pp1', orderNumber: 'JFK-IMP-0892', mawb: '131-55782100', consignee: 'Gourmet Imports USA', totalPieces: 24, pickedUp: 16, remaining: 8, weight: '1,200 kg', reason: 'Cargo not ready  8 pcs still under FDA hold', pickupDate: '2026-04-14', scheduledFollowUp: '2026-04-15', assignedTo: 'Chen Xia', driver: '', status: 'PENDING_FOLLOWUP' as const },
+    { id: 'pp2', orderNumber: 'JFK-IMP-0880', mawb: '074-66190283', consignee: 'NJ Medical Supply', totalPieces: 3, pickedUp: 2, remaining: 1, weight: '290 kg', reason: 'Missing 1 carton  airline locating in terminal', pickupDate: '2026-04-13', scheduledFollowUp: '2026-04-15', assignedTo: 'Maria Santos', driver: '', status: 'PENDING_FOLLOWUP' as const },
+    { id: 'pp3', orderNumber: 'ATL-IMP-0156', mawb: '057-22441890', consignee: 'Southeast Wine Imports', totalPieces: 40, pickedUp: 0, remaining: 40, weight: '4,600 kg', reason: 'Terminal closed  arrived after cutoff', pickupDate: '2026-04-14', scheduledFollowUp: '2026-04-15', assignedTo: 'Jake Martinez', driver: '', status: 'SCHEDULED' as const },
   ];
   const [parsedAMS, setParsedAMS] = useState<any>(null);
   const [parsing, setParsing] = useState(false);
@@ -121,7 +121,7 @@ export function CFSImportOrders() {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Import Orders — Airline Terminal Pickup</h2>
+        <h2 className="text-lg font-semibold text-gray-900">Import Orders  Airline Terminal Pickup</h2>
         <div className="flex gap-2">
           <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search MAWB, HAWB, consignee..." className="w-64 border border-gray-300 rounded-lg px-3 py-1.5 text-sm" />
           <button onClick={() => setShowAirlineTrack(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">✈ Airline Tracking</button>
@@ -143,7 +143,7 @@ export function CFSImportOrders() {
       {PARTIAL_PICKUPS.length > 0 && showPartialPickups && (
         <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4 mb-4">
           <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2"><span className="text-lg">⚠️</span><h3 className="text-sm font-bold text-yellow-800">Partial / Pending Pickups — {PARTIAL_PICKUPS.length} Follow-Ups Required</h3></div>
+            <div className="flex items-center gap-2"><span className="text-lg">⚠️</span><h3 className="text-sm font-bold text-yellow-800">Partial / Pending Pickups  {PARTIAL_PICKUPS.length} Follow-Ups Required</h3></div>
             <div className="flex gap-2"><button onClick={() => setShowPartialPickups(false)} className="text-xs text-yellow-600 hover:underline">Collapse</button></div>
           </div>
           <div className="space-y-2">
@@ -160,7 +160,7 @@ export function CFSImportOrders() {
                       <span className="text-xs font-mono text-gray-400">{pp.mawb}</span>
                       <span className={`px-1.5 py-0.5 rounded-full text-xs font-medium ${pp.status === 'PENDING_FOLLOWUP' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'}`}>{pp.status === 'PENDING_FOLLOWUP' ? 'Pending Follow-Up' : 'Scheduled'}</span>
                     </div>
-                    <p className="text-xs text-gray-700">{pp.consignee} — <strong>{pp.pickedUp}/{pp.totalPieces}</strong> pcs picked up · <strong className="text-red-600">{pp.remaining} remaining</strong> ({pp.weight})</p>
+                    <p className="text-xs text-gray-700">{pp.consignee}  <strong>{pp.pickedUp}/{pp.totalPieces}</strong> pcs picked up · <strong className="text-red-600">{pp.remaining} remaining</strong> ({pp.weight})</p>
                     <p className="text-xs text-gray-500 mt-0.5">{pp.reason}</p>
                     <div className="flex items-center gap-3 text-xs text-gray-400 mt-1"><span>Original: {pp.pickupDate}</span><span>·</span><span>Follow-up: <strong className="text-gray-700">{pp.scheduledFollowUp}</strong></span><span>·</span><span>Assigned: <strong className="text-gray-700">{pp.assignedTo}</strong></span></div>
                   </div>
@@ -177,7 +177,7 @@ export function CFSImportOrders() {
       )}
 
       {!showPartialPickups && PARTIAL_PICKUPS.length > 0 && (
-        <button onClick={() => setShowPartialPickups(true)} className="mb-4 w-full py-2 bg-yellow-50 border border-yellow-200 rounded-lg text-xs font-medium text-yellow-700 hover:bg-yellow-100">⚠️ {PARTIAL_PICKUPS.length} Partial / Pending Pickups — Click to expand</button>
+        <button onClick={() => setShowPartialPickups(true)} className="mb-4 w-full py-2 bg-yellow-50 border border-yellow-200 rounded-lg text-xs font-medium text-yellow-700 hover:bg-yellow-100">⚠️ {PARTIAL_PICKUPS.length} Partial / Pending Pickups  Click to expand</button>
       )}
 
       <div className="flex gap-1 mb-3 flex-wrap">
@@ -215,7 +215,7 @@ export function CFSImportOrders() {
                   <td className="px-3 py-2.5 text-right text-gray-700">{o.pieces} pcs<br/><span className="text-gray-400">{o.weight}</span></td>
                   <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded-full text-xs font-medium ${CUSTOMS_BADGE[o.customsStatus].color}`}>{CUSTOMS_BADGE[o.customsStatus].label}</span></td>
                   <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGE[o.status].color}`}>{STATUS_BADGE[o.status].label}</span></td>
-                  <td className="px-3 py-2.5 text-gray-600">{o.assignedDriver || <span className="text-gray-300">—</span>}</td>
+                  <td className="px-3 py-2.5 text-gray-600">{o.assignedDriver || <span className="text-gray-300"></span>}</td>
                 </tr>
               ))}
             </tbody>
@@ -228,7 +228,7 @@ export function CFSImportOrders() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => { setShowUploadZone(false); setParsedAMS(null); }}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-sm font-semibold text-gray-900">Upload AIR AMS — Auto-Create Import Order</h2>
+              <h2 className="text-sm font-semibold text-gray-900">Upload AIR AMS  Auto-Create Import Order</h2>
               <p className="text-xs text-gray-400 mt-0.5">Upload an AIR AMS (IRC-225 / Section 321) file to auto-populate import shipment data</p>
             </div>
 
@@ -243,7 +243,7 @@ export function CFSImportOrders() {
                 >
                   <p className="text-4xl mb-3">📄</p>
                   <p className="text-lg font-semibold text-gray-800">Drop AIR AMS file here or click to browse</p>
-                  <p className="text-sm text-gray-500 mt-2">PDF, TIF, JPG, or scanned image — we'll auto-extract all fields</p>
+                  <p className="text-sm text-gray-500 mt-2">PDF, TIF, JPG, or scanned image  we'll auto-extract all fields</p>
                   <div className="flex items-center justify-center gap-4 mt-4">
                     <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium">IRC-225</span>
                     <span className="px-3 py-1.5 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium">Section 321</span>
@@ -266,13 +266,13 @@ export function CFSImportOrders() {
               <div className="px-6 py-4 space-y-4">
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3">
                   <span className="text-2xl">✅</span>
-                  <div><p className="text-sm font-bold text-green-800">AIR AMS Parsed Successfully</p><p className="text-xs text-green-600">All fields extracted — review and confirm to create import order</p></div>
+                  <div><p className="text-sm font-bold text-green-800">AIR AMS Parsed Successfully</p><p className="text-xs text-green-600">All fields extracted  review and confirm to create import order</p></div>
                 </div>
 
                 {/* Document Header */}
                 <div className="bg-gray-50 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide">AIR AMS — IRC-225 · Section 321 Shipment</h4>
+                    <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wide">AIR AMS  IRC-225 · Section 321 Shipment</h4>
                     <div className="flex gap-2 text-xs"><span className="px-2 py-0.5 bg-gray-200 text-gray-600 rounded">Facility #{parsedAMS.facilityNumber}</span><span className="px-2 py-0.5 bg-gray-200 text-gray-600 rounded">IRS #{parsedAMS.irsNumber}</span></div>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -416,12 +416,12 @@ export function CFSImportOrders() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Assign Vehicle *</label>
                   <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                     <option value="">Select vehicle...</option>
-                    <option>T-1029 — Sprinter Van</option>
-                    <option>T-1042 — 24ft Box Truck</option>
-                    <option>T-1055 — 26ft Box Truck</option>
-                    <option>T-1070 — 53' Dry Van</option>
-                    <option>T-1082 — Reefer Truck</option>
-                    <option>T-1090 — Flatbed</option>
+                    <option>T-1029  Sprinter Van</option>
+                    <option>T-1042  24ft Box Truck</option>
+                    <option>T-1055  26ft Box Truck</option>
+                    <option>T-1070  53' Dry Van</option>
+                    <option>T-1082  Reefer Truck</option>
+                    <option>T-1090  Flatbed</option>
                   </select>
                 </div>
               </div>
@@ -459,7 +459,7 @@ export function CFSImportOrders() {
                     {selectedOrders.map((o, i) => (
                       <div key={o.id} className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg border border-gray-200">
                         <span className="w-6 h-6 bg-violet-600 text-white text-xs font-bold rounded-full flex items-center justify-center">{i + 1}</span>
-                        <div className="flex-1"><span className="text-xs font-semibold text-gray-800">{o.arrivalAirport} — {o.building}</span><br/><span className="text-xs text-gray-400">{o.mawb} · {o.pieces} pcs · {o.weight}</span></div>
+                        <div className="flex-1"><span className="text-xs font-semibold text-gray-800">{o.arrivalAirport}  {o.building}</span><br/><span className="text-xs text-gray-400">{o.mawb} · {o.pieces} pcs · {o.weight}</span></div>
                         <span className="text-gray-300 text-sm cursor-grab">☰</span>
                       </div>
                     ))}
@@ -488,7 +488,7 @@ export function CFSImportOrders() {
             </div>
             <div className="px-5 py-4 space-y-4">
               <div className="bg-blue-50 rounded-lg p-3"><p className="text-xs text-blue-600 font-semibold mb-1">Airway Bills</p><div className="flex justify-between text-xs"><span className="text-gray-500">MAWB</span><span className="font-mono font-bold text-gray-900">{selectedOrder.mawb}</span></div><div className="flex justify-between text-xs mt-1"><span className="text-gray-500">HAWB</span><span className="font-mono font-bold text-gray-900">{selectedOrder.hawb}</span></div></div>
-              <div className="grid grid-cols-2 gap-3"><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Airline / Flight</p><p className="text-sm font-semibold">{selectedOrder.airline} — {selectedOrder.flightNumber}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Route</p><p className="text-sm font-semibold">{selectedOrder.originAirport} → {selectedOrder.arrivalAirport}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Arrival</p><p className="text-sm font-semibold">{fmtDate(selectedOrder.arrivalDate)} {selectedOrder.arrivalTime}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Terminal / Bldg</p><p className="text-sm font-semibold">{selectedOrder.terminal} — {selectedOrder.building}</p></div></div>
+              <div className="grid grid-cols-2 gap-3"><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Airline / Flight</p><p className="text-sm font-semibold">{selectedOrder.airline}  {selectedOrder.flightNumber}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Route</p><p className="text-sm font-semibold">{selectedOrder.originAirport} → {selectedOrder.arrivalAirport}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Arrival</p><p className="text-sm font-semibold">{fmtDate(selectedOrder.arrivalDate)} {selectedOrder.arrivalTime}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Terminal / Bldg</p><p className="text-sm font-semibold">{selectedOrder.terminal}  {selectedOrder.building}</p></div></div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Cargo Details</h4><div className="bg-gray-50 rounded-lg p-3 grid grid-cols-2 gap-2 text-xs"><div className="flex justify-between"><span className="text-gray-500">Commodity</span><span className="text-gray-800">{selectedOrder.commodity}</span></div><div className="flex justify-between"><span className="text-gray-500">Pieces</span><span className="text-gray-800">{selectedOrder.pieces}</span></div><div className="flex justify-between"><span className="text-gray-500">Weight</span><span className="text-gray-800">{selectedOrder.weight}</span></div><div className="flex justify-between"><span className="text-gray-500">Dimensions</span><span className="text-gray-800">{selectedOrder.dims}</span></div></div></div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Shipper / Consignee</h4><div className="bg-gray-50 rounded-lg p-3 space-y-2 text-xs"><div><span className="text-gray-400">Shipper:</span> <span className="font-medium">{selectedOrder.shipper}</span></div><div><span className="text-gray-400">Consignee:</span> <span className="font-medium">{selectedOrder.consignee}</span></div><div><span className="text-gray-400">Deliver to:</span> <span className="font-medium">{selectedOrder.consigneeCity}, {selectedOrder.consigneeState}</span></div></div></div>
               <div className="grid grid-cols-2 gap-3"><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">ISF Filed</p><p className={`text-sm font-semibold ${selectedOrder.isfFiled ? 'text-green-600' : 'text-red-600'}`}>{selectedOrder.isfFiled ? '✓ Yes' : '✕ Not Filed'}</p></div><div className="bg-gray-50 rounded-lg p-2.5"><p className="text-xs text-gray-400">Storage Days</p><p className="text-sm font-semibold">{selectedOrder.storageDays}d</p></div></div>
@@ -508,7 +508,7 @@ export function CFSImportOrders() {
       {showAirlineTrack && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowAirlineTrack(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">✈ Airline Cargo Tracking — Live Status</h2><p className="text-xs text-gray-400 mt-0.5">Real-time cargo status from airline tracking portals</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">✈ Airline Cargo Tracking  Live Status</h2><p className="text-xs text-gray-400 mt-0.5">Real-time cargo status from airline tracking portals</p></div>
             <div className="px-6 py-4">
               <div className="flex gap-2 mb-4"><input type="text" placeholder="Enter MAWB # (e.g. 176-82445521)" className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm font-mono" /><button className="px-4 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">Track</button></div>
               <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200">
@@ -520,12 +520,12 @@ export function CFSImportOrders() {
                 <th className="text-left px-3 py-2.5 font-medium text-gray-500">Last Update</th>
               </tr></thead><tbody>
                 {[
-                  { mawb: '176-82445521', airline: 'Korean Air', route: 'ICN → JFK', flight: 'KE 082', status: 'ARRIVED', milestone: 'Arrived JFK — cleared at cargo terminal', time: '14 Apr, 6:30 AM', color: 'bg-green-100 text-green-800' },
-                  { mawb: '180-99321100', airline: 'Cathay Pacific', route: 'HKG → JFK', flight: 'CX 840', status: 'ARRIVED', milestone: 'Arrived JFK — customs hold (FDA)', time: '14 Apr, 8:15 AM', color: 'bg-yellow-100 text-yellow-800' },
-                  { mawb: '131-55782100', airline: 'Emirates', route: 'DXB → JFK', flight: 'EK 202', status: 'IN_TRANSIT', milestone: 'Departed Dubai — ETA JFK 14:20', time: '14 Apr, 2:00 AM', color: 'bg-blue-100 text-blue-800' },
-                  { mawb: '235-11887400', airline: 'LATAM', route: 'GRU → MIA', flight: 'LA 500', status: 'DEPARTED', milestone: 'Departed São Paulo — ETA MIA 18:45', time: '14 Apr, 5:30 AM', color: 'bg-blue-100 text-blue-800' },
-                  { mawb: '618-77200100', airline: 'ANA', route: 'NRT → ORD', flight: 'NH 112', status: 'BOOKED', milestone: 'Cargo accepted at origin — awaiting departure', time: '13 Apr, 11:00 PM', color: 'bg-gray-100 text-gray-700' },
-                  { mawb: '297-88100345', airline: 'Lufthansa', route: 'FRA → DFW', flight: 'LH 438', status: 'IN_TRANSIT', milestone: 'In flight — ETA DFW 13:00', time: '14 Apr, 7:00 AM', color: 'bg-blue-100 text-blue-800' },
+                  { mawb: '176-82445521', airline: 'Korean Air', route: 'ICN → JFK', flight: 'KE 082', status: 'ARRIVED', milestone: 'Arrived JFK  cleared at cargo terminal', time: '14 Apr, 6:30 AM', color: 'bg-green-100 text-green-800' },
+                  { mawb: '180-99321100', airline: 'Cathay Pacific', route: 'HKG → JFK', flight: 'CX 840', status: 'ARRIVED', milestone: 'Arrived JFK  customs hold (FDA)', time: '14 Apr, 8:15 AM', color: 'bg-yellow-100 text-yellow-800' },
+                  { mawb: '131-55782100', airline: 'Emirates', route: 'DXB → JFK', flight: 'EK 202', status: 'IN_TRANSIT', milestone: 'Departed Dubai  ETA JFK 14:20', time: '14 Apr, 2:00 AM', color: 'bg-blue-100 text-blue-800' },
+                  { mawb: '235-11887400', airline: 'LATAM', route: 'GRU → MIA', flight: 'LA 500', status: 'DEPARTED', milestone: 'Departed São Paulo  ETA MIA 18:45', time: '14 Apr, 5:30 AM', color: 'bg-blue-100 text-blue-800' },
+                  { mawb: '618-77200100', airline: 'ANA', route: 'NRT → ORD', flight: 'NH 112', status: 'BOOKED', milestone: 'Cargo accepted at origin  awaiting departure', time: '13 Apr, 11:00 PM', color: 'bg-gray-100 text-gray-700' },
+                  { mawb: '297-88100345', airline: 'Lufthansa', route: 'FRA → DFW', flight: 'LH 438', status: 'IN_TRANSIT', milestone: 'In flight  ETA DFW 13:00', time: '14 Apr, 7:00 AM', color: 'bg-blue-100 text-blue-800' },
                 ].map((t, i) => (
                   <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="px-3 py-2.5 font-mono font-bold text-violet-600">{t.mawb}</td>

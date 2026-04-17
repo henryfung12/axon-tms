@@ -118,13 +118,13 @@ export function RateCalculatorPage({ onBack }: RateCalculatorPageProps) {
                 <h2 className="text-base font-bold text-gray-900">{calculationData.origin} → {calculationData.destination}</h2>
                 <div className="flex items-center gap-4 text-xs text-gray-600 mt-1">
                   <span>{calculationData.distance} miles</span>
-                  <span>•</span>
+                  <span></span>
                   <span>{calculationData.driveTime} hours</span>
-                  <span>•</span>
+                  <span></span>
                   <span>{calculationData.equipmentType}</span>
                   {calculationData.selectedVehicle && (
                     <>
-                      <span>•</span>
+                      <span></span>
                       <span>Unit #{calculationData.selectedVehicle.unitNumber}</span>
                     </>
                   )}

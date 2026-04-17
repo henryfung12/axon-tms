@@ -56,14 +56,14 @@ interface Asset {
 const MOCK_TRUCKS: Asset[] = [
   { id: 't1', type: 'TRUCK', unitNumber: 'T-1029', status: 'ACTIVE', make: 'Freightliner', model: 'Cascadia', year: 2023, vin: '3AKJGLDR5NSLA1029', licensePlate: 'IL-T4821', licenseState: 'IL', assignedDriverId: 'd5', assignedDriverName: 'David Kim', currentCity: 'Chicago', currentState: 'IL', mileage: 142800, fuelType: 'Diesel', ownershipType: 'OWN', ownershipCompany: '', leaseStartDate: '', leaseEndDate: '', monthlyPayment: 0, insuranceCards: [{ id: 'ic1', state: 'IL', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'IL_Insurance_T1029.pdf' }], registrationCards: [{ id: 'rc1', state: 'IL', plateNumber: 'IL-T4821', vin: '3AKJGLDR5NSLA1029', year: 2023, make: 'Freightliner', expiry: '2026-09-30', vinMatched: true, fileName: 'Reg_IL_T1029.pdf' }],  lastServiceDate: '2026-03-15', nextServiceDue: '2026-05-15', nextServiceMiles: 155000, insuranceExpiry: '2026-12-31', registrationExpiry: '2027-03-01', inspectionExpiry: '2026-09-15', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1029', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1029', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1029', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: true, eldLastPing: '2026-04-13T08:00:00Z', gpsSpeed: 0, gpsHeading: 'N', engineStatus: 'OFF', fuelLevelPct: 88, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'I-PASS', tagId: 'IP-44210', accountNumber: 'IPASS-GX-001', status: 'ACTIVE' }, { provider: 'E-ZPass NY', tagId: 'EZ-NY-88203', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'New engine ECM update completed' },
   { id: 't2', type: 'TRUCK', unitNumber: 'T-1033', status: 'ACTIVE', make: 'Kenworth', model: 'T680', year: 2022, vin: '1XKYD49X5NJ331033', licensePlate: 'CO-T9102', licenseState: 'CO', assignedDriverId: 'd8', assignedDriverName: 'Lisa Nguyen', currentCity: 'Denver', currentState: 'CO', mileage: 198400, fuelType: 'Diesel', ownershipType: 'LEASE', ownershipCompany: 'Penske Truck Leasing', leaseStartDate: '2024-06-01', leaseEndDate: '2027-06-01', monthlyPayment: 2800, insuranceCards: [{ id: 'ic2', state: 'CO', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'CO_Insurance_T1033.pdf' }], registrationCards: [{ id: 'rc2', state: 'CO', plateNumber: 'CO-T9102', vin: '1XKYD49X5NJ331033', year: 2022, make: 'Kenworth', expiry: '2026-08-01', vinMatched: true, fileName: 'Reg_CO_T1033.pdf' }],  lastServiceDate: '2026-03-28', nextServiceDue: '2026-05-28', nextServiceMiles: 210000, insuranceExpiry: '2026-11-15', registrationExpiry: '2026-08-01', inspectionExpiry: '2026-10-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1033', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1033', expiryDate: '2026-12-31' }, { state: 'NM', permitNumber: 'NM-WDT-2026-1033', expiryDate: '2026-12-31' }], eldProvider: 'samsara', eldConnected: true, eldLastPing: '2026-04-13T12:20:00Z', gpsSpeed: 0, gpsHeading: 'W', engineStatus: 'OFF', fuelLevelPct: 74, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'I-PASS', tagId: 'IP-44212', accountNumber: 'IPASS-GX-001', status: 'ACTIVE' }], notes: '' },
-  { id: 't3', type: 'TRUCK', unitNumber: 'T-1038', status: 'ACTIVE', make: 'Peterbilt', model: '579', year: 2024, vin: '1XPBDP9X7ND481038', licensePlate: 'TX-T3344', licenseState: 'TX', assignedDriverId: 'd2', assignedDriverName: 'Sarah Chen', currentCity: 'Dallas', currentState: 'TX', mileage: 67200, fuelType: 'Diesel', ownershipType: 'OWN', ownershipCompany: '', leaseStartDate: '', leaseEndDate: '', monthlyPayment: 0, insuranceCards: [{ id: 'ic3', state: 'TX', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'TX_Insurance_T1038.pdf' }], registrationCards: [{ id: 'rc3', state: 'TX', plateNumber: 'TX-T3344', vin: '1XPBDP9X7ND481038', year: 2024, make: 'Peterbilt', expiry: '2027-05-01', vinMatched: true, fileName: 'Reg_TX_T1038.pdf' }],  lastServiceDate: '2026-04-01', nextServiceDue: '2026-06-01', nextServiceMiles: 80000, insuranceExpiry: '2027-01-31', registrationExpiry: '2027-05-01', inspectionExpiry: '2027-01-15', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1038', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1038', expiryDate: '2026-12-31' }], eldProvider: 'samsara', eldConnected: true, eldLastPing: '2026-04-13T12:28:00Z', gpsSpeed: 0, gpsHeading: 'N', engineStatus: 'IDLE', fuelLevelPct: 82, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'E-ZPass NY', tagId: 'EZ-NY-88204', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'New unit — under warranty' },
-  { id: 't4', type: 'TRUCK', unitNumber: 'T-1042', status: 'ACTIVE', make: 'Freightliner', model: 'Cascadia', year: 2022, vin: '3AKJGLDR7NSLA1042', licensePlate: 'TN-T7756', licenseState: 'TN', assignedDriverId: 'd1', assignedDriverName: 'Marcus Johnson', currentCity: 'Memphis', currentState: 'TN', mileage: 224100, fuelType: 'Diesel', ownershipType: 'OWN', ownershipCompany: '', leaseStartDate: '', leaseEndDate: '', monthlyPayment: 0, insuranceCards: [{ id: 'ic4', state: 'TN', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'TN_Insurance_T1042.pdf' }], registrationCards: [{ id: 'rc4', state: 'NY', plateNumber: '14087NF', vin: '3ALACWFC9KDKB9162', year: 2019, make: 'Freightliner', expiry: '2025-06-30', vinMatched: true, fileName: 'Reg_NY_T1042.pdf' }],  lastServiceDate: '2026-03-10', nextServiceDue: '2026-05-10', nextServiceMiles: 237000, insuranceExpiry: '2026-10-31', registrationExpiry: '2026-07-01', inspectionExpiry: '2026-08-20', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1042', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1042', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1042', expiryDate: '2026-12-31' }, { state: 'NM', permitNumber: 'NM-WDT-2026-1042', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: true, eldLastPing: '2026-04-13T12:30:00Z', gpsSpeed: 62, gpsHeading: 'NE', engineStatus: 'ON', fuelLevelPct: 68, odometerToday: 284, dtcCodes: [], tollTags: [{ provider: 'I-PASS', tagId: 'IP-44213', accountNumber: 'IPASS-GX-001', status: 'ACTIVE' }, { provider: 'E-ZPass NY', tagId: 'EZ-NY-88202', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'DPF regen issue — monitor' },
+  { id: 't3', type: 'TRUCK', unitNumber: 'T-1038', status: 'ACTIVE', make: 'Peterbilt', model: '579', year: 2024, vin: '1XPBDP9X7ND481038', licensePlate: 'TX-T3344', licenseState: 'TX', assignedDriverId: 'd2', assignedDriverName: 'Sarah Chen', currentCity: 'Dallas', currentState: 'TX', mileage: 67200, fuelType: 'Diesel', ownershipType: 'OWN', ownershipCompany: '', leaseStartDate: '', leaseEndDate: '', monthlyPayment: 0, insuranceCards: [{ id: 'ic3', state: 'TX', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'TX_Insurance_T1038.pdf' }], registrationCards: [{ id: 'rc3', state: 'TX', plateNumber: 'TX-T3344', vin: '1XPBDP9X7ND481038', year: 2024, make: 'Peterbilt', expiry: '2027-05-01', vinMatched: true, fileName: 'Reg_TX_T1038.pdf' }],  lastServiceDate: '2026-04-01', nextServiceDue: '2026-06-01', nextServiceMiles: 80000, insuranceExpiry: '2027-01-31', registrationExpiry: '2027-05-01', inspectionExpiry: '2027-01-15', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1038', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1038', expiryDate: '2026-12-31' }], eldProvider: 'samsara', eldConnected: true, eldLastPing: '2026-04-13T12:28:00Z', gpsSpeed: 0, gpsHeading: 'N', engineStatus: 'IDLE', fuelLevelPct: 82, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'E-ZPass NY', tagId: 'EZ-NY-88204', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'New unit  under warranty' },
+  { id: 't4', type: 'TRUCK', unitNumber: 'T-1042', status: 'ACTIVE', make: 'Freightliner', model: 'Cascadia', year: 2022, vin: '3AKJGLDR7NSLA1042', licensePlate: 'TN-T7756', licenseState: 'TN', assignedDriverId: 'd1', assignedDriverName: 'Marcus Johnson', currentCity: 'Memphis', currentState: 'TN', mileage: 224100, fuelType: 'Diesel', ownershipType: 'OWN', ownershipCompany: '', leaseStartDate: '', leaseEndDate: '', monthlyPayment: 0, insuranceCards: [{ id: 'ic4', state: 'TN', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'TN_Insurance_T1042.pdf' }], registrationCards: [{ id: 'rc4', state: 'NY', plateNumber: '14087NF', vin: '3ALACWFC9KDKB9162', year: 2019, make: 'Freightliner', expiry: '2025-06-30', vinMatched: true, fileName: 'Reg_NY_T1042.pdf' }],  lastServiceDate: '2026-03-10', nextServiceDue: '2026-05-10', nextServiceMiles: 237000, insuranceExpiry: '2026-10-31', registrationExpiry: '2026-07-01', inspectionExpiry: '2026-08-20', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1042', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1042', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1042', expiryDate: '2026-12-31' }, { state: 'NM', permitNumber: 'NM-WDT-2026-1042', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: true, eldLastPing: '2026-04-13T12:30:00Z', gpsSpeed: 62, gpsHeading: 'NE', engineStatus: 'ON', fuelLevelPct: 68, odometerToday: 284, dtcCodes: [], tollTags: [{ provider: 'I-PASS', tagId: 'IP-44213', accountNumber: 'IPASS-GX-001', status: 'ACTIVE' }, { provider: 'E-ZPass NY', tagId: 'EZ-NY-88202', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'DPF regen issue  monitor' },
   { id: 't5', type: 'TRUCK', unitNumber: 'T-1044', status: 'ACTIVE', make: 'Volvo', model: 'VNL 860', year: 2023, vin: '4V4NC9EH5PN441044', licensePlate: 'AZ-T5518', licenseState: 'AZ', assignedDriverId: 'd6', assignedDriverName: 'Emily Taylor', currentCity: 'Phoenix', currentState: 'AZ', mileage: 156900, fuelType: 'Diesel', lastServiceDate: '2026-02-20', nextServiceDue: '2026-04-20', nextServiceMiles: 170000, insuranceExpiry: '2026-09-30', registrationExpiry: '2026-12-01', inspectionExpiry: '2026-07-10', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1044', expiryDate: '2026-12-31' }, { state: 'NM', permitNumber: 'NM-WDT-2026-1044', expiryDate: '2026-12-31' }], eldProvider: 'samsara', eldConnected: true, eldLastPing: '2026-04-13T10:15:00Z', gpsSpeed: 0, gpsHeading: 'E', engineStatus: 'OFF', fuelLevelPct: 61, odometerToday: 0, dtcCodes: [], tollTags: [], notes: '' },
-  { id: 't6', type: 'TRUCK', unitNumber: 'T-1055', status: 'ACTIVE', make: 'International', model: 'LT', year: 2021, vin: '3HSDJSJR2MN551055', licensePlate: 'IN-T2289', licenseState: 'IN', assignedDriverId: 'd3', assignedDriverName: 'James Williams', currentCity: 'Indianapolis', currentState: 'IN', mileage: 312500, fuelType: 'Diesel', ownershipType: 'LEASE', ownershipCompany: 'Daimler Truck Financial', leaseStartDate: '2025-01-15', leaseEndDate: '2028-01-15', monthlyPayment: 3200, insuranceCards: [{ id: 'ic5', state: 'NY', policyNumber: '73TRB006636', carrier: 'National Liability & Fire Insurance', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'NY_Insurance_T1055.pdf' }], registrationCards: [{ id: 'rc5', state: 'NY', plateNumber: 'NY-T5501', vin: '5PVNJ8JVXL4S76467', year: 2020, make: 'HINO', expiry: '2026-12-31', vinMatched: true, fileName: 'Reg_NY_T1055.pdf' }],  lastServiceDate: '2026-03-22', nextServiceDue: '2026-05-22', nextServiceMiles: 325000, insuranceExpiry: '2026-11-30', registrationExpiry: '2027-02-01', inspectionExpiry: '2026-09-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1055', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1055', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1055', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: true, eldLastPing: '2026-04-13T12:31:00Z', gpsSpeed: 58, gpsHeading: 'E', engineStatus: 'ON', fuelLevelPct: 45, odometerToday: 196, dtcCodes: [{ code: 'P0401', description: 'EGR Flow Insufficient', severity: 'WARNING' }], tollTags: [{ provider: 'E-ZPass NY', tagId: 'EZ-NY-88201', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'High mileage — schedule full inspection' },
+  { id: 't6', type: 'TRUCK', unitNumber: 'T-1055', status: 'ACTIVE', make: 'International', model: 'LT', year: 2021, vin: '3HSDJSJR2MN551055', licensePlate: 'IN-T2289', licenseState: 'IN', assignedDriverId: 'd3', assignedDriverName: 'James Williams', currentCity: 'Indianapolis', currentState: 'IN', mileage: 312500, fuelType: 'Diesel', ownershipType: 'LEASE', ownershipCompany: 'Daimler Truck Financial', leaseStartDate: '2025-01-15', leaseEndDate: '2028-01-15', monthlyPayment: 3200, insuranceCards: [{ id: 'ic5', state: 'NY', policyNumber: '73TRB006636', carrier: 'National Liability & Fire Insurance', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'NY_Insurance_T1055.pdf' }], registrationCards: [{ id: 'rc5', state: 'NY', plateNumber: 'NY-T5501', vin: '5PVNJ8JVXL4S76467', year: 2020, make: 'HINO', expiry: '2026-12-31', vinMatched: true, fileName: 'Reg_NY_T1055.pdf' }],  lastServiceDate: '2026-03-22', nextServiceDue: '2026-05-22', nextServiceMiles: 325000, insuranceExpiry: '2026-11-30', registrationExpiry: '2027-02-01', inspectionExpiry: '2026-09-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1055', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1055', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1055', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: true, eldLastPing: '2026-04-13T12:31:00Z', gpsSpeed: 58, gpsHeading: 'E', engineStatus: 'ON', fuelLevelPct: 45, odometerToday: 196, dtcCodes: [{ code: 'P0401', description: 'EGR Flow Insufficient', severity: 'WARNING' }], tollTags: [{ provider: 'E-ZPass NY', tagId: 'EZ-NY-88201', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'High mileage  schedule full inspection' },
   { id: 't7', type: 'TRUCK', unitNumber: 'T-1061', status: 'ACTIVE', make: 'Kenworth', model: 'W990', year: 2024, vin: '1XKYD49X1PJ661061', licensePlate: 'GA-T8134', licenseState: 'GA', assignedDriverId: 'd4', assignedDriverName: 'Maria Rodriguez', currentCity: 'Atlanta', currentState: 'GA', mileage: 43600, fuelType: 'Diesel', lastServiceDate: '2026-04-05', nextServiceDue: '2026-06-05', nextServiceMiles: 55000, insuranceExpiry: '2027-03-31', registrationExpiry: '2027-06-01', inspectionExpiry: '2027-04-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1061', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1061', expiryDate: '2026-12-31' }], eldProvider: 'samsara', eldConnected: true, eldLastPing: '2026-04-13T12:25:00Z', gpsSpeed: 0, gpsHeading: 'S', engineStatus: 'OFF', fuelLevelPct: 91, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'E-ZPass NY', tagId: 'EZ-NY-88205', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'New unit' },
   { id: 't8', type: 'TRUCK', unitNumber: 'T-1070', status: 'ACTIVE', make: 'Freightliner', model: 'Cascadia', year: 2023, vin: '3AKJGLDR3NSLA1070', licensePlate: 'TN-T6641', licenseState: 'TN', assignedDriverId: 'd7', assignedDriverName: 'Robert Brown', currentCity: 'Nashville', currentState: 'TN', mileage: 189700, fuelType: 'Diesel', ownershipType: 'OWN', ownershipCompany: '', leaseStartDate: '', leaseEndDate: '', monthlyPayment: 0, insuranceCards: [{ id: 'ic6', state: 'FL', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'FL_Insurance_T1070.pdf' }], registrationCards: [{ id: 'rc6', state: 'FL', plateNumber: 'FL-T7001', vin: '3AKJHLDV0JSJW9713', year: 2018, make: 'Freightliner', expiry: '2026-11-15', vinMatched: true, fileName: 'Reg_FL_T1070.pdf' }],  lastServiceDate: '2026-03-18', nextServiceDue: '2026-05-18', nextServiceMiles: 200000, insuranceExpiry: '2027-01-15', registrationExpiry: '2026-09-01', inspectionExpiry: '2026-11-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1070', expiryDate: '2026-12-31' }, { state: 'OR', permitNumber: 'OR-WMT-2026-1070', expiryDate: '2026-12-31' }, { state: 'KY', permitNumber: 'KY-KIT-2026-1070', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: true, eldLastPing: '2026-04-13T12:32:00Z', gpsSpeed: 65, gpsHeading: 'N', engineStatus: 'ON', fuelLevelPct: 52, odometerToday: 312, dtcCodes: [], tollTags: [{ provider: 'I-PASS', tagId: 'IP-44211', accountNumber: 'IPASS-GX-001', status: 'ACTIVE' }, { provider: 'E-ZPass NY', tagId: 'EZ-NY-88206', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: '' },
   { id: 't9', type: 'TRUCK', unitNumber: 'T-1075', status: 'IN_SHOP', make: 'Peterbilt', model: '389', year: 2020, vin: '1XPBDP9X2LD751075', licensePlate: 'OH-T1190', licenseState: 'OH', assignedDriverId: null, assignedDriverName: null, currentCity: 'Columbus', currentState: 'OH', mileage: 385200, fuelType: 'Diesel', lastServiceDate: '2026-04-10', nextServiceDue: '2026-04-25', nextServiceMiles: 385200, insuranceExpiry: '2026-08-31', registrationExpiry: '2026-06-01', inspectionExpiry: '2026-05-15', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1075', expiryDate: '2026-12-31' }], eldProvider: 'motive', eldConnected: false, eldLastPing: '2026-04-08T14:00:00Z', gpsSpeed: 0, gpsHeading: 'N', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'I-PASS', tagId: 'IP-44214', accountNumber: 'IPASS-GX-001', status: 'INACTIVE' }], notes: 'Transmission rebuild in progress' },
-  { id: 't10', type: 'TRUCK', unitNumber: 'T-1082', status: 'OUT_OF_SERVICE', make: 'Mack', model: 'Anthem', year: 2019, vin: '1M1AN07Y5KM821082', licensePlate: 'PA-T4402', licenseState: 'PA', assignedDriverId: null, assignedDriverName: null, currentCity: 'Pittsburgh', currentState: 'PA', mileage: 421800, fuelType: 'Diesel', ownershipType: 'RENTAL', ownershipCompany: 'Ryder System Inc.', leaseStartDate: '2026-01-01', leaseEndDate: '2026-12-31', monthlyPayment: 3800, insuranceCards: [{ id: 'ic7', state: 'GA', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'GA_Insurance_T1082.pdf' }], registrationCards: [{ id: 'rc7', state: 'GA', plateNumber: 'GA-T8201', vin: '3AKJHLDV3JSKC8507', year: 2018, make: 'Freightliner Cascadia', expiry: '2026-10-01', vinMatched: true, fileName: 'Reg_GA_T1082.pdf' }],  lastServiceDate: '2026-02-05', nextServiceDue: '2026-04-05', nextServiceMiles: 421800, insuranceExpiry: '2026-06-30', registrationExpiry: '2026-05-01', inspectionExpiry: '2026-04-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [], eldProvider: 'motive', eldConnected: false, eldLastPing: '2026-04-06T09:00:00Z', gpsSpeed: 0, gpsHeading: 'N', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], tollTags: [], notes: 'Frame damage — pending insurance review for total loss' },
+  { id: 't10', type: 'TRUCK', unitNumber: 'T-1082', status: 'OUT_OF_SERVICE', make: 'Mack', model: 'Anthem', year: 2019, vin: '1M1AN07Y5KM821082', licensePlate: 'PA-T4402', licenseState: 'PA', assignedDriverId: null, assignedDriverName: null, currentCity: 'Pittsburgh', currentState: 'PA', mileage: 421800, fuelType: 'Diesel', ownershipType: 'RENTAL', ownershipCompany: 'Ryder System Inc.', leaseStartDate: '2026-01-01', leaseEndDate: '2026-12-31', monthlyPayment: 3800, insuranceCards: [{ id: 'ic7', state: 'GA', policyNumber: '73TRB006637', carrier: 'National Indemnity Company of the South', effectiveDate: '2026-03-12', expirationDate: '2027-03-12', vinMatched: true, fileName: 'GA_Insurance_T1082.pdf' }], registrationCards: [{ id: 'rc7', state: 'GA', plateNumber: 'GA-T8201', vin: '3AKJHLDV3JSKC8507', year: 2018, make: 'Freightliner Cascadia', expiry: '2026-10-01', vinMatched: true, fileName: 'Reg_GA_T1082.pdf' }],  lastServiceDate: '2026-02-05', nextServiceDue: '2026-04-05', nextServiceMiles: 421800, insuranceExpiry: '2026-06-30', registrationExpiry: '2026-05-01', inspectionExpiry: '2026-04-01', iftaNumber: 'IFTA-TN-62441', hutPermits: [], eldProvider: 'motive', eldConnected: false, eldLastPing: '2026-04-06T09:00:00Z', gpsSpeed: 0, gpsHeading: 'N', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], tollTags: [], notes: 'Frame damage  pending insurance review for total loss' },
   { id: 't11', type: 'TRUCK', unitNumber: 'T-1088', status: 'AVAILABLE', make: 'Volvo', model: 'VNL 760', year: 2022, vin: '4V4NC9EH3NN881088', licensePlate: 'FL-T7753', licenseState: 'FL', assignedDriverId: null, assignedDriverName: null, currentCity: 'Jacksonville', currentState: 'FL', mileage: 203400, fuelType: 'Diesel', lastServiceDate: '2026-04-08', nextServiceDue: '2026-06-08', nextServiceMiles: 215000, insuranceExpiry: '2027-02-28', registrationExpiry: '2027-04-01', inspectionExpiry: '2026-12-15', iftaNumber: 'IFTA-TN-62441', hutPermits: [{ state: 'NY', permitNumber: 'NY-HUT-2026-1088', expiryDate: '2026-12-31' }], eldProvider: 'samsara', eldConnected: true, eldLastPing: '2026-04-13T11:00:00Z', gpsSpeed: 0, gpsHeading: 'E', engineStatus: 'OFF', fuelLevelPct: 78, odometerToday: 0, dtcCodes: [], tollTags: [{ provider: 'E-ZPass NY', tagId: 'EZ-NY-88207', accountNumber: 'EZNY-GX-001', status: 'ACTIVE' }], notes: 'Ready to assign' },
 ];
 
@@ -76,7 +76,7 @@ const MOCK_TRAILERS: Asset[] = [
   { id: 'tr6', type: 'TRAILER', unitNumber: 'TR-2215', status: 'ACTIVE', make: 'Wabash', model: 'DuraPlate', year: 2023, vin: '1JJV532D5NL152215', licensePlate: 'GA-R6690', licenseState: 'GA', assignedDriverId: 'd4', assignedDriverName: 'Maria Rodriguez', currentCity: 'Atlanta', currentState: 'GA', mileage: 58000, capacity: "53' Dry Van", lastServiceDate: '2026-04-06', nextServiceDue: '2026-07-06', nextServiceMiles: 70000, insuranceExpiry: '2027-03-31', registrationExpiry: '2027-06-01', inspectionExpiry: '2027-04-01', iftaNumber: '', hutPermits: [], tollTags: [], eldProvider: null, eldConnected: false, eldLastPing: null, gpsSpeed: 0, gpsHeading: '', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], notes: '' },
   { id: 'tr7', type: 'TRAILER', unitNumber: 'TR-2222', status: 'ACTIVE', make: 'Utility', model: '4000D-X', year: 2023, vin: '1UYVS2530NU222222', licensePlate: 'AZ-R4430', licenseState: 'AZ', assignedDriverId: 'd6', assignedDriverName: 'Emily Taylor', currentCity: 'Phoenix', currentState: 'AZ', mileage: 82000, capacity: "53' Dry Van", lastServiceDate: '2026-02-22', nextServiceDue: '2026-04-22', nextServiceMiles: 95000, insuranceExpiry: '2026-09-30', registrationExpiry: '2026-12-01', inspectionExpiry: '2026-07-10', iftaNumber: '', hutPermits: [], tollTags: [], eldProvider: null, eldConnected: false, eldLastPing: null, gpsSpeed: 0, gpsHeading: '', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], notes: '' },
   { id: 'tr8', type: 'TRAILER', unitNumber: 'TR-2231', status: 'ACTIVE', make: 'Great Dane', model: 'Champion CL', year: 2024, vin: '1GRAA0626PB312231', licensePlate: 'TN-R9921', licenseState: 'TN', assignedDriverId: 'd7', assignedDriverName: 'Robert Brown', currentCity: 'Nashville', currentState: 'TN', mileage: 27000, capacity: "53' Dry Van", lastServiceDate: '2026-03-30', nextServiceDue: '2026-06-30', nextServiceMiles: 40000, insuranceExpiry: '2027-01-15', registrationExpiry: '2026-09-01', inspectionExpiry: '2026-11-01', iftaNumber: '', hutPermits: [], tollTags: [], eldProvider: null, eldConnected: false, eldLastPing: null, gpsSpeed: 0, gpsHeading: '', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], notes: 'New unit' },
-  { id: 'tr9', type: 'TRAILER', unitNumber: 'TR-2240', status: 'IN_SHOP', make: 'Vanguard', model: 'VXP', year: 2020, vin: '5V8VS5320LB402240', licensePlate: 'MO-R3315', licenseState: 'MO', assignedDriverId: null, assignedDriverName: null, currentCity: 'Kansas City', currentState: 'MO', mileage: 198000, capacity: "53' Dry Van", lastServiceDate: '2026-04-11', nextServiceDue: '2026-04-25', nextServiceMiles: 198000, insuranceExpiry: '2026-08-31', registrationExpiry: '2026-06-01', inspectionExpiry: '2026-05-15', iftaNumber: '', hutPermits: [], tollTags: [], eldProvider: null, eldConnected: false, eldLastPing: null, gpsSpeed: 0, gpsHeading: '', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], notes: 'Brake drum replacement — left axle' },
+  { id: 'tr9', type: 'TRAILER', unitNumber: 'TR-2240', status: 'IN_SHOP', make: 'Vanguard', model: 'VXP', year: 2020, vin: '5V8VS5320LB402240', licensePlate: 'MO-R3315', licenseState: 'MO', assignedDriverId: null, assignedDriverName: null, currentCity: 'Kansas City', currentState: 'MO', mileage: 198000, capacity: "53' Dry Van", lastServiceDate: '2026-04-11', nextServiceDue: '2026-04-25', nextServiceMiles: 198000, insuranceExpiry: '2026-08-31', registrationExpiry: '2026-06-01', inspectionExpiry: '2026-05-15', iftaNumber: '', hutPermits: [], tollTags: [], eldProvider: null, eldConnected: false, eldLastPing: null, gpsSpeed: 0, gpsHeading: '', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], notes: 'Brake drum replacement  left axle' },
   { id: 'tr10', type: 'TRAILER', unitNumber: 'TR-2245', status: 'AVAILABLE', make: 'Hyundai Translead', model: 'Dry Van', year: 2021, vin: '3H3V532D1ML552245', licensePlate: 'NC-R7702', licenseState: 'NC', assignedDriverId: null, assignedDriverName: null, currentCity: 'Charlotte', currentState: 'NC', mileage: 162000, capacity: "53' Dry Van", lastServiceDate: '2026-04-09', nextServiceDue: '2026-06-09', nextServiceMiles: 175000, insuranceExpiry: '2027-02-28', registrationExpiry: '2027-04-01', inspectionExpiry: '2026-12-15', iftaNumber: '', hutPermits: [], tollTags: [], eldProvider: null, eldConnected: false, eldLastPing: null, gpsSpeed: 0, gpsHeading: '', engineStatus: null, fuelLevelPct: null, odometerToday: 0, dtcCodes: [], notes: 'Ready to assign' },
 ];
 
@@ -184,8 +184,8 @@ export function AssetsPage() {
   };
 
   const sortIcon = (field: typeof sortField) => {
-    if (sortField !== field) return 'â†•';
-    return sortDir === 'asc' ? 'â†‘' : 'â†“';
+    if (sortField !== field) return '↕';
+    return sortDir === 'asc' ? '↑' : '↓';
   };
 
   // Stats
@@ -245,7 +245,7 @@ export function AssetsPage() {
               placeholder="Search unit, make, VIN, driver..."
               className="w-64 border border-gray-300 rounded-lg px-3 py-1.5 text-xs pl-8 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
-            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs">ðŸ”</span>
+            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs">ðŸ</span>
           </div>
           <button
             onClick={() => setShowAddModal(true)}
@@ -267,7 +267,7 @@ export function AssetsPage() {
           onDrop={e => { e.preventDefault(); e.currentTarget.classList.remove('border-blue-400', 'bg-blue-50'); setShowCOI(true); }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-lg group-hover:bg-blue-200 transition-colors">ðŸ“‹</div>
+            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-lg group-hover:bg-blue-200 transition-colors">ðŸ</div>
             <div>
               <p className="text-sm font-semibold text-gray-800">Company COI</p>
               <p className="text-xs text-gray-400">ACORD 25 Certificate</p>
@@ -275,7 +275,7 @@ export function AssetsPage() {
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-green-500" /><span className="text-xs text-green-600 font-medium">Active</span></div>
-            <span className="text-xs text-gray-400 group-hover:text-blue-500">Drop PDF or click to manage â†’</span>
+            <span className="text-xs text-gray-400 group-hover:text-blue-500">Drop PDF or click to manage →</span>
           </div>
         </div>
 
@@ -296,7 +296,7 @@ export function AssetsPage() {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">{MOCK_TRUCKS.reduce((s, t) => s + (t.insuranceCards || []).length, 0)} cards on file</span>
-            <span className="text-xs text-gray-400 group-hover:text-green-500">Drop cards or click â†’</span>
+            <span className="text-xs text-gray-400 group-hover:text-green-500">Drop cards or click →</span>
           </div>
         </div>
 
@@ -309,7 +309,7 @@ export function AssetsPage() {
           onDrop={e => { e.preventDefault(); e.currentTarget.classList.remove('border-amber-400', 'bg-amber-50'); setShowRegCards(true); }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-lg group-hover:bg-amber-200 transition-colors">ðŸ“„</div>
+            <div className="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-lg group-hover:bg-amber-200 transition-colors">ðŸ</div>
             <div>
               <p className="text-sm font-semibold text-gray-800">Registration Cards</p>
               <p className="text-xs text-gray-400">VIN auto-match</p>
@@ -317,7 +317,7 @@ export function AssetsPage() {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-xs text-gray-500 font-medium">{MOCK_TRUCKS.reduce((s, t) => s + (t.registrationCards || []).length, 0)} cards on file</span>
-            <span className="text-xs text-gray-400 group-hover:text-amber-500">Drop cards or click â†’</span>
+            <span className="text-xs text-gray-400 group-hover:text-amber-500">Drop cards or click →</span>
           </div>
         </div>
 
@@ -327,7 +327,7 @@ export function AssetsPage() {
           className="group bg-white border-2 border-dashed border-gray-200 rounded-xl p-4 cursor-pointer hover:border-violet-400 hover:bg-violet-50 transition-all"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center text-lg group-hover:bg-violet-200 transition-colors">ðŸ”§</div>
+            <div className="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center text-lg group-hover:bg-violet-200 transition-colors">ðŸ§</div>
             <div>
               <p className="text-sm font-semibold text-gray-800">PM Schedule</p>
               <p className="text-xs text-gray-400">Maintenance & inspections</p>
@@ -335,7 +335,7 @@ export function AssetsPage() {
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">{MOCK_TRUCKS.filter(t => { const d = Math.ceil((new Date(t.nextServiceDue).getTime() - new Date('2026-04-14').getTime()) / 86400000); return d <= 30 && d > 0; }).length > 0 ? <><div className="w-2 h-2 rounded-full bg-yellow-500" /><span className="text-xs text-yellow-600 font-medium">{MOCK_TRUCKS.filter(t => { const d = Math.ceil((new Date(t.nextServiceDue).getTime() - new Date('2026-04-14').getTime()) / 86400000); return d <= 30 && d > 0; }).length} due soon</span></> : <><div className="w-2 h-2 rounded-full bg-green-500" /><span className="text-xs text-green-600 font-medium">All on schedule</span></>}</div>
-            <span className="text-xs text-gray-400 group-hover:text-violet-500">Click to view â†’</span>
+            <span className="text-xs text-gray-400 group-hover:text-violet-500">Click to view →</span>
           </div>
         </div>
       </div>
@@ -509,32 +509,32 @@ export function AssetsPage() {
                             <span className={`w-1.5 h-1.5 rounded-full ${asset.eldConnected ? 'bg-green-500' : 'bg-red-500'}`} />
                             <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${ELD_PROVIDER_BADGES[asset.eldProvider].bg} ${ELD_PROVIDER_BADGES[asset.eldProvider].text}`}>{ELD_PROVIDER_BADGES[asset.eldProvider].label}</span>
                           </div>
-                        ) : <span className="text-gray-300">—</span>}</td>
+                        ) : <span className="text-gray-300"></span>}</td>
                         <td className={`px-3 py-2.5 font-medium whitespace-nowrap ${asset.engineStatus ? ENGINE_COLORS[asset.engineStatus] : 'text-gray-300'}`}>
-                          {asset.engineStatus ? ENGINE_LABELS[asset.engineStatus] : '—'}
+                          {asset.engineStatus ? ENGINE_LABELS[asset.engineStatus] : ''}
                           {asset.gpsSpeed > 0 && <span className="text-gray-400 font-normal ml-1">{asset.gpsSpeed}mph</span>}
                         </td>
                         <td className="px-3 py-2.5 text-right">
                           {asset.fuelLevelPct !== null ? (
                             <span className={`font-medium ${asset.fuelLevelPct < 25 ? 'text-red-600' : asset.fuelLevelPct < 50 ? 'text-yellow-600' : 'text-gray-700'}`}>{asset.fuelLevelPct}%</span>
-                          ) : <span className="text-gray-300">—</span>}
+                          ) : <span className="text-gray-300"></span>}
                         </td>
                         <td className="px-3 py-2.5">
                           {asset.dtcCodes.length > 0 ? (
                             <span className="px-2 py-0.5 bg-red-100 text-red-800 rounded-full text-xs font-medium">{asset.dtcCodes.length}</span>
-                          ) : asset.eldConnected ? <span className="text-green-600 text-xs">Clear</span> : <span className="text-gray-300">—</span>}
+                          ) : asset.eldConnected ? <span className="text-green-600 text-xs">Clear</span> : <span className="text-gray-300"></span>}
                         </td>
                       </>
                     )}
                     <td className="px-3 py-2.5 text-right text-gray-700">{asset.mileage.toLocaleString()} mi</td>
                     <td className={`px-3 py-2.5 whitespace-nowrap ${serviceWarning ? 'text-orange-600 font-medium' : 'text-gray-600'}`}>
                       {formatDate(asset.nextServiceDue)}
-                      {serviceWarning && <span className="ml-1 text-orange-500">âš </span>}
+                      {serviceWarning && <span className="ml-1 text-orange-500">⚠</span>}
                     </td>
                     <td className={`px-3 py-2.5 whitespace-nowrap ${inspectionExpired ? 'text-red-600 font-semibold' : inspectionSoon ? 'text-yellow-600 font-medium' : 'text-gray-600'}`}>
                       {formatDate(asset.inspectionExpiry)}
-                      {inspectionExpired && <span className="ml-1">âœ•</span>}
-                      {inspectionSoon && <span className="ml-1">âš </span>}
+                      {inspectionExpired && <span className="ml-1">✕</span>}
+                      {inspectionSoon && <span className="ml-1">⚠</span>}
                     </td>
                   </tr>
                 );
@@ -566,7 +566,7 @@ export function AssetsPage() {
                 <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGES[selectedAsset.status]}`}>
                   {STATUS_LABELS[selectedAsset.status]}
                 </span>
-                <button onClick={() => setSelectedAsset(null)} className="text-gray-400 hover:text-gray-600 text-lg">Ã—</button>
+                <button onClick={() => setSelectedAsset(null)} className="text-gray-400 hover:text-gray-600 text-lg">×</button>
               </div>
             </div>
 
@@ -619,13 +619,13 @@ export function AssetsPage() {
                     <div className="grid grid-cols-3 gap-3">
                       <div className="text-center">
                         <p className={`text-lg font-bold ${selectedAsset.engineStatus ? ENGINE_COLORS[selectedAsset.engineStatus] : 'text-gray-300'}`}>
-                          {selectedAsset.engineStatus ? ENGINE_LABELS[selectedAsset.engineStatus] : '—'}
+                          {selectedAsset.engineStatus ? ENGINE_LABELS[selectedAsset.engineStatus] : ''}
                         </p>
                         <p className="text-xs text-gray-400">Engine</p>
                       </div>
                       <div className="text-center">
                         <p className={`text-lg font-bold ${selectedAsset.fuelLevelPct !== null && selectedAsset.fuelLevelPct < 25 ? 'text-red-600' : selectedAsset.fuelLevelPct !== null && selectedAsset.fuelLevelPct < 50 ? 'text-yellow-600' : 'text-gray-900'}`}>
-                          {selectedAsset.fuelLevelPct !== null ? `${selectedAsset.fuelLevelPct}%` : '—'}
+                          {selectedAsset.fuelLevelPct !== null ? `${selectedAsset.fuelLevelPct}%` : ''}
                         </p>
                         <p className="text-xs text-gray-400">Fuel level</p>
                       </div>
@@ -641,7 +641,7 @@ export function AssetsPage() {
                       </div>
                       <div>
                         <span className="text-xs text-gray-400 block">Last ELD ping</span>
-                        <span className="text-xs text-gray-800">{selectedAsset.eldLastPing ? new Date(selectedAsset.eldLastPing).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : '—'}</span>
+                        <span className="text-xs text-gray-800">{selectedAsset.eldLastPing ? new Date(selectedAsset.eldLastPing).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) : ''}</span>
                       </div>
                     </div>
                     {selectedAsset.dtcCodes.length > 0 && (
@@ -791,7 +791,7 @@ export function AssetsPage() {
                 <h4 className="text-xs font-semibold text-gray-700 mb-2">Ownership</h4>
                 <div className={`rounded-lg p-3 ${(selectedAsset.ownershipType || 'OWN') === 'OWN' ? 'bg-green-50' : (selectedAsset.ownershipType || 'OWN') === 'LEASE' ? 'bg-blue-50' : 'bg-orange-50'}`}>
                   <div className="flex items-center gap-2 mb-1"><span className={`px-2 py-0.5 rounded text-xs font-bold ${(selectedAsset.ownershipType || 'OWN') === 'OWN' ? 'bg-green-200 text-green-800' : (selectedAsset.ownershipType || 'OWN') === 'LEASE' ? 'bg-blue-200 text-blue-800' : 'bg-orange-200 text-orange-800'}`}>{(selectedAsset.ownershipType || 'OWN') === 'OWN' ? 'Company Owned' : (selectedAsset.ownershipType || 'OWN') === 'LEASE' ? 'Leased' : 'Rental'}</span></div>
-                  {(selectedAsset.ownershipCompany) && <div className="text-xs space-y-1 mt-2"><div className="flex justify-between"><span className="text-gray-500">Company</span><span className="text-gray-800 font-medium">{(selectedAsset.ownershipCompany || "")}</span></div>{(selectedAsset.leaseStartDate) && <div className="flex justify-between"><span className="text-gray-500">Term</span><span className="text-gray-800">{formatDate(selectedAsset.leaseStartDate || '')} â†’ {formatDate(selectedAsset.leaseEndDate || '')}</span></div>}{(selectedAsset.monthlyPayment || 0) > 0 && <div className="flex justify-between"><span className="text-gray-500">Monthly</span><span className="text-gray-800 font-bold">${(selectedAsset.monthlyPayment || 0).toLocaleString()}</span></div>}</div>}
+                  {(selectedAsset.ownershipCompany) && <div className="text-xs space-y-1 mt-2"><div className="flex justify-between"><span className="text-gray-500">Company</span><span className="text-gray-800 font-medium">{(selectedAsset.ownershipCompany || "")}</span></div>{(selectedAsset.leaseStartDate) && <div className="flex justify-between"><span className="text-gray-500">Term</span><span className="text-gray-800">{formatDate(selectedAsset.leaseStartDate || '')} → {formatDate(selectedAsset.leaseEndDate || '')}</span></div>}{(selectedAsset.monthlyPayment || 0) > 0 && <div className="flex justify-between"><span className="text-gray-500">Monthly</span><span className="text-gray-800 font-bold">${(selectedAsset.monthlyPayment || 0).toLocaleString()}</span></div>}</div>}
                 </div>
               </div>
 
@@ -801,8 +801,8 @@ export function AssetsPage() {
                   <h4 className="text-xs font-semibold text-gray-700 mb-2">Insurance Cards ({(selectedAsset.insuranceCards || []).length})</h4>
                   <div className="space-y-1.5">{(selectedAsset.insuranceCards || []).map(c => (
                     <div key={c.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
-                      <div><p className="text-xs font-medium text-gray-800">{c.state} — {c.carrier}</p><p className="text-xs text-gray-400">Policy: {c.policyNumber} · {c.effectiveDate} â†’ {c.expirationDate}</p></div>
-                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">âœ“ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Insurance Card (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ“± Send</button></div>
+                      <div><p className="text-xs font-medium text-gray-800">{c.state}  {c.carrier}</p><p className="text-xs text-gray-400">Policy: {c.policyNumber} · {c.effectiveDate} → {c.expirationDate}</p></div>
+                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Insurance Card (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ± Send</button></div>
                     </div>
                   ))}</div>
                 </div>
@@ -814,8 +814,8 @@ export function AssetsPage() {
                   <h4 className="text-xs font-semibold text-gray-700 mb-2">Registration Cards ({(selectedAsset.registrationCards || []).length})</h4>
                   <div className="space-y-1.5">{(selectedAsset.registrationCards || []).map(c => (
                     <div key={c.id} className={`flex items-center justify-between py-2 px-3 rounded-lg ${new Date(c.expiry) < new Date('2026-04-14') ? 'bg-red-50' : 'bg-gray-50'}`}>
-                      <div><p className="text-xs font-medium text-gray-800">{c.state} — {c.plateNumber}</p><p className="text-xs text-gray-400">VIN: {c.vin} · {c.year} {c.make}</p><p className="text-xs text-gray-400">Expires: <span className={new Date(c.expiry) < new Date('2026-04-14') ? 'text-red-600 font-bold' : ''}>{new Date(c.expiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span></p></div>
-                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">âœ“ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Registration (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ“± Send</button></div>
+                      <div><p className="text-xs font-medium text-gray-800">{c.state}  {c.plateNumber}</p><p className="text-xs text-gray-400">VIN: {c.vin} · {c.year} {c.make}</p><p className="text-xs text-gray-400">Expires: <span className={new Date(c.expiry) < new Date('2026-04-14') ? 'text-red-600 font-bold' : ''}>{new Date(c.expiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span></p></div>
+                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}<button className="text-xs text-blue-600">View</button><button onClick={(e) => { e.stopPropagation(); setSendDocType(`Registration (${c.state})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ± Send</button></div>
                     </div>
                   ))}</div>
                 </div>
@@ -970,20 +970,20 @@ export function AssetsPage() {
               {/* Insurance Card */}
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 space-y-3">
                 <h4 className="text-xs font-semibold text-green-800">Insurance Card</h4>
-                <p className="text-xs text-green-600">Upload the state insurance ID card — VIN will be auto-verified</p>
+                <p className="text-xs text-green-600">Upload the state insurance ID card  VIN will be auto-verified</p>
                 <div className="border-2 border-dashed border-green-300 rounded-lg p-4 text-center cursor-pointer hover:border-green-500 hover:bg-green-100">
                   <p className="text-lg mb-1">ðŸªª</p>
                   <p className="text-xs font-medium text-gray-700">Drop insurance card or click to browse</p>
-                  <p className="text-xs text-gray-400">PDF, JPG, PNG — will auto-scan VIN and link to this asset</p>
+                  <p className="text-xs text-gray-400">PDF, JPG, PNG  will auto-scan VIN and link to this asset</p>
                 </div>
               </div>
 
               {/* Registration Card */}
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-3">
                 <h4 className="text-xs font-semibold text-amber-800">Registration Card</h4>
-                <p className="text-xs text-amber-600">Upload the state vehicle registration — VIN will be auto-verified and matched</p>
+                <p className="text-xs text-amber-600">Upload the state vehicle registration  VIN will be auto-verified and matched</p>
                 <div className="border-2 border-dashed border-amber-300 rounded-lg p-4 text-center cursor-pointer hover:border-amber-500 hover:bg-amber-100">
-                  <p className="text-lg mb-1">ðŸ“„</p>
+                  <p className="text-lg mb-1">ðŸ</p>
                   <p className="text-xs font-medium text-gray-700">Drop registration card or click to browse</p>
                   <p className="text-xs text-gray-400">Plate #, VIN, expiry, and weight will be auto-extracted</p>
                 </div>
@@ -1121,23 +1121,23 @@ export function AssetsPage() {
       {showCOI && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowCOI(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Company Certificate of Insurance (COI)</h2><p className="text-xs text-gray-400 mt-0.5">ACORD 25 — Certificate of Liability Insurance</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Company Certificate of Insurance (COI)</h2><p className="text-xs text-gray-400 mt-0.5">ACORD 25  Certificate of Liability Insurance</p></div>
             <div className="px-6 py-4 space-y-4">
-              <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3"><span className="text-xl">âœ…</span><div><p className="text-sm font-bold text-green-800">COI Active — All Policies Current</p><p className="text-xs text-green-600">ACORD Certificate #CL2631361416 · Issued 03/13/2026</p></div></div>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-3"><span className="text-xl">✅</span><div><p className="text-sm font-bold text-green-800">COI Active  All Policies Current</p><p className="text-xs text-green-600">ACORD Certificate #CL2631361416 · Issued 03/13/2026</p></div></div>
 
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="grid grid-cols-2 gap-3 mb-3"><div><p className="text-xs text-gray-400">Insured</p><p className="text-sm font-bold">AXON TMS Transport Corporation</p><p className="text-xs text-gray-500">184-54 149th Avenue, 1st Floor</p><p className="text-xs text-gray-500">Springfield Gardens, NY 11413</p></div><div><p className="text-xs text-gray-400">Producer</p><p className="text-sm font-semibold">AssuredPartners Northeast, LLC</p><p className="text-xs text-gray-500">800 Westchester Ave, Suite S-714, Rye Brook NY 10573</p><p className="text-xs text-gray-500">Contact: Shaunna Marquis · (914) 761-9000</p></div></div>
               </div>
 
               <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200"><th className="text-left px-3 py-2 font-medium text-gray-500">Coverage</th><th className="text-left px-3 py-2 font-medium text-gray-500">Insurer</th><th className="text-left px-3 py-2 font-medium text-gray-500">Policy #</th><th className="text-left px-3 py-2 font-medium text-gray-500">Effective</th><th className="text-left px-3 py-2 font-medium text-gray-500">Expiry</th><th className="text-right px-3 py-2 font-medium text-gray-500">Limit</th></tr></thead><tbody>
-                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">A — Commercial General Liability</td><td className="px-3 py-2 text-gray-600">Cincinnati Specialty Underwriters</td><td className="px-3 py-2 font-mono">CSU0206317</td><td className="px-3 py-2">03/31/2025</td><td className="px-3 py-2">03/31/2026</td><td className="px-3 py-2 text-right">$1,000,000 / $2,000,000</td></tr>
-                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">B — Automobile Liability</td><td className="px-3 py-2 text-gray-600">National Liability & Fire Insurance</td><td className="px-3 py-2 font-mono">73TRB006636</td><td className="px-3 py-2">03/13/2026</td><td className="px-3 py-2">03/13/2027</td><td className="px-3 py-2 text-right">$100,000 CSL</td></tr>
-                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">C — Umbrella / Excess Liability</td><td className="px-3 py-2 text-gray-600">National Fire and Marine Insurance</td><td className="px-3 py-2 font-mono">72XAB012295</td><td className="px-3 py-2">03/13/2026</td><td className="px-3 py-2">03/13/2027</td><td className="px-3 py-2 text-right">$900,000</td></tr>
-                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">D — Motor Truck Cargo</td><td className="px-3 py-2 text-gray-600">Travelers Property Casualty</td><td className="px-3 py-2 font-mono">QT-660-7X683454-TIL-26</td><td className="px-3 py-2">03/12/2026</td><td className="px-3 py-2">03/12/2027</td><td className="px-3 py-2 text-right">$250,000</td></tr>
+                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">A  Commercial General Liability</td><td className="px-3 py-2 text-gray-600">Cincinnati Specialty Underwriters</td><td className="px-3 py-2 font-mono">CSU0206317</td><td className="px-3 py-2">03/31/2025</td><td className="px-3 py-2">03/31/2026</td><td className="px-3 py-2 text-right">$1,000,000 / $2,000,000</td></tr>
+                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">B  Automobile Liability</td><td className="px-3 py-2 text-gray-600">National Liability & Fire Insurance</td><td className="px-3 py-2 font-mono">73TRB006636</td><td className="px-3 py-2">03/13/2026</td><td className="px-3 py-2">03/13/2027</td><td className="px-3 py-2 text-right">$100,000 CSL</td></tr>
+                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">C  Umbrella / Excess Liability</td><td className="px-3 py-2 text-gray-600">National Fire and Marine Insurance</td><td className="px-3 py-2 font-mono">72XAB012295</td><td className="px-3 py-2">03/13/2026</td><td className="px-3 py-2">03/13/2027</td><td className="px-3 py-2 text-right">$900,000</td></tr>
+                <tr className="border-b border-gray-100"><td className="px-3 py-2 font-medium">D  Motor Truck Cargo</td><td className="px-3 py-2 text-gray-600">Travelers Property Casualty</td><td className="px-3 py-2 font-mono">QT-660-7X683454-TIL-26</td><td className="px-3 py-2">03/12/2026</td><td className="px-3 py-2">03/12/2027</td><td className="px-3 py-2 text-right">$250,000</td></tr>
               </tbody></table>
 
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50" onClick={() => {}}>
-                <p className="text-2xl mb-2">ðŸ“‹</p>
+                <p className="text-2xl mb-2">ðŸ</p>
                 <p className="text-sm font-semibold text-gray-700">Upload Updated COI</p>
                 <p className="text-xs text-gray-400 mt-1">Drop ACORD 25 PDF here or click to browse</p>
               </div>
@@ -1151,25 +1151,25 @@ export function AssetsPage() {
       {showInsCards && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowInsCards(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Vehicle Insurance Cards</h2><p className="text-xs text-gray-400 mt-0.5">Upload insurance ID cards — VIN# will be auto-scanned and matched to fleet assets</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Vehicle Insurance Cards</h2><p className="text-xs text-gray-400 mt-0.5">Upload insurance ID cards  VIN# will be auto-scanned and matched to fleet assets</p></div>
             <div className="px-6 py-4 space-y-4">
               {/* Upload zone */}
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50" onClick={() => { setInsCardParsing(true); setTimeout(() => { setParsedInsCards([
-                { state: 'NY', policyNumber: '73TRB006636', carrier: 'National Liability Fire', effectiveDate: '03/12/2026', expirationDate: '03/12/2027', year: 2020, make: 'HINO', vin: '5PVNJ8JVXL4S76467', matchedUnit: 'T-1055', matchConfidence: 'VIN Match âœ“' },
-                { state: 'FL', policyNumber: '73TRB006637', carrier: 'National Indemnity Co. of the South', effectiveDate: '03/12/2026', expirationDate: '03/12/2027', year: 2018, make: 'Freightliner', vin: '3AKJHLDV0JSJW9713', matchedUnit: 'T-1070', matchConfidence: 'VIN Match âœ“' },
-                { state: 'IL', policyNumber: '73TRB006637', carrier: 'National Indemnity Co. of the South', effectiveDate: '03/12/2026', expirationDate: '03/12/2027', year: 2018, make: 'Freightliner Cascadia', vin: '3AKJHLDV3JSKC8507', matchedUnit: 'T-1042', matchConfidence: 'VIN Match âœ“' },
+                { state: 'NY', policyNumber: '73TRB006636', carrier: 'National Liability Fire', effectiveDate: '03/12/2026', expirationDate: '03/12/2027', year: 2020, make: 'HINO', vin: '5PVNJ8JVXL4S76467', matchedUnit: 'T-1055', matchConfidence: 'VIN Match ✓' },
+                { state: 'FL', policyNumber: '73TRB006637', carrier: 'National Indemnity Co. of the South', effectiveDate: '03/12/2026', expirationDate: '03/12/2027', year: 2018, make: 'Freightliner', vin: '3AKJHLDV0JSJW9713', matchedUnit: 'T-1070', matchConfidence: 'VIN Match ✓' },
+                { state: 'IL', policyNumber: '73TRB006637', carrier: 'National Indemnity Co. of the South', effectiveDate: '03/12/2026', expirationDate: '03/12/2027', year: 2018, make: 'Freightliner Cascadia', vin: '3AKJHLDV3JSKC8507', matchedUnit: 'T-1042', matchConfidence: 'VIN Match ✓' },
               ]); setInsCardParsing(false); }, 1500); }}>
                 {insCardParsing ? (
                   <div><div className="inline-block w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-3" /><p className="text-sm font-semibold text-gray-700">Scanning insurance cards...</p><p className="text-xs text-gray-400">Extracting VIN#, policy, dates, and matching to fleet</p></div>
                 ) : (
-                  <div><p className="text-2xl mb-2">ðŸªª</p><p className="text-sm font-semibold text-gray-700">Upload Insurance Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG — supports batch upload of multiple cards</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
+                  <div><p className="text-2xl mb-2">ðŸªª</p><p className="text-sm font-semibold text-gray-700">Upload Insurance Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG  supports batch upload of multiple cards</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
                 )}
               </div>
 
               {/* Parsed results */}
               {parsedInsCards.length > 0 && (
                 <div>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-3 flex items-center gap-2"><span className="text-lg">âœ…</span><span className="text-sm font-bold text-green-800">{parsedInsCards.length} cards scanned — all VINs matched to fleet</span></div>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-3 flex items-center gap-2"><span className="text-lg">✅</span><span className="text-sm font-bold text-green-800">{parsedInsCards.length} cards scanned  all VINs matched to fleet</span></div>
                   <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200"><th className="text-left px-3 py-2 font-medium text-gray-500">State</th><th className="text-left px-3 py-2 font-medium text-gray-500">Policy #</th><th className="text-left px-3 py-2 font-medium text-gray-500">Carrier</th><th className="text-left px-3 py-2 font-medium text-gray-500">Vehicle</th><th className="text-left px-3 py-2 font-medium text-gray-500">VIN (Scanned)</th><th className="text-left px-3 py-2 font-medium text-gray-500">Dates</th><th className="text-left px-3 py-2 font-medium text-gray-500">Matched Unit</th></tr></thead><tbody>
                     {parsedInsCards.map((c, i) => (
                       <tr key={i} className="border-b border-gray-100 bg-green-50">
@@ -1178,7 +1178,7 @@ export function AssetsPage() {
                         <td className="px-3 py-2 text-gray-600">{c.carrier}</td>
                         <td className="px-3 py-2 text-gray-700">{c.year} {c.make}</td>
                         <td className="px-3 py-2 font-mono text-xs text-gray-500">{c.vin}</td>
-                        <td className="px-3 py-2 text-gray-600">{c.effectiveDate} â†’ {c.expirationDate}</td>
+                        <td className="px-3 py-2 text-gray-600">{c.effectiveDate} → {c.expirationDate}</td>
                         <td className="px-3 py-2"><span className="px-2 py-0.5 bg-green-200 text-green-800 rounded text-xs font-bold">{c.matchedUnit}</span><span className="text-xs text-green-600 ml-1">{c.matchConfidence}</span></td>
                       </tr>
                     ))}
@@ -1194,9 +1194,9 @@ export function AssetsPage() {
                     <div key={c.id} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-lg">
                       <div className="flex items-center gap-3">
                         <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-bold">{t.unitNumber}</span>
-                        <div><p className="text-xs font-medium text-gray-800">{c.state} — {c.carrier}</p><p className="text-xs text-gray-400">Policy: {c.policyNumber} · {c.effectiveDate} â†’ {c.expirationDate}</p></div>
+                        <div><p className="text-xs font-medium text-gray-800">{c.state}  {c.carrier}</p><p className="text-xs text-gray-400">Policy: {c.policyNumber} · {c.effectiveDate} → {c.expirationDate}</p></div>
                       </div>
-                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">âœ“ VIN Matched</span>}<button className="text-xs text-blue-600 hover:underline">View</button></div>
+                      <div className="flex items-center gap-2">{c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN Matched</span>}<button className="text-xs text-blue-600 hover:underline">View</button></div>
                     </div>
                   )))}
                 </div>
@@ -1214,26 +1214,26 @@ export function AssetsPage() {
       {showRegCards && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowRegCards(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Vehicle Registration Cards</h2><p className="text-xs text-gray-400 mt-0.5">Upload registration documents — VIN# will be auto-scanned and matched to fleet assets</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Vehicle Registration Cards</h2><p className="text-xs text-gray-400 mt-0.5">Upload registration documents  VIN# will be auto-scanned and matched to fleet assets</p></div>
             <div className="px-6 py-4 space-y-4">
               {/* Upload zone */}
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50" onClick={() => { setRegCardParsing(true); setTimeout(() => { setParsedRegCards([
-                { state: 'NY', plateNumber: '14087NF', vin: '3ALACWFC9KDKB9162', year: 2019, make: 'Freightliner', type: 'COM / DELV WH', weight: '026000', expiry: '06/30/2025', regNumber: 'JE163778', matchedUnit: 'T-1042', matchConfidence: 'VIN Match âœ“', owner: 'AXON TMS TRANSPORT CORP', address: '147-09 182ND ST, SPRINGFIELD GA NY 11413' },
+                { state: 'NY', plateNumber: '14087NF', vin: '3ALACWFC9KDKB9162', year: 2019, make: 'Freightliner', type: 'COM / DELV WH', weight: '026000', expiry: '06/30/2025', regNumber: 'JE163778', matchedUnit: 'T-1042', matchConfidence: 'VIN Match ✓', owner: 'AXON TMS TRANSPORT CORP', address: '147-09 182ND ST, SPRINGFIELD GA NY 11413' },
               ]); setRegCardParsing(false); }, 1500); }}>
                 {regCardParsing ? (
                   <div><div className="inline-block w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-3" /><p className="text-sm font-semibold text-gray-700">Scanning registration cards...</p><p className="text-xs text-gray-400">Extracting VIN#, plate, expiry, and matching to fleet</p></div>
                 ) : (
-                  <div><p className="text-2xl mb-2">ðŸ“„</p><p className="text-sm font-semibold text-gray-700">Upload Registration Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG — supports batch upload</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
+                  <div><p className="text-2xl mb-2">ðŸ</p><p className="text-sm font-semibold text-gray-700">Upload Registration Cards</p><p className="text-xs text-gray-400 mt-1">Drop PDF, JPG, or PNG  supports batch upload</p><p className="text-xs text-gray-400">VIN# on each card will be auto-matched to your fleet assets</p></div>
                 )}
               </div>
 
               {/* Parsed results */}
               {parsedRegCards.length > 0 && (
                 <div>
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-3 flex items-center gap-2"><span className="text-lg">âœ…</span><span className="text-sm font-bold text-green-800">{parsedRegCards.length} registration(s) scanned — VIN matched to fleet</span></div>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-3 flex items-center gap-2"><span className="text-lg">✅</span><span className="text-sm font-bold text-green-800">{parsedRegCards.length} registration(s) scanned  VIN matched to fleet</span></div>
                   {parsedRegCards.map((c, i) => (
                     <div key={i} className="bg-green-50 border border-green-200 rounded-lg p-4 space-y-3">
-                      <div className="flex items-center justify-between"><span className="text-sm font-bold text-gray-900">NY State Registration Document</span><span className="px-2 py-0.5 bg-green-200 text-green-800 rounded text-xs font-bold">{c.matchedUnit} — {c.matchConfidence}</span></div>
+                      <div className="flex items-center justify-between"><span className="text-sm font-bold text-gray-900">NY State Registration Document</span><span className="px-2 py-0.5 bg-green-200 text-green-800 rounded text-xs font-bold">{c.matchedUnit}  {c.matchConfidence}</span></div>
                       <div className="grid grid-cols-3 gap-3 text-xs">
                         <div><span className="text-gray-400">Type</span><br/><strong>{c.type}</strong></div>
                         <div><span className="text-gray-400">Plate</span><br/><strong>{c.plateNumber}</strong></div>
@@ -1257,13 +1257,13 @@ export function AssetsPage() {
                     <div key={c.id} className={`flex items-center justify-between py-2 px-3 rounded-lg ${new Date(c.expiry) < new Date('2026-04-14') ? 'bg-red-50 border border-red-200' : 'bg-gray-50'}`}>
                       <div className="flex items-center gap-3">
                         <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-bold">{t.unitNumber}</span>
-                        <div><p className="text-xs font-medium text-gray-800">{c.state} — Plate: {c.plateNumber}</p><p className="text-xs text-gray-400">VIN: {c.vin} · {c.year} {c.make} · Exp: {new Date(c.expiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p></div>
+                        <div><p className="text-xs font-medium text-gray-800">{c.state}  Plate: {c.plateNumber}</p><p className="text-xs text-gray-400">VIN: {c.vin} · {c.year} {c.make} · Exp: {new Date(c.expiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p></div>
                       </div>
                       <div className="flex items-center gap-2">
-                        {c.vinMatched && <span className="text-xs text-green-600 font-medium">âœ“ VIN</span>}
+                        {c.vinMatched && <span className="text-xs text-green-600 font-medium">✓ VIN</span>}
                         {new Date(c.expiry) < new Date('2026-04-14') && <span className="px-1.5 py-0.5 bg-red-100 text-red-800 text-xs font-bold rounded">EXPIRED</span>}
                         <button className="text-xs text-blue-600">View</button>
-                        <button onClick={() => { setSendDocType(`Registration (${c.state} — ${t.unitNumber})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ“± Send</button>
+                        <button onClick={() => { setSendDocType(`Registration (${c.state}  ${t.unitNumber})`); setShowSendToDriver(true); }} className="text-xs text-violet-600">ðŸ± Send</button>
                       </div>
                     </div>
                   )))}
@@ -1287,14 +1287,14 @@ export function AssetsPage() {
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Select Driver</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">{selectedAsset?.assignedDriverName ? <option>{selectedAsset.assignedDriverName} (assigned)</option> : <option>Select driver...</option>}<option>Marcus Johnson</option><option>Sarah Chen</option><option>Robert Brown</option><option>James Williams</option><option>David Kim</option><option>Emily Taylor</option><option>Lisa Nguyen</option></select></div>
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Delivery Method</label>
                 <div className="space-y-2">
-                  <label className="flex items-center gap-3 p-3 border border-violet-200 bg-violet-50 rounded-lg cursor-pointer"><input type="radio" name="sendMethod" defaultChecked className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ“± Push to Driver Mobile App</span><p className="text-xs text-gray-400">Document will appear in driver's Documents tab</p></div></label>
-                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ“§ Email</span><p className="text-xs text-gray-400">Send as PDF attachment to driver's email</p></div></label>
-                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ’¬ SMS / Text</span><p className="text-xs text-gray-400">Send download link via text message</p></div></label>
+                  <label className="flex items-center gap-3 p-3 border border-violet-200 bg-violet-50 rounded-lg cursor-pointer"><input type="radio" name="sendMethod" defaultChecked className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ± Push to Driver Mobile App</span><p className="text-xs text-gray-400">Document will appear in driver's Documents tab</p></div></label>
+                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ§ Email</span><p className="text-xs text-gray-400">Send as PDF attachment to driver's email</p></div></label>
+                  <label className="flex items-center gap-3 p-3 border border-gray-200 bg-white rounded-lg cursor-pointer"><input type="radio" name="sendMethod" className="text-violet-600" /><div><span className="text-sm font-medium text-gray-800">ðŸ¬ SMS / Text</span><p className="text-xs text-gray-400">Send download link via text message</p></div></label>
                 </div>
               </div>
               <div><label className="block text-sm font-medium text-gray-700 mb-1">Message (optional)</label><textarea className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" rows={2} placeholder="Keep this in your truck at all times..." /></div>
             </div>
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200"><button onClick={() => setShowSendToDriver(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button><button onClick={() => setShowSendToDriver(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700">ðŸ“± Send to Driver</button></div>
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200"><button onClick={() => setShowSendToDriver(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button><button onClick={() => setShowSendToDriver(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg hover:bg-violet-700">ðŸ± Send to Driver</button></div>
           </div>
         </div>
       )}

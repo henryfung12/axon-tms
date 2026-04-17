@@ -26,7 +26,7 @@ const MOCK_CUSTOMERS: Record<string, { name: string; company: string; email: str
     name: 'John Reynolds', company: 'Acme Manufacturing', email: 'john.r@acmemfg.com', phone: '(555) 200-1001',
     shipments: [
       { id: 's1', loadNumber: 'SH-10421', status: 'IN_TRANSIT', origin: 'Detroit', originState: 'MI', destination: 'Nashville', destinationState: 'TN', pickupDate: '2026-04-13', deliveryDate: '2026-04-13', commodity: 'Auto Parts', weight: '42,000 lbs', carrier: 'Eagle Freight Lines', equipment: 'Dry Van 53\'', rate: 2800, lastLocation: 'Bowling Green, KY', lastUpdate: '04/14/2026 8:12 PM', etaMinutes: 95 },
-      { id: 's8', loadNumber: 'SH-10428', status: 'BOOKED', origin: 'Detroit', originState: 'MI', destination: 'Columbus', destinationState: 'OH', pickupDate: '2026-04-15', deliveryDate: '2026-04-15', commodity: 'Building Materials', weight: '45,000 lbs', carrier: 'TBD', equipment: 'Dry Van 53\'', rate: 3200, lastLocation: '—', lastUpdate: '', etaMinutes: 0 },
+      { id: 's8', loadNumber: 'SH-10428', status: 'BOOKED', origin: 'Detroit', originState: 'MI', destination: 'Columbus', destinationState: 'OH', pickupDate: '2026-04-15', deliveryDate: '2026-04-15', commodity: 'Building Materials', weight: '45,000 lbs', carrier: 'TBD', equipment: 'Dry Van 53\'', rate: 3200, lastLocation: '', lastUpdate: '', etaMinutes: 0 },
       { id: 's20', loadNumber: 'SH-10415', status: 'DELIVERED', origin: 'Detroit', originState: 'MI', destination: 'Chicago', destinationState: 'IL', pickupDate: '2026-04-10', deliveryDate: '2026-04-10', commodity: 'Auto Parts', weight: '40,000 lbs', carrier: 'Midwest Express', equipment: 'Dry Van 53\'', rate: 2600, lastLocation: 'Chicago, IL', lastUpdate: '04/10/2026 3:45 PM', etaMinutes: 0 },
       { id: 's21', loadNumber: 'SH-10408', status: 'DELIVERED', origin: 'Detroit', originState: 'MI', destination: 'Indianapolis', destinationState: 'IN', pickupDate: '2026-04-08', deliveryDate: '2026-04-08', commodity: 'Engine Components', weight: '38,000 lbs', carrier: 'Thunder Road Inc.', equipment: 'Dry Van 53\'', rate: 2400, lastLocation: 'Indianapolis, IN', lastUpdate: '04/08/2026 2:30 PM', etaMinutes: 0 },
     ],
@@ -50,7 +50,7 @@ const STATUS_FLOW = ['BOOKED', 'DISPATCHED', 'PICKED_UP', 'IN_TRANSIT', 'OUT_FOR
 const STATUS_LABELS: Record<string, string> = { BOOKED: 'Booked', DISPATCHED: 'Dispatched', PICKED_UP: 'Picked Up', IN_TRANSIT: 'In Transit', OUT_FOR_DELIVERY: 'Out for Delivery', DELIVERED: 'Delivered' };
 const STATUS_COLORS: Record<string, string> = { BOOKED: 'bg-gray-100 text-gray-700', DISPATCHED: 'bg-blue-100 text-blue-800', PICKED_UP: 'bg-indigo-100 text-indigo-800', IN_TRANSIT: 'bg-yellow-100 text-yellow-800', OUT_FOR_DELIVERY: 'bg-orange-100 text-orange-800', DELIVERED: 'bg-green-100 text-green-800' };
 const INV_STATUS: Record<string, string> = { PENDING: 'bg-gray-100 text-gray-600', SENT: 'bg-blue-100 text-blue-800', PAID: 'bg-green-100 text-green-800', OVERDUE: 'bg-red-100 text-red-800' };
-function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'; }
+function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''; }
 function fmtCurrency(n: number) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2 }); }
 
 // ─ Component ─
@@ -95,7 +95,7 @@ export function CustomerPortal() {
             </div>
             <div style={{ marginBottom: 20 }}>
               <label style={{ fontSize: 13, fontWeight: 600, color: '#374151', display: 'block', marginBottom: 6 }}>Password</label>
-              <input type="password" placeholder="••••••••" style={{ width: '100%', padding: '12px 14px', fontSize: 16, border: '1px solid #d1d5db', borderRadius: 10, outline: 'none', boxSizing: 'border-box' }} onKeyDown={e => e.key === 'Enter' && handleLogin()} />
+              <input type="password" placeholder="" style={{ width: '100%', padding: '12px 14px', fontSize: 16, border: '1px solid #d1d5db', borderRadius: 10, outline: 'none', boxSizing: 'border-box' }} onKeyDown={e => e.key === 'Enter' && handleLogin()} />
             </div>
             {loginError && <div style={{ fontSize: 13, color: '#dc2626', padding: '8px 12px', background: '#fef2f2', borderRadius: 8, marginBottom: 12, textAlign: 'center' }}>{loginError}</div>}
             <button onClick={handleLogin} style={{ width: '100%', padding: '14px', fontSize: 16, fontWeight: 700, color: 'white', background: '#2563eb', border: 'none', borderRadius: 10, cursor: 'pointer' }}>Sign In</button>
@@ -181,7 +181,7 @@ export function CustomerPortal() {
                       <td style={{ padding: '10px 14px', color: '#6b7280' }}>{fmtDate(s.pickupDate)}</td>
                       <td style={{ padding: '10px 14px', color: '#6b7280' }}>{fmtDate(s.deliveryDate)}</td>
                       <td style={{ padding: '10px 14px' }}><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_COLORS[s.status]}`}>{STATUS_LABELS[s.status]}</span></td>
-                      <td style={{ padding: '10px 14px', color: '#6b7280' }}>{s.lastLocation || '—'}</td>
+                      <td style={{ padding: '10px 14px', color: '#6b7280' }}>{s.lastLocation || ''}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -193,7 +193,7 @@ export function CustomerPortal() {
         {/* ─ Shipment Detail ─ */}
         {screen === 'shipments' && selectedShipment && (
           <div>
-            <button onClick={() => setSelectedShipment(null)} style={{ fontSize: 13, color: '#2563eb', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 12 }}>â† Back to Shipments</button>
+            <button onClick={() => setSelectedShipment(null)} style={{ fontSize: 13, color: '#2563eb', background: 'none', border: 'none', cursor: 'pointer', marginBottom: 12 }}>â Back to Shipments</button>
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
               <div>
                 {/* Status Bar */}
@@ -234,14 +234,14 @@ export function CustomerPortal() {
               <div>
                 <div style={{ background: 'white', borderRadius: 10, padding: 16, marginBottom: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
                   <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Live Tracking</h4>
-                  {selectedShipment.lastLocation && selectedShipment.lastLocation !== '—' ? (
+                  {selectedShipment.lastLocation && selectedShipment.lastLocation !== '' ? (
                     <div>
                       <div style={{ background: '#eff6ff', borderRadius: 8, padding: 12, marginBottom: 8 }}>
                         <p style={{ fontSize: 14, fontWeight: 600, color: '#1e40af' }}>{selectedShipment.lastLocation}</p>
                         <p style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{selectedShipment.lastUpdate}</p>
                         <p style={{ fontSize: 11, color: '#6b7280' }}>via Trucker Tools</p>
                       </div>
-                      <div style={{ background: '#f3f4f6', borderRadius: 8, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#9ca3af', fontSize: 13 }}>ðŸ—º Map View</span></div>
+                      <div style={{ background: '#f3f4f6', borderRadius: 8, height: 160, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: '#9ca3af', fontSize: 13 }}>ðŸº Map View</span></div>
                     </div>
                   ) : (
                     <p style={{ fontSize: 13, color: '#9ca3af', textAlign: 'center', padding: 20 }}>Tracking available once shipment is picked up</p>
@@ -252,7 +252,7 @@ export function CustomerPortal() {
                   {customer.documents.filter(d => d.loadNumber === selectedShipment.loadNumber).map(d => (
                     <div key={d.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 0', borderBottom: '1px solid #f3f4f6' }}>
                       <div><p style={{ fontSize: 12, fontWeight: 500, color: '#2563eb' }}>{d.name}</p><p style={{ fontSize: 11, color: '#9ca3af' }}>{d.type} · {fmtDate(d.date)}</p></div>
-                      <button style={{ fontSize: 11, color: '#6b7280', background: '#f3f4f6', border: 'none', padding: '4px 8px', borderRadius: 4, cursor: 'pointer' }}>â¬‡</button>
+                      <button style={{ fontSize: 11, color: '#6b7280', background: '#f3f4f6', border: 'none', padding: '4px 8px', borderRadius: 4, cursor: 'pointer' }}>⬇</button>
                     </div>
                   ))}
                   {customer.documents.filter(d => d.loadNumber === selectedShipment.loadNumber).length === 0 && <p style={{ fontSize: 12, color: '#9ca3af' }}>No documents yet</p>}
@@ -284,13 +284,13 @@ export function CustomerPortal() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 16 }}>
                   <div style={{ borderLeft: '3px solid #22c55e', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#22c55e', fontWeight: 600 }}>ORIGIN</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.origin}, {trackResult.originState}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{fmtDate(trackResult.pickupDate)}</p></div>
                   <div style={{ borderLeft: '3px solid #ef4444', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#ef4444', fontWeight: 600 }}>DESTINATION</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.destination}, {trackResult.destinationState}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{fmtDate(trackResult.deliveryDate)}</p></div>
-                  <div style={{ borderLeft: '3px solid #2563eb', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#2563eb', fontWeight: 600 }}>CURRENT LOCATION</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.lastLocation || 'Awaiting update'}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{trackResult.lastUpdate || '—'}</p></div>
+                  <div style={{ borderLeft: '3px solid #2563eb', paddingLeft: 12 }}><p style={{ fontSize: 11, color: '#2563eb', fontWeight: 600 }}>CURRENT LOCATION</p><p style={{ fontSize: 14, fontWeight: 600 }}>{trackResult.lastLocation || 'Awaiting update'}</p><p style={{ fontSize: 12, color: '#6b7280' }}>{trackResult.lastUpdate || ''}</p></div>
                 </div>
                 {trackResult.etaMinutes > 0 && <div style={{ marginTop: 16, padding: 12, background: '#eff6ff', borderRadius: 8, textAlign: 'center' }}><p style={{ fontSize: 13, color: '#1e40af' }}>Estimated arrival in <strong>{Math.floor(trackResult.etaMinutes / 60)}h {trackResult.etaMinutes % 60}m</strong></p></div>}
               </div>
             ) : trackingSearch ? (
               <div style={{ background: 'white', borderRadius: 10, padding: 32, textAlign: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
-                <p style={{ fontSize: 32, marginBottom: 8 }}>ðŸ”</p>
+                <p style={{ fontSize: 32, marginBottom: 8 }}>ðŸ</p>
                 <p style={{ fontSize: 14, color: '#6b7280' }}>No shipment found for "{trackingSearch}"</p>
                 <p style={{ fontSize: 12, color: '#9ca3af', marginTop: 4 }}>Check the shipment number and try again</p>
               </div>

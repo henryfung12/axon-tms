@@ -197,7 +197,7 @@ export function CarrierDashboard() {
           </div>
 
           <div className="text-xs text-gray-400 mb-3">
-            <p>Period: Mar 13, 2026 – Apr 12, 2026</p>
+            <p>Period: Mar 13, 2026  Apr 12, 2026</p>
             <p className="text-gray-300">Calculations based on load scheduled delivery date.</p>
           </div>
 

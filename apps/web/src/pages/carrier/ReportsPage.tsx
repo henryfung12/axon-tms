@@ -139,13 +139,13 @@ function getProfitLossReport() {
 
 function getLaneProfitReport() {
   return [
-    { lane: 'Memphis, TN â†’ Nashville, TN', loads: 12, miles: 5400, revenue: 38400, driverPay: 15600, fuel: 6480, tolls: 240, totalCost: 22320, grossProfit: 16080, margin: '41.9%' },
-    { lane: 'Dallas, TX â†’ Houston, TX', loads: 8, miles: 5760, revenue: 38400, driverPay: 16800, fuel: 6912, tolls: 180, totalCost: 23892, grossProfit: 14508, margin: '37.8%' },
-    { lane: 'Gary, IN â†’ Columbus, OH', loads: 6, miles: 5340, revenue: 33600, driverPay: 14400, fuel: 6408, tolls: 520, totalCost: 21328, grossProfit: 12272, margin: '36.5%' },
-    { lane: 'Atlanta, GA â†’ Jacksonville, FL', loads: 10, miles: 4100, revenue: 31000, driverPay: 12400, fuel: 4920, tolls: 340, totalCost: 17660, grossProfit: 13340, margin: '43.0%' },
-    { lane: 'Chicago, IL â†’ Indianapolis, IN', loads: 7, miles: 2800, revenue: 19600, driverPay: 8400, fuel: 3360, tolls: 420, totalCost: 12180, grossProfit: 7420, margin: '37.9%' },
-    { lane: 'Denver, CO â†’ Salt Lake City, UT', loads: 4, miles: 3920, revenue: 24800, driverPay: 10800, fuel: 4704, tolls: 120, totalCost: 15624, grossProfit: 9176, margin: '37.0%' },
-    { lane: 'Nashville, TN â†’ Louisville, KY', loads: 9, miles: 3420, revenue: 26100, driverPay: 10800, fuel: 4104, tolls: 280, totalCost: 15184, grossProfit: 10916, margin: '41.8%' },
+    { lane: 'Memphis, TN → Nashville, TN', loads: 12, miles: 5400, revenue: 38400, driverPay: 15600, fuel: 6480, tolls: 240, totalCost: 22320, grossProfit: 16080, margin: '41.9%' },
+    { lane: 'Dallas, TX → Houston, TX', loads: 8, miles: 5760, revenue: 38400, driverPay: 16800, fuel: 6912, tolls: 180, totalCost: 23892, grossProfit: 14508, margin: '37.8%' },
+    { lane: 'Gary, IN → Columbus, OH', loads: 6, miles: 5340, revenue: 33600, driverPay: 14400, fuel: 6408, tolls: 520, totalCost: 21328, grossProfit: 12272, margin: '36.5%' },
+    { lane: 'Atlanta, GA → Jacksonville, FL', loads: 10, miles: 4100, revenue: 31000, driverPay: 12400, fuel: 4920, tolls: 340, totalCost: 17660, grossProfit: 13340, margin: '43.0%' },
+    { lane: 'Chicago, IL → Indianapolis, IN', loads: 7, miles: 2800, revenue: 19600, driverPay: 8400, fuel: 3360, tolls: 420, totalCost: 12180, grossProfit: 7420, margin: '37.9%' },
+    { lane: 'Denver, CO → Salt Lake City, UT', loads: 4, miles: 3920, revenue: 24800, driverPay: 10800, fuel: 4704, tolls: 120, totalCost: 15624, grossProfit: 9176, margin: '37.0%' },
+    { lane: 'Nashville, TN → Louisville, KY', loads: 9, miles: 3420, revenue: 26100, driverPay: 10800, fuel: 4104, tolls: 280, totalCost: 15184, grossProfit: 10916, margin: '41.8%' },
   ];
 }
 
@@ -174,7 +174,7 @@ function getCustomerProfitReport() {
 // ─ Report Configs ─
 const REPORTS: ReportConfig[] = [
   {
-    id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: 'ðŸ“¦',
+    id: 'loads', name: 'Load Summary', description: 'All loads with route, driver, equipment, and rate breakdown', category: 'OPERATIONS', icon: 'ðŸ¦',
     columns: [
       { key: 'loadNumber', header: 'Load #', width: 12 }, { key: 'status', header: 'Status', width: 12 }, { key: 'customer', header: 'Customer', width: 20 },
       { key: 'origin', header: 'Origin', width: 16 }, { key: 'destination', header: 'Destination', width: 16 }, { key: 'pickupDate', header: 'Pickup Date', width: 14 },
@@ -185,7 +185,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLoadReport(),
   },
   {
-    id: 'revenue', name: 'Revenue by Customer', description: 'Revenue breakdown per customer with avg rates and payment performance', category: 'FINANCIAL', icon: 'ðŸ’°',
+    id: 'revenue', name: 'Revenue by Customer', description: 'Revenue breakdown per customer with avg rates and payment performance', category: 'FINANCIAL', icon: 'ðŸ°',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'totalRevenue', header: 'Total Revenue', width: 16 },
       { key: 'avgRatePerLoad', header: 'Avg Rate/Load', width: 14 }, { key: 'avgRatePerMile', header: 'Avg $/Mile', width: 12 }, { key: 'fuelSurcharge', header: 'Total Fuel SC', width: 14 },
@@ -195,7 +195,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getRevenueReport(),
   },
   {
-    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer — current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: 'ðŸ“Š',
+    id: 'ar-aging', name: 'AR Aging Report', description: 'Accounts receivable aging by customer  current, 30, 60, 90+ day buckets', category: 'FINANCIAL', icon: 'ðŸ',
     columns: [
       { key: 'customer', header: 'Customer', width: 22 }, { key: 'current', header: 'Current', width: 12 }, { key: 'days1to30', header: '1-30 Days', width: 12 },
       { key: 'days31to60', header: '31-60 Days', width: 12 }, { key: 'days61to90', header: '61-90 Days', width: 12 }, { key: 'over90', header: '90+ Days', width: 12 },
@@ -204,7 +204,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getARAgingReport(),
   },
   {
-    id: 'drivers', name: 'Driver Performance', description: 'Driver stats — loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: 'ðŸ‘¤',
+    id: 'drivers', name: 'Driver Performance', description: 'Driver stats  loads, miles, revenue, safety, and on-time performance', category: 'DRIVER', icon: 'ðŸ¤',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'truckNumber', header: 'Truck', width: 10 }, { key: 'status', header: 'Status', width: 12 },
       { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 }, { key: 'revenue', header: 'Revenue', width: 12 },
@@ -215,7 +215,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getDriverReport(),
   },
   {
-    id: 'fleet', name: 'Fleet Summary', description: 'Vehicle status, mileage, service schedule, insurance, and monthly costs', category: 'FLEET', icon: 'ðŸš›',
+    id: 'fleet', name: 'Fleet Summary', description: 'Vehicle status, mileage, service schedule, insurance, and monthly costs', category: 'FLEET', icon: 'ðŸ',
     columns: [
       { key: 'unitNumber', header: 'Unit #', width: 10 }, { key: 'type', header: 'Type', width: 8 }, { key: 'make', header: 'Make', width: 14 },
       { key: 'model', header: 'Model', width: 12 }, { key: 'year', header: 'Year', width: 8 }, { key: 'mileage', header: 'Mileage', width: 12 },
@@ -226,7 +226,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getFleetReport(),
   },
   {
-    id: 'maintenance', name: 'Maintenance Log', description: 'All work orders with vendor, cost, labor, and completion status', category: 'FLEET', icon: 'ðŸ”§',
+    id: 'maintenance', name: 'Maintenance Log', description: 'All work orders with vendor, cost, labor, and completion status', category: 'FLEET', icon: 'ðŸ§',
     columns: [
       { key: 'woNumber', header: 'WO #', width: 16 }, { key: 'unit', header: 'Unit', width: 10 }, { key: 'type', header: 'Type', width: 14 },
       { key: 'priority', header: 'Priority', width: 12 }, { key: 'status', header: 'Status', width: 14 }, { key: 'vendor', header: 'Vendor', width: 22 },
@@ -236,7 +236,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getMaintenanceReport(),
   },
   {
-    id: 'incidents', name: 'Safety Incidents', description: 'Incident log with severity, preventability, and cost impact', category: 'SAFETY', icon: 'ðŸ›¡',
+    id: 'incidents', name: 'Safety Incidents', description: 'Incident log with severity, preventability, and cost impact', category: 'SAFETY', icon: 'ðŸ¡',
     columns: [
       { key: 'incidentNumber', header: 'Incident #', width: 16 }, { key: 'type', header: 'Type', width: 18 }, { key: 'severity', header: 'Severity', width: 10 },
       { key: 'date', header: 'Date', width: 14 }, { key: 'driver', header: 'Driver', width: 18 }, { key: 'unit', header: 'Unit', width: 10 },
@@ -246,7 +246,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getIncidentReport(),
   },
   {
-    id: 'profit-loss', name: 'Profit & Loss Statement', description: 'Monthly P&L with revenue, direct costs, gross profit, operating expenses, and net income', category: 'FINANCIAL', icon: 'ðŸ“ˆ',
+    id: 'profit-loss', name: 'Profit & Loss Statement', description: 'Monthly P&L with revenue, direct costs, gross profit, operating expenses, and net income', category: 'FINANCIAL', icon: 'ðŸ',
     columns: [
       { key: 'category', header: 'Category', width: 18 }, { key: 'lineItem', header: 'Line Item', width: 30 },
       { key: 'month1', header: 'Feb 2026', width: 14 }, { key: 'month2', header: 'Mar 2026', width: 14 }, { key: 'month3', header: 'Apr 2026', width: 14 },
@@ -255,7 +255,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getProfitLossReport(),
   },
   {
-    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability — revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: 'ðŸ›£',
+    id: 'profit-lane', name: 'Profitability by Lane', description: 'Lane-level profitability  revenue, costs, gross profit, and margin per route', category: 'FINANCIAL', icon: 'ðŸ£',
     columns: [
       { key: 'lane', header: 'Lane', width: 30 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -265,7 +265,7 @@ const REPORTS: ReportConfig[] = [
     getData: () => getLaneProfitReport(),
   },
   {
-    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability — revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: 'ðŸ’µ',
+    id: 'profit-driver', name: 'Profitability by Driver', description: 'Driver-level profitability  revenue generated, costs, margin, and efficiency metrics', category: 'DRIVER', icon: 'ðŸµ',
     columns: [
       { key: 'driver', header: 'Driver', width: 18 }, { key: 'loads', header: 'Loads', width: 8 }, { key: 'miles', header: 'Miles', width: 10 },
       { key: 'revenue', header: 'Revenue', width: 12 }, { key: 'driverPay', header: 'Driver Pay', width: 12 }, { key: 'fuel', header: 'Fuel', width: 10 },
@@ -435,7 +435,7 @@ export function ReportsPage() {
                 onClick={() => setSelectedReport(null)}
                 className="px-3 py-1.5 text-xs text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200"
               >
-                â† Back to Reports
+                â Back to Reports
               </button>
               <div>
                 <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
@@ -449,7 +449,7 @@ export function ReportsPage() {
               disabled={exporting}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700 disabled:opacity-50"
             >
-              {exporting ? 'Exporting...' : 'â¬‡ Download Excel'}
+              {exporting ? 'Exporting...' : '⬇ Download Excel'}
             </button>
           </div>
 

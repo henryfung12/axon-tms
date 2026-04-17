@@ -35,22 +35,22 @@ const MOCK_CW_ORGS: CWOrganization[] = [
 
 const MOCK_JOBS: BillableJob[] = [
   // Carrier jobs
-  { id: 'bj1', module: 'CARRIER', jobNumber: 'LD-4521', refNumber: 'INV-2026-1042', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Memphis, TN â†’ Nashville, TN', origin: 'Memphis, TN', destination: 'Nashville, TN', date: '2026-04-10', pieces: 24, weight: '42,000 lbs', charges: [{ label: 'Line Haul', amount: 2800 }, { label: 'Fuel Surcharge', amount: 280 }, { label: 'Accessorials', amount: 120 }], totalCharges: 3200, billingStatus: 'INVOICED', cwJobNumber: 'CW-T240410-0021', invoiceNumber: 'INV-2026-1042' },
-  { id: 'bj2', module: 'CARRIER', jobNumber: 'LD-4522', refNumber: 'INV-2026-1043', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Dallas, TX â†’ Houston, TX', origin: 'Dallas, TX', destination: 'Houston, TX', date: '2026-04-10', pieces: 18, weight: '38,000 lbs', charges: [{ label: 'Line Haul', amount: 4200 }, { label: 'Fuel Surcharge', amount: 420 }, { label: 'Accessorials', amount: 180 }], totalCharges: 4800, billingStatus: 'READY', cwJobNumber: 'CW-T240410-0022', invoiceNumber: '' },
+  { id: 'bj1', module: 'CARRIER', jobNumber: 'LD-4521', refNumber: 'INV-2026-1042', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Memphis, TN → Nashville, TN', origin: 'Memphis, TN', destination: 'Nashville, TN', date: '2026-04-10', pieces: 24, weight: '42,000 lbs', charges: [{ label: 'Line Haul', amount: 2800 }, { label: 'Fuel Surcharge', amount: 280 }, { label: 'Accessorials', amount: 120 }], totalCharges: 3200, billingStatus: 'INVOICED', cwJobNumber: 'CW-T240410-0021', invoiceNumber: 'INV-2026-1042' },
+  { id: 'bj2', module: 'CARRIER', jobNumber: 'LD-4522', refNumber: 'INV-2026-1043', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Dallas, TX → Houston, TX', origin: 'Dallas, TX', destination: 'Houston, TX', date: '2026-04-10', pieces: 18, weight: '38,000 lbs', charges: [{ label: 'Line Haul', amount: 4200 }, { label: 'Fuel Surcharge', amount: 420 }, { label: 'Accessorials', amount: 180 }], totalCharges: 4800, billingStatus: 'READY', cwJobNumber: 'CW-T240410-0022', invoiceNumber: '' },
   // Brokerage jobs
-  { id: 'bj3', module: 'BROKERAGE', jobNumber: 'SH-10421', refNumber: 'INV-20260401', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Detroit, MI â†’ Nashville, TN', origin: 'Detroit, MI', destination: 'Nashville, TN', date: '2026-04-13', pieces: 24, weight: '42,000 lbs', charges: [{ label: 'Freight', amount: 2800 }], totalCharges: 2800, billingStatus: 'INVOICED', cwJobNumber: 'CW-BRK-20260401', invoiceNumber: 'INV-20260401' },
-  { id: 'bj4', module: 'BROKERAGE', jobNumber: 'SH-10422', refNumber: '', cwOrgCode: 'HEARTFOOD', clientName: 'Heartland Foods', description: 'Omaha, NE â†’ Denver, CO', origin: 'Omaha, NE', destination: 'Denver, CO', date: '2026-04-14', pieces: 12, weight: '28,000 lbs', charges: [{ label: 'Freight', amount: 3100 }], totalCharges: 3100, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
-  { id: 'bj5', module: 'BROKERAGE', jobNumber: 'SH-10425', refNumber: '', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Gary, IN â†’ Columbus, OH', origin: 'Gary, IN', destination: 'Columbus, OH', date: '2026-04-14', pieces: 20, weight: '45,000 lbs', charges: [{ label: 'Freight', amount: 3200 }], totalCharges: 3200, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
+  { id: 'bj3', module: 'BROKERAGE', jobNumber: 'SH-10421', refNumber: 'INV-20260401', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Detroit, MI → Nashville, TN', origin: 'Detroit, MI', destination: 'Nashville, TN', date: '2026-04-13', pieces: 24, weight: '42,000 lbs', charges: [{ label: 'Freight', amount: 2800 }], totalCharges: 2800, billingStatus: 'INVOICED', cwJobNumber: 'CW-BRK-20260401', invoiceNumber: 'INV-20260401' },
+  { id: 'bj4', module: 'BROKERAGE', jobNumber: 'SH-10422', refNumber: '', cwOrgCode: 'HEARTFOOD', clientName: 'Heartland Foods', description: 'Omaha, NE → Denver, CO', origin: 'Omaha, NE', destination: 'Denver, CO', date: '2026-04-14', pieces: 12, weight: '28,000 lbs', charges: [{ label: 'Freight', amount: 3100 }], totalCharges: 3100, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
+  { id: 'bj5', module: 'BROKERAGE', jobNumber: 'SH-10425', refNumber: '', cwOrgCode: 'ACME-US', clientName: 'Acme Manufacturing', description: 'Gary, IN → Columbus, OH', origin: 'Gary, IN', destination: 'Columbus, OH', date: '2026-04-14', pieces: 20, weight: '45,000 lbs', charges: [{ label: 'Freight', amount: 3200 }], totalCharges: 3200, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
   // CFS Import jobs
-  { id: 'bj6', module: 'CFS_IMPORT', jobNumber: 'JFK-IMP-0901', refNumber: 'MAWB 176-82445521', cwOrgCode: 'SAMSUNG-KR', clientName: 'Samsung Electronics Co.', description: 'ICN â†’ JFK · Korean Air KE 082', origin: 'ICN (Seoul)', destination: 'JFK (New York)', date: '2026-04-14', pieces: 12, weight: '2,400 kg', charges: [{ label: 'Terminal Handling', amount: 480 }, { label: 'CFS Handling', amount: 360 }, { label: 'Drayage — Terminal Pickup', amount: 650 }, { label: 'Customs Brokerage', amount: 185 }], totalCharges: 1675, billingStatus: 'READY', cwJobNumber: 'CW-CFS-20260414-01', invoiceNumber: '' },
-  { id: 'bj7', module: 'CFS_IMPORT', jobNumber: 'JFK-IMP-0902', refNumber: 'MAWB 180-99321100', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'HKG â†’ JFK · Cathay Pacific CX 840', origin: 'HKG (Hong Kong)', destination: 'JFK (New York)', date: '2026-04-14', pieces: 48, weight: '6,200 kg', charges: [{ label: 'Terminal Handling', amount: 960 }, { label: 'CFS Handling', amount: 720 }, { label: 'Deconsolidation (6 lots)', amount: 540 }, { label: 'Drayage — Terminal Pickup', amount: 850 }, { label: 'Customs Brokerage', amount: 285 }], totalCharges: 3355, billingStatus: 'READY', cwJobNumber: 'CW-CFS-20260414-02', invoiceNumber: '' },
-  { id: 'bj8', module: 'CFS_IMPORT', jobNumber: 'JFK-IMP-0892', refNumber: 'MAWB 131-55782100', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'DXB â†’ JFK · Emirates EK 202', origin: 'DXB (Dubai)', destination: 'JFK (New York)', date: '2026-04-13', pieces: 24, weight: '3,800 kg', charges: [{ label: 'Terminal Handling', amount: 480 }, { label: 'CFS Handling', amount: 360 }, { label: 'Cold Storage (per day)', amount: 120 }, { label: 'Drayage — Terminal Pickup', amount: 650 }], totalCharges: 1610, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
+  { id: 'bj6', module: 'CFS_IMPORT', jobNumber: 'JFK-IMP-0901', refNumber: 'MAWB 176-82445521', cwOrgCode: 'SAMSUNG-KR', clientName: 'Samsung Electronics Co.', description: 'ICN → JFK · Korean Air KE 082', origin: 'ICN (Seoul)', destination: 'JFK (New York)', date: '2026-04-14', pieces: 12, weight: '2,400 kg', charges: [{ label: 'Terminal Handling', amount: 480 }, { label: 'CFS Handling', amount: 360 }, { label: 'Drayage  Terminal Pickup', amount: 650 }, { label: 'Customs Brokerage', amount: 185 }], totalCharges: 1675, billingStatus: 'READY', cwJobNumber: 'CW-CFS-20260414-01', invoiceNumber: '' },
+  { id: 'bj7', module: 'CFS_IMPORT', jobNumber: 'JFK-IMP-0902', refNumber: 'MAWB 180-99321100', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'HKG → JFK · Cathay Pacific CX 840', origin: 'HKG (Hong Kong)', destination: 'JFK (New York)', date: '2026-04-14', pieces: 48, weight: '6,200 kg', charges: [{ label: 'Terminal Handling', amount: 960 }, { label: 'CFS Handling', amount: 720 }, { label: 'Deconsolidation (6 lots)', amount: 540 }, { label: 'Drayage  Terminal Pickup', amount: 850 }, { label: 'Customs Brokerage', amount: 285 }], totalCharges: 3355, billingStatus: 'READY', cwJobNumber: 'CW-CFS-20260414-02', invoiceNumber: '' },
+  { id: 'bj8', module: 'CFS_IMPORT', jobNumber: 'JFK-IMP-0892', refNumber: 'MAWB 131-55782100', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'DXB → JFK · Emirates EK 202', origin: 'DXB (Dubai)', destination: 'JFK (New York)', date: '2026-04-13', pieces: 24, weight: '3,800 kg', charges: [{ label: 'Terminal Handling', amount: 480 }, { label: 'CFS Handling', amount: 360 }, { label: 'Cold Storage (per day)', amount: 120 }, { label: 'Drayage  Terminal Pickup', amount: 650 }], totalCharges: 1610, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
   // CFS Export jobs
-  { id: 'bj9', module: 'CFS_EXPORT', jobNumber: 'JFK-EXP-0501', refNumber: 'AWB 125-19994715', cwOrgCode: 'FISCALIOR', clientName: 'Fiscal IOR USA Inc', description: 'JFK â†’ LHR · British Airways BA 0182', origin: 'JFK (New York)', destination: 'LHR (London)', date: '2026-04-14', pieces: 5, weight: '853 kg', charges: [{ label: 'Export Handling', amount: 320 }, { label: 'TSA Screening', amount: 150 }, { label: 'Drayage — Terminal Delivery', amount: 550 }, { label: 'Documentation', amount: 95 }], totalCharges: 1115, billingStatus: 'INVOICED', cwJobNumber: 'CW-CFS-20260414-03', invoiceNumber: 'GE-CFS-20260414' },
-  { id: 'bj10', module: 'CFS_EXPORT', jobNumber: 'JFK-EXP-0502', refNumber: 'MAWB 176-88100502', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'JFK â†’ HKG · Cathay Pacific CX 841', origin: 'JFK (New York)', destination: 'HKG (Hong Kong)', date: '2026-04-14', pieces: 32, weight: '4,200 kg', charges: [{ label: 'Export Handling', amount: 640 }, { label: 'TSA Screening', amount: 300 }, { label: 'Consolidation (4 shippers)', amount: 480 }, { label: 'Drayage — Terminal Delivery', amount: 850 }, { label: 'Documentation', amount: 185 }], totalCharges: 2455, billingStatus: 'READY', cwJobNumber: 'CW-CFS-20260414-04', invoiceNumber: '' },
+  { id: 'bj9', module: 'CFS_EXPORT', jobNumber: 'JFK-EXP-0501', refNumber: 'AWB 125-19994715', cwOrgCode: 'FISCALIOR', clientName: 'Fiscal IOR USA Inc', description: 'JFK → LHR · British Airways BA 0182', origin: 'JFK (New York)', destination: 'LHR (London)', date: '2026-04-14', pieces: 5, weight: '853 kg', charges: [{ label: 'Export Handling', amount: 320 }, { label: 'TSA Screening', amount: 150 }, { label: 'Drayage  Terminal Delivery', amount: 550 }, { label: 'Documentation', amount: 95 }], totalCharges: 1115, billingStatus: 'INVOICED', cwJobNumber: 'CW-CFS-20260414-03', invoiceNumber: 'GE-CFS-20260414' },
+  { id: 'bj10', module: 'CFS_EXPORT', jobNumber: 'JFK-EXP-0502', refNumber: 'MAWB 176-88100502', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'JFK → HKG · Cathay Pacific CX 841', origin: 'JFK (New York)', destination: 'HKG (Hong Kong)', date: '2026-04-14', pieces: 32, weight: '4,200 kg', charges: [{ label: 'Export Handling', amount: 640 }, { label: 'TSA Screening', amount: 300 }, { label: 'Consolidation (4 shippers)', amount: 480 }, { label: 'Drayage  Terminal Delivery', amount: 850 }, { label: 'Documentation', amount: 185 }], totalCharges: 2455, billingStatus: 'READY', cwJobNumber: 'CW-CFS-20260414-04', invoiceNumber: '' },
   // CFS Warehouse
-  { id: 'bj11', module: 'CFS_WAREHOUSE', jobNumber: 'WH-STG-0412', refNumber: '', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'Storage — Zone B Cold Storage (2 days)', origin: 'CFS Warehouse', destination: 'CFS Warehouse', date: '2026-04-14', pieces: 24, weight: '3,800 kg', charges: [{ label: 'Cold Storage Day 1', amount: 120 }, { label: 'Cold Storage Day 2', amount: 120 }], totalCharges: 240, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
-  { id: 'bj12', module: 'CFS_WAREHOUSE', jobNumber: 'WH-STG-0413', refNumber: '', cwOrgCode: 'SAMSUNG-KR', clientName: 'Samsung Electronics Co.', description: 'Storage — Zone D Bonded (1 day)', origin: 'CFS Warehouse', destination: 'CFS Warehouse', date: '2026-04-14', pieces: 2, weight: '12 kg', charges: [{ label: 'Bonded Storage Day 1', amount: 85 }], totalCharges: 85, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
+  { id: 'bj11', module: 'CFS_WAREHOUSE', jobNumber: 'WH-STG-0412', refNumber: '', cwOrgCode: 'WHALECO', clientName: 'Whaleco Services, LLC', description: 'Storage  Zone B Cold Storage (2 days)', origin: 'CFS Warehouse', destination: 'CFS Warehouse', date: '2026-04-14', pieces: 24, weight: '3,800 kg', charges: [{ label: 'Cold Storage Day 1', amount: 120 }, { label: 'Cold Storage Day 2', amount: 120 }], totalCharges: 240, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
+  { id: 'bj12', module: 'CFS_WAREHOUSE', jobNumber: 'WH-STG-0413', refNumber: '', cwOrgCode: 'SAMSUNG-KR', clientName: 'Samsung Electronics Co.', description: 'Storage  Zone D Bonded (1 day)', origin: 'CFS Warehouse', destination: 'CFS Warehouse', date: '2026-04-14', pieces: 2, weight: '12 kg', charges: [{ label: 'Bonded Storage Day 1', amount: 85 }], totalCharges: 85, billingStatus: 'UNBILLED', cwJobNumber: '', invoiceNumber: '' },
 ];
 
 // ─ Helpers ─
@@ -69,7 +69,7 @@ const BILL_STATUS: Record<string, { label: string; color: string }> = {
   DISPUTED: { label: 'Disputed', color: 'bg-red-100 text-red-800' },
 };
 function fmtCurrency(n: number) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2 }); }
-function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
+function fmtDate(d: string) { return d ? new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : ''; }
 
 // ─ Component ─
 export function CFSBilling() {
@@ -115,11 +115,11 @@ export function CFSBilling() {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <div><h2 className="text-lg font-semibold text-gray-900">Unified Billing</h2><p className="text-xs text-gray-400 mt-0.5">All jobs across Carrier, Brokerage & CFS — linked via CargoWise organization codes</p></div>
+        <div><h2 className="text-lg font-semibold text-gray-900">Unified Billing</h2><p className="text-xs text-gray-400 mt-0.5">All jobs across Carrier, Brokerage & CFS  linked via CargoWise organization codes</p></div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 border border-green-200 rounded-lg"><div className="w-2 h-2 rounded-full bg-green-500" /><span className="text-xs font-medium text-green-800">CargoWise Linked</span></div>
-          <button onClick={() => setShowCreditMemo(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“ Credit Memo</button>
-          <button onClick={() => setShowInvoicePDF(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“„ Invoice PDF</button>
+          <button onClick={() => setShowCreditMemo(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ Credit Memo</button>
+          <button onClick={() => setShowInvoicePDF(true)} className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ Invoice PDF</button>
           <button className="px-4 py-1.5 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">+ Generate Invoice</button>
         </div>
       </div>
@@ -153,7 +153,7 @@ export function CFSBilling() {
           {/* Selection bar */}
           {selectedJobIds.size > 0 && (
             <div className="mb-3 bg-violet-600 text-white rounded-lg p-3 flex items-center justify-between">
-              <span className="text-sm font-bold">{selectedJobIds.size} job{selectedJobIds.size > 1 ? 's' : ''} selected — {fmtCurrency(MOCK_JOBS.filter(j => selectedJobIds.has(j.id)).reduce((s, j) => s + j.totalCharges, 0))}</span>
+              <span className="text-sm font-bold">{selectedJobIds.size} job{selectedJobIds.size > 1 ? 's' : ''} selected  {fmtCurrency(MOCK_JOBS.filter(j => selectedJobIds.has(j.id)).reduce((s, j) => s + j.totalCharges, 0))}</span>
               <div className="flex gap-2"><button className="px-4 py-1.5 text-sm font-semibold bg-white text-violet-700 rounded-lg">Generate Combined Invoice</button><button onClick={() => setSelectedJobIds(new Set())} className="px-3 py-1.5 text-sm text-violet-200">Clear</button></div>
             </div>
           )}
@@ -181,7 +181,7 @@ export function CFSBilling() {
                   <td className="px-3 py-2.5 text-gray-600 truncate max-w-[200px]">{j.description}</td>
                   <td className="px-3 py-2.5 text-gray-500">{fmtDate(j.date)}</td>
                   <td className="px-3 py-2.5 text-right font-medium text-gray-900">{fmtCurrency(j.totalCharges)}</td>
-                  <td className="px-3 py-2.5 font-mono text-xs text-gray-400">{j.cwJobNumber || '—'}</td>
+                  <td className="px-3 py-2.5 font-mono text-xs text-gray-400">{j.cwJobNumber || ''}</td>
                   <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded-full text-xs font-medium ${BILL_STATUS[j.billingStatus].color}`}>{BILL_STATUS[j.billingStatus].label}</span></td>
                 </tr>
               ))}
@@ -276,14 +276,14 @@ export function CFSBilling() {
             <div className="bg-white border border-gray-200 rounded-lg p-3"><p className="text-xs text-gray-400 mb-1">Payment Methods</p><div className="flex gap-1 mt-1"><span className="px-1.5 py-0.5 bg-blue-100 text-blue-800 rounded text-xs font-medium">ACH</span><span className="px-1.5 py-0.5 bg-green-100 text-green-800 rounded text-xs font-medium">Wire</span><span className="px-1.5 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-medium">Check</span></div></div>
           </div>
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between"><h3 className="text-sm font-bold text-gray-900">Payment Register — Remittance Matching</h3><button className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">+ Record Payment</button></div>
+            <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between"><h3 className="text-sm font-bold text-gray-900">Payment Register  Remittance Matching</h3><button className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">+ Record Payment</button></div>
             <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200"><th className="text-left px-3 py-2.5 font-medium text-gray-500">Date</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Reference</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Client</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Method</th><th className="text-right px-3 py-2.5 font-medium text-gray-500">Amount</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Matched Invoice</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Status</th></tr></thead><tbody>
               {[
                 { date: 'Apr 14', ref: 'ACH-20260414-001', client: 'Acme Manufacturing', method: 'ACH', amount: 6000, invoice: 'INV-2026-1042 + INV-20260401', status: 'MATCHED' },
-                { date: 'Apr 13', ref: 'WIR-20260413-001', client: 'Samsung Electronics', method: 'Wire', amount: 1675, invoice: '—', status: 'PENDING' },
-                { date: 'Apr 12', ref: 'CHK-88421', client: 'Heartland Foods', method: 'Check', amount: 3100, invoice: '—', status: 'UNMATCHED' },
+                { date: 'Apr 13', ref: 'WIR-20260413-001', client: 'Samsung Electronics', method: 'Wire', amount: 1675, invoice: '', status: 'PENDING' },
+                { date: 'Apr 12', ref: 'CHK-88421', client: 'Heartland Foods', method: 'Check', amount: 3100, invoice: '', status: 'UNMATCHED' },
                 { date: 'Apr 11', ref: 'ACH-20260411-002', client: 'Fiscal IOR USA', method: 'ACH', amount: 1115, invoice: 'GE-CFS-20260414', status: 'MATCHED' },
-                { date: 'Apr 10', ref: 'WIR-20260410-001', client: 'Whaleco Services', method: 'Wire', amount: 8200, invoice: '—', status: 'PENDING' },
+                { date: 'Apr 10', ref: 'WIR-20260410-001', client: 'Whaleco Services', method: 'Wire', amount: 8200, invoice: '', status: 'PENDING' },
               ].map((p, i) => (
                 <tr key={i} className={`border-b border-gray-100 hover:bg-gray-50 ${p.status === 'UNMATCHED' ? 'bg-red-50' : ''}`}>
                   <td className="px-3 py-2.5 text-gray-600">{p.date}</td><td className="px-3 py-2.5 font-mono text-gray-700">{p.ref}</td><td className="px-3 py-2.5 text-gray-700">{p.client}</td>
@@ -304,11 +304,11 @@ export function CFSBilling() {
             <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between"><h3 className="text-sm font-bold text-gray-900">Client Rate Cards</h3><button className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">+ New Rate Card</button></div>
             <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200"><th className="text-left px-3 py-2.5 font-medium text-gray-500">Client</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">CW Org</th><th className="text-right px-3 py-2.5 font-medium text-gray-500">CFS Handling</th><th className="text-right px-3 py-2.5 font-medium text-gray-500">Terminal Fee</th><th className="text-right px-3 py-2.5 font-medium text-gray-500">Drayage</th><th className="text-right px-3 py-2.5 font-medium text-gray-500">Storage/Day</th><th className="text-right px-3 py-2.5 font-medium text-gray-500">Customs</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Effective</th><th className="text-left px-3 py-2.5 font-medium text-gray-500">Status</th></tr></thead><tbody>
               {[
-                { client: 'Acme Manufacturing', org: 'ACME-US', handling: 0.08, terminal: 0.12, drayage: 650, storage: 45, customs: 185, effective: 'Jan 1 — Dec 31', status: 'ACTIVE' },
-                { client: 'Whaleco Services', org: 'WHALECO', handling: 0.06, terminal: 0.10, drayage: 550, storage: 35, customs: 165, effective: 'Mar 1 — Feb 28', status: 'ACTIVE' },
-                { client: 'Samsung Electronics', org: 'SAMSUNG-KR', handling: 0.10, terminal: 0.15, drayage: 750, storage: 55, customs: 225, effective: 'Jan 1 — Dec 31', status: 'ACTIVE' },
-                { client: 'Fiscal IOR USA', org: 'FISCALIOR', handling: 0.07, terminal: 0.11, drayage: 600, storage: 40, customs: 175, effective: 'Apr 1 — Mar 31', status: 'ACTIVE' },
-                { client: 'Heartland Foods', org: 'HEARTFOOD', handling: 0.09, terminal: 0.13, drayage: 700, storage: 50, customs: 195, effective: 'Jan 1 — Jun 30', status: 'ACTIVE' },
+                { client: 'Acme Manufacturing', org: 'ACME-US', handling: 0.08, terminal: 0.12, drayage: 650, storage: 45, customs: 185, effective: 'Jan 1  Dec 31', status: 'ACTIVE' },
+                { client: 'Whaleco Services', org: 'WHALECO', handling: 0.06, terminal: 0.10, drayage: 550, storage: 35, customs: 165, effective: 'Mar 1  Feb 28', status: 'ACTIVE' },
+                { client: 'Samsung Electronics', org: 'SAMSUNG-KR', handling: 0.10, terminal: 0.15, drayage: 750, storage: 55, customs: 225, effective: 'Jan 1  Dec 31', status: 'ACTIVE' },
+                { client: 'Fiscal IOR USA', org: 'FISCALIOR', handling: 0.07, terminal: 0.11, drayage: 600, storage: 40, customs: 175, effective: 'Apr 1  Mar 31', status: 'ACTIVE' },
+                { client: 'Heartland Foods', org: 'HEARTFOOD', handling: 0.09, terminal: 0.13, drayage: 700, storage: 50, customs: 195, effective: 'Jan 1  Jun 30', status: 'ACTIVE' },
               ].map((r, i) => (
                 <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
                   <td className="px-3 py-2.5 font-medium text-gray-900">{r.client}</td><td className="px-3 py-2.5 font-mono text-violet-600">{r.org}</td>
@@ -349,12 +349,12 @@ export function CFSBilling() {
                 return (
                   <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="px-3 py-2.5 font-medium text-gray-900">{a.client}</td>
-                    <td className="px-3 py-2.5 text-right text-gray-700">{a.current > 0 ? fmtCurrency(a.current) : '—'}</td>
-                    <td className="px-3 py-2.5 text-right text-yellow-600">{a.d30 > 0 ? fmtCurrency(a.d30) : '—'}</td>
-                    <td className="px-3 py-2.5 text-right text-orange-600">{a.d60 > 0 ? fmtCurrency(a.d60) : '—'}</td>
-                    <td className="px-3 py-2.5 text-right text-red-600">{a.d90 > 0 ? fmtCurrency(a.d90) : '—'}</td>
-                    <td className="px-3 py-2.5 text-right text-red-800 font-bold">{a.over90 > 0 ? fmtCurrency(a.over90) : '—'}</td>
-                    <td className="px-3 py-2.5 text-right font-bold text-gray-900">{total > 0 ? fmtCurrency(total) : '—'}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{a.current > 0 ? fmtCurrency(a.current) : ''}</td>
+                    <td className="px-3 py-2.5 text-right text-yellow-600">{a.d30 > 0 ? fmtCurrency(a.d30) : ''}</td>
+                    <td className="px-3 py-2.5 text-right text-orange-600">{a.d60 > 0 ? fmtCurrency(a.d60) : ''}</td>
+                    <td className="px-3 py-2.5 text-right text-red-600">{a.d90 > 0 ? fmtCurrency(a.d90) : ''}</td>
+                    <td className="px-3 py-2.5 text-right text-red-800 font-bold">{a.over90 > 0 ? fmtCurrency(a.over90) : ''}</td>
+                    <td className="px-3 py-2.5 text-right font-bold text-gray-900">{total > 0 ? fmtCurrency(total) : ''}</td>
                   </tr>
                 );
               })}
@@ -367,7 +367,7 @@ export function CFSBilling() {
       {activeTab === 'cw_orgs' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-            <h3 className="text-sm font-bold text-gray-900">CargoWise Organization Codes — Auto-Match</h3>
+            <h3 className="text-sm font-bold text-gray-900">CargoWise Organization Codes  Auto-Match</h3>
             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500" /><span className="text-xs text-green-600 font-medium">CW Sync Active</span></div>
           </div>
           <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200">
@@ -405,7 +405,7 @@ export function CFSBilling() {
           <div className="absolute inset-0 bg-black bg-opacity-20" />
           <div className="relative w-[480px] bg-white shadow-2xl h-full overflow-y-auto border-l border-gray-200" onClick={e => e.stopPropagation()}>
             <div className="px-5 py-4 border-b border-gray-200">
-              <div className="flex items-center justify-between mb-2"><div className="flex items-center gap-2"><span className={`px-2 py-0.5 rounded text-xs font-medium ${MODULE_BADGE[selectedJob.module].color}`}>{MODULE_BADGE[selectedJob.module].label}</span><h3 className="text-sm font-bold text-gray-900">{selectedJob.jobNumber}</h3></div><button onClick={() => setSelectedJob(null)} className="text-gray-400 hover:text-gray-600 text-lg">Ã—</button></div>
+              <div className="flex items-center justify-between mb-2"><div className="flex items-center gap-2"><span className={`px-2 py-0.5 rounded text-xs font-medium ${MODULE_BADGE[selectedJob.module].color}`}>{MODULE_BADGE[selectedJob.module].label}</span><h3 className="text-sm font-bold text-gray-900">{selectedJob.jobNumber}</h3></div><button onClick={() => setSelectedJob(null)} className="text-gray-400 hover:text-gray-600 text-lg">×</button></div>
               <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${BILL_STATUS[selectedJob.billingStatus].color}`}>{BILL_STATUS[selectedJob.billingStatus].label}</span>
             </div>
             <div className="px-5 py-4 space-y-4">
@@ -428,11 +428,11 @@ export function CFSBilling() {
       {showCreditMemo && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowCreditMemo(false)}>
           <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“ Create Credit Memo / Adjustment</h2></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ Create Credit Memo / Adjustment</h2></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Type</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>Credit Memo</option><option>Debit Memo</option><option>Rate Adjustment</option><option>Billing Correction</option></select></div>
-                <div><label className="block text-xs font-medium text-gray-700 mb-1">Original Invoice</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>INV-2026-1042 — Acme ($3,200)</option><option>INV-20260401 — Acme ($2,800)</option><option>GE-CFS-20260414 — Fiscal IOR ($1,115)</option></select></div>
+                <div><label className="block text-xs font-medium text-gray-700 mb-1">Original Invoice</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>INV-2026-1042  Acme ($3,200)</option><option>INV-20260401  Acme ($2,800)</option><option>GE-CFS-20260414  Fiscal IOR ($1,115)</option></select></div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Amount</label><input type="number" placeholder="0.00" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
@@ -450,7 +450,7 @@ export function CFSBilling() {
       {showInvoicePDF && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowInvoicePDF(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“„ Invoice PDF — Preview & Send</h2></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ Invoice PDF  Preview & Send</h2></div>
             <div className="px-6 py-4">
               <div className="border border-gray-300 rounded-lg p-8 bg-white" style={{ fontFamily: 'serif' }}>
                 <div className="flex justify-between items-start mb-6">
@@ -459,16 +459,16 @@ export function CFSBilling() {
                 </div>
                 <div className="bg-gray-50 rounded p-3 mb-4"><p className="text-xs text-gray-400">Bill To:</p><p className="text-sm font-bold">Acme Manufacturing</p><p className="text-xs text-gray-600">1200 Industrial Pkwy, Detroit, MI</p><p className="text-xs text-gray-400">CW Org: ACME-US</p></div>
                 <table className="w-full text-xs mb-4"><thead><tr className="border-b-2 border-gray-300"><th className="text-left py-2">Description</th><th className="text-right py-2">Qty</th><th className="text-right py-2">Rate</th><th className="text-right py-2">Amount</th></tr></thead><tbody>
-                  <tr className="border-b border-gray-200"><td className="py-2">Line Haul — Memphis, TN â†’ Nashville, TN</td><td className="text-right py-2">1</td><td className="text-right py-2">$2,800.00</td><td className="text-right py-2">$2,800.00</td></tr>
+                  <tr className="border-b border-gray-200"><td className="py-2">Line Haul  Memphis, TN → Nashville, TN</td><td className="text-right py-2">1</td><td className="text-right py-2">$2,800.00</td><td className="text-right py-2">$2,800.00</td></tr>
                   <tr className="border-b border-gray-200"><td className="py-2">Fuel Surcharge (10%)</td><td className="text-right py-2">1</td><td className="text-right py-2">$280.00</td><td className="text-right py-2">$280.00</td></tr>
-                  <tr className="border-b border-gray-200"><td className="py-2">Accessorials — Liftgate</td><td className="text-right py-2">1</td><td className="text-right py-2">$120.00</td><td className="text-right py-2">$120.00</td></tr>
+                  <tr className="border-b border-gray-200"><td className="py-2">Accessorials  Liftgate</td><td className="text-right py-2">1</td><td className="text-right py-2">$120.00</td><td className="text-right py-2">$120.00</td></tr>
                 </tbody><tfoot><tr className="border-t-2 border-gray-300"><td colSpan={3} className="text-right py-2 font-bold">Total Due:</td><td className="text-right py-2 font-bold text-lg">$3,200.00</td></tr></tfoot></table>
-                <p className="text-xs text-gray-400 text-center mt-4">Thank you for your business — AXON TMS Transport Corporation</p>
+                <p className="text-xs text-gray-400 text-center mt-4">Thank you for your business  AXON TMS Transport Corporation</p>
               </div>
             </div>
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
               <button onClick={() => setShowInvoicePDF(false)} className="px-4 py-2 text-sm text-gray-600">Close</button>
-              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">â¬‡ Download PDF</button><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">ðŸ–¨ Print</button><button className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">ðŸ“§ Email to Client</button></div>
+              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">⬇ Download PDF</button><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">ðŸ¨ Print</button><button className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">ðŸ§ Email to Client</button></div>
             </div>
           </div>
         </div>

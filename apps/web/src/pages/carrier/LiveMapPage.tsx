@@ -148,7 +148,7 @@ export function LiveMapPage() {
                 <span className="text-xs text-gray-400">{v.city}, {v.state}</span>
                 {v.speed > 0 && <span className="text-xs text-blue-600 font-medium">{v.speed}mph</span>}
               </div>
-              {v.loadNumber && <div className="ml-4 mt-1 flex items-center gap-1"><span className="text-xs text-blue-600 font-medium">{v.loadNumber}</span><span className="text-xs text-gray-400">â†’ {v.destination}</span></div>}
+              {v.loadNumber && <div className="ml-4 mt-1 flex items-center gap-1"><span className="text-xs text-blue-600 font-medium">{v.loadNumber}</span><span className="text-xs text-gray-400">→ {v.destination}</span></div>}
             </button>
           ))}
         </div>
@@ -167,7 +167,7 @@ export function LiveMapPage() {
             <div className="absolute top-4 right-4 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-[1000] max-h-96 overflow-hidden flex flex-col">
               <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
                 <h3 className="text-xs font-semibold text-gray-900">Tracking Links</h3>
-                <button onClick={() => setShowLinks(false)} className="text-gray-400 hover:text-gray-600">Ã—</button>
+                <button onClick={() => setShowLinks(false)} className="text-gray-400 hover:text-gray-600">×</button>
               </div>
               <div className="overflow-y-auto flex-1 p-2">
                 {links.length === 0 && <p className="text-xs text-gray-400 text-center py-4">No tracking links yet.</p>}
@@ -203,7 +203,7 @@ export function LiveMapPage() {
             <div className="px-6 py-4 space-y-4">
               <div className="bg-gray-50 rounded-lg p-3">
                 <div className="flex items-center gap-2 mb-1"><span className="text-xs font-semibold text-gray-900">{trkVehicle.unitNumber}</span><span className="text-xs text-gray-500">·</span><span className="text-xs text-gray-600">{trkVehicle.driverName}</span></div>
-                <p className="text-xs text-gray-500">{trkVehicle.city}, {trkVehicle.state} â†’ {trkVehicle.destination || 'No active load'}</p>
+                <p className="text-xs text-gray-500">{trkVehicle.city}, {trkVehicle.state} → {trkVehicle.destination || 'No active load'}</p>
               </div>
               <div><label className="block text-xs font-medium text-gray-700 mb-1">Load Number</label><input type="text" value={lnkLoad} onChange={e => setLnkLoad(e.target.value)} placeholder="LD-0000" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" /></div>
               <div><label className="block text-xs font-medium text-gray-700 mb-1">Customer Name *</label><input type="text" value={lnkCust} onChange={e => setLnkCust(e.target.value)} placeholder="Acme Corp" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" /></div>

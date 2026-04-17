@@ -37,13 +37,13 @@ const CUSTOMER_PROFITABILITY = [
 ];
 
 const LANE_PROFITABILITY = [
-  { lane: 'DET â†’ CHI', shipments: 98, buy: 215600, sell: 274400, margin: 58800, marginPct: 21.4 },
-  { lane: 'KC â†’ DAL', shipments: 72, buy: 201600, sell: 244800, margin: 43200, marginPct: 17.6 },
-  { lane: 'LAX â†’ PHX', shipments: 54, buy: 72900, sell: 97200, margin: 24300, marginPct: 25.0 },
-  { lane: 'BHM â†’ ATL', shipments: 42, buy: 75600, sell: 92400, margin: 16800, marginPct: 18.2 },
-  { lane: 'CHI â†’ IND', shipments: 68, buy: 71400, sell: 95200, margin: 23800, marginPct: 25.0 },
-  { lane: 'CLE â†’ PIT', shipments: 35, buy: 42000, sell: 56000, margin: 14000, marginPct: 25.0 },
-  { lane: 'BNA â†’ MEM', shipments: 28, buy: 25200, sell: 33600, margin: 8400, marginPct: 25.0 },
+  { lane: 'DET → CHI', shipments: 98, buy: 215600, sell: 274400, margin: 58800, marginPct: 21.4 },
+  { lane: 'KC → DAL', shipments: 72, buy: 201600, sell: 244800, margin: 43200, marginPct: 17.6 },
+  { lane: 'LAX → PHX', shipments: 54, buy: 72900, sell: 97200, margin: 24300, marginPct: 25.0 },
+  { lane: 'BHM → ATL', shipments: 42, buy: 75600, sell: 92400, margin: 16800, marginPct: 18.2 },
+  { lane: 'CHI → IND', shipments: 68, buy: 71400, sell: 95200, margin: 23800, marginPct: 25.0 },
+  { lane: 'CLE → PIT', shipments: 35, buy: 42000, sell: 56000, margin: 14000, marginPct: 25.0 },
+  { lane: 'BNA → MEM', shipments: 28, buy: 25200, sell: 33600, margin: 8400, marginPct: 25.0 },
 ];
 
 const REPORT_TYPES: { id: ReportType; label: string; section: string }[] = [
@@ -165,7 +165,7 @@ export function BrokerageReports() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700, color: '#1f2937', margin: 0 }}>Profitability Report</h2>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={exportReport} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 13, fontWeight: 500, color: '#374151', background: 'white', border: '1px solid #d1d5db', borderRadius: 8, cursor: 'pointer' }}>â¬‡ Export to Excel</button>
+          <button onClick={exportReport} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 13, fontWeight: 500, color: '#374151', background: 'white', border: '1px solid #d1d5db', borderRadius: 8, cursor: 'pointer' }}>⬇ Export to Excel</button>
           <button style={{ padding: '8px 20px', fontSize: 13, fontWeight: 600, color: 'white', background: '#2563eb', border: 'none', borderRadius: 8, cursor: 'pointer' }}>Create Report</button>
         </div>
       </div>
@@ -295,7 +295,7 @@ export function BrokerageReports() {
 
           {/* Print button */}
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 12 }}>
-            <button onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 13, color: '#374151', background: 'white', border: '1px solid #d1d5db', borderRadius: 8, cursor: 'pointer' }}>ðŸ–¨ Print</button>
+            <button onClick={() => window.print()} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', fontSize: 13, color: '#374151', background: 'white', border: '1px solid #d1d5db', borderRadius: 8, cursor: 'pointer' }}>ðŸ¨ Print</button>
           </div>
         </>
       )}
@@ -385,7 +385,7 @@ export function BrokerageReports() {
       {/* ─ Placeholder for other report types ─ */}
       {!['profitability_by_month', 'profitability_by_customer', 'profitability_by_lane'].includes(reportType) && (
         <div style={{ background: 'white', border: '1px solid #e5e7eb', borderRadius: 10, padding: 40, textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>ðŸ“Š</div>
+          <div style={{ fontSize: 32, marginBottom: 12 }}>ðŸ</div>
           <div style={{ fontSize: 16, fontWeight: 600, color: '#6b7280' }}>{reportLabel}</div>
           <p style={{ fontSize: 13, color: '#9ca3af', marginTop: 8 }}>Select date range and click "Create Report" to generate</p>
         </div>

@@ -7,7 +7,7 @@ type UserRole = 'FULL_ADMIN' | 'ADMIN' | 'MANAGER' | 'OPERATIONS' | 'ACCOUNTING'
 interface TeamMember {
   id: string; firstName: string; lastName: string; email: string; phone: string;
   role: UserRole; status: 'ACTIVE' | 'INVITED' | 'DISABLED'; lastLogin: string; avatar: string;
-  cfsLocation: string; // CFS station restriction — empty means ALL locations
+  cfsLocation: string; // CFS station restriction  empty means ALL locations
 }
 
 interface APIKey {
@@ -34,25 +34,25 @@ const MOCK_TEAM: TeamMember[] = [
 ];
 
 const MOCK_API_KEYS: APIKey[] = [
-  { id: 'ak1', name: 'GeminiProd', description: 'Production — full API access', clientId: 'kkwAojxFs2ccslyxyGx1NYALNJD9Qb', clientSecret: '••••••••••••••••••••••••••••••', createdAt: '2026-01-15', lastUsed: '2026-04-13T12:00:00Z', expiresAt: null, status: 'ACTIVE', permissions: ['loads.read', 'loads.write', 'drivers.read', 'drivers.write', 'assets.read', 'assets.write', 'tracking.read', 'accounting.read', 'accounting.write', 'reports.read', 'webhooks.manage'] },
-  { id: 'ak2', name: 'StagingTest', description: 'Staging — limited read access', clientId: 'XiQjGNEsc8m5Pns5aMsYUKlcBk4zRt', clientSecret: '••••••••••••••••••••••••••••••', createdAt: '2026-03-01', lastUsed: '2026-04-10T09:00:00Z', expiresAt: '2026-09-24', status: 'ACTIVE', permissions: ['loads.read', 'drivers.read', 'assets.read', 'tracking.read', 'reports.read'] },
-  { id: 'ak3', name: 'OldPartnerKey', description: 'Deprecated partner integration', clientId: 'x1y2z3aBcDeFgHiJkLmNoPqRsTuVwX', clientSecret: '••••••••••••••••••••••••••••••', createdAt: '2025-06-10', lastUsed: '2025-12-01T14:00:00Z', expiresAt: '2026-01-01', status: 'REVOKED', permissions: ['loads.read', 'tracking.read'] },
+  { id: 'ak1', name: 'GeminiProd', description: 'Production  full API access', clientId: 'kkwAojxFs2ccslyxyGx1NYALNJD9Qb', clientSecret: '', createdAt: '2026-01-15', lastUsed: '2026-04-13T12:00:00Z', expiresAt: null, status: 'ACTIVE', permissions: ['loads.read', 'loads.write', 'drivers.read', 'drivers.write', 'assets.read', 'assets.write', 'tracking.read', 'accounting.read', 'accounting.write', 'reports.read', 'webhooks.manage'] },
+  { id: 'ak2', name: 'StagingTest', description: 'Staging  limited read access', clientId: 'XiQjGNEsc8m5Pns5aMsYUKlcBk4zRt', clientSecret: '', createdAt: '2026-03-01', lastUsed: '2026-04-10T09:00:00Z', expiresAt: '2026-09-24', status: 'ACTIVE', permissions: ['loads.read', 'drivers.read', 'assets.read', 'tracking.read', 'reports.read'] },
+  { id: 'ak3', name: 'OldPartnerKey', description: 'Deprecated partner integration', clientId: 'x1y2z3aBcDeFgHiJkLmNoPqRsTuVwX', clientSecret: '', createdAt: '2025-06-10', lastUsed: '2025-12-01T14:00:00Z', expiresAt: '2026-01-01', status: 'REVOKED', permissions: ['loads.read', 'tracking.read'] },
 ];
 
 const MOCK_INTEGRATIONS: Integration[] = [
-  { id: 'int1', name: 'CargoWise One', provider: 'WiseTech Global', type: 'Accounting / TMS', status: 'CONNECTED', lastSync: '2026-04-13T12:30:00Z', icon: 'ðŸ“Š', description: 'Push loads, sync invoices, and manage AR/AP through CargoWise.' },
+  { id: 'int1', name: 'CargoWise One', provider: 'WiseTech Global', type: 'Accounting / TMS', status: 'CONNECTED', lastSync: '2026-04-13T12:30:00Z', icon: 'ðŸ', description: 'Push loads, sync invoices, and manage AR/AP through CargoWise.' },
   { id: 'int2', name: 'Motive (KeepTruckin)', provider: 'Motive Technologies', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:32:00Z', icon: 'ðŸŸ ', description: 'GPS tracking, HOS, IFTA mileage, fuel cards, dashcam events.' },
   { id: 'int3', name: 'Samsara', provider: 'Samsara Inc.', type: 'ELD / Telematics', status: 'CONNECTED', lastSync: '2026-04-13T12:28:00Z', icon: 'ðŸŸ¢', description: 'GPS tracking, HOS, IFTA mileage, AI dashcam, temperature monitoring.' },
-  { id: 'int4', name: 'QuickBooks Online', provider: 'Intuit', type: 'Accounting', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ’°', description: 'Sync invoices, payments, and chart of accounts.' },
-  { id: 'int5', name: 'TriumphPay', provider: 'Triumph Financial', type: 'Factoring / Payments', status: 'CONNECTED', lastSync: '2026-04-14T10:00:00Z', icon: 'ðŸ¦', description: 'Automated carrier payment network — audit, match, and pay carriers.' },
-  { id: 'int5b', name: 'RTS Financial', provider: 'RTS Financial Services', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-14T09:30:00Z', icon: 'ðŸ’³', description: 'Quick-pay factoring — same-day carrier funding with 3% fee.' },
-  { id: 'int5c', name: 'OTR Solutions', provider: 'OTR Solutions Inc.', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-13T14:00:00Z', icon: 'ðŸš›', description: 'Carrier factoring, fuel card programs, and quick-pay services.' },
-  { id: 'int6', name: 'DAT Load Board', provider: 'DAT Solutions', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T11:00:00Z', icon: 'ðŸ“‹', description: 'Post loads, search trucks, rate intelligence.' },
-  { id: 'int7', name: 'Truckstop.com', provider: 'Truckstop', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T10:30:00Z', icon: 'ðŸš›', description: 'Load posting, rate analytics, carrier onboarding.' },
-  { id: 'int8', name: 'RMIS (Registry Monitoring)', provider: 'RMIS', type: 'Carrier Compliance', status: 'CONNECTED', lastSync: '2026-04-12T06:00:00Z', icon: 'ðŸ›¡', description: 'Automated carrier monitoring — insurance, authority, safety scores.' },
-  { id: 'int9', name: 'I-PASS', provider: 'Illinois Tollway', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T06:00:00Z', icon: 'ðŸ›£', description: 'Illinois Tollway transponder integration — automatic toll tracking, transaction history, and account balance sync.' },
-  { id: 'int10', name: 'E-ZPass New York', provider: 'NY Thruway Authority', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T05:30:00Z', icon: 'ðŸ›£', description: 'E-ZPass NY toll transactions — automated toll tracking across NY, NJ, PA, and 18 other E-ZPass states.' },
-  { id: 'int11', name: 'Bestpass', provider: 'Bestpass / Fleetworthy', type: 'Tolls', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ·', description: 'Consolidated toll management — single account for all toll roads, bridges, and tunnels nationwide.' },
+  { id: 'int4', name: 'QuickBooks Online', provider: 'Intuit', type: 'Accounting', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ°', description: 'Sync invoices, payments, and chart of accounts.' },
+  { id: 'int5', name: 'TriumphPay', provider: 'Triumph Financial', type: 'Factoring / Payments', status: 'CONNECTED', lastSync: '2026-04-14T10:00:00Z', icon: 'ðŸ¦', description: 'Automated carrier payment network  audit, match, and pay carriers.' },
+  { id: 'int5b', name: 'RTS Financial', provider: 'RTS Financial Services', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-14T09:30:00Z', icon: 'ðŸ³', description: 'Quick-pay factoring  same-day carrier funding with 3% fee.' },
+  { id: 'int5c', name: 'OTR Solutions', provider: 'OTR Solutions Inc.', type: 'Factoring / Quick-Pay', status: 'CONNECTED', lastSync: '2026-04-13T14:00:00Z', icon: 'ðŸ', description: 'Carrier factoring, fuel card programs, and quick-pay services.' },
+  { id: 'int6', name: 'DAT Load Board', provider: 'DAT Solutions', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T11:00:00Z', icon: 'ðŸ', description: 'Post loads, search trucks, rate intelligence.' },
+  { id: 'int7', name: 'Truckstop.com', provider: 'Truckstop', type: 'Load Board', status: 'CONNECTED', lastSync: '2026-04-13T10:30:00Z', icon: 'ðŸ', description: 'Load posting, rate analytics, carrier onboarding.' },
+  { id: 'int8', name: 'RMIS (Registry Monitoring)', provider: 'RMIS', type: 'Carrier Compliance', status: 'CONNECTED', lastSync: '2026-04-12T06:00:00Z', icon: 'ðŸ¡', description: 'Automated carrier monitoring  insurance, authority, safety scores.' },
+  { id: 'int9', name: 'I-PASS', provider: 'Illinois Tollway', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T06:00:00Z', icon: 'ðŸ£', description: 'Illinois Tollway transponder integration  automatic toll tracking, transaction history, and account balance sync.' },
+  { id: 'int10', name: 'E-ZPass New York', provider: 'NY Thruway Authority', type: 'Tolls', status: 'CONNECTED', lastSync: '2026-04-13T05:30:00Z', icon: 'ðŸ£', description: 'E-ZPass NY toll transactions  automated toll tracking across NY, NJ, PA, and 18 other E-ZPass states.' },
+  { id: 'int11', name: 'Bestpass', provider: 'Bestpass / Fleetworthy', type: 'Tolls', status: 'DISCONNECTED', lastSync: '', icon: 'ðŸ·', description: 'Consolidated toll management  single account for all toll roads, bridges, and tunnels nationwide.' },
 ];
 
 // ─ Helpers ─
@@ -74,8 +74,8 @@ const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
 
 const INT_STATUS: Record<string, string> = { CONNECTED: 'bg-green-100 text-green-800', DISCONNECTED: 'bg-gray-100 text-gray-500', ERROR: 'bg-red-100 text-red-800' };
 
-function fmtDT(d: string) { if (!d) return '—'; const t = new Date(d); return `${t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} ${t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}`; }
-function fmtDate(d: string) { if (!d) return '—'; return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+function fmtDT(d: string) { if (!d) return ''; const t = new Date(d); return `${t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} ${t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}`; }
+function fmtDate(d: string) { if (!d) return ''; return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
 
 // ─ Component ─
 export function SettingsPage() {
@@ -91,14 +91,14 @@ export function SettingsPage() {
 
   const NAV: { id: SettingsSection; label: string; icon: string }[] = [
     { id: 'company', label: 'Company Profile', icon: 'ðŸ¢' },
-    { id: 'users', label: 'Users & Access', icon: 'ðŸ‘¥' },
-    { id: 'integrations', label: 'Integrations', icon: 'ðŸ”—' },
-    { id: 'edi', label: 'EDI & Visibility', icon: 'ðŸ“¡' },
-    { id: 'email', label: 'Email', icon: 'âœ‰' },
-    { id: 'api', label: 'API Access', icon: 'ðŸ”‘' },
-    { id: 'developer_portal', label: 'Developer Portal', icon: 'ðŸ“–' },
-    { id: 'billing', label: 'Billing', icon: 'ðŸ’³' },
-    { id: 'profile', label: 'My Profile', icon: 'ðŸ‘¤' },
+    { id: 'users', label: 'Users & Access', icon: 'ðŸ¥' },
+    { id: 'integrations', label: 'Integrations', icon: 'ðŸ' },
+    { id: 'edi', label: 'EDI & Visibility', icon: 'ðŸ¡' },
+    { id: 'email', label: 'Email', icon: '✉' },
+    { id: 'api', label: 'API Access', icon: 'ðŸ' },
+    { id: 'developer_portal', label: 'Developer Portal', icon: 'ðŸ' },
+    { id: 'billing', label: 'Billing', icon: 'ðŸ³' },
+    { id: 'profile', label: 'My Profile', icon: 'ðŸ¤' },
   ];
 
   return (
@@ -160,7 +160,7 @@ export function SettingsPage() {
                   <div key={role} className="text-xs">
                     <span className={`inline-block px-2 py-0.5 rounded-full font-medium mb-1.5 ${ROLE_BADGES[role].bg} ${ROLE_BADGES[role].text}`}>{ROLE_BADGES[role].label}</span>
                     <ul className="space-y-0.5">
-                      {perms.map(p => <li key={p} className="text-gray-500">• {p}</li>)}
+                      {perms.map(p => <li key={p} className="text-gray-500"> {p}</li>)}
                     </ul>
                   </div>
                 ))}
@@ -216,10 +216,10 @@ export function SettingsPage() {
                             <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600">All</span>
                           ) : (
                             <>
-                              {['OPERATIONS', 'MANAGER'].includes(u.role) && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">ðŸš›</span>}
-                              {u.role !== 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800">ðŸ“¦</span>}
-                              {u.cfsLocation && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-violet-100 text-violet-800">âœˆ</span>}
-                              {u.role === 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">ðŸ’°</span>}
+                              {['OPERATIONS', 'MANAGER'].includes(u.role) && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">ðŸ</span>}
+                              {u.role !== 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-emerald-100 text-emerald-800">ðŸ¦</span>}
+                              {u.cfsLocation && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-violet-100 text-violet-800">✈</span>}
+                              {u.role === 'ACCOUNTING' && <span className="px-1.5 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800">ðŸ°</span>}
                             </>
                           )}
                         </div>
@@ -271,7 +271,7 @@ export function SettingsPage() {
                   { page: 'API Access / EDI', perms: ['full', 'edit', 'none', 'none', 'none'] },
                   { page: 'Audit Trail', perms: ['full', 'full', 'view', 'none', 'view'] },
                 ].map((row, i) => {
-                  const permIcon: Record<string, { icon: string; color: string }> = { full: { icon: 'âœ“', color: 'text-green-600 bg-green-50' }, edit: { icon: 'âœŽ', color: 'text-blue-600 bg-blue-50' }, view: { icon: 'ðŸ‘', color: 'text-gray-500 bg-gray-50' }, none: { icon: '—', color: 'text-gray-300 bg-white' } };
+                  const permIcon: Record<string, { icon: string; color: string }> = { full: { icon: '✓', color: 'text-green-600 bg-green-50' }, edit: { icon: '✎', color: 'text-blue-600 bg-blue-50' }, view: { icon: 'ðŸ', color: 'text-gray-500 bg-gray-50' }, none: { icon: '', color: 'text-gray-300 bg-white' } };
                   return (
                     <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
                       <td className="px-3 py-2 font-medium text-gray-800">{row.page}</td>
@@ -281,10 +281,10 @@ export function SettingsPage() {
                 })}
               </tbody></table>
               <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 flex gap-4 text-xs text-gray-400">
-                <span><span className="text-green-600 font-bold">âœ“</span> Full Access</span>
-                <span><span className="text-blue-600 font-bold">âœŽ</span> Edit</span>
-                <span><span className="text-gray-500">ðŸ‘</span> View Only</span>
-                <span><span className="text-gray-300">—</span> No Access</span>
+                <span><span className="text-green-600 font-bold">✓</span> Full Access</span>
+                <span><span className="text-blue-600 font-bold">✎</span> Edit</span>
+                <span><span className="text-gray-500">ðŸ</span> View Only</span>
+                <span><span className="text-gray-300"></span> No Access</span>
               </div>
             </div>
 
@@ -300,12 +300,12 @@ export function SettingsPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { station: 'JFK — John F. Kennedy Intl', city: 'New York, NY', users: MOCK_TEAM.filter(u => u.cfsLocation === 'JFK'), color: 'border-blue-200 bg-blue-50' },
-                    { station: 'MIA — Miami Intl', city: 'Miami, FL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'MIA'), color: 'border-orange-200 bg-orange-50' },
-                    { station: 'ORD — O\'Hare Intl', city: 'Chicago, IL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'ORD'), color: 'border-green-200 bg-green-50' },
-                    { station: 'LAX — Los Angeles Intl', city: 'Los Angeles, CA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
-                    { station: 'ATL — Hartsfield-Jackson', city: 'Atlanta, GA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
-                    { station: 'DFW — Dallas/Fort Worth', city: 'Dallas, TX', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
+                    { station: 'JFK  John F. Kennedy Intl', city: 'New York, NY', users: MOCK_TEAM.filter(u => u.cfsLocation === 'JFK'), color: 'border-blue-200 bg-blue-50' },
+                    { station: 'MIA  Miami Intl', city: 'Miami, FL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'MIA'), color: 'border-orange-200 bg-orange-50' },
+                    { station: 'ORD  O\'Hare Intl', city: 'Chicago, IL', users: MOCK_TEAM.filter(u => u.cfsLocation === 'ORD'), color: 'border-green-200 bg-green-50' },
+                    { station: 'LAX  Los Angeles Intl', city: 'Los Angeles, CA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
+                    { station: 'ATL  Hartsfield-Jackson', city: 'Atlanta, GA', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
+                    { station: 'DFW  Dallas/Fort Worth', city: 'Dallas, TX', users: [] as TeamMember[], color: 'border-gray-200 bg-gray-50' },
                   ].map((loc, i) => (
                     <div key={i} className={`rounded-lg border p-3 ${loc.color}`}>
                       <div className="flex items-center justify-between mb-2">
@@ -327,11 +327,11 @@ export function SettingsPage() {
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3 text-xs text-gray-500 space-y-1">
                   <p><strong>Access rules:</strong></p>
-                  <p>• <strong>Full Admin / Admin:</strong> See all CFS locations — no restriction</p>
-                  <p>• <strong>Manager:</strong> Assigned location only — can view/edit orders, dispatch, customs for their station</p>
-                  <p>• <strong>Operations:</strong> Assigned location only — can only see and process shipments at their CFS station</p>
-                  <p>• <strong>Accounting:</strong> All locations (billing is cross-location) — but CFS operations read-only</p>
-                  <p>• <strong>Data filtered:</strong> Import Orders, Export Orders, Warehouse, Customs, Dispatch, Billing — all filtered by user's CFS location</p>
+                  <p> <strong>Full Admin / Admin:</strong> See all CFS locations  no restriction</p>
+                  <p> <strong>Manager:</strong> Assigned location only  can view/edit orders, dispatch, customs for their station</p>
+                  <p> <strong>Operations:</strong> Assigned location only  can only see and process shipments at their CFS station</p>
+                  <p> <strong>Accounting:</strong> All locations (billing is cross-location)  but CFS operations read-only</p>
+                  <p> <strong>Data filtered:</strong> Import Orders, Export Orders, Warehouse, Customs, Dispatch, Billing  all filtered by user's CFS location</p>
                 </div>
               </div>
             </div>
@@ -374,18 +374,18 @@ export function SettingsPage() {
         {/* ─ EDI & Visibility ─ */}
         {section === 'edi' && (() => {
           const EDI_TRANSACTIONS = [
-            { id: 'e1', type: '204', direction: 'IN', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'ACCEPTED', timestamp: '2026-04-14T09:15:00Z', details: 'Load tender — Detroit, MI â†’ Columbus, OH, 45,000 lbs' },
-            { id: 'e2', type: '990', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'SENT', timestamp: '2026-04-14T09:16:00Z', details: 'Tender accepted — auto-response' },
-            { id: 'e3', type: '214', direction: 'OUT', partner: 'Heartland Foods', ref: 'SH-10432', status: 'SENT', timestamp: '2026-04-14T08:30:00Z', details: 'Status: In Transit — Omaha, NE' },
-            { id: 'e4', type: '214', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10421', status: 'SENT', timestamp: '2026-04-14T08:00:00Z', details: 'Status: In Transit — Bowling Green, KY' },
-            { id: 'e5', type: '204', direction: 'IN', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'ACCEPTED', timestamp: '2026-04-14T05:10:00Z', details: 'Load tender — Houston, TX â†’ Atlanta, GA, 40,000 lbs' },
-            { id: 'e6', type: '990', direction: 'OUT', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'SENT', timestamp: '2026-04-14T05:11:00Z', details: 'Tender accepted — auto-response' },
-            { id: 'e7', type: '210', direction: 'OUT', partner: 'Great Lakes Chemicals', ref: 'SH-10425', status: 'SENT', timestamp: '2026-04-13T16:00:00Z', details: 'Invoice $1,600.00 — INV-20260310' },
+            { id: 'e1', type: '204', direction: 'IN', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'ACCEPTED', timestamp: '2026-04-14T09:15:00Z', details: 'Load tender  Detroit, MI → Columbus, OH, 45,000 lbs' },
+            { id: 'e2', type: '990', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10428', status: 'SENT', timestamp: '2026-04-14T09:16:00Z', details: 'Tender accepted  auto-response' },
+            { id: 'e3', type: '214', direction: 'OUT', partner: 'Heartland Foods', ref: 'SH-10432', status: 'SENT', timestamp: '2026-04-14T08:30:00Z', details: 'Status: In Transit  Omaha, NE' },
+            { id: 'e4', type: '214', direction: 'OUT', partner: 'Acme Manufacturing', ref: 'SH-10421', status: 'SENT', timestamp: '2026-04-14T08:00:00Z', details: 'Status: In Transit  Bowling Green, KY' },
+            { id: 'e5', type: '204', direction: 'IN', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'ACCEPTED', timestamp: '2026-04-14T05:10:00Z', details: 'Load tender  Houston, TX → Atlanta, GA, 40,000 lbs' },
+            { id: 'e6', type: '990', direction: 'OUT', partner: 'Pacific Retail Group', ref: 'SH-10430', status: 'SENT', timestamp: '2026-04-14T05:11:00Z', details: 'Tender accepted  auto-response' },
+            { id: 'e7', type: '210', direction: 'OUT', partner: 'Great Lakes Chemicals', ref: 'SH-10425', status: 'SENT', timestamp: '2026-04-13T16:00:00Z', details: 'Invoice $1,600.00  INV-20260310' },
             { id: 'e8', type: '997', direction: 'IN', partner: 'Great Lakes Chemicals', ref: 'SH-10425', status: 'ACKNOWLEDGED', timestamp: '2026-04-13T16:05:00Z', details: 'Functional ACK for 210 invoice' },
-            { id: 'e9', type: '214', direction: 'OUT', partner: 'NorthPoint Logistics', ref: 'SH-10426', status: 'SENT', timestamp: '2026-04-13T14:15:00Z', details: 'Status: In Transit — Lafayette, IN' },
-            { id: 'e10', type: '210', direction: 'OUT', partner: 'Summit Healthcare', ref: 'SH-10429', status: 'SENT', timestamp: '2026-04-12T15:00:00Z', details: 'Invoice $1,200.00 — INV-20260301' },
-            { id: 'e11', type: '204', direction: 'IN', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'REJECTED', timestamp: '2026-04-11T14:00:00Z', details: 'Load tender rejected — no flatbed capacity available' },
-            { id: 'e12', type: '990', direction: 'OUT', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'SENT', timestamp: '2026-04-11T14:01:00Z', details: 'Tender declined — reason: capacity' },
+            { id: 'e9', type: '214', direction: 'OUT', partner: 'NorthPoint Logistics', ref: 'SH-10426', status: 'SENT', timestamp: '2026-04-13T14:15:00Z', details: 'Status: In Transit  Lafayette, IN' },
+            { id: 'e10', type: '210', direction: 'OUT', partner: 'Summit Healthcare', ref: 'SH-10429', status: 'SENT', timestamp: '2026-04-12T15:00:00Z', details: 'Invoice $1,200.00  INV-20260301' },
+            { id: 'e11', type: '204', direction: 'IN', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'REJECTED', timestamp: '2026-04-11T14:00:00Z', details: 'Load tender rejected  no flatbed capacity available' },
+            { id: 'e12', type: '990', direction: 'OUT', partner: 'Southeastern Steel', ref: 'SH-10424', status: 'SENT', timestamp: '2026-04-11T14:01:00Z', details: 'Tender declined  reason: capacity' },
           ];
           const TYPE_BADGE: Record<string, string> = { '204': 'bg-blue-100 text-blue-800', '990': 'bg-purple-100 text-purple-800', '214': 'bg-green-100 text-green-800', '210': 'bg-orange-100 text-orange-800', '997': 'bg-gray-100 text-gray-700' };
           const TYPE_LABEL: Record<string, string> = { '204': 'Load Tender', '990': 'Tender Response', '214': 'Status Update', '210': 'Invoice', '997': 'Func. ACK' };
@@ -394,7 +394,7 @@ export function SettingsPage() {
           return (
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div><h3 className="text-base font-semibold text-gray-900">EDI & Visibility</h3><p className="text-xs text-gray-400 mt-0.5">Electronic Data Interchange — load tenders, status updates, and invoices</p></div>
+              <div><h3 className="text-base font-semibold text-gray-900">EDI & Visibility</h3><p className="text-xs text-gray-400 mt-0.5">Electronic Data Interchange  load tenders, status updates, and invoices</p></div>
             </div>
 
             {/* EDI Summary Cards */}
@@ -501,7 +501,7 @@ export function SettingsPage() {
                     <tr key={e.id} className={`border-b border-gray-100 hover:bg-gray-50 ${e.status === 'REJECTED' ? 'bg-red-50' : ''}`}>
                       <td className="px-3 py-2.5 text-gray-600 whitespace-nowrap">{fmtDT2(e.timestamp)}</td>
                       <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded text-xs font-bold ${TYPE_BADGE[e.type]}`}>{e.type}</span><br/><span className="text-xs text-gray-400">{TYPE_LABEL[e.type]}</span></td>
-                      <td className="px-3 py-2.5"><span className={`text-xs font-semibold ${e.direction === 'IN' ? 'text-green-600' : 'text-blue-600'}`}>{e.direction === 'IN' ? 'â¬‡ Inbound' : 'â¬† Outbound'}</span></td>
+                      <td className="px-3 py-2.5"><span className={`text-xs font-semibold ${e.direction === 'IN' ? 'text-green-600' : 'text-blue-600'}`}>{e.direction === 'IN' ? '⬇ Inbound' : '⬆ Outbound'}</span></td>
                       <td className="px-3 py-2.5 text-gray-800 font-medium">{e.partner}</td>
                       <td className="px-3 py-2.5 font-mono text-blue-600">{e.ref}</td>
                       <td className="px-3 py-2.5 text-gray-600">{e.details}</td>
@@ -570,8 +570,8 @@ export function SettingsPage() {
                           {daysLeft !== null && daysLeft > 0 && <span className={`text-xs ${daysLeft <= 30 ? 'text-red-600 font-medium' : 'text-gray-400'}`}>Expires in {daysLeft} days</span>}
                           {daysLeft === null && k.status === 'ACTIVE' && <span className="text-xs text-gray-400">No expiration date</span>}
                           {k.status === 'ACTIVE' && <>
-                            <button className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Edit"><span className="text-xs">âœ</span></button>
-                            <button className="p-1.5 text-gray-400 hover:text-red-600 rounded hover:bg-red-50" title="Delete"><span className="text-xs">ðŸ—‘</span></button>
+                            <button className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Edit"><span className="text-xs">â</span></button>
+                            <button className="p-1.5 text-gray-400 hover:text-red-600 rounded hover:bg-red-50" title="Delete"><span className="text-xs">ðŸ</span></button>
                           </>}
                         </div>
                       </div>
@@ -581,15 +581,15 @@ export function SettingsPage() {
                           <label className="block text-xs font-medium text-gray-500 mb-1">Client ID</label>
                           <div className="flex items-center gap-2">
                             <input type="text" readOnly value={k.clientId} className="flex-1 bg-gray-50 border border-gray-200 rounded px-3 py-1.5 text-xs font-mono text-gray-700" onClick={e => (e.target as HTMLInputElement).select()} />
-                            <button onClick={() => navigator.clipboard.writeText(k.clientId)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy">ðŸ“‹</button>
+                            <button onClick={() => navigator.clipboard.writeText(k.clientId)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy">ðŸ</button>
                           </div>
                         </div>
                         <div>
                           <label className="block text-xs font-medium text-gray-500 mb-1">Client Secret</label>
                           <div className="flex items-center gap-2">
                             <input type={visibleSecrets[k.id] ? 'text' : 'password'} readOnly value={k.clientSecret} className="flex-1 bg-gray-50 border border-gray-200 rounded px-3 py-1.5 text-xs font-mono text-gray-700" />
-                            <button onClick={() => setVisibleSecrets(p => ({ ...p, [k.id]: !p[k.id] }))} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Show/Hide">ðŸ‘</button>
-                            <button onClick={() => navigator.clipboard.writeText(k.clientSecret)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy">ðŸ“‹</button>
+                            <button onClick={() => setVisibleSecrets(p => ({ ...p, [k.id]: !p[k.id] }))} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Show/Hide">ðŸ</button>
+                            <button onClick={() => navigator.clipboard.writeText(k.clientSecret)} className="p-1.5 text-gray-400 hover:text-blue-600 rounded hover:bg-blue-50" title="Copy">ðŸ</button>
                           </div>
                         </div>
                       </div>
@@ -599,7 +599,7 @@ export function SettingsPage() {
                         onClick={() => setExpandedCred(expandedCred === k.id ? null : k.id)}
                         className="w-full px-5 py-2 flex items-center gap-2 text-xs text-gray-500 hover:bg-gray-50 transition-colors"
                       >
-                        <span className={`transition-transform ${expandedCred === k.id ? 'rotate-90' : ''}`}>â–¶</span>
+                        <span className={`transition-transform ${expandedCred === k.id ? 'rotate-90' : ''}`}>▶</span>
                         Permissions <span className="px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-medium">{k.permissions.length}</span>
                       </button>
                       {expandedCred === k.id && (
@@ -641,7 +641,7 @@ export function SettingsPage() {
                 <p className="text-xs text-gray-500">Authentication, base URL, versioning, and your first API call.</p>
               </div>
               <div className="bg-white border border-gray-200 rounded-lg p-5 hover:border-blue-300 hover:shadow-sm transition-all cursor-pointer">
-                <div className="text-2xl mb-2">â“</div>
+                <div className="text-2xl mb-2">â</div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Stay Informed</h4>
                 <p className="text-xs text-gray-500">Changelog, release notes, and API status updates.</p>
               </div>
@@ -717,7 +717,7 @@ Content-Type: application/json`}
                         <div key={ep.path + ep.method} className="flex items-center gap-3 py-1.5 px-3 bg-gray-50 rounded">
                           <span className={`px-2 py-0.5 rounded text-xs font-mono font-bold ${ep.method === 'GET' ? 'bg-blue-100 text-blue-700' : ep.method === 'POST' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>{ep.method}</span>
                           <code className="text-xs font-mono text-gray-700">{ep.path}</code>
-                          <span className="text-xs text-gray-400 ml-auto">— {ep.desc}</span>
+                          <span className="text-xs text-gray-400 ml-auto"> {ep.desc}</span>
                         </div>
                       ))}
                     </div>
@@ -759,7 +759,7 @@ Content-Type: application/json`}
               <hr />
               <h4 className="text-xs font-semibold text-gray-700">Payment Method</h4>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div className="flex items-center gap-3"><span className="text-lg">ðŸ’³</span><div><p className="text-xs font-medium text-gray-800">Visa ending in 4242</p><p className="text-xs text-gray-400">Expires 12/2028</p></div></div>
+                <div className="flex items-center gap-3"><span className="text-lg">ðŸ³</span><div><p className="text-xs font-medium text-gray-800">Visa ending in 4242</p><p className="text-xs text-gray-400">Expires 12/2028</p></div></div>
                 <button className="px-3 py-1.5 text-xs font-medium text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100">Update</button>
               </div>
               <hr />
@@ -844,10 +844,10 @@ Content-Type: application/json`}
                 <p className="text-xs text-blue-600 mb-3">Select which modules this user can access. Full Admin / Admin have access to all modules by default.</p>
                 <div className="grid grid-cols-4 gap-2">
                   {[
-                    { id: 'carrier', label: 'Carrier', icon: 'ðŸš›', color: 'border-blue-300 bg-blue-100 text-blue-800' },
-                    { id: 'brokerage', label: 'Brokerage', icon: 'ðŸ“¦', color: 'border-emerald-300 bg-emerald-100 text-emerald-800' },
-                    { id: 'cfs', label: 'CFS / Air', icon: 'âœˆ', color: 'border-violet-300 bg-violet-100 text-violet-800' },
-                    { id: 'billing', label: 'Billing', icon: 'ðŸ’°', color: 'border-amber-300 bg-amber-100 text-amber-800' },
+                    { id: 'carrier', label: 'Carrier', icon: 'ðŸ', color: 'border-blue-300 bg-blue-100 text-blue-800' },
+                    { id: 'brokerage', label: 'Brokerage', icon: 'ðŸ¦', color: 'border-emerald-300 bg-emerald-100 text-emerald-800' },
+                    { id: 'cfs', label: 'CFS / Air', icon: '✈', color: 'border-violet-300 bg-violet-100 text-violet-800' },
+                    { id: 'billing', label: 'Billing', icon: 'ðŸ°', color: 'border-amber-300 bg-amber-100 text-amber-800' },
                   ].map(mod => (
                     <label key={mod.id} className={`flex flex-col items-center p-3 rounded-lg border-2 cursor-pointer transition-all hover:shadow-sm ${mod.color}`}>
                       <input type="checkbox" defaultChecked={['FULL_ADMIN', 'ADMIN'].includes(inviteRole)} className="mb-1.5 rounded" />
@@ -865,12 +865,12 @@ Content-Type: application/json`}
                   <p className="text-xs text-violet-600 mb-3">Operations and Manager users can only see CFS data for their assigned location. Select the CFS station this user will operate from.</p>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { code: 'JFK', name: 'JFK — New York', airport: 'John F. Kennedy Intl' },
-                      { code: 'MIA', name: 'MIA — Miami', airport: 'Miami Intl' },
-                      { code: 'ORD', name: 'ORD — Chicago', airport: "O'Hare Intl" },
-                      { code: 'LAX', name: 'LAX — Los Angeles', airport: 'Los Angeles Intl' },
-                      { code: 'ATL', name: 'ATL — Atlanta', airport: 'Hartsfield-Jackson' },
-                      { code: 'DFW', name: 'DFW — Dallas', airport: 'Dallas/Fort Worth' },
+                      { code: 'JFK', name: 'JFK  New York', airport: 'John F. Kennedy Intl' },
+                      { code: 'MIA', name: 'MIA  Miami', airport: 'Miami Intl' },
+                      { code: 'ORD', name: 'ORD  Chicago', airport: "O'Hare Intl" },
+                      { code: 'LAX', name: 'LAX  Los Angeles', airport: 'Los Angeles Intl' },
+                      { code: 'ATL', name: 'ATL  Atlanta', airport: 'Hartsfield-Jackson' },
+                      { code: 'DFW', name: 'DFW  Dallas', airport: 'Dallas/Fort Worth' },
                     ].map(loc => (
                       <label key={loc.code} className="flex items-center gap-2 p-2.5 rounded-lg border border-violet-200 bg-white cursor-pointer hover:bg-violet-50">
                         <input type="radio" name="cfsLocation" value={loc.code} className="text-violet-600" />
@@ -887,7 +887,7 @@ Content-Type: application/json`}
 
               {['FULL_ADMIN', 'ADMIN'].includes(inviteRole) && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs text-green-800">
-                  <strong>Full Admin / Admin</strong> — This user will automatically have access to all modules and all CFS locations. No location restriction needed.
+                  <strong>Full Admin / Admin</strong>  This user will automatically have access to all modules and all CFS locations. No location restriction needed.
                 </div>
               )}
             </div>

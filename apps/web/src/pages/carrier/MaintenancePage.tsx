@@ -30,7 +30,7 @@ interface WorkOrder {
 const MOCK_WORK_ORDERS: WorkOrder[] = [
   {
     id: 'wo1', woNumber: 'WO-2026-0412', status: 'IN_PROGRESS', priority: 'EMERGENCY', type: 'REPAIR',
-    unitNumber: 'T-1075', unitType: 'TRUCK', description: 'Transmission rebuild — grinding in 4th & 5th gear, hard shifting under load',
+    unitNumber: 'T-1075', unitType: 'TRUCK', description: 'Transmission rebuild  grinding in 4th & 5th gear, hard shifting under load',
     vendor: 'Rush Truck Centers', vendorCity: 'San Antonio', vendorState: 'TX', assignedTech: 'Carlos Vega',
     reportedBy: 'Marcus Johnson', reportedDate: '2026-04-08', scheduledDate: '2026-04-10', completedDate: null,
     estimatedCost: 8500, actualCost: 6200, laborHours: 14,
@@ -39,22 +39,22 @@ const MOCK_WORK_ORDERS: WorkOrder[] = [
       { name: 'Clutch Kit', partNumber: 'CK-1055', qty: 1, cost: 890 },
       { name: 'Trans Fluid (gal)', partNumber: 'FL-ATF6', qty: 4, cost: 120 },
     ],
-    notes: 'Trans pulled 4/10. Reman unit on order from Eaton — ETA 4/14. Driver reassigned to T-1088.',
+    notes: 'Trans pulled 4/10. Reman unit on order from Eaton  ETA 4/14. Driver reassigned to T-1088.',
     odometerAtService: 385200,
   },
   {
     id: 'wo2', woNumber: 'WO-2026-0415', status: 'OPEN', priority: 'HIGH', type: 'REPAIR',
-    unitNumber: 'T-1082', unitType: 'TRUCK', description: 'Frame rail damage assessment — right side cracked behind cab mount from road debris impact',
+    unitNumber: 'T-1082', unitType: 'TRUCK', description: 'Frame rail damage assessment  right side cracked behind cab mount from road debris impact',
     vendor: 'Rush Truck Centers', vendorCity: 'San Antonio', vendorState: 'TX', assignedTech: '',
     reportedBy: 'James Williams', reportedDate: '2026-04-06', scheduledDate: '2026-04-15', completedDate: null,
     estimatedCost: 15000, actualCost: 0, laborHours: 0,
     parts: [],
-    notes: 'Insurance adjuster scheduled 4/15. May be total loss — frame damage extensive. Unit OOS pending assessment.',
+    notes: 'Insurance adjuster scheduled 4/15. May be total loss  frame damage extensive. Unit OOS pending assessment.',
     odometerAtService: 421800,
   },
   {
     id: 'wo3', woNumber: 'WO-2026-0408', status: 'WAITING_PARTS', priority: 'MEDIUM', type: 'REPAIR',
-    unitNumber: 'TR-2240', unitType: 'TRAILER', description: 'Brake drum replacement — left axle drums worn past minimum, scored surface',
+    unitNumber: 'TR-2240', unitType: 'TRAILER', description: 'Brake drum replacement  left axle drums worn past minimum, scored surface',
     vendor: 'TA Petro - Nashville', vendorCity: 'Nashville', vendorState: 'TN', assignedTech: 'Steve Ellis',
     reportedBy: 'Robert Brown', reportedDate: '2026-04-05', scheduledDate: '2026-04-11', completedDate: null,
     estimatedCost: 1800, actualCost: 950, laborHours: 3,
@@ -67,7 +67,7 @@ const MOCK_WORK_ORDERS: WorkOrder[] = [
   },
   {
     id: 'wo4', woNumber: 'WO-2026-0401', status: 'COMPLETED', priority: 'MEDIUM', type: 'PREVENTIVE',
-    unitNumber: 'T-1038', unitType: 'TRUCK', description: 'PM-A Service — oil change, filters, belt & hose inspection, brake check, fluid top-off',
+    unitNumber: 'T-1038', unitType: 'TRUCK', description: 'PM-A Service  oil change, filters, belt & hose inspection, brake check, fluid top-off',
     vendor: 'Rush Truck Centers', vendorCity: 'San Antonio', vendorState: 'TX', assignedTech: 'Mike Rodriguez',
     reportedBy: 'System (PM Schedule)', reportedDate: '2026-03-28', scheduledDate: '2026-04-01', completedDate: '2026-04-01',
     estimatedCost: 650, actualCost: 720, laborHours: 2.5,
@@ -82,19 +82,19 @@ const MOCK_WORK_ORDERS: WorkOrder[] = [
   },
   {
     id: 'wo5', woNumber: 'WO-2026-0330', status: 'COMPLETED', priority: 'LOW', type: 'TIRE',
-    unitNumber: 'T-1070', unitType: 'TRUCK', description: 'Steer tire replacement — right steer worn to 4/32, left at 5/32, replaced both',
+    unitNumber: 'T-1070', unitType: 'TRUCK', description: 'Steer tire replacement  right steer worn to 4/32, left at 5/32, replaced both',
     vendor: 'TA Petro - Nashville', vendorCity: 'Nashville', vendorState: 'TN', assignedTech: 'Steve Ellis',
     reportedBy: 'Robert Brown', reportedDate: '2026-03-28', scheduledDate: '2026-03-30', completedDate: '2026-03-30',
     estimatedCost: 1100, actualCost: 1050, laborHours: 1.5,
     parts: [
       { name: 'Michelin XZA3 315/80R22.5', partNumber: 'TIRE-XZA3', qty: 2, cost: 480 },
     ],
-    notes: 'Alignment checked — within spec. No irregular wear pattern.',
+    notes: 'Alignment checked  within spec. No irregular wear pattern.',
     odometerAtService: 189700,
   },
   {
     id: 'wo6', woNumber: 'WO-2026-0325', status: 'COMPLETED', priority: 'MEDIUM', type: 'DOT_INSPECTION',
-    unitNumber: 'T-1042', unitType: 'TRUCK', description: 'Annual DOT inspection — full FMCSA compliance check',
+    unitNumber: 'T-1042', unitType: 'TRUCK', description: 'Annual DOT inspection  full FMCSA compliance check',
     vendor: 'Rush Truck Centers', vendorCity: 'San Antonio', vendorState: 'TX', assignedTech: 'Carlos Vega',
     reportedBy: 'System (PM Schedule)', reportedDate: '2026-03-20', scheduledDate: '2026-03-25', completedDate: '2026-03-25',
     estimatedCost: 350, actualCost: 380, laborHours: 3,
@@ -106,7 +106,7 @@ const MOCK_WORK_ORDERS: WorkOrder[] = [
   },
   {
     id: 'wo7', woNumber: 'WO-2026-0318', status: 'COMPLETED', priority: 'MEDIUM', type: 'PREVENTIVE',
-    unitNumber: 'TR-2201', unitType: 'TRAILER', description: 'Reefer unit service — compressor oil, condenser clean, refrigerant check, belt tension',
+    unitNumber: 'TR-2201', unitType: 'TRAILER', description: 'Reefer unit service  compressor oil, condenser clean, refrigerant check, belt tension',
     vendor: 'Carrier Transicold', vendorCity: 'Memphis', vendorState: 'TN', assignedTech: 'Will Henderson',
     reportedBy: 'System (PM Schedule)', reportedDate: '2026-03-10', scheduledDate: '2026-03-18', completedDate: '2026-03-18',
     estimatedCost: 900, actualCost: 870, laborHours: 4,
@@ -114,27 +114,27 @@ const MOCK_WORK_ORDERS: WorkOrder[] = [
       { name: 'Compressor Oil (qt)', partNumber: 'CO-POE32', qty: 2, cost: 45 },
       { name: 'V-Belt', partNumber: 'VB-7790', qty: 1, cost: 62 },
     ],
-    notes: 'Condenser cleaned and straightened. Refrigerant charge normal — no leaks. Belt replaced proactively.',
+    notes: 'Condenser cleaned and straightened. Refrigerant charge normal  no leaks. Belt replaced proactively.',
     odometerAtService: 115000,
   },
   {
     id: 'wo8', woNumber: 'WO-2026-0420', status: 'OPEN', priority: 'LOW', type: 'PREVENTIVE',
-    unitNumber: 'T-1044', unitType: 'TRUCK', description: 'PM-B Service — PM-A items plus DPF regeneration, DEF system check, coolant test',
+    unitNumber: 'T-1044', unitType: 'TRUCK', description: 'PM-B Service  PM-A items plus DPF regeneration, DEF system check, coolant test',
     vendor: 'Rush Truck Centers', vendorCity: 'San Antonio', vendorState: 'TX', assignedTech: '',
     reportedBy: 'System (PM Schedule)', reportedDate: '2026-04-12', scheduledDate: '2026-04-20', completedDate: null,
     estimatedCost: 950, actualCost: 0, laborHours: 0,
     parts: [],
-    notes: 'DPF regen issue reported by driver — include in scope. Schedule when unit returns from Phoenix run.',
+    notes: 'DPF regen issue reported by driver  include in scope. Schedule when unit returns from Phoenix run.',
     odometerAtService: 156900,
   },
   {
     id: 'wo9', woNumber: 'WO-2026-0418', status: 'OPEN', priority: 'MEDIUM', type: 'INSPECTION',
-    unitNumber: 'TR-2222', unitType: 'TRAILER', description: 'Annual DOT inspection — overdue by 3 days, schedule immediately',
+    unitNumber: 'TR-2222', unitType: 'TRAILER', description: 'Annual DOT inspection  overdue by 3 days, schedule immediately',
     vendor: 'TA Petro - Nashville', vendorCity: 'Nashville', vendorState: 'TN', assignedTech: '',
     reportedBy: 'System (Compliance Alert)', reportedDate: '2026-04-12', scheduledDate: '2026-04-18', completedDate: null,
     estimatedCost: 300, actualCost: 0, laborHours: 0,
     parts: [],
-    notes: 'URGENT — inspection expired 4/10. Do not dispatch until completed.',
+    notes: 'URGENT  inspection expired 4/10. Do not dispatch until completed.',
     odometerAtService: 82000,
   },
 ];
@@ -187,7 +187,7 @@ const TYPE_ICONS: Record<string, string> = {
 };
 
 function formatDate(d: string | null): string {
-  if (!d) return '—';
+  if (!d) return '';
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
@@ -428,7 +428,7 @@ export function MaintenancePage() {
                     <td className="px-3 py-2.5 text-gray-600 whitespace-nowrap">{formatDate(wo.scheduledDate)}</td>
                     <td className="px-3 py-2.5 text-right text-gray-700">{formatCurrency(wo.estimatedCost)}</td>
                     <td className="px-3 py-2.5 text-right font-medium text-gray-900">
-                      {wo.actualCost > 0 ? formatCurrency(wo.actualCost) : '—'}
+                      {wo.actualCost > 0 ? formatCurrency(wo.actualCost) : ''}
                     </td>
                   </tr>
                 );
@@ -522,12 +522,12 @@ export function MaintenancePage() {
                   <div className="flex justify-between items-center">
                     <span className="text-xs text-gray-500">Actual Cost</span>
                     <span className={`text-xs font-semibold ${selectedWO.actualCost > selectedWO.estimatedCost ? 'text-red-600' : 'text-green-700'}`}>
-                      {selectedWO.actualCost > 0 ? formatCurrency(selectedWO.actualCost) : '—'}
+                      {selectedWO.actualCost > 0 ? formatCurrency(selectedWO.actualCost) : ''}
                     </span>
                   </div>
                   <div className="flex justify-between items-center pt-1 border-t border-gray-200">
                     <span className="text-xs text-gray-500">Labor Hours</span>
-                    <span className="text-xs font-medium text-gray-800">{selectedWO.laborHours > 0 ? `${selectedWO.laborHours}h` : '—'}</span>
+                    <span className="text-xs font-medium text-gray-800">{selectedWO.laborHours > 0 ? `${selectedWO.laborHours}h` : ''}</span>
                   </div>
                   {selectedWO.actualCost > 0 && selectedWO.estimatedCost > 0 && (
                     <div className="flex justify-between items-center">
@@ -655,9 +655,9 @@ export function MaintenancePage() {
                   <label className="block text-xs font-medium text-gray-700 mb-1">Vendor / Shop</label>
                   <select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500">
                     <option value="">Select vendor</option>
-                    <option>Rush Truck Centers — San Antonio, TX</option>
-                    <option>TA Petro - Nashville — Nashville, TN</option>
-                    <option>Carrier Transicold — Memphis, TN</option>
+                    <option>Rush Truck Centers  San Antonio, TX</option>
+                    <option>TA Petro - Nashville  Nashville, TN</option>
+                    <option>Carrier Transicold  Memphis, TN</option>
                     <option>Other (specify in notes)</option>
                   </select>
                 </div>

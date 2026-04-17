@@ -49,7 +49,7 @@ const MOCK_ON_HAND: OnHandPiece[] = [
     clientName: 'Samsung Electronics America',
     clientCwOrg: 'SAMSUNG-US',
     clientReference: 'PO-SSE-88421',
-    commodity: 'Electronic Components — Circuit Boards',
+    commodity: 'Electronic Components  Circuit Boards',
     pieces: 12,
     weight: 485,
     weightLb: 1069,
@@ -86,7 +86,7 @@ const MOCK_ON_HAND: OnHandPiece[] = [
     clientName: 'Global Auto Parts Inc',
     clientCwOrg: 'GLOBAL-AUTO',
     clientReference: 'GA-PO-55432',
-    commodity: 'Auto Parts — Brake Components',
+    commodity: 'Auto Parts  Brake Components',
     pieces: 28,
     weight: 1240,
     weightLb: 2734,
@@ -122,7 +122,7 @@ const MOCK_ON_HAND: OnHandPiece[] = [
     clientName: 'Pharma Direct Distribution',
     clientCwOrg: 'PHARMA-DIR',
     clientReference: 'PD-RX-99102',
-    commodity: 'Pharmaceutical — Cold Chain Required',
+    commodity: 'Pharmaceutical  Cold Chain Required',
     pieces: 6,
     weight: 185,
     weightLb: 408,
@@ -155,7 +155,7 @@ const MOCK_ON_HAND: OnHandPiece[] = [
     clientName: 'Textile Imports LLC',
     clientCwOrg: 'TEXTILE-IMP',
     clientReference: 'TI-2026-0412',
-    commodity: 'Textiles — Cotton Fabric Rolls',
+    commodity: 'Textiles  Cotton Fabric Rolls',
     pieces: 45,
     weight: 890,
     weightLb: 1962,
@@ -176,7 +176,7 @@ const MOCK_ON_HAND: OnHandPiece[] = [
     storageLocation: 'HOLD-01',
     storageDays: 1,
     receivedBy: 'Tom Garcia',
-    notes: 'HOLD — damage claim in progress with client',
+    notes: 'HOLD  damage claim in progress with client',
     reportSentToClient: true,
     reportSentDate: '2026-04-14T09:45:00Z',
   },
@@ -188,7 +188,7 @@ const MOCK_ON_HAND: OnHandPiece[] = [
     clientName: 'Fiscal IOR USA',
     clientCwOrg: 'FISCALIOR',
     clientReference: 'FISC-EXP-7721',
-    commodity: 'Machinery Parts — Industrial',
+    commodity: 'Machinery Parts  Industrial',
     pieces: 8,
     weight: 2100,
     weightLb: 4630,
@@ -227,11 +227,11 @@ const STATUS_BADGE: Record<OnHandStatus, { label: string; color: string }> = {
 };
 
 const CONDITION_BADGE: Record<CargoCondition, { label: string; color: string; icon: string }> = {
-  GOOD: { label: 'Good', color: 'bg-green-100 text-green-800', icon: 'âœ“' },
-  MINOR_DAMAGE: { label: 'Minor Damage', color: 'bg-yellow-100 text-yellow-800', icon: 'âš ' },
-  MAJOR_DAMAGE: { label: 'Major Damage', color: 'bg-red-100 text-red-800', icon: 'âš ' },
-  WET: { label: 'Wet/Water', color: 'bg-blue-100 text-blue-800', icon: 'ðŸ’§' },
-  REPACKED: { label: 'Repacked', color: 'bg-purple-100 text-purple-800', icon: 'ðŸ“¦' },
+  GOOD: { label: 'Good', color: 'bg-green-100 text-green-800', icon: '✓' },
+  MINOR_DAMAGE: { label: 'Minor Damage', color: 'bg-yellow-100 text-yellow-800', icon: '⚠' },
+  MAJOR_DAMAGE: { label: 'Major Damage', color: 'bg-red-100 text-red-800', icon: '⚠' },
+  WET: { label: 'Wet/Water', color: 'bg-blue-100 text-blue-800', icon: 'ðŸ§' },
+  REPACKED: { label: 'Repacked', color: 'bg-purple-100 text-purple-800', icon: 'ðŸ¦' },
 };
 
 const fmtWeight = (kg: number) => `${kg.toLocaleString()} kg`;
@@ -285,12 +285,12 @@ export function CFSExportReceiving() {
       {/* ─ Header ─ */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-lg font-bold text-gray-900">Export Warehouse — On-Hand Receiving</h1>
+          <h1 className="text-lg font-bold text-gray-900">Export Warehouse  On-Hand Receiving</h1>
           <p className="text-xs text-gray-400 mt-0.5">Track incoming export cargo, record dims/weight/damages, link to AWB</p>
         </div>
         <div className="flex gap-2">
           <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search RCV#, client, AWB, reference..." className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm w-80" />
-          <button className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“Š Client Reports</button>
+          <button className="px-4 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ Client Reports</button>
           <button onClick={() => setShowReceiveModal(true)} className="px-4 py-1.5 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">+ Receive Cargo</button>
         </div>
       </div>
@@ -364,18 +364,18 @@ export function CFSExportReceiving() {
                     <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded text-xs font-medium ${CONDITION_BADGE[p.condition].color}`}>{CONDITION_BADGE[p.condition].icon} {CONDITION_BADGE[p.condition].label}</span></td>
                     <td className="px-3 py-2.5">
                       {p.linkedAWB ? (
-                        <div><div className="font-mono text-violet-600 text-xs">{p.linkedAWB}</div><div className="text-xs text-gray-500">{p.linkedExportOrder} â†’ {p.destinationAirport}</div></div>
+                        <div><div className="font-mono text-violet-600 text-xs">{p.linkedAWB}</div><div className="text-xs text-gray-500">{p.linkedExportOrder} → {p.destinationAirport}</div></div>
                       ) : (
-                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowLinkAWBModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">ðŸ”— Link AWB</button>
+                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowLinkAWBModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">ðŸ Link AWB</button>
                       )}
                     </td>
                     <td className="px-3 py-2.5"><span className="font-mono text-gray-700 text-xs">{p.storageLocation}</span><div className="text-xs text-gray-400">Day {p.storageDays}</div></td>
                     <td className="px-3 py-2.5"><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGE[p.status].color}`}>{STATUS_BADGE[p.status].label}</span></td>
                     <td className="px-3 py-2.5">
                       {p.reportSentToClient ? (
-                        <span className="text-xs text-green-600 font-medium">âœ“ Sent</span>
+                        <span className="text-xs text-green-600 font-medium">✓ Sent</span>
                       ) : (
-                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowSendReportModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">ðŸ“§ Send</button>
+                        <button onClick={(e) => { e.stopPropagation(); setPieceToLink(p); setShowSendReportModal(true); }} className="text-xs text-blue-600 hover:underline font-medium">ðŸ§ Send</button>
                       )}
                     </td>
                   </tr>
@@ -390,7 +390,7 @@ export function CFSExportReceiving() {
       {activeTab === 'awb_matching' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-            <div><h3 className="text-sm font-bold text-gray-900">Unmatched On-Hand — Awaiting AWB Assignment</h3><p className="text-xs text-gray-400 mt-0.5">Match on-hand cargo to export AWBs and bookings</p></div>
+            <div><h3 className="text-sm font-bold text-gray-900">Unmatched On-Hand  Awaiting AWB Assignment</h3><p className="text-xs text-gray-400 mt-0.5">Match on-hand cargo to export AWBs and bookings</p></div>
           </div>
           <div className="p-4 space-y-3">
             {MOCK_ON_HAND.filter(p => p.status === 'AWAITING_AWB' || p.status === 'ON_HOLD').map(p => (
@@ -398,14 +398,14 @@ export function CFSExportReceiving() {
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <div className="flex items-center gap-2 mb-1"><span className="font-mono text-blue-600 font-bold">{p.receivingNumber}</span><span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_BADGE[p.status].color}`}>{STATUS_BADGE[p.status].label}</span></div>
-                    <p className="text-sm font-medium text-gray-900">{p.clientName} — {p.commodity}</p>
+                    <p className="text-sm font-medium text-gray-900">{p.clientName}  {p.commodity}</p>
                     <p className="text-xs text-gray-500 mt-0.5">Received {p.receivedDate} at {p.receivedTime} · Day {p.storageDays} of storage · Ref: {p.clientReference}</p>
                   </div>
                   <div className="text-right"><p className="text-lg font-bold text-gray-900">{p.pieces} pcs</p><p className="text-xs text-gray-500">{p.weight} kg · {p.cbm.toFixed(2)} CBM</p></div>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => { setPieceToLink(p); setShowLinkAWBModal(true); }} className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">ðŸ”— Link to AWB & Export Order</button>
-                  <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ“§ Email Client for AWB</button>
+                  <button onClick={() => { setPieceToLink(p); setShowLinkAWBModal(true); }} className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700">ðŸ Link to AWB & Export Order</button>
+                  <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">ðŸ§ Email Client for AWB</button>
                   <button onClick={() => setSelectedPiece(p)} className="px-3 py-1.5 text-xs font-medium text-gray-600 hover:underline">View Details</button>
                 </div>
               </div>
@@ -431,7 +431,7 @@ export function CFSExportReceiving() {
                   </div>
                   <div className="flex gap-2">
                     <button className="px-3 py-1.5 text-xs font-medium text-white bg-violet-600 rounded-lg">View Photos</button>
-                    <button onClick={() => { setPieceToLink(p); setShowSendReportModal(true); }} className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg">ðŸ“§ Send Report</button>
+                    <button onClick={() => { setPieceToLink(p); setShowSendReportModal(true); }} className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg">ðŸ§ Send Report</button>
                   </div>
                 </div>
               </div>
@@ -444,7 +444,7 @@ export function CFSExportReceiving() {
       {activeTab === 'reports' && (
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
           <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-            <h3 className="text-sm font-bold text-gray-900">Client On-Hand Reports — Sent & Pending</h3>
+            <h3 className="text-sm font-bold text-gray-900">Client On-Hand Reports  Sent & Pending</h3>
             <button className="px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">+ Generate Batch Report</button>
           </div>
           <table className="w-full text-xs">
@@ -460,12 +460,12 @@ export function CFSExportReceiving() {
             <tbody>
               {MOCK_ON_HAND.filter(p => p.reportSentToClient).map(p => (
                 <tr key={p.id} className="border-b border-gray-100 hover:bg-gray-50">
-                  <td className="px-3 py-2.5 text-gray-600">{p.reportSentDate ? new Date(p.reportSentDate).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—'}</td>
+                  <td className="px-3 py-2.5 text-gray-600">{p.reportSentDate ? new Date(p.reportSentDate).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : ''}</td>
                   <td className="px-3 py-2.5 font-medium text-gray-900">{p.clientName}</td>
                   <td className="px-3 py-2.5"><span className="font-mono text-blue-600">{p.receivingNumber}</span>{p.linkedAWB && <><span className="text-gray-400 mx-1">·</span><span className="font-mono text-violet-600 text-xs">{p.linkedAWB}</span></>}</td>
                   <td className="px-3 py-2.5"><span className={`px-1.5 py-0.5 rounded text-xs font-medium ${p.condition === 'GOOD' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>{p.condition === 'GOOD' ? 'On-Hand Receipt' : 'Damage Report'}</span></td>
                   <td className="px-3 py-2.5 text-gray-600">ops@{p.clientCwOrg.toLowerCase()}.com</td>
-                  <td className="px-3 py-2.5"><span className="text-xs text-green-600 font-medium">âœ“ Delivered</span></td>
+                  <td className="px-3 py-2.5"><span className="text-xs text-green-600 font-medium">✓ Delivered</span></td>
                   <td className="px-3 py-2.5"><button className="text-xs text-blue-600 hover:underline">View</button><span className="mx-2 text-gray-300">·</span><button className="text-xs text-blue-600 hover:underline">Resend</button></td>
                 </tr>
               ))}
@@ -478,7 +478,7 @@ export function CFSExportReceiving() {
       {showReceiveModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowReceiveModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“¦ Receive New Export Cargo — On-Hand Entry</h2><p className="text-xs text-gray-400 mt-0.5">Record incoming export cargo, weight, dimensions, and condition</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ¦ Receive New Export Cargo  On-Hand Entry</h2><p className="text-xs text-gray-400 mt-0.5">Record incoming export cargo, weight, dimensions, and condition</p></div>
             <div className="px-6 py-4 space-y-4">
               {/* Client Info */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
@@ -491,7 +491,7 @@ export function CFSExportReceiving() {
 
               {/* Commodity & Piece Count */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="col-span-2"><label className="block text-xs font-medium text-gray-700 mb-1">Commodity Description *</label><input type="text" placeholder="e.g. Electronic Components — Circuit Boards" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
+                <div className="col-span-2"><label className="block text-xs font-medium text-gray-700 mb-1">Commodity Description *</label><input type="text" placeholder="e.g. Electronic Components  Circuit Boards" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Piece Count *</label><input type="number" placeholder="0" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm font-bold" /></div>
               </div>
 
@@ -518,7 +518,7 @@ export function CFSExportReceiving() {
                     <div><label className="block text-xs font-medium text-gray-700 mb-1">Qty at size</label><input type="number" placeholder="1" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-gray-300"><div className="text-xs"><span className="text-gray-500">Total Volume:</span> <strong className="text-gray-900">— CBM</strong></div><div className="text-xs"><span className="text-gray-500">Volume Weight:</span> <strong className="text-gray-900">— kg</strong></div></div>
+                <div className="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-gray-300"><div className="text-xs"><span className="text-gray-500">Total Volume:</span> <strong className="text-gray-900"> CBM</strong></div><div className="text-xs"><span className="text-gray-500">Volume Weight:</span> <strong className="text-gray-900"> kg</strong></div></div>
               </div>
 
               {/* Special Handling */}
@@ -550,11 +550,11 @@ export function CFSExportReceiving() {
 
               {/* Photos */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-2">ðŸ“· Photo Documentation (Required)</label>
+                <label className="block text-xs font-medium text-gray-700 mb-2">ðŸ· Photo Documentation (Required)</label>
                 <div className="grid grid-cols-4 gap-2">
                   {['Overview', 'Labels/Markings', 'Piece Count', 'Damage (if any)'].map((label, i) => (
                     <div key={i} className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-violet-400 hover:bg-violet-50">
-                      <p className="text-2xl mb-1">ðŸ“·</p>
+                      <p className="text-2xl mb-1">ðŸ·</p>
                       <p className="text-xs text-gray-600 font-medium">{label}</p>
                       <p className="text-xs text-gray-400 mt-0.5">Tap to capture</p>
                     </div>
@@ -570,7 +570,7 @@ export function CFSExportReceiving() {
 
               {/* AWB Link (Optional) */}
               <div className="bg-violet-50 border border-violet-200 rounded-lg p-3">
-                <h4 className="text-xs font-bold text-violet-800 mb-2">Link to AWB (Optional — can link later)</h4>
+                <h4 className="text-xs font-bold text-violet-800 mb-2">Link to AWB (Optional  can link later)</h4>
                 <div className="grid grid-cols-2 gap-3">
                   <div><label className="block text-xs font-medium text-gray-700 mb-1">AWB Number</label><input type="text" placeholder="e.g. 180-88421100" className="w-full border border-violet-300 rounded-lg px-3 py-2 text-sm font-mono" /></div>
                   <div><label className="block text-xs font-medium text-gray-700 mb-1">Export Order #</label><input type="text" placeholder="e.g. JFK-EXP-2201" className="w-full border border-violet-300 rounded-lg px-3 py-2 text-sm" /></div>
@@ -598,7 +598,7 @@ export function CFSExportReceiving() {
       {showLinkAWBModal && pieceToLink && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowLinkAWBModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ”— Link {pieceToLink.receivingNumber} to AWB</h2><p className="text-xs text-gray-400 mt-0.5">{pieceToLink.clientName} · {pieceToLink.pieces} pcs · {pieceToLink.weight} kg</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ Link {pieceToLink.receivingNumber} to AWB</h2><p className="text-xs text-gray-400 mt-0.5">{pieceToLink.clientName} · {pieceToLink.pieces} pcs · {pieceToLink.weight} kg</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <label className="block text-xs font-medium text-gray-700 mb-1">Search Existing AWBs for {pieceToLink.clientName}</label>
@@ -615,7 +615,7 @@ export function CFSExportReceiving() {
                       <input type="radio" name="awb" className="text-violet-600" />
                       <div className="flex-1">
                         <div className="flex items-center gap-2"><span className="font-mono text-violet-600 font-bold">{m.awb}</span><span className={`px-1.5 py-0.5 rounded text-xs font-medium ${m.match > 90 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>{m.match}% match</span></div>
-                        <p className="text-xs text-gray-600 mt-0.5">{m.order} · {m.pcs} pcs · {m.kg} kg â†’ {m.dest} ({m.airline})</p>
+                        <p className="text-xs text-gray-600 mt-0.5">{m.order} · {m.pcs} pcs · {m.kg} kg → {m.dest} ({m.airline})</p>
                       </div>
                     </label>
                   ))}
@@ -638,13 +638,13 @@ export function CFSExportReceiving() {
       {showSendReportModal && pieceToLink && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowSendReportModal(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ“§ Send On-Hand Report to Client</h2></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">ðŸ§ Send On-Hand Report to Client</h2></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Recipient Email *</label><input type="email" defaultValue={`ops@${pieceToLink.clientCwOrg.toLowerCase()}.com`} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">CC</label><input type="email" placeholder="cc@client.com" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
               </div>
-              <div><label className="block text-xs font-medium text-gray-700 mb-1">Subject</label><input type="text" defaultValue={`On-Hand Receipt — ${pieceToLink.receivingNumber} — ${pieceToLink.clientName}`} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
+              <div><label className="block text-xs font-medium text-gray-700 mb-1">Subject</label><input type="text" defaultValue={`On-Hand Receipt  ${pieceToLink.receivingNumber}  ${pieceToLink.clientName}`} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
 
               {/* Report Preview */}
               <div className="bg-white border border-gray-300 rounded-lg p-5" style={{ fontFamily: 'serif' }}>
@@ -670,32 +670,32 @@ export function CFSExportReceiving() {
                 </div>
                 {pieceToLink.condition !== 'GOOD' && (
                   <div className="bg-yellow-50 border border-yellow-200 rounded p-3 mb-3">
-                    <p className="text-xs font-bold text-yellow-800 mb-1">âš  Condition Notice: {CONDITION_BADGE[pieceToLink.condition].label}</p>
+                    <p className="text-xs font-bold text-yellow-800 mb-1">⚠ Condition Notice: {CONDITION_BADGE[pieceToLink.condition].label}</p>
                     <p className="text-xs text-yellow-700">{pieceToLink.damageNotes}</p>
                   </div>
                 )}
                 {pieceToLink.linkedAWB && (
                   <div className="bg-blue-50 rounded p-3 mb-3 text-xs">
                     <p><span className="text-gray-500">Linked AWB:</span> <strong className="font-mono text-violet-600">{pieceToLink.linkedAWB}</strong></p>
-                    <p><span className="text-gray-500">Export Order:</span> <strong>{pieceToLink.linkedExportOrder}</strong> â†’ {pieceToLink.destinationAirport}</p>
+                    <p><span className="text-gray-500">Export Order:</span> <strong>{pieceToLink.linkedExportOrder}</strong> → {pieceToLink.destinationAirport}</p>
                   </div>
                 )}
-                <p className="text-xs text-gray-500">ðŸ“· {pieceToLink.photos.length} photos attached · Storage location: {pieceToLink.storageLocation}</p>
+                <p className="text-xs text-gray-500">ðŸ· {pieceToLink.photos.length} photos attached · Storage location: {pieceToLink.storageLocation}</p>
               </div>
 
               {/* Attachments */}
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-2">Attachments</label>
                 <div className="space-y-1">
-                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">ðŸ“„ On-Hand Report PDF</span></label>
-                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">ðŸ“· {pieceToLink.photos.length} cargo photos</span></label>
-                  {pieceToLink.condition !== 'GOOD' && <label className="flex items-center gap-2 py-1.5 px-2 bg-yellow-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">âš  Damage report with photos</span></label>}
+                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">ðŸ On-Hand Report PDF</span></label>
+                  <label className="flex items-center gap-2 py-1.5 px-2 bg-gray-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">ðŸ· {pieceToLink.photos.length} cargo photos</span></label>
+                  {pieceToLink.condition !== 'GOOD' && <label className="flex items-center gap-2 py-1.5 px-2 bg-yellow-50 rounded"><input type="checkbox" defaultChecked className="rounded" /><span className="text-xs">⚠ Damage report with photos</span></label>}
                 </div>
               </div>
             </div>
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
               <button onClick={() => setShowSendReportModal(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button>
-              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">ðŸ“„ Download PDF</button><button onClick={() => setShowSendReportModal(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">ðŸ“§ Send to Client</button></div>
+              <div className="flex gap-2"><button className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg">ðŸ Download PDF</button><button onClick={() => setShowSendReportModal(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">ðŸ§ Send to Client</button></div>
             </div>
           </div>
         </div>
@@ -711,7 +711,7 @@ export function CFSExportReceiving() {
                 <h2 className="text-sm font-semibold text-gray-900">{selectedPiece.receivingNumber}</h2>
                 <p className="text-xs text-gray-400">{selectedPiece.clientName}</p>
               </div>
-              <button onClick={() => setSelectedPiece(null)} className="text-gray-400 hover:text-gray-600 text-lg">Ã—</button>
+              <button onClick={() => setSelectedPiece(null)} className="text-gray-400 hover:text-gray-600 text-lg">×</button>
             </div>
             <div className="p-5 space-y-4">
               <div className="flex gap-2">
@@ -733,7 +733,7 @@ export function CFSExportReceiving() {
               <div><h3 className="text-xs font-bold text-gray-700 mb-2">Dimensions</h3>
                 <div className="bg-gray-50 rounded-lg p-3">
                   {selectedPiece.dimensions.map((d, i) => (
-                    <div key={i} className="text-xs py-1 border-b border-gray-200 last:border-0">Pallet {i + 1}: {d.length} Ã— {d.width} Ã— {d.height} {d.unit}</div>
+                    <div key={i} className="text-xs py-1 border-b border-gray-200 last:border-0">Pallet {i + 1}: {d.length} × {d.width} × {d.height} {d.unit}</div>
                   ))}
                 </div>
               </div>
@@ -745,21 +745,21 @@ export function CFSExportReceiving() {
               )}
 
               {selectedPiece.damageNotes && (
-                <div><h3 className="text-xs font-bold text-red-700 mb-2">âš  Condition / Damage Notes</h3>
+                <div><h3 className="text-xs font-bold text-red-700 mb-2">⚠ Condition / Damage Notes</h3>
                   <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-xs text-red-900">{selectedPiece.damageNotes}</div>
                 </div>
               )}
 
-              <div><h3 className="text-xs font-bold text-gray-700 mb-2">ðŸ“· Photos ({selectedPiece.photos.length})</h3>
+              <div><h3 className="text-xs font-bold text-gray-700 mb-2">ðŸ· Photos ({selectedPiece.photos.length})</h3>
                 <div className="grid grid-cols-3 gap-2">
                   {selectedPiece.photos.map((photo, i) => (
-                    <div key={i} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-400 border border-gray-200">ðŸ“·<br/>{photo.substring(0, 15)}</div>
+                    <div key={i} className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-400 border border-gray-200">ðŸ·<br/>{photo.substring(0, 15)}</div>
                   ))}
                 </div>
               </div>
 
               {selectedPiece.linkedAWB ? (
-                <div><h3 className="text-xs font-bold text-gray-700 mb-2">ðŸ”— Linked Export</h3>
+                <div><h3 className="text-xs font-bold text-gray-700 mb-2">ðŸ Linked Export</h3>
                   <div className="bg-violet-50 border border-violet-200 rounded-lg p-3 text-xs space-y-1">
                     <div className="flex justify-between"><span className="text-gray-500">AWB</span><span className="font-mono text-violet-600 font-bold">{selectedPiece.linkedAWB}</span></div>
                     <div className="flex justify-between"><span className="text-gray-500">Export Order</span><span className="text-gray-900 font-medium">{selectedPiece.linkedExportOrder}</span></div>
@@ -767,7 +767,7 @@ export function CFSExportReceiving() {
                   </div>
                 </div>
               ) : (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3"><p className="text-xs font-bold text-yellow-800 mb-2">âš  Not linked to AWB yet</p><button onClick={() => { setPieceToLink(selectedPiece); setShowLinkAWBModal(true); }} className="w-full px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">ðŸ”— Link to AWB Now</button></div>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3"><p className="text-xs font-bold text-yellow-800 mb-2">⚠ Not linked to AWB yet</p><button onClick={() => { setPieceToLink(selectedPiece); setShowLinkAWBModal(true); }} className="w-full px-3 py-1.5 text-xs font-semibold text-white bg-violet-600 rounded-lg">ðŸ Link to AWB Now</button></div>
               )}
 
               <div><h3 className="text-xs font-bold text-gray-700 mb-2">Storage & Handling</h3>
@@ -781,14 +781,14 @@ export function CFSExportReceiving() {
 
               {selectedPiece.reportSentToClient && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs">
-                  <p className="text-green-800">âœ“ Report sent to client on {new Date(selectedPiece.reportSentDate!).toLocaleString()}</p>
+                  <p className="text-green-800">✓ Report sent to client on {new Date(selectedPiece.reportSentDate!).toLocaleString()}</p>
                 </div>
               )}
 
               <div className="flex gap-2 pt-3 border-t border-gray-200">
-                <button onClick={() => { setPieceToLink(selectedPiece); setShowSendReportModal(true); }} className="flex-1 px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-lg hover:bg-violet-700">ðŸ“§ Send Report</button>
-                <button className="flex-1 px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">âœŽ Edit</button>
-                <button className="px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">ðŸ–¨</button>
+                <button onClick={() => { setPieceToLink(selectedPiece); setShowSendReportModal(true); }} className="flex-1 px-4 py-2 bg-violet-600 text-white text-sm font-medium rounded-lg hover:bg-violet-700">ðŸ§ Send Report</button>
+                <button className="flex-1 px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">✎ Edit</button>
+                <button className="px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50">ðŸ¨</button>
               </div>
             </div>
           </div>
