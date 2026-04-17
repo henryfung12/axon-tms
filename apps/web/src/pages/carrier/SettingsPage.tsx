@@ -102,7 +102,7 @@ export function SettingsPage() {
   ];
 
   return (
-    <div className="flex gap-6 -m-6">
+    <div className="flex gap-6">
       {/* Settings Sidebar */}
       <div className="w-52 bg-white border-r border-gray-200 min-h-screen pt-6 flex-shrink-0">
         <h2 className="text-sm font-semibold text-gray-900 px-5 mb-4">Settings</h2>
