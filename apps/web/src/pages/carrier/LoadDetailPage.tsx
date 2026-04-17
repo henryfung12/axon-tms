@@ -125,7 +125,7 @@ export function LoadDetailPage({ loadId, onBack }: Props) {
         </div>
         <div className="bg-white border border-gray-200 rounded-xl p-4">
           <p className="text-xs text-gray-500 mb-1">Commodity</p>
-          <p className="text-sm font-medium text-gray-900">{load.commodity || ''}</p>
+          <p className="text-sm font-medium text-gray-900">{load.commodity || '—'}</p>
         </div>
       </div>
 
@@ -170,11 +170,11 @@ export function LoadDetailPage({ loadId, onBack }: Props) {
             <tbody>
               <tr className="border-b border-gray-100">
                 <td className="py-2 text-gray-500 text-xs">Weight</td>
-                <td className="py-2 text-gray-900 text-xs text-right">{load.weight ? `${load.weight?.toLocaleString()} lbs` : ''}</td>
+                <td className="py-2 text-gray-900 text-xs text-right">{load.weight ? `${load.weight?.toLocaleString()} lbs` : '—'}</td>
               </tr>
               <tr className="border-b border-gray-100">
                 <td className="py-2 text-gray-500 text-xs">Pieces</td>
-                <td className="py-2 text-gray-900 text-xs text-right">{load.pieces || ''}</td>
+                <td className="py-2 text-gray-900 text-xs text-right">{load.pieces || '—'}</td>
               </tr>
               <tr className="border-b border-gray-100">
                 <td className="py-2 text-gray-500 text-xs">Base rate</td>

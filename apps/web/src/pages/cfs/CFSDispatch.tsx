@@ -23,38 +23,38 @@ interface DispatchDriver {
 // ── Mock Data ──────────────────────────────────────────────────────
 const MOCK_TRIPS: Trip[] = [
   { id: 't1', tripNumber: 'TRP-0414-001', type: 'IMPORT_PICKUP', status: 'EN_ROUTE', driver: 'Marcus Johnson', vehicle: 'T-1042', vehicleType: '24ft Box Truck', stops: [
-    { seq: 1, location: 'JFK  Bldg 75', airport: 'JFK', building: 'Bldg 75', mawb: '176-82445521', orderNumber: 'JFK-IMP-0901', pieces: 12, weight: '2,400 kg', action: 'PICKUP', eta: '2:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
-    { seq: 2, location: 'JFK  Bldg 151', airport: 'JFK', building: 'Bldg 151', mawb: '131-99100300', orderNumber: 'JFK-IMP-0905', pieces: 60, weight: '7,800 kg', action: 'PICKUP', eta: '3:15 PM', arriveAt: '', departAt: '', status: 'PENDING' },
+    { seq: 1, location: 'JFK — Bldg 75', airport: 'JFK', building: 'Bldg 75', mawb: '176-82445521', orderNumber: 'JFK-IMP-0901', pieces: 12, weight: '2,400 kg', action: 'PICKUP', eta: '2:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
+    { seq: 2, location: 'JFK — Bldg 151', airport: 'JFK', building: 'Bldg 151', mawb: '131-99100300', orderNumber: 'JFK-IMP-0905', pieces: 60, weight: '7,800 kg', action: 'PICKUP', eta: '3:15 PM', arriveAt: '', departAt: '', status: 'PENDING' },
     { seq: 3, location: 'CFS Warehouse', airport: '', building: 'CFS', mawb: '', orderNumber: '', pieces: 72, weight: '10,200 kg', action: 'DROP_CFS', eta: '4:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
-  ], scheduledDate: '2026-04-14', scheduledTime: '14:00', totalPieces: 72, totalWeight: '10,200 kg', totalStops: 3, notes: 'Multi-stop pickup at JFK  2 terminals' },
+  ], scheduledDate: '2026-04-14', scheduledTime: '14:00', totalPieces: 72, totalWeight: '10,200 kg', totalStops: 3, notes: 'Multi-stop pickup at JFK — 2 terminals' },
   { id: 't2', tripNumber: 'TRP-0414-002', type: 'EXPORT_DELIVERY', status: 'AT_TERMINAL', driver: 'Robert Brown', vehicle: 'T-1070', vehicleType: 'Reefer Truck', stops: [
     { seq: 1, location: 'CFS Warehouse', airport: '', building: 'CFS', mawb: '', orderNumber: '', pieces: 10, weight: '680 kg', action: 'PICKUP', eta: '12:00 PM', arriveAt: '12:05 PM', departAt: '12:30 PM', status: 'COMPLETED' },
     { seq: 2, location: 'MIA Cargo Terminal', airport: 'MIA', building: 'Terminal N', mawb: '235-77100505', orderNumber: 'MIA-EXP-0180', pieces: 10, weight: '680 kg', action: 'DELIVER', eta: '1:30 PM', arriveAt: '1:25 PM', departAt: '', status: 'ARRIVED' },
-  ], scheduledDate: '2026-04-14', scheduledTime: '12:00', totalPieces: 10, totalWeight: '680 kg', totalStops: 2, notes: 'CRITICAL  pharma cold chain 2-8°C. Cutoff 3:00 PM.' },
+  ], scheduledDate: '2026-04-14', scheduledTime: '12:00', totalPieces: 10, totalWeight: '680 kg', totalStops: 2, notes: 'CRITICAL — pharma cold chain 2-8°C. Cutoff 3:00 PM.' },
   { id: 't3', tripNumber: 'TRP-0414-003', type: 'IMPORT_PICKUP', status: 'DISPATCHED', driver: 'David Kim', vehicle: 'T-1029', vehicleType: 'Sprinter Van', stops: [
-    { seq: 1, location: 'ORD  Cargo Area F', airport: 'ORD', building: 'Cargo Area F', mawb: '618-44210098', orderNumber: 'ORD-IMP-0445', pieces: 8, weight: '1,800 kg', action: 'PICKUP', eta: '3:00 PM', arriveAt: '', departAt: '', status: 'PENDING' },
-    { seq: 2, location: 'Midwest Auto Parts  Indianapolis', airport: '', building: '', mawb: '618-44210098', orderNumber: 'ORD-IMP-0445', pieces: 8, weight: '1,800 kg', action: 'DELIVER', eta: '6:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
+    { seq: 1, location: 'ORD — Cargo Area F', airport: 'ORD', building: 'Cargo Area F', mawb: '618-44210098', orderNumber: 'ORD-IMP-0445', pieces: 8, weight: '1,800 kg', action: 'PICKUP', eta: '3:00 PM', arriveAt: '', departAt: '', status: 'PENDING' },
+    { seq: 2, location: 'Midwest Auto Parts — Indianapolis', airport: '', building: '', mawb: '618-44210098', orderNumber: 'ORD-IMP-0445', pieces: 8, weight: '1,800 kg', action: 'DELIVER', eta: '6:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
   ], scheduledDate: '2026-04-14', scheduledTime: '14:30', totalPieces: 8, totalWeight: '1,800 kg', totalStops: 2, notes: 'Direct delivery to consignee after terminal pickup' },
   { id: 't4', tripNumber: 'TRP-0414-004', type: 'LOCAL_DELIVERY', status: 'DELIVERING', driver: 'Sarah Chen', vehicle: 'T-1055', vehicleType: '26ft Box Truck', stops: [
     { seq: 1, location: 'CFS Warehouse', airport: '', building: 'CFS', mawb: '', orderNumber: '', pieces: 28, weight: '3,200 kg', action: 'PICKUP', eta: '9:00 AM', arriveAt: '9:05 AM', departAt: '9:40 AM', status: 'COMPLETED' },
-    { seq: 2, location: 'Tech Distributors  Edison, NJ', airport: '', building: '', mawb: '176-82445521', orderNumber: 'JFK-IMP-0901', pieces: 12, weight: '2,400 kg', action: 'DELIVER', eta: '10:45 AM', arriveAt: '10:50 AM', departAt: '11:15 AM', status: 'COMPLETED' },
-    { seq: 3, location: 'NJ Medical Supply  Newark, NJ', airport: '', building: '', mawb: '074-66190283', orderNumber: 'JFK-IMP-0880', pieces: 3, weight: '890 kg', action: 'DELIVER', eta: '11:45 AM', arriveAt: '', departAt: '', status: 'PENDING' },
-  ], scheduledDate: '2026-04-14', scheduledTime: '09:00', totalPieces: 15, totalWeight: '3,290 kg', totalStops: 3, notes: 'Multi-drop local delivery  NJ area' },
+    { seq: 2, location: 'Tech Distributors — Edison, NJ', airport: '', building: '', mawb: '176-82445521', orderNumber: 'JFK-IMP-0901', pieces: 12, weight: '2,400 kg', action: 'DELIVER', eta: '10:45 AM', arriveAt: '10:50 AM', departAt: '11:15 AM', status: 'COMPLETED' },
+    { seq: 3, location: 'NJ Medical Supply — Newark, NJ', airport: '', building: '', mawb: '074-66190283', orderNumber: 'JFK-IMP-0880', pieces: 3, weight: '890 kg', action: 'DELIVER', eta: '11:45 AM', arriveAt: '', departAt: '', status: 'PENDING' },
+  ], scheduledDate: '2026-04-14', scheduledTime: '09:00', totalPieces: 15, totalWeight: '3,290 kg', totalStops: 3, notes: 'Multi-drop local delivery — NJ area' },
   { id: 't5', tripNumber: 'TRP-0414-005', type: 'EXPORT_DELIVERY', status: 'PLANNED', driver: '', vehicle: '', vehicleType: '', stops: [
     { seq: 1, location: 'CFS Warehouse', airport: '', building: 'CFS', mawb: '', orderNumber: '', pieces: 32, weight: '4,200 kg', action: 'PICKUP', eta: '4:00 PM', arriveAt: '', departAt: '', status: 'PENDING' },
-    { seq: 2, location: 'JFK  Bldg 151', airport: 'JFK', building: 'Bldg 151', mawb: '176-88100502', orderNumber: 'JFK-EXP-0502', pieces: 32, weight: '4,200 kg', action: 'DELIVER', eta: '5:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
+    { seq: 2, location: 'JFK — Bldg 151', airport: 'JFK', building: 'Bldg 151', mawb: '176-88100502', orderNumber: 'JFK-EXP-0502', pieces: 32, weight: '4,200 kg', action: 'DELIVER', eta: '5:30 PM', arriveAt: '', departAt: '', status: 'PENDING' },
   ], scheduledDate: '2026-04-14', scheduledTime: '16:00', totalPieces: 32, totalWeight: '4,200 kg', totalStops: 2, notes: 'Export consol for CX 841 → HKG. Cutoff 7:00 PM.' },
   { id: 't6', tripNumber: 'TRP-0414-006', type: 'IMPORT_PICKUP', status: 'COMPLETED', driver: 'James Williams', vehicle: 'T-1082', vehicleType: '53\' Dry Van', stops: [
-    { seq: 1, location: 'JFK  Bldg 22', airport: 'JFK', building: 'Bldg 22', mawb: '180-99321100', orderNumber: 'JFK-IMP-0902', pieces: 48, weight: '6,200 kg', action: 'PICKUP', eta: '8:00 AM', arriveAt: '7:55 AM', departAt: '8:45 AM', status: 'COMPLETED' },
+    { seq: 1, location: 'JFK — Bldg 22', airport: 'JFK', building: 'Bldg 22', mawb: '180-99321100', orderNumber: 'JFK-IMP-0902', pieces: 48, weight: '6,200 kg', action: 'PICKUP', eta: '8:00 AM', arriveAt: '7:55 AM', departAt: '8:45 AM', status: 'COMPLETED' },
     { seq: 2, location: 'CFS Warehouse', airport: '', building: 'CFS', mawb: '', orderNumber: '', pieces: 48, weight: '6,200 kg', action: 'DROP_CFS', eta: '10:00 AM', arriveAt: '9:50 AM', departAt: '10:20 AM', status: 'COMPLETED' },
-  ], scheduledDate: '2026-04-14', scheduledTime: '07:30', totalPieces: 48, totalWeight: '6,200 kg', totalStops: 2, notes: 'Completed  cargo at CFS for deconsolidation' },
+  ], scheduledDate: '2026-04-14', scheduledTime: '07:30', totalPieces: 48, totalWeight: '6,200 kg', totalStops: 2, notes: 'Completed — cargo at CFS for deconsolidation' },
 ];
 
 const MOCK_DRIVERS: DispatchDriver[] = [
   { id: 'd1', name: 'Marcus Johnson', phone: '(555) 101-0001', status: 'ON_TRIP', currentTrip: 'TRP-0414-001', vehicle: 'T-1042', vehicleType: '24ft Box Truck', location: 'En route to JFK Bldg 75', lastUpdate: '2:15 PM', tripsToday: 1, piecesHandled: 0 },
   { id: 'd2', name: 'Robert Brown', phone: '(555) 101-0002', status: 'ON_TRIP', currentTrip: 'TRP-0414-002', vehicle: 'T-1070', vehicleType: 'Reefer Truck', location: 'MIA Cargo Terminal N', lastUpdate: '1:25 PM', tripsToday: 1, piecesHandled: 10 },
   { id: 'd3', name: 'David Kim', phone: '(555) 101-0003', status: 'ON_TRIP', currentTrip: 'TRP-0414-003', vehicle: 'T-1029', vehicleType: 'Sprinter Van', location: 'Dispatched to ORD', lastUpdate: '2:30 PM', tripsToday: 1, piecesHandled: 0 },
-  { id: 'd4', name: 'Sarah Chen', phone: '(555) 101-0004', status: 'ON_TRIP', currentTrip: 'TRP-0414-004', vehicle: 'T-1055', vehicleType: '26ft Box Truck', location: 'NJ  delivering', lastUpdate: '11:30 AM', tripsToday: 1, piecesHandled: 12 },
+  { id: 'd4', name: 'Sarah Chen', phone: '(555) 101-0004', status: 'ON_TRIP', currentTrip: 'TRP-0414-004', vehicle: 'T-1055', vehicleType: '26ft Box Truck', location: 'NJ — delivering', lastUpdate: '11:30 AM', tripsToday: 1, piecesHandled: 12 },
   { id: 'd5', name: 'James Williams', phone: '(555) 101-0005', status: 'AVAILABLE', currentTrip: '', vehicle: 'T-1082', vehicleType: '53\' Dry Van', location: 'CFS Warehouse', lastUpdate: '10:30 AM', tripsToday: 1, piecesHandled: 48 },
   { id: 'd6', name: 'Emily Taylor', phone: '(555) 101-0006', status: 'AVAILABLE', currentTrip: '', vehicle: 'T-1090', vehicleType: 'Flatbed', location: 'CFS Warehouse', lastUpdate: '1:00 PM', tripsToday: 0, piecesHandled: 0 },
   { id: 'd7', name: 'Carlos Mendez', phone: '(555) 101-0007', status: 'BREAK', currentTrip: '', vehicle: 'T-1033', vehicleType: '24ft Box Truck', location: 'CFS Warehouse', lastUpdate: '12:45 PM', tripsToday: 2, piecesHandled: 35 },
@@ -230,7 +230,7 @@ export function CFSDispatch() {
       {activeTab === 'schedule' && (
         <div>
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <div className="px-4 py-3 border-b border-gray-200"><h3 className="text-sm font-bold text-gray-900">Schedule  {new Date('2026-04-14').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</h3></div>
+            <div className="px-4 py-3 border-b border-gray-200"><h3 className="text-sm font-bold text-gray-900">Schedule — {new Date('2026-04-14').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</h3></div>
             <div className="relative">
               {/* Time slots */}
               {['7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM'].map((time, i) => (
@@ -271,7 +271,7 @@ export function CFSDispatch() {
             <div className="px-5 py-4 space-y-4">
               {/* Driver & Vehicle */}
               {selectedTrip.driver ? (
-                <div className="bg-violet-50 rounded-lg p-3"><div className="flex justify-between text-xs"><span className="text-violet-600 font-semibold">Driver</span><span className="font-bold text-gray-900">{selectedTrip.driver}</span></div><div className="flex justify-between text-xs mt-1"><span className="text-violet-600 font-semibold">Vehicle</span><span className="text-gray-700">{selectedTrip.vehicle}  {selectedTrip.vehicleType}</span></div></div>
+                <div className="bg-violet-50 rounded-lg p-3"><div className="flex justify-between text-xs"><span className="text-violet-600 font-semibold">Driver</span><span className="font-bold text-gray-900">{selectedTrip.driver}</span></div><div className="flex justify-between text-xs mt-1"><span className="text-violet-600 font-semibold">Vehicle</span><span className="text-gray-700">{selectedTrip.vehicle} — {selectedTrip.vehicleType}</span></div></div>
               ) : (
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3"><p className="text-xs font-bold text-yellow-800">⚠ No driver assigned</p><button className="mt-2 px-3 py-1.5 text-xs font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700">Assign Driver & Vehicle</button></div>
               )}
@@ -279,7 +279,7 @@ export function CFSDispatch() {
 
               {/* Stop Sequence */}
               <div>
-                <h4 className="text-xs font-semibold text-gray-700 mb-2">Route  {selectedTrip.totalStops} Stops</h4>
+                <h4 className="text-xs font-semibold text-gray-700 mb-2">Route — {selectedTrip.totalStops} Stops</h4>
                 <div className="space-y-2">
                   {selectedTrip.stops.map((stop, i) => (
                     <div key={i} className={`rounded-lg p-3 border ${stop.status === 'COMPLETED' ? 'bg-green-50 border-green-200' : stop.status === 'ARRIVED' ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-200'}`}>
@@ -322,7 +322,7 @@ export function CFSDispatch() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60]" onClick={() => setShowPickupVerify(false)}>
           <div className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
             <div className="px-6 py-4 border-b border-gray-200">
-              <h2 className="text-sm font-semibold text-gray-900">✓ Verify {verifyStop.action === 'PICKUP' ? 'Pickup' : 'Delivery'}  {verifyStop.location}</h2>
+              <h2 className="text-sm font-semibold text-gray-900">✓ Verify {verifyStop.action === 'PICKUP' ? 'Pickup' : 'Delivery'} — {verifyStop.location}</h2>
               <p className="text-xs text-gray-400 mt-0.5">{verifyStop.mawb ? `MAWB: ${verifyStop.mawb}` : verifyStop.orderNumber} · Expected: {verifyStop.pieces} pieces · {verifyStop.weight}</p>
             </div>
             <div className="px-6 py-4 space-y-4">
@@ -356,7 +356,7 @@ export function CFSDispatch() {
               {/* Partial Pickup Alert */}
               {pickupType === 'PARTIAL' && (
                 <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-2"><span className="text-lg">⚠️</span><span className="text-sm font-bold text-yellow-800">Partial Pickup  {verifyStop.pieces - receivedPieces} pieces missing</span></div>
+                  <div className="flex items-center gap-2 mb-2"><span className="text-lg">⚠️</span><span className="text-sm font-bold text-yellow-800">Partial Pickup — {verifyStop.pieces - receivedPieces} pieces missing</span></div>
                   <p className="text-xs text-yellow-700 mb-3">A follow-up pickup will be automatically scheduled for the remaining {verifyStop.pieces - receivedPieces} piece(s).</p>
                   <div className="grid grid-cols-2 gap-3">
                     <div><label className="block text-xs font-medium text-yellow-800 mb-1">Reason for Partial</label><select className="w-full border border-yellow-300 rounded-lg px-3 py-2 text-sm bg-white"><option>Cargo not ready</option><option>Airline still processing</option><option>Customs hold on portion</option><option>Space constraint on vehicle</option><option>Wrong piece count at origin</option><option>Other</option></select></div>
@@ -371,7 +371,7 @@ export function CFSDispatch() {
               {pickupType === 'SHORT' && (
                 <div className="bg-red-50 border border-red-300 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-2"><span className="text-lg">❌</span><span className="text-sm font-bold text-red-800">Shipment Short / Refused</span></div>
-                  <div><label className="block text-xs font-medium text-red-800 mb-1">Reason</label><select className="w-full border border-red-300 rounded-lg px-3 py-2 text-sm bg-white"><option>Cargo not available at terminal</option><option>Wrong documentation</option><option>Customs not cleared</option><option>Cargo damaged  refused</option><option>Terminal closed</option><option>Other</option></select></div>
+                  <div><label className="block text-xs font-medium text-red-800 mb-1">Reason</label><select className="w-full border border-red-300 rounded-lg px-3 py-2 text-sm bg-white"><option>Cargo not available at terminal</option><option>Wrong documentation</option><option>Customs not cleared</option><option>Cargo damaged — refused</option><option>Terminal closed</option><option>Other</option></select></div>
                   <label className="flex items-center gap-2 mt-3 text-xs text-red-800"><input type="checkbox" defaultChecked className="rounded text-red-600" /> Set reminder for Operations to reschedule pickup</label>
                   <label className="flex items-center gap-2 mt-1 text-xs text-red-800"><input type="checkbox" defaultChecked className="rounded text-red-600" /> Alert dispatch manager immediately</label>
                 </div>
@@ -443,12 +443,12 @@ export function CFSDispatch() {
       {showPartialReminder && verifyStop && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[70]" onClick={() => setShowPartialReminder(false)}>
           <div className="bg-white rounded-xl w-full max-w-md shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-yellow-200 bg-yellow-50"><h2 className="text-sm font-semibold text-yellow-800">⚠️ Partial Pickup Confirmed  Follow-Up Required</h2></div>
+            <div className="px-6 py-4 border-b border-yellow-200 bg-yellow-50"><h2 className="text-sm font-semibold text-yellow-800">⚠️ Partial Pickup Confirmed — Follow-Up Required</h2></div>
             <div className="px-6 py-4 space-y-4">
               <div className="bg-white border border-yellow-200 rounded-lg p-4">
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div><span className="text-gray-400">Location</span><br/><strong>{verifyStop.location}</strong></div>
-                  <div><span className="text-gray-400">MAWB</span><br/><strong className="font-mono">{verifyStop.mawb || ''}</strong></div>
+                  <div><span className="text-gray-400">MAWB</span><br/><strong className="font-mono">{verifyStop.mawb || '—'}</strong></div>
                   <div><span className="text-gray-400">Picked Up</span><br/><strong className="text-green-600">{receivedPieces} pieces</strong></div>
                   <div><span className="text-gray-400">Remaining</span><br/><strong className="text-red-600">{verifyStop.pieces - receivedPieces} pieces</strong></div>
                 </div>
@@ -471,20 +471,20 @@ export function CFSDispatch() {
       {showRouteOpt && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowRouteOpt(false)}>
           <div className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">🗺 Route Optimization  Multi-Stop Planning</h2><p className="text-xs text-gray-400 mt-0.5">Optimize terminal pickup/delivery routes for minimum distance and time</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">🗺 Route Optimization — Multi-Stop Planning</h2><p className="text-xs text-gray-400 mt-0.5">Optimize terminal pickup/delivery routes for minimum distance and time</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-3 gap-3">
-                <div><label className="block text-xs font-medium text-gray-700 mb-1">Start Location</label><input type="text" defaultValue="CFS Warehouse  Springfield Gardens, NY" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
-                <div><label className="block text-xs font-medium text-gray-700 mb-1">Vehicle</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>T-1042  24ft Box Truck</option><option>T-1055  26ft Box Truck</option><option>T-1070  Reefer Truck</option></select></div>
+                <div><label className="block text-xs font-medium text-gray-700 mb-1">Start Location</label><input type="text" defaultValue="CFS Warehouse — Springfield Gardens, NY" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" /></div>
+                <div><label className="block text-xs font-medium text-gray-700 mb-1">Vehicle</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>T-1042 — 24ft Box Truck</option><option>T-1055 — 26ft Box Truck</option><option>T-1070 — Reefer Truck</option></select></div>
                 <div><label className="block text-xs font-medium text-gray-700 mb-1">Optimize For</label><select className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"><option>Shortest Distance</option><option>Fastest Time</option><option>Fewest Tolls</option></select></div>
               </div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Stops to Optimize (drag to reorder)</h4>
                 <div className="space-y-1.5">
                   {[
-                    { seq: 1, loc: 'JFK  Bldg 75 (Korean Air Cargo)', mawb: '176-82445521', pcs: 12, action: 'Pickup', eta: '' },
-                    { seq: 2, loc: 'JFK  Bldg 151 (Cathay Pacific Cargo)', mawb: '131-99100300', pcs: 60, action: 'Pickup', eta: '' },
-                    { seq: 3, loc: 'JFK  Bldg 22 (Emirates Cargo)', mawb: '131-55782100', pcs: 24, action: 'Pickup', eta: '' },
-                    { seq: 4, loc: 'CFS Warehouse  Drop All', mawb: '', pcs: 96, action: 'Drop', eta: '' },
+                    { seq: 1, loc: 'JFK — Bldg 75 (Korean Air Cargo)', mawb: '176-82445521', pcs: 12, action: 'Pickup', eta: '—' },
+                    { seq: 2, loc: 'JFK — Bldg 151 (Cathay Pacific Cargo)', mawb: '131-99100300', pcs: 60, action: 'Pickup', eta: '—' },
+                    { seq: 3, loc: 'JFK — Bldg 22 (Emirates Cargo)', mawb: '131-55782100', pcs: 24, action: 'Pickup', eta: '—' },
+                    { seq: 4, loc: 'CFS Warehouse — Drop All', mawb: '', pcs: 96, action: 'Drop', eta: '—' },
                   ].map((s, i) => (
                     <div key={i} className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg border border-gray-200">
                       <span className="text-gray-400 cursor-grab">⠿</span>
@@ -499,7 +499,7 @@ export function CFSDispatch() {
                 <h4 className="text-xs font-bold text-green-800 mb-2">Optimized Route Summary</h4>
                 <div className="grid grid-cols-4 gap-3 text-xs"><div><span className="text-gray-500">Total Distance</span><br/><strong className="text-gray-900">28.4 mi</strong></div><div><span className="text-gray-500">Est. Drive Time</span><br/><strong className="text-gray-900">1h 15m</strong></div><div><span className="text-gray-500">Est. Total Time</span><br/><strong className="text-gray-900">3h 30m</strong><br/><span className="text-gray-400">(incl. loading)</span></div><div><span className="text-gray-500">Savings vs Original</span><br/><strong className="text-green-600">-8.2 mi / -22 min</strong></div></div>
               </div>
-              <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center text-gray-400 text-sm">🗺 Map Preview  Route visualization with Google Maps</div>
+              <div className="bg-gray-100 rounded-lg h-48 flex items-center justify-center text-gray-400 text-sm">🗺 Map Preview — Route visualization with Google Maps</div>
             </div>
             <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200"><button onClick={() => setShowRouteOpt(false)} className="px-4 py-2 text-sm text-gray-600">Cancel</button><button onClick={() => setShowRouteOpt(false)} className="px-5 py-2 bg-violet-600 text-white text-sm font-semibold rounded-lg">Apply Optimized Route</button></div>
           </div>

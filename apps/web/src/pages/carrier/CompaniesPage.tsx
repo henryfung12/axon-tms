@@ -47,7 +47,7 @@ const MOCK_COMPANIES: Company[] = [
       { name: 'Jennifer Walsh', title: 'Logistics Manager', email: 'j.walsh@acmelax.com', phone: '(310) 555-1201', isPrimary: true },
       { name: 'Tom Rivera', title: 'Shipping Coordinator', email: 't.rivera@acmelax.com', phone: '(310) 555-1202', isPrimary: false },
     ],
-    paymentTerms: 'Net 30', creditLimit: 500000, creditUsed: 187500, totalLoads: 142, totalRevenue: 1533265, avgDaysToPay: 27, lastLoadDate: '2026-04-11', createdAt: '2024-06-15', notes: 'Preferred partner  high volume west coast',
+    paymentTerms: 'Net 30', creditLimit: 500000, creditUsed: 187500, totalLoads: 142, totalRevenue: 1533265, avgDaysToPay: 27, lastLoadDate: '2026-04-11', createdAt: '2024-06-15', notes: 'Preferred partner — high volume west coast',
   },
   {
     id: 'c2', name: 'Acme Corp - ORD', type: 'SHIPPER', status: 'ACTIVE',
@@ -68,7 +68,7 @@ const MOCK_COMPANIES: Company[] = [
       { name: 'Diana Chen', title: 'Freight Operations Manager', email: 'd.chen@acmeewr.com', phone: '(973) 555-4501', isPrimary: true },
       { name: 'Paul Kowalski', title: 'AP Coordinator', email: 'p.kowalski@acmeewr.com', phone: '(973) 555-4502', isPrimary: false },
     ],
-    paymentTerms: 'Net 45', creditLimit: 350000, creditUsed: 210000, totalLoads: 76, totalRevenue: 957335, avgDaysToPay: 38, lastLoadDate: '2026-04-09', createdAt: '2024-11-03', notes: 'Slow payer  monitor AR closely',
+    paymentTerms: 'Net 45', creditLimit: 350000, creditUsed: 210000, totalLoads: 76, totalRevenue: 957335, avgDaysToPay: 38, lastLoadDate: '2026-04-09', createdAt: '2024-11-03', notes: 'Slow payer — monitor AR closely',
   },
   {
     id: 'c4', name: 'Acme Corp - DFW', type: 'SHIPPER', status: 'ACTIVE',
@@ -88,7 +88,7 @@ const MOCK_COMPANIES: Company[] = [
     contacts: [
       { name: 'Angela Brooks', title: 'Logistics Coordinator', email: 'a.brooks@acmeatl.com', phone: '(404) 555-6701', isPrimary: true },
     ],
-    paymentTerms: 'Net 30', creditLimit: 200000, creditUsed: 41000, totalLoads: 22, totalRevenue: 181703, avgDaysToPay: 19, lastLoadDate: '2026-04-08', createdAt: '2025-05-10', notes: 'Growing account  review credit limit Q3',
+    paymentTerms: 'Net 30', creditLimit: 200000, creditUsed: 41000, totalLoads: 22, totalRevenue: 181703, avgDaysToPay: 19, lastLoadDate: '2026-04-08', createdAt: '2025-05-10', notes: 'Growing account — review credit limit Q3',
   },
   {
     id: 'c6', name: 'Triumph Business Capital', type: 'FACTORING', status: 'ACTIVE',
@@ -98,7 +98,7 @@ const MOCK_COMPANIES: Company[] = [
     contacts: [
       { name: 'Rachel Torres', title: 'Account Manager', email: 'r.torres@triumph.com', phone: '(866) 555-4201', isPrimary: true },
     ],
-    paymentTerms: 'Same Day (2.5% fee)', creditLimit: 0, creditUsed: 0, totalLoads: 0, totalRevenue: 0, avgDaysToPay: 1, lastLoadDate: '', createdAt: '2024-06-15', notes: 'Primary factoring partner  2.5% flat rate',
+    paymentTerms: 'Same Day (2.5% fee)', creditLimit: 0, creditUsed: 0, totalLoads: 0, totalRevenue: 0, avgDaysToPay: 1, lastLoadDate: '', createdAt: '2024-06-15', notes: 'Primary factoring partner — 2.5% flat rate',
   },
   {
     id: 'c7', name: 'Rush Truck Centers', type: 'REPAIR_SHOP', status: 'ACTIVE',
@@ -149,7 +149,7 @@ const MOCK_COMPANIES: Company[] = [
     contacts: [
       { name: 'Robert Hall', title: 'Transportation Manager', email: 'r.hall@nationalfreight.com', phone: '(901) 555-9001', isPrimary: true },
     ],
-    paymentTerms: 'Net 45', creditLimit: 150000, creditUsed: 148500, totalLoads: 15, totalRevenue: 148500, avgDaysToPay: 52, lastLoadDate: '2026-03-15', createdAt: '2025-04-01', notes: 'CREDIT HOLD  AR over 60 days. Do not dispatch until resolved.',
+    paymentTerms: 'Net 45', creditLimit: 150000, creditUsed: 148500, totalLoads: 15, totalRevenue: 148500, avgDaysToPay: 52, lastLoadDate: '2026-03-15', createdAt: '2025-04-01', notes: 'CREDIT HOLD — AR over 60 days. Do not dispatch until resolved.',
   },
   {
     id: 'c12', name: 'QuickShip Warehousing', type: 'CONSIGNEE', status: 'INACTIVE',
@@ -159,7 +159,7 @@ const MOCK_COMPANIES: Company[] = [
     contacts: [
       { name: 'Amy Foster', title: 'Receiving Manager', email: 'a.foster@quickship.com', phone: '(502) 555-3201', isPrimary: true },
     ],
-    paymentTerms: 'N/A', creditLimit: 0, creditUsed: 0, totalLoads: 8, totalRevenue: 0, avgDaysToPay: 0, lastLoadDate: '2025-11-20', createdAt: '2025-06-12', notes: 'Facility closed  relocated to Cincinnati',
+    paymentTerms: 'N/A', creditLimit: 0, creditUsed: 0, totalLoads: 8, totalRevenue: 0, avgDaysToPay: 0, lastLoadDate: '2025-11-20', createdAt: '2025-06-12', notes: 'Facility closed — relocated to Cincinnati',
   },
 ];
 
@@ -203,7 +203,7 @@ function formatCurrency(n: number): string {
 }
 
 function formatDate(d: string): string {
-  if (!d) return '';
+  if (!d) return '—';
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
@@ -451,12 +451,12 @@ export function CompaniesPage() {
                       ) : <span className="text-gray-400 italic">No contact</span>}
                     </td>
                     <td className="px-3 py-2.5 text-gray-600 whitespace-nowrap">{company.paymentTerms}</td>
-                    <td className="px-3 py-2.5 text-right text-gray-700">{company.totalLoads || ''}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{company.totalLoads || '—'}</td>
                     <td className="px-3 py-2.5 text-right font-medium text-gray-900">
-                      {company.totalRevenue ? `$${company.totalRevenue.toLocaleString()}` : ''}
+                      {company.totalRevenue ? `$${company.totalRevenue.toLocaleString()}` : '—'}
                     </td>
                     <td className={`px-3 py-2.5 text-right ${company.avgDaysToPay > 35 ? 'text-red-600 font-medium' : company.avgDaysToPay > 28 ? 'text-yellow-600' : 'text-gray-700'}`}>
-                      {company.avgDaysToPay ? `${company.avgDaysToPay}d` : ''}
+                      {company.avgDaysToPay ? `${company.avgDaysToPay}d` : '—'}
                     </td>
                     <td className="px-3 py-2.5 text-gray-600 whitespace-nowrap">{formatDate(company.lastLoadDate)}</td>
                   </tr>
@@ -576,7 +576,7 @@ export function CompaniesPage() {
                   <div className="flex justify-between items-center py-1.5 border-b border-gray-100">
                     <span className="text-xs text-gray-500">Avg Days to Pay</span>
                     <span className={`text-xs font-medium ${selectedCompany.avgDaysToPay > 35 ? 'text-red-600' : 'text-gray-800'}`}>
-                      {selectedCompany.avgDaysToPay || ''} days
+                      {selectedCompany.avgDaysToPay || '—'} days
                     </span>
                   </div>
                   {selectedCompany.creditLimit > 0 && (

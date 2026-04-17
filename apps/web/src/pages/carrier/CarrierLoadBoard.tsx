@@ -380,10 +380,10 @@ export function CarrierLoadBoard() {
                     className={`border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${rowClass}`}
                     onClick={() => setSelectedLoadId(load.id)}
                   >
-                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{pickup?.state || ''}</td>
-                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{delivery?.state || ''}</td>
-                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{pickup?.city || ''}</td>
-                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{delivery?.city || ''}</td>
+                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{pickup?.state || '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{delivery?.state || '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{pickup?.city || '—'}</td>
+                    <td className="px-3 py-2 text-gray-700 whitespace-nowrap">{delivery?.city || '—'}</td>
                     <td className="px-3 py-2">
                       <span className="text-blue-600 font-medium hover:underline">{load.loadNumber}</span>
                     </td>
@@ -400,9 +400,9 @@ export function CarrierLoadBoard() {
                         {load.status === 'IN_TRANSIT' ? 'In Transit' : load.status?.charAt(0) + load.status?.slice(1).toLowerCase()}
                       </span>
                     </td>
-                    <td className="px-3 py-2 text-right text-gray-700">{load.mileage ? `${load.mileage} mi` : ''}</td>
+                    <td className="px-3 py-2 text-right text-gray-700">{load.mileage ? `${load.mileage} mi` : '—'}</td>
                     <td className="px-3 py-2 text-right font-medium text-gray-900">
-                      {load.totalRate ? `$${load.totalRate.toLocaleString()}` : ''}
+                      {load.totalRate ? `$${load.totalRate.toLocaleString()}` : '—'}
                     </td>
                     <td className="px-3 py-2 text-right">
                       {load.status === 'PENDING' && <button onClick={e => { e.stopPropagation(); setNegotiationLoad(load); setCounterOffer(String(load.totalRate || '')); setShowNegotiation(true); }} className="px-2 py-1 text-xs font-medium text-blue-600 bg-blue-50 rounded hover:bg-blue-100">Negotiate</button>}
@@ -428,12 +428,12 @@ export function CarrierLoadBoard() {
       {showNegotiation && negotiationLoad && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => setShowNegotiation(false)}>
           <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl" onClick={e => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Rate Negotiation  {negotiationLoad.loadNumber || 'Load'}</h2><p className="text-xs text-gray-400 mt-0.5">{negotiationLoad.stops?.[0]?.city}, {negotiationLoad.stops?.[0]?.state} → {negotiationLoad.stops?.[negotiationLoad.stops?.length-1]?.city}, {negotiationLoad.stops?.[negotiationLoad.stops?.length-1]?.state}</p></div>
+            <div className="px-6 py-4 border-b border-gray-200"><h2 className="text-sm font-semibold text-gray-900">Rate Negotiation — {negotiationLoad.loadNumber || 'Load'}</h2><p className="text-xs text-gray-400 mt-0.5">{negotiationLoad.stops?.[0]?.city}, {negotiationLoad.stops?.[0]?.state} → {negotiationLoad.stops?.[negotiationLoad.stops?.length-1]?.city}, {negotiationLoad.stops?.[negotiationLoad.stops?.length-1]?.state}</p></div>
             <div className="px-6 py-4 space-y-4">
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-gray-50 rounded-lg p-3 text-center"><p className="text-xs text-gray-400">Posted Rate</p><p className="text-xl font-bold text-gray-900">${negotiationLoad.totalRate?.toLocaleString() || ''}</p></div>
+                <div className="bg-gray-50 rounded-lg p-3 text-center"><p className="text-xs text-gray-400">Posted Rate</p><p className="text-xl font-bold text-gray-900">${negotiationLoad.totalRate?.toLocaleString() || '—'}</p></div>
                 <div className="bg-blue-50 rounded-lg p-3 text-center"><p className="text-xs text-blue-600">Your Counter</p><input type="number" value={counterOffer} onChange={e => setCounterOffer(e.target.value)} className="w-full text-xl font-bold text-blue-700 text-center bg-transparent border-none outline-none" /></div>
-                <div className="bg-green-50 rounded-lg p-3 text-center"><p className="text-xs text-gray-400">Margin</p><p className={`text-xl font-bold ${Number(counterOffer) > (negotiationLoad.totalRate || 0) ? 'text-green-600' : 'text-red-600'}`}>{counterOffer ? `$${(Number(counterOffer) - (negotiationLoad.totalRate || 0)).toLocaleString()}` : ''}</p></div>
+                <div className="bg-green-50 rounded-lg p-3 text-center"><p className="text-xs text-gray-400">Margin</p><p className={`text-xl font-bold ${Number(counterOffer) > (negotiationLoad.totalRate || 0) ? 'text-green-600' : 'text-red-600'}`}>{counterOffer ? `$${(Number(counterOffer) - (negotiationLoad.totalRate || 0)).toLocaleString()}` : '—'}</p></div>
               </div>
               <div><h4 className="text-xs font-semibold text-gray-700 mb-2">Negotiation History</h4>
                 <div className="space-y-1.5">

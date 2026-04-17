@@ -29,7 +29,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'axon-auth',
-      // Only persist user info  access token is short-lived
+      // Only persist user info — access token is short-lived
       partialize: (state) => ({
         user: state.user,
         isAuthenticated: state.isAuthenticated,

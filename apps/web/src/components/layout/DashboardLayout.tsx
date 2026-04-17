@@ -126,12 +126,12 @@ export function DashboardLayout() {
 
   const ALERTS = [
     { id: 1, type: 'URGENT', message: 'CBP exam scheduled for JFK-IMP-0902', time: '5 min ago', read: false },
-    { id: 2, type: 'WARNING', message: 'TRP-0414-001 delayed  ETA pushed 2 hours', time: '12 min ago', read: false },
+    { id: 2, type: 'WARNING', message: 'TRP-0414-001 delayed — ETA pushed 2 hours', time: '12 min ago', read: false },
     { id: 3, type: 'ALERT', message: 'Marcus Johnson approaching HOS limit (1hr remaining)', time: '25 min ago', read: true },
-    { id: 4, type: 'INFO', message: 'CargoWise sync completed  3 invoices pushed, 0 errors', time: '1 hr ago', read: true },
+    { id: 4, type: 'INFO', message: 'CargoWise sync completed — 3 invoices pushed, 0 errors', time: '1 hr ago', read: true },
     { id: 5, type: 'URGENT', message: 'Westbrook Electronics invoice overdue (45 days)', time: '2 hrs ago', read: false },
     { id: 6, type: 'WARNING', message: 'Eagle Freight Lines insurance expires 03/15', time: '4 hrs ago', read: true },
-    { id: 7, type: 'ALERT', message: 'Sarah Chen delivered to Edison, NJ  POD received', time: '6 hrs ago', read: true },
+    { id: 7, type: 'ALERT', message: 'Sarah Chen delivered to Edison, NJ — POD received', time: '6 hrs ago', read: true },
     { id: 8, type: 'INFO', message: 'New customer registered: Heartland Foods (HEART-US)', time: '8 hrs ago', read: true },
   ];
   const unreadCount = ALERTS.filter(a => !a.read).length;
@@ -214,7 +214,7 @@ export function DashboardLayout() {
         <div className="flex items-center justify-center h-64 text-gray-400">
           <div className="text-center">
             <p className="text-2xl mb-2">🚧</p>
-            <p className="text-sm">Coming soon  {CFS_NAV.find(n => n.id === cfsPage)?.label}</p>
+            <p className="text-sm">Coming soon — {CFS_NAV.find(n => n.id === cfsPage)?.label}</p>
           </div>
         </div>
       );

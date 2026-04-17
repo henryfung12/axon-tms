@@ -62,25 +62,25 @@ const MOCK_INVOICES: Invoice[] = [
     id: 'inv5', loadNumber: 'LD-4510', loadId: 'L005', invoiceNumber: 'INV-2026-1030', cwJobNumber: 'CW-T240405-0008', cwSyncStatus: 'SENT_TO_CLIENT', cwLastSync: '2026-04-06T11:00:00Z', cwErrorMessage: null,
     customer: 'Acme Corp - ATL', customerEmail: 'ap@acmeatl.com', origin: 'Atlanta, GA', destination: 'Jacksonville, FL', pickupDate: '2026-04-05', deliveryDate: '2026-04-05',
     lineHaul: 2700, fuelSurcharge: 270, accessorials: 130, totalAmount: 3100, amountPaid: 1500, dueDate: '2026-05-05',
-    status: 'PARTIAL', driverName: 'Maria Rodriguez', equipment: "Van - 53'", mileage: 410, createdAt: '2026-04-05', notes: 'Partial payment received 4/12  $1,500. Balance due $1,600.',
+    status: 'PARTIAL', driverName: 'Maria Rodriguez', equipment: "Van - 53'", mileage: 410, createdAt: '2026-04-05', notes: 'Partial payment received 4/12 — $1,500. Balance due $1,600.',
   },
   {
     id: 'inv6', loadNumber: 'LD-4495', loadId: 'L006', invoiceNumber: 'INV-2026-1018', cwJobNumber: 'CW-T240328-0042', cwSyncStatus: 'SENT_TO_CLIENT', cwLastSync: '2026-03-29T08:00:00Z', cwErrorMessage: null,
     customer: 'Acme Corp - EWR', customerEmail: 'ap@acmeewr.com', origin: 'Denver, CO', destination: 'Salt Lake City, UT', pickupDate: '2026-03-28', deliveryDate: '2026-03-29',
     lineHaul: 5400, fuelSurcharge: 540, accessorials: 260, totalAmount: 6200, amountPaid: 0, dueDate: '2026-04-12',
-    status: 'OVERDUE', driverName: 'Lisa Nguyen', equipment: "Reefer - 53'", mileage: 980, createdAt: '2026-03-28', notes: 'Net 45 customer  past due 1 day. Follow up.',
+    status: 'OVERDUE', driverName: 'Lisa Nguyen', equipment: "Reefer - 53'", mileage: 980, createdAt: '2026-03-28', notes: 'Net 45 customer — past due 1 day. Follow up.',
   },
   {
-    id: 'inv7', loadNumber: 'LD-4488', loadId: 'L007', invoiceNumber: 'INV-2026-1012', cwJobNumber: null, cwSyncStatus: 'SYNC_ERROR', cwLastSync: '2026-04-09T16:00:00Z', cwErrorMessage: 'CW API timeout  transport module unavailable. Retry scheduled.',
+    id: 'inv7', loadNumber: 'LD-4488', loadId: 'L007', invoiceNumber: 'INV-2026-1012', cwJobNumber: null, cwSyncStatus: 'SYNC_ERROR', cwLastSync: '2026-04-09T16:00:00Z', cwErrorMessage: 'CW API timeout — transport module unavailable. Retry scheduled.',
     customer: 'Echo Global Logistics', customerEmail: 'ap@echo.com', origin: 'Chicago, IL', destination: 'Milwaukee, WI', pickupDate: '2026-03-25', deliveryDate: '2026-03-25',
     lineHaul: 2400, fuelSurcharge: 240, accessorials: 160, totalAmount: 2800, amountPaid: 0, dueDate: '2026-04-15',
-    status: 'DRAFT', driverName: 'David Kim', equipment: "Van - 53'", mileage: 350, createdAt: '2026-03-25', notes: 'CW sync failed  manual retry needed',
+    status: 'DRAFT', driverName: 'David Kim', equipment: "Van - 53'", mileage: 350, createdAt: '2026-03-25', notes: 'CW sync failed — manual retry needed',
   },
   {
     id: 'inv8', loadNumber: 'LD-4524', loadId: 'L008', invoiceNumber: '', cwJobNumber: null, cwSyncStatus: 'NOT_SYNCED', cwLastSync: null, cwErrorMessage: null,
     customer: 'Acme Corp - DFW', customerEmail: 'ap@acmedfw.com', origin: 'Nashville, TN', destination: 'Louisville, KY', pickupDate: '2026-04-13', deliveryDate: '2026-04-13',
     lineHaul: 2500, fuelSurcharge: 250, accessorials: 150, totalAmount: 2900, amountPaid: 0, dueDate: '',
-    status: 'DRAFT', driverName: 'Robert Brown', equipment: "Van - 53'", mileage: 380, createdAt: '2026-04-13', notes: 'Load in transit  will sync on delivery',
+    status: 'DRAFT', driverName: 'Robert Brown', equipment: "Van - 53'", mileage: 380, createdAt: '2026-04-13', notes: 'Load in transit — will sync on delivery',
   },
   {
     id: 'inv9', loadNumber: 'LD-4502', loadId: 'L009', invoiceNumber: 'INV-2026-1025', cwJobNumber: 'CW-T240401-0033', cwSyncStatus: 'PAID', cwLastSync: '2026-04-08T14:00:00Z', cwErrorMessage: null,
@@ -129,12 +129,12 @@ const INVOICE_STATUS_LABELS: Record<string, string> = {
 };
 
 function formatDate(d: string | null): string {
-  if (!d) return '';
+  if (!d) return '—';
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 function formatDateTime(d: string | null): string {
-  if (!d) return '';
+  if (!d) return '—';
   const date = new Date(d);
   return `${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} ${date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
 }
@@ -289,7 +289,7 @@ export function CarrierAccountingPage() {
         <div className="bg-white border border-gray-200 rounded-lg p-3">
           <p className="text-xs text-gray-400 mb-1">Ready to Invoice</p>
           <p className="text-xl font-bold text-blue-600">{MOCK_INVOICES.filter(i => i.cwSyncStatus === 'INVOICE_MATCHED').length}</p>
-          <p className="text-xs text-gray-400 mt-1.5">Matched in CW  close & send</p>
+          <p className="text-xs text-gray-400 mt-1.5">Matched in CW — close & send</p>
         </div>
       </div>
 
@@ -377,7 +377,7 @@ export function CarrierAccountingPage() {
                     <td className="px-3 py-2.5">
                       <span className="text-blue-600 font-semibold hover:underline">{inv.loadNumber}</span>
                     </td>
-                    <td className="px-3 py-2.5 font-mono text-gray-600">{inv.invoiceNumber || ''}</td>
+                    <td className="px-3 py-2.5 font-mono text-gray-600">{inv.invoiceNumber || '—'}</td>
                     <td className="px-3 py-2.5">
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${INVOICE_STATUS_BADGES[inv.status]}`}>
                         {INVOICE_STATUS_LABELS[inv.status]}
@@ -386,7 +386,7 @@ export function CarrierAccountingPage() {
                     <td className="px-3 py-2.5">
                       {inv.cwJobNumber ? (
                         <span className="font-mono text-purple-700 text-xs">{inv.cwJobNumber}</span>
-                      ) : <span className="text-gray-400"></span>}
+                      ) : <span className="text-gray-400">—</span>}
                     </td>
                     <td className="px-3 py-2.5">
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${CW_SYNC_BADGES[inv.cwSyncStatus].bg}`}>
@@ -400,7 +400,7 @@ export function CarrierAccountingPage() {
                       {balance > 0 ? `$${balance.toLocaleString()}` : 'Paid'}
                     </td>
                     <td className={`px-3 py-2.5 whitespace-nowrap ${inv.status === 'OVERDUE' ? 'text-red-600 font-medium' : 'text-gray-600'}`}>
-                      {inv.dueDate ? formatDate(inv.dueDate) : ''}
+                      {inv.dueDate ? formatDate(inv.dueDate) : '—'}
                       {overdueDays > 0 && inv.status === 'OVERDUE' && <span className="ml-1 text-red-500">({overdueDays}d)</span>}
                     </td>
                     <td className="px-3 py-2.5" onClick={e => e.stopPropagation()}>
@@ -452,16 +452,16 @@ export function CarrierAccountingPage() {
               <th className="text-left px-3 py-2.5 font-medium text-gray-500">Status</th>
             </tr></thead><tbody>
               {[
-                { date: 'Apr 14', cat: 'Fuel', desc: 'Diesel fill-up  Pilot Flying J, Memphis', vendor: 'Pilot Corp', unit: 'T-1042', amount: 485.20, status: 'PAID' },
-                { date: 'Apr 13', cat: 'Fuel', desc: 'Diesel fill-up  Love\'s, Dallas', vendor: 'Love\'s Travel', unit: 'T-1038', amount: 512.80, status: 'PAID' },
+                { date: 'Apr 14', cat: 'Fuel', desc: 'Diesel fill-up — Pilot Flying J, Memphis', vendor: 'Pilot Corp', unit: 'T-1042', amount: 485.20, status: 'PAID' },
+                { date: 'Apr 13', cat: 'Fuel', desc: 'Diesel fill-up — Love\'s, Dallas', vendor: 'Love\'s Travel', unit: 'T-1038', amount: 512.80, status: 'PAID' },
                 { date: 'Apr 12', cat: 'Repair', desc: 'DPF filter cleaning', vendor: 'TruckPro Memphis', unit: 'T-1042', amount: 1200.00, status: 'PAID' },
                 { date: 'Apr 11', cat: 'Insurance', desc: 'Monthly auto liability premium', vendor: 'Progressive Comm.', unit: 'Fleet', amount: 4200.00, status: 'PAID' },
                 { date: 'Apr 10', cat: 'Tolls', desc: 'I-PASS monthly charges', vendor: 'IL Tollway', unit: 'Fleet', amount: 342.50, status: 'PAID' },
                 { date: 'Apr 10', cat: 'Repair', desc: 'Brake pads replacement', vendor: 'FleetPride', unit: 'T-1055', amount: 680.00, status: 'PENDING' },
-                { date: 'Apr 9', cat: 'Loan', desc: 'Monthly truck payment  T-1038', vendor: 'Daimler Financial', unit: 'T-1038', amount: 2800.00, status: 'PAID' },
+                { date: 'Apr 9', cat: 'Loan', desc: 'Monthly truck payment — T-1038', vendor: 'Daimler Financial', unit: 'T-1038', amount: 2800.00, status: 'PAID' },
                 { date: 'Apr 8', cat: 'Fuel', desc: 'DEF fluid purchase', vendor: 'TA Petro', unit: 'T-1070', amount: 125.00, status: 'PAID' },
                 { date: 'Apr 7', cat: 'Tire', desc: '4 drive tires replaced', vendor: 'TA Truck Service', unit: 'T-1082', amount: 2400.00, status: 'PENDING' },
-                { date: 'Apr 5', cat: 'License', desc: 'Annual registration renewal  T-1029', vendor: 'IL SOS', unit: 'T-1029', amount: 285.00, status: 'PAID' },
+                { date: 'Apr 5', cat: 'License', desc: 'Annual registration renewal — T-1029', vendor: 'IL SOS', unit: 'T-1029', amount: 285.00, status: 'PAID' },
               ].map((e, i) => {
                 const catColor: Record<string, string> = { Fuel: 'bg-blue-100 text-blue-800', Repair: 'bg-red-100 text-red-800', Insurance: 'bg-purple-100 text-purple-800', Tolls: 'bg-teal-100 text-teal-800', Loan: 'bg-gray-100 text-gray-700', Tire: 'bg-orange-100 text-orange-800', License: 'bg-indigo-100 text-indigo-800' };
                 return (
@@ -503,7 +503,7 @@ export function CarrierAccountingPage() {
               <h4 className="text-sm font-semibold text-gray-900 mb-3">CargoWise Connection</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between py-2 px-3 bg-green-50 rounded-lg border border-green-200">
-                  <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" /><span className="text-sm font-semibold text-green-800">Connected  Live Sync Active</span></div>
+                  <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" /><span className="text-sm font-semibold text-green-800">Connected — Live Sync Active</span></div>
                   <span className="text-xs text-green-600">Heartbeat: 2 min ago</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
@@ -564,7 +564,7 @@ export function CarrierAccountingPage() {
               </div>
             </div>
             <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping  Outbound</h4>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping — Outbound</h4>
               <div className="space-y-1 text-xs">
                 {[
                   { tms: 'Load Number', cw: 'Job Reference' },
@@ -584,7 +584,7 @@ export function CarrierAccountingPage() {
               </div>
             </div>
             <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping  Inbound</h4>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Field Mapping — Inbound</h4>
               <div className="space-y-1 text-xs">
                 {[
                   { cw: 'CW Job Number', tms: 'CW Job #' },
@@ -608,7 +608,7 @@ export function CarrierAccountingPage() {
           {/* Sync Log Table */}
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-              <h4 className="text-sm font-semibold text-gray-900">Sync Log  All Invoices</h4>
+              <h4 className="text-sm font-semibold text-gray-900">Sync Log — All Invoices</h4>
               <div className="flex gap-2">
                 <button className="px-3 py-1.5 text-xs font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700">Force Sync Now</button>
                 <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">View Full Log</button>
@@ -629,10 +629,10 @@ export function CarrierAccountingPage() {
                 {MOCK_INVOICES.map(inv => (
                   <tr key={inv.id} className={`border-b border-gray-100 hover:bg-gray-50 ${inv.cwSyncStatus === 'SYNC_ERROR' ? 'bg-red-50' : inv.cwSyncStatus === 'NOT_SYNCED' ? 'bg-yellow-50' : ''}`}>
                     <td className="px-3 py-2.5 font-mono text-blue-600 font-medium">{inv.loadNumber}</td>
-                    <td className="px-3 py-2.5 text-gray-700">{inv.invoiceNumber || ''}</td>
+                    <td className="px-3 py-2.5 text-gray-700">{inv.invoiceNumber || '—'}</td>
                     <td className="px-3 py-2.5 text-gray-700">{inv.customer}</td>
                     <td className="px-3 py-2.5 text-right font-medium text-gray-900">${inv.totalAmount.toLocaleString()}</td>
-                    <td className="px-3 py-2.5 font-mono text-xs text-gray-500">{inv.cwJobNumber || ''}</td>
+                    <td className="px-3 py-2.5 font-mono text-xs text-gray-500">{inv.cwJobNumber || '—'}</td>
                     <td className="px-3 py-2.5">
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${CW_SYNC_BADGES[inv.cwSyncStatus].bg}`}>{CW_SYNC_BADGES[inv.cwSyncStatus].label}</span>
                       {inv.cwErrorMessage && <p className="text-xs text-red-500 mt-1 truncate max-w-[200px]">{inv.cwErrorMessage}</p>}

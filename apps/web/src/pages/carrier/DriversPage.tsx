@@ -216,12 +216,12 @@ export function DriversPage() {
                         </div>
                         <div>
                           <p className="text-xs font-medium text-gray-900">{driver.user.firstName} {driver.user.lastName}</p>
-                          <p className="text-xs text-gray-400">{driver.user.phone || ''}</p>
+                          <p className="text-xs text-gray-400">{driver.user.phone || '—'}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-3 py-2.5">
-                      {eld ? <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${PROV[eld.provider].bg} ${PROV[eld.provider].text}`}>{PROV[eld.provider].label}</span> : <span className="text-gray-300"></span>}
+                      {eld ? <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${PROV[eld.provider].bg} ${PROV[eld.provider].text}`}>{PROV[eld.provider].label}</span> : <span className="text-gray-300">—</span>}
                     </td>
                     <td className="px-3 py-2.5">
                       {eld ? (
@@ -231,8 +231,8 @@ export function DriversPage() {
                         </div>
                       ) : <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${STATUS_STYLES[driver.status]}`}>{STATUS_LABELS[driver.status]}</span>}
                     </td>
-                    <td className="px-3 py-2.5 font-semibold text-blue-600">{eld?.unitNumber || ''}</td>
-                    <td className="px-3 py-2.5 text-gray-600">{eld ? `${eld.currentCity}, ${eld.currentState}` : ''}</td>
+                    <td className="px-3 py-2.5 font-semibold text-blue-600">{eld?.unitNumber || '—'}</td>
+                    <td className="px-3 py-2.5 text-gray-600">{eld ? `${eld.currentCity}, ${eld.currentState}` : '—'}</td>
                     <td className="px-3 py-2.5">
                       {eld ? (
                         <div className="flex items-center gap-2">
@@ -241,7 +241,7 @@ export function DriversPage() {
                           </div>
                           <span className={`text-xs font-medium ${eld.hoursAvailable <= 2 ? 'text-red-600' : eld.hoursAvailable <= 4 ? 'text-yellow-600' : 'text-green-600'}`}>{eld.hoursAvailable}h</span>
                         </div>
-                      ) : <span className="text-gray-300"></span>}
+                      ) : <span className="text-gray-300">—</span>}
                     </td>
                     <td className="px-3 py-2.5">
                       {eld ? (
@@ -251,20 +251,20 @@ export function DriversPage() {
                           </div>
                           <span className="text-xs text-gray-600">{eld.cycleAvailable}h left</span>
                         </div>
-                      ) : <span className="text-gray-300"></span>}
+                      ) : <span className="text-gray-300">—</span>}
                     </td>
                     <td className="px-3 py-2.5 text-center">
-                      {eld ? <span className={`text-xs font-bold ${scoreColor(eld.safetyScore)}`}>{eld.safetyScore}</span> : <span className="text-gray-300"></span>}
+                      {eld ? <span className={`text-xs font-bold ${scoreColor(eld.safetyScore)}`}>{eld.safetyScore}</span> : <span className="text-gray-300">—</span>}
                     </td>
                     <td className="px-3 py-2.5 text-center">
                       {eld ? (
                         eld.cameraEventsUnreviewed > 0
                           ? <span className="px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">{eld.cameraEventsUnreviewed}</span>
                           : <span className="text-green-600 text-xs">0</span>
-                      ) : <span className="text-gray-300"></span>}
+                      ) : <span className="text-gray-300">—</span>}
                     </td>
-                    <td className="px-3 py-2.5 text-right text-gray-700">{eld ? eld.milesThisMonth.toLocaleString() : ''}</td>
-                    <td className="px-3 py-2.5 text-gray-600">{driver.cdlExpiry ? new Date(driver.cdlExpiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}</td>
+                    <td className="px-3 py-2.5 text-right text-gray-700">{eld ? eld.milesThisMonth.toLocaleString() : '—'}</td>
+                    <td className="px-3 py-2.5 text-gray-600">{driver.cdlExpiry ? new Date(driver.cdlExpiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}</td>
                   </tr>
                 );
               })}
@@ -290,7 +290,7 @@ export function DriversPage() {
             <div className="bg-white border border-gray-200 rounded-lg p-3"><p className="text-xs text-gray-400 mb-1">Deductions (Total)</p><p className="text-xl font-bold text-red-600">$3,240</p><p className="text-xs text-gray-400 mt-1">Insurance, advances, other</p></div>
           </div>
           <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between"><h3 className="text-sm font-bold text-gray-900">Driver Settlement  Current Period</h3><div className="flex gap-2"><button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">⬇ Export Settlements</button><button className="px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Process Payroll</button></div></div>
+            <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between"><h3 className="text-sm font-bold text-gray-900">Driver Settlement — Current Period</h3><div className="flex gap-2"><button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">⬇ Export Settlements</button><button className="px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Process Payroll</button></div></div>
             <table className="w-full text-xs"><thead><tr className="bg-gray-50 border-b border-gray-200">
               <th className="text-left px-3 py-2.5 font-medium text-gray-500">Driver</th>
               <th className="text-left px-3 py-2.5 font-medium text-gray-500">Pay Type</th>
@@ -413,7 +413,7 @@ export function DriversPage() {
                         </div>
                         <div>
                           <p className="text-xs font-medium text-gray-900">Safety Score</p>
-                          <p className="text-xs text-gray-400">{eld.safetyScore >= 90 ? 'Excellent' : eld.safetyScore >= 80 ? 'Good  room for improvement' : 'Needs attention'}</p>
+                          <p className="text-xs text-gray-400">{eld.safetyScore >= 90 ? 'Excellent' : eld.safetyScore >= 80 ? 'Good — room for improvement' : 'Needs attention'}</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
@@ -463,10 +463,10 @@ export function DriversPage() {
                 <div>
                   <h4 className="text-xs font-semibold text-gray-700 mb-2">Driver Information</h4>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    <div><span className="text-xs text-gray-400 block">Phone</span><span className="text-xs text-gray-800">{selectedDriver.user.phone || ''}</span></div>
+                    <div><span className="text-xs text-gray-400 block">Phone</span><span className="text-xs text-gray-800">{selectedDriver.user.phone || '—'}</span></div>
                     <div><span className="text-xs text-gray-400 block">Email</span><span className="text-xs text-blue-600">{selectedDriver.user.email}</span></div>
-                    <div><span className="text-xs text-gray-400 block">CDL Class</span><span className="text-xs text-gray-800">{selectedDriver.cdlClass || ''}</span></div>
-                    <div><span className="text-xs text-gray-400 block">CDL Expiry</span><span className="text-xs text-gray-800">{selectedDriver.cdlExpiry ? new Date(selectedDriver.cdlExpiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ''}</span></div>
+                    <div><span className="text-xs text-gray-400 block">CDL Class</span><span className="text-xs text-gray-800">{selectedDriver.cdlClass || '—'}</span></div>
+                    <div><span className="text-xs text-gray-400 block">CDL Expiry</span><span className="text-xs text-gray-800">{selectedDriver.cdlExpiry ? new Date(selectedDriver.cdlExpiry).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}</span></div>
                   </div>
                 </div>
               </div>

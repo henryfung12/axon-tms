@@ -152,7 +152,7 @@ export function FuelSurchargeCalculator() {
 
         {/* DOE Price Trend Chart */}
         <div className="bg-white border border-gray-200 rounded-lg p-5">
-          <h3 className="text-sm font-bold text-gray-900 mb-4">DOE National Average  12 Week Trend</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-4">DOE National Average — 12 Week Trend</h3>
           <div className="relative h-40 mb-2">
             {/* Y axis */}
             <div className="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-between text-xs text-gray-400 text-right pr-2">
@@ -222,7 +222,7 @@ export function FuelSurchargeCalculator() {
         <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
           <div>
             <h3 className="text-sm font-bold text-gray-900">Fuel Surcharge Schedule</h3>
-            <p className="text-xs text-gray-400 mt-0.5">Base diesel: ${baseDiesel.toFixed(2)}/gal  surcharge applies when DOE exceeds base</p>
+            <p className="text-xs text-gray-400 mt-0.5">Base diesel: ${baseDiesel.toFixed(2)}/gal — surcharge applies when DOE exceeds base</p>
           </div>
           <div className="flex gap-2">
             <div className="flex items-center gap-2">
@@ -245,7 +245,7 @@ export function FuelSurchargeCalculator() {
               const isActive = effectiveDiesel >= r.minPrice && effectiveDiesel <= r.maxPrice;
               return (
                 <tr key={i} className={`border-b border-gray-100 ${isActive ? 'bg-blue-50 border-l-4 border-l-blue-500 font-semibold' : i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                  <td className="px-4 py-2 text-gray-700">${r.minPrice.toFixed(2)}  ${r.maxPrice >= 99 ? '& above' : '$' + r.maxPrice.toFixed(2)}{isActive && <span className="ml-2 px-1.5 py-0.5 bg-blue-600 text-white text-xs rounded font-bold">CURRENT</span>}</td>
+                  <td className="px-4 py-2 text-gray-700">${r.minPrice.toFixed(2)} — ${r.maxPrice >= 99 ? '& above' : '$' + r.maxPrice.toFixed(2)}{isActive && <span className="ml-2 px-1.5 py-0.5 bg-blue-600 text-white text-xs rounded font-bold">CURRENT</span>}</td>
                   <td className="px-4 py-2 text-right text-gray-900">${r.surchargePerMile.toFixed(2)}</td>
                   <td className="px-4 py-2 text-right text-gray-900">{r.surchargePercent}%</td>
                   <td className="px-4 py-2 text-right text-blue-600">${(r.surchargePerMile * 500).toFixed(2)}</td>

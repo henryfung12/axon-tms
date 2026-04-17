@@ -482,7 +482,7 @@ export function DispatchPlanner() {
                     {/* Empty state for available drivers */}
                     {driverLoads.length === 0 && (driver.status === 'AVAILABLE') && (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-xs text-gray-300 italic">No loads assigned  available for dispatch</span>
+                        <span className="text-xs text-gray-300 italic">No loads assigned — available for dispatch</span>
                       </div>
                     )}
                   </div>
@@ -537,7 +537,7 @@ export function DispatchPlanner() {
                       </div>
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-yellow-200">
                         <span className="text-xs text-gray-500">
-                          PU: {pickupDate ? `${formatShortDate(pickupDate)} ${formatHour(pickupDate.getHours())}` : ''}
+                          PU: {pickupDate ? `${formatShortDate(pickupDate)} ${formatHour(pickupDate.getHours())}` : '—'}
                         </span>
                         <button className="text-xs font-medium text-blue-600 hover:text-blue-800">
                           Assign →
@@ -579,7 +579,7 @@ export function DispatchPlanner() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <span className="text-xs text-gray-400 block">Customer</span>
-                  <span className="text-xs font-medium text-gray-900">{selectedLoad.customer?.name || ''}</span>
+                  <span className="text-xs font-medium text-gray-900">{selectedLoad.customer?.name || '—'}</span>
                 </div>
                 <div>
                   <span className="text-xs text-gray-400 block">Rate</span>

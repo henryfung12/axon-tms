@@ -9,14 +9,14 @@ const TERMINALS = [
 ];
 
 const RECENT_ACTIVITY = [
-  { time: '2:15 PM', type: 'IMPORT', desc: 'MAWB 176-82445521 cleared customs  ready for pickup at JFK Bldg 75', status: 'READY' },
-  { time: '1:45 PM', type: 'EXPORT', desc: 'TSA screening complete  4 pallets cleared for KE 082 to ICN', status: 'CLEARED' },
-  { time: '1:20 PM', type: 'CUSTOMS', desc: 'FDA hold on HAWB JFK-IMP-0892  perishable goods require inspection', status: 'HOLD' },
-  { time: '12:50 PM', type: 'WAREHOUSE', desc: 'Deconsolidation complete  MAWB 180-99321100 split into 6 HAWBs', status: 'COMPLETE' },
-  { time: '12:15 PM', type: 'IMPORT', desc: 'Driver dispatched to ORD Terminal 5  pickup MAWB 618-44210098', status: 'DISPATCHED' },
-  { time: '11:30 AM', type: 'EXPORT', desc: 'Cargo received at CFS  consolidation for AA 2287 to LHR', status: 'RECEIVED' },
-  { time: '11:00 AM', type: 'BILLING', desc: 'Invoice GE-CFS-20260414 generated  Nippon Express, $4,280', status: 'INVOICED' },
-  { time: '10:30 AM', type: 'IMPORT', desc: 'MAWB 235-11887400 arrived at MIA  customs clearance pending', status: 'ARRIVED' },
+  { time: '2:15 PM', type: 'IMPORT', desc: 'MAWB 176-82445521 cleared customs — ready for pickup at JFK Bldg 75', status: 'READY' },
+  { time: '1:45 PM', type: 'EXPORT', desc: 'TSA screening complete — 4 pallets cleared for KE 082 to ICN', status: 'CLEARED' },
+  { time: '1:20 PM', type: 'CUSTOMS', desc: 'FDA hold on HAWB JFK-IMP-0892 — perishable goods require inspection', status: 'HOLD' },
+  { time: '12:50 PM', type: 'WAREHOUSE', desc: 'Deconsolidation complete — MAWB 180-99321100 split into 6 HAWBs', status: 'COMPLETE' },
+  { time: '12:15 PM', type: 'IMPORT', desc: 'Driver dispatched to ORD Terminal 5 — pickup MAWB 618-44210098', status: 'DISPATCHED' },
+  { time: '11:30 AM', type: 'EXPORT', desc: 'Cargo received at CFS — consolidation for AA 2287 to LHR', status: 'RECEIVED' },
+  { time: '11:00 AM', type: 'BILLING', desc: 'Invoice GE-CFS-20260414 generated — Nippon Express, $4,280', status: 'INVOICED' },
+  { time: '10:30 AM', type: 'IMPORT', desc: 'MAWB 235-11887400 arrived at MIA — customs clearance pending', status: 'ARRIVED' },
 ];
 
 const TYPE_BADGE: Record<string, string> = { IMPORT: 'bg-blue-100 text-blue-800', EXPORT: 'bg-orange-100 text-orange-800', CUSTOMS: 'bg-red-100 text-red-800', WAREHOUSE: 'bg-purple-100 text-purple-800', BILLING: 'bg-green-100 text-green-800' };
@@ -89,11 +89,11 @@ export function CFSDashboard() {
         <h3 className="text-sm font-bold text-gray-900 mb-3">Warehouse Utilization</h3>
         <div className="grid grid-cols-5 gap-3">
           {[
-            { zone: 'A  General Cargo', pcs: 120, cap: 160, temp: 'Ambient' },
-            { zone: 'B  Temperature Controlled', pcs: 45, cap: 60, temp: '35-45°F' },
-            { zone: 'C  Hazmat / DG', pcs: 12, cap: 20, temp: 'Ventilated' },
-            { zone: 'D  High Value / Bonded', pcs: 28, cap: 40, temp: 'Secured' },
-            { zone: 'E  Oversize / Heavy', pcs: 8, cap: 15, temp: 'Open Bay' },
+            { zone: 'A — General Cargo', pcs: 120, cap: 160, temp: 'Ambient' },
+            { zone: 'B — Temperature Controlled', pcs: 45, cap: 60, temp: '35-45°F' },
+            { zone: 'C — Hazmat / DG', pcs: 12, cap: 20, temp: 'Ventilated' },
+            { zone: 'D — High Value / Bonded', pcs: 28, cap: 40, temp: 'Secured' },
+            { zone: 'E — Oversize / Heavy', pcs: 8, cap: 15, temp: 'Open Bay' },
           ].map(z => {
             const pct = Math.round((z.pcs / z.cap) * 100);
             return (

@@ -35,17 +35,17 @@ const MOCK_COMPLIANCE: ComplianceItem[] = [
   // Drivers
   { id: 'dc1', entityType: 'DRIVER', entityId: 'd1', entityName: 'Marcus Johnson', documentType: 'CDL', status: 'CURRENT', expiryDate: '2028-06-15', lastUpdated: '2026-03-01', notes: '' },
   { id: 'dc2', entityType: 'DRIVER', entityId: 'd1', entityName: 'Marcus Johnson', documentType: 'Medical Card', status: 'EXPIRING_SOON', expiryDate: '2026-05-10', lastUpdated: '2024-05-10', notes: 'Schedule DOT physical by 5/1' },
-  { id: 'dc3', entityType: 'DRIVER', entityId: 'd1', entityName: 'Marcus Johnson', documentType: 'Drug Test', status: 'CURRENT', expiryDate: '2027-01-15', lastUpdated: '2026-01-15', notes: 'Random  passed' },
+  { id: 'dc3', entityType: 'DRIVER', entityId: 'd1', entityName: 'Marcus Johnson', documentType: 'Drug Test', status: 'CURRENT', expiryDate: '2027-01-15', lastUpdated: '2026-01-15', notes: 'Random — passed' },
   { id: 'dc4', entityType: 'DRIVER', entityId: 'd2', entityName: 'Sarah Chen', documentType: 'CDL', status: 'CURRENT', expiryDate: '2029-03-20', lastUpdated: '2026-02-15', notes: '' },
   { id: 'dc5', entityType: 'DRIVER', entityId: 'd2', entityName: 'Sarah Chen', documentType: 'Medical Card', status: 'CURRENT', expiryDate: '2027-08-22', lastUpdated: '2025-08-22', notes: '' },
   { id: 'dc6', entityType: 'DRIVER', entityId: 'd2', entityName: 'Sarah Chen', documentType: 'MVR Review', status: 'CURRENT', expiryDate: '2027-02-15', lastUpdated: '2026-02-15', notes: 'Clean record' },
   { id: 'dc7', entityType: 'DRIVER', entityId: 'd3', entityName: 'James Williams', documentType: 'CDL', status: 'CURRENT', expiryDate: '2027-11-30', lastUpdated: '2026-01-10', notes: '' },
   { id: 'dc8', entityType: 'DRIVER', entityId: 'd3', entityName: 'James Williams', documentType: 'Medical Card', status: 'CURRENT', expiryDate: '2026-09-15', lastUpdated: '2024-09-15', notes: '' },
-  { id: 'dc9', entityType: 'DRIVER', entityId: 'd3', entityName: 'James Williams', documentType: 'HazMat Endorsement', status: 'EXPIRED', expiryDate: '2026-03-01', lastUpdated: '2021-03-01', notes: 'EXPIRED  do not dispatch HazMat loads' },
+  { id: 'dc9', entityType: 'DRIVER', entityId: 'd3', entityName: 'James Williams', documentType: 'HazMat Endorsement', status: 'EXPIRED', expiryDate: '2026-03-01', lastUpdated: '2021-03-01', notes: 'EXPIRED — do not dispatch HazMat loads' },
   { id: 'dc10', entityType: 'DRIVER', entityId: 'd4', entityName: 'Maria Rodriguez', documentType: 'CDL', status: 'CURRENT', expiryDate: '2030-01-10', lastUpdated: '2026-04-01', notes: 'Renewed' },
   { id: 'dc11', entityType: 'DRIVER', entityId: 'd4', entityName: 'Maria Rodriguez', documentType: 'Medical Card', status: 'CURRENT', expiryDate: '2028-04-01', lastUpdated: '2026-04-01', notes: '' },
   { id: 'dc12', entityType: 'DRIVER', entityId: 'd5', entityName: 'David Kim', documentType: 'CDL', status: 'CURRENT', expiryDate: '2028-09-22', lastUpdated: '2025-12-01', notes: '' },
-  { id: 'dc13', entityType: 'DRIVER', entityId: 'd5', entityName: 'David Kim', documentType: 'Drug Test', status: 'EXPIRING_SOON', expiryDate: '2026-04-30', lastUpdated: '2025-04-30', notes: 'Annual random due  schedule by 4/25' },
+  { id: 'dc13', entityType: 'DRIVER', entityId: 'd5', entityName: 'David Kim', documentType: 'Drug Test', status: 'EXPIRING_SOON', expiryDate: '2026-04-30', lastUpdated: '2025-04-30', notes: 'Annual random due — schedule by 4/25' },
   { id: 'dc14', entityType: 'DRIVER', entityId: 'd6', entityName: 'Emily Taylor', documentType: 'CDL', status: 'CURRENT', expiryDate: '2029-07-14', lastUpdated: '2026-01-20', notes: '' },
   { id: 'dc15', entityType: 'DRIVER', entityId: 'd6', entityName: 'Emily Taylor', documentType: 'Medical Card', status: 'CURRENT', expiryDate: '2027-01-20', lastUpdated: '2025-01-20', notes: '' },
   { id: 'dc16', entityType: 'DRIVER', entityId: 'd7', entityName: 'Robert Brown', documentType: 'CDL', status: 'CURRENT', expiryDate: '2028-04-18', lastUpdated: '2026-02-10', notes: '' },
@@ -54,9 +54,9 @@ const MOCK_COMPLIANCE: ComplianceItem[] = [
   { id: 'dc19', entityType: 'DRIVER', entityId: 'd8', entityName: 'Lisa Nguyen', documentType: 'Medical Card', status: 'EXPIRING_SOON', expiryDate: '2026-05-05', lastUpdated: '2024-05-05', notes: 'Schedule physical' },
   // Vehicles
   { id: 'vc1', entityType: 'TRUCK', entityId: 't5', entityName: 'T-1044', documentType: 'Annual Inspection', status: 'EXPIRING_SOON', expiryDate: '2026-04-22', lastUpdated: '2025-07-10', notes: 'WO scheduled 4/18' },
-  { id: 'vc2', entityType: 'TRUCK', entityId: 't10', entityName: 'T-1082', documentType: 'Annual Inspection', status: 'EXPIRED', expiryDate: '2026-04-01', lastUpdated: '2025-04-01', notes: 'Unit OOS  frame damage' },
-  { id: 'vc3', entityType: 'TRUCK', entityId: 't10', entityName: 'T-1082', documentType: 'Registration', status: 'EXPIRING_SOON', expiryDate: '2026-05-01', lastUpdated: '2025-05-01', notes: 'Do not renew  pending total loss' },
-  { id: 'vc4', entityType: 'TRAILER', entityId: 'tr7', entityName: 'TR-2222', documentType: 'Annual Inspection', status: 'EXPIRED', expiryDate: '2026-04-10', lastUpdated: '2025-07-10', notes: 'EXPIRED 4/10  do not dispatch' },
+  { id: 'vc2', entityType: 'TRUCK', entityId: 't10', entityName: 'T-1082', documentType: 'Annual Inspection', status: 'EXPIRED', expiryDate: '2026-04-01', lastUpdated: '2025-04-01', notes: 'Unit OOS — frame damage' },
+  { id: 'vc3', entityType: 'TRUCK', entityId: 't10', entityName: 'T-1082', documentType: 'Registration', status: 'EXPIRING_SOON', expiryDate: '2026-05-01', lastUpdated: '2025-05-01', notes: 'Do not renew — pending total loss' },
+  { id: 'vc4', entityType: 'TRAILER', entityId: 'tr7', entityName: 'TR-2222', documentType: 'Annual Inspection', status: 'EXPIRED', expiryDate: '2026-04-10', lastUpdated: '2025-07-10', notes: 'EXPIRED 4/10 — do not dispatch' },
   { id: 'vc5', entityType: 'TRAILER', entityId: 'tr9', entityName: 'TR-2240', documentType: 'Annual Inspection', status: 'EXPIRING_SOON', expiryDate: '2026-05-15', lastUpdated: '2025-05-15', notes: '' },
 ];
 
@@ -64,31 +64,31 @@ const MOCK_INCIDENTS: Incident[] = [
   {
     id: 'inc1', incidentNumber: 'INC-2026-042', type: 'ROADSIDE_INSPECTION', severity: 'MINOR', date: '2026-04-10',
     driverName: 'Robert Brown', driverId: 'd7', unitNumber: 'T-1070', location: 'I-65 SB, Mile 42, KY',
-    description: 'Level 2 roadside inspection  no violations found. Clean inspection.',
+    description: 'Level 2 roadside inspection — no violations found. Clean inspection.',
     status: 'CLOSED', preventable: null, cost: 0, notes: 'Clean inspection added to driver file.',
   },
   {
     id: 'inc2', incidentNumber: 'INC-2026-038', type: 'ACCIDENT', severity: 'MAJOR', date: '2026-04-06',
     driverName: 'James Williams', driverId: 'd3', unitNumber: 'T-1082', location: 'I-76 WB, Exit 28, PA',
-    description: 'Road debris (tire tread) struck right frame rail at highway speed. No injuries. Frame damage  unit towed to Pittsburgh yard.',
-    status: 'UNDER_REVIEW', preventable: false, cost: 15000, notes: 'Insurance claim filed. Adjuster inspection 4/15. Driver cleared  non-preventable.',
+    description: 'Road debris (tire tread) struck right frame rail at highway speed. No injuries. Frame damage — unit towed to Pittsburgh yard.',
+    status: 'UNDER_REVIEW', preventable: false, cost: 15000, notes: 'Insurance claim filed. Adjuster inspection 4/15. Driver cleared — non-preventable.',
   },
   {
     id: 'inc3', incidentNumber: 'INC-2026-035', type: 'HOS_VIOLATION', severity: 'MINOR', date: '2026-04-02',
     driverName: 'Marcus Johnson', driverId: 'd1', unitNumber: 'T-1042', location: 'Memphis, TN (yard)',
-    description: 'ELD flagged 14-hour rule violation  driver logged 14h 22m. Delayed at shipper dock 3.5 hours contributed.',
+    description: 'ELD flagged 14-hour rule violation — driver logged 14h 22m. Delayed at shipper dock 3.5 hours contributed.',
     status: 'RESOLVED', preventable: true, cost: 0, notes: 'Driver counseled on proper use of sleeper split. Shipper detention documented for future rate negotiations.',
   },
   {
     id: 'inc4', incidentNumber: 'INC-2026-029', type: 'CARGO_CLAIM', severity: 'MINOR', date: '2026-03-25',
     driverName: 'Sarah Chen', driverId: 'd2', unitNumber: 'TR-2204', location: 'Dallas, TX',
-    description: 'Reefer temperature excursion  unit set to 34°F, recorded 42°F for 45 minutes during fueling stop. Customer filed partial claim on 4 pallets of produce.',
+    description: 'Reefer temperature excursion — unit set to 34°F, recorded 42°F for 45 minutes during fueling stop. Customer filed partial claim on 4 pallets of produce.',
     status: 'RESOLVED', preventable: true, cost: 3200, notes: 'Reefer left in cycle-sentry during fueling. Driver retrained on continuous run protocol. Claim settled $3,200.',
   },
   {
     id: 'inc5', incidentNumber: 'INC-2026-022', type: 'ROADSIDE_INSPECTION', severity: 'MAJOR', date: '2026-03-18',
     driverName: 'David Kim', driverId: 'd5', unitNumber: 'T-1029', location: 'I-55 NB, Sikeston, MO',
-    description: 'Level 1 inspection  brake adjustment violation on drive axle. 20% out of adjustment. OOS for 4 hours while repaired roadside.',
+    description: 'Level 1 inspection — brake adjustment violation on drive axle. 20% out of adjustment. OOS for 4 hours while repaired roadside.',
     status: 'CLOSED', preventable: true, cost: 450, notes: 'PM schedule reviewed. Added brake check to pre-trip emphasis items. Cost: $450 roadside repair.',
   },
   {
@@ -196,7 +196,7 @@ function daysUntil(dateStr: string | null): number {
 }
 
 function formatDate(d: string | null): string {
-  if (!d) return '';
+  if (!d) return '—';
   return new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
@@ -429,10 +429,10 @@ export function SafetyPage() {
                             <span className={`text-xs font-medium ${days < 0 ? 'text-red-600' : days <= 30 ? 'text-yellow-600' : 'text-green-600'}`}>
                               {days < 0 ? `${Math.abs(days)}d overdue` : `${days}d`}
                             </span>
-                          ) : ''}
+                          ) : '—'}
                         </td>
                         <td className="px-3 py-2.5 text-gray-500">{formatDate(item.lastUpdated)}</td>
-                        <td className="px-3 py-2.5 text-gray-500 max-w-xs truncate">{item.notes || ''}</td>
+                        <td className="px-3 py-2.5 text-gray-500 max-w-xs truncate">{item.notes || '—'}</td>
                       </tr>
                     );
                   })}
@@ -526,7 +526,7 @@ export function SafetyPage() {
                             : <span className="text-green-600">No</span>}
                         </td>
                         <td className="px-3 py-2.5 text-right font-medium text-gray-900">
-                          {inc.cost > 0 ? `$${inc.cost.toLocaleString()}` : ''}
+                          {inc.cost > 0 ? `$${inc.cost.toLocaleString()}` : '—'}
                         </td>
                       </tr>
                     );
@@ -704,8 +704,8 @@ export function SafetyPage() {
                   {selectedIncident.preventable === null
                     ? <span className="text-xs text-gray-400">N/A</span>
                     : selectedIncident.preventable
-                    ? <span className="text-xs font-medium text-red-600">Yes  Preventable</span>
-                    : <span className="text-xs font-medium text-green-600">No  Not Preventable</span>}
+                    ? <span className="text-xs font-medium text-red-600">Yes — Preventable</span>
+                    : <span className="text-xs font-medium text-green-600">No — Not Preventable</span>}
                 </div>
                 <div>
                   <span className="text-xs text-gray-400 block">Cost</span>
