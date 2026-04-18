@@ -6,14 +6,29 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
   app.setGlobalPrefix('api/v1');
-
   app.use(cookieParser());
 
+  // CORS — allow the main Vercel domain, all tenant subdomains of axon-tms.com,
+  // and localhost for dev. The origin function lets us support an unbounded
+  // number of tenant subdomains without listing each one.
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: (origin, cb) => {
+      // Server-to-server calls, curl, health checks — no Origin header.
+      if (!origin) return cb(null, true);
+
+      const ok =
+        origin === 'http://localhost:5173' ||
+        origin === 'http://localhost:3000' ||
+        origin === 'https://axon-tms-web.vercel.app' ||
+        origin === 'https://axon-tms.vercel.app' ||
+        /^https:\/\/[a-z0-9-]+\.vercel\.app$/.test(origin) ||      // preview deployments
+        /^https:\/\/([a-z0-9-]+\.)?axon-tms\.com$/.test(origin);   // axon-tms.com and any subdomain
+
+      return cb(null, ok);
+    },
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Tenant-Slug'],
   });
 
   app.useGlobalPipes(
@@ -41,5 +56,4 @@ async function bootstrap() {
   await app.listen(port);
   console.log(`Gemini Express API running on: http://localhost:${port}/api/v1`);
 }
-
 bootstrap();
