@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  background: #f8fafc; /* axon-50 */
+  color: #0f172a;       /* axon-900 */
+}

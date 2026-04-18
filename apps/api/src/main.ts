@@ -19,6 +19,8 @@ async function bootstrap() {
 
       const ok =
         origin === 'http://localhost:5173' ||
+        origin === 'http://localhost:5174' ||  // apps/driver
+        origin === 'http://localhost:5175' ||  // apps/admin
         origin === 'http://localhost:3000' ||
         origin === 'https://axon-tms-web.vercel.app' ||
         origin === 'https://axon-tms.vercel.app' ||
