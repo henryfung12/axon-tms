@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding database...");
 
-  // Create the Axon Demo tenant
-  const tenant = await prisma.tenant.upsert({
+  // ---------------- Axon Demo (real tenant for the marketing demo) ----------------
+  const demo = await prisma.tenant.upsert({
     where: { slug: "axon-demo" },
     update: {},
     create: {
@@ -21,23 +21,21 @@ async function main() {
       primaryColor: "#2563eb",
     },
   });
-  console.log(`Created tenant: ${tenant.companyName} (${tenant.id})`);
+  console.log(`Tenant: ${demo.companyName} (${demo.id})`);
 
-  // Create 4 demo users under this tenant
-  const users = [
+  const demoUsers = [
     { email: "admin@axontms.com",      password: "admin123",      role: UserRole.SUPER_ADMIN, firstName: "Admin",      lastName: "User" },
     { email: "dispatch@axontms.com",   password: "dispatch123",   role: UserRole.DISPATCHER,  firstName: "Dispatch",   lastName: "User" },
     { email: "broker@axontms.com",     password: "broker123",     role: UserRole.ADMIN,       firstName: "Broker",     lastName: "User" },
     { email: "accounting@axontms.com", password: "accounting123", role: UserRole.ACCOUNTANT,  firstName: "Accounting", lastName: "User" },
   ];
-
-  for (const u of users) {
+  for (const u of demoUsers) {
     const passwordHash = await bcrypt.hash(u.password, 10);
     const user = await prisma.user.upsert({
-      where: { tenantId_email: { tenantId: tenant.id, email: u.email } },
+      where: { tenantId_email: { tenantId: demo.id, email: u.email } },
       update: {},
       create: {
-        tenantId: tenant.id,
+        tenantId: demo.id,
         email: u.email,
         passwordHash,
         role: u.role,
@@ -48,6 +46,40 @@ async function main() {
     });
     console.log(`  User: ${user.email} (${user.role})`);
   }
+
+  // ---------------- Axon Internal (staff-only tenant for the admin panel) ----------------
+  // This tenant is the home for Axon employees. Users here get the AXON_STAFF
+  // role, which the AxonStaffGuard checks before enabling cross-tenant access
+  // for the /admin/* routes. It never does real TMS work.
+  const internal = await prisma.tenant.upsert({
+    where: { slug: "axon-internal" },
+    update: {},
+    create: {
+      slug: "axon-internal",
+      companyName: "Axon Internal",
+      plan: TenantPlan.ENTERPRISE,
+      isActive: true,
+      primaryColor: "#0f172a",
+    },
+  });
+  console.log(`Tenant: ${internal.companyName} (${internal.id})`);
+
+  const staffPasswordHash = await bcrypt.hash("axonstaff123", 10);
+  const staff = await prisma.user.upsert({
+    where: { tenantId_email: { tenantId: internal.id, email: "staff@axon-tms.com" } },
+    // On re-seed, keep the password fresh and make sure the role is right.
+    update: { role: UserRole.AXON_STAFF, passwordHash: staffPasswordHash },
+    create: {
+      tenantId: internal.id,
+      email: "staff@axon-tms.com",
+      passwordHash: staffPasswordHash,
+      role: UserRole.AXON_STAFF,
+      firstName: "Axon",
+      lastName: "Staff",
+      isActive: true,
+    },
+  });
+  console.log(`  User: ${staff.email} (${staff.role})`);
 
   console.log("Seed complete.");
 }

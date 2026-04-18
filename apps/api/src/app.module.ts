@@ -10,6 +10,7 @@ import { CustomersModule } from './modules/customers/customers.module';
 import { CarriersModule } from './modules/carriers/carriers.module';
 import { BrokerLoadsModule } from './modules/broker-loads/broker-loads.module';
 import { DocumentsModule } from './modules/documents/documents.module';
+import { AdminModule } from './modules/admin/admin.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { TenantModule } from './common/tenant/tenant.module';
 
@@ -33,6 +34,7 @@ import { TenantModule } from './common/tenant/tenant.module';
     CarriersModule,
     BrokerLoadsModule,
     DocumentsModule,
+    AdminModule,       // AXON_STAFF-only cross-tenant admin routes
   ],
 })
 export class AppModule {}

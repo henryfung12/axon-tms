@@ -34,8 +34,27 @@ export class TenantContextService {
   }
 
   /**
-   * Escape hatch. Runs `fn` with auto-scoping DISABLED.
-   * Use ONLY from Axon-staff admin code. Never from tenant-user code paths.
+   * Flip the CURRENT als scope into unsafe mode. Mutates the existing store
+   * so the change is visible for the rest of the request.
+   *
+   * Designed for guards: a guard can't wrap the handler in a callback, but it
+   * can flip this flag after verifying the user is AXON_STAFF. Returns false
+   * (does nothing) if called outside an als scope — which shouldn't happen
+   * because TenantContextInterceptor wraps every request.
+   *
+   * Use ONLY from AxonStaffGuard. Never from tenant-user code paths.
+   */
+  enableUnsafe(): boolean {
+    const store = this.als.getStore();
+    if (!store) return false;
+    store.unsafe = true;
+    return true;
+  }
+
+  /**
+   * Escape hatch — runs `fn` with auto-scoping DISABLED in a fresh scope.
+   * Use for one-off admin operations outside a request (e.g. from a cron job
+   * or a script). Prefer `enableUnsafe()` inside a normal request.
    */
   runUnsafe<T>(fn: () => T): T {
     const existing = this.als.getStore() ?? {};

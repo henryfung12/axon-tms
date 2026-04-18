@@ -1,6 +1,6 @@
-// AXON TMS — Multi-Tenant Prisma Schema
-// Run: pnpm db:generate  → regenerates the Prisma client
-// Run: pnpm db:migrate   → applies migrations to your local DB
+// AXON TMS â€” Multi-Tenant Prisma Schema
+// Run: pnpm db:generate  â†’ regenerates the Prisma client
+// Run: pnpm db:migrate   â†’ applies migrations to your local DB
 
 generator client {
   provider = "prisma-client-js"
@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ─── Enums ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Enums â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 enum TenantPlan {
   STARTER
@@ -26,6 +26,7 @@ enum UserRole {
   DRIVER
   CUSTOMER
   ACCOUNTANT
+  AXON_STAFF
 }
 
 enum LoadStatus {
@@ -96,7 +97,7 @@ enum CarrierPaymentStatus {
   PAID
 }
 
-// ─── Tenant (multi-tenant root) ────────────────────────────────────
+// â”€â”€â”€ Tenant (multi-tenant root) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model Tenant {
   id                 String           @id @default(uuid())
@@ -131,7 +132,7 @@ model Tenant {
   @@map("tenants")
 }
 
-// ─── Users & Auth ──────────────────────────────────────────────────
+// â”€â”€â”€ Users & Auth â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model User {
   id            String         @id @default(uuid())
@@ -165,7 +166,7 @@ model RefreshToken {
   @@map("refresh_tokens")
 }
 
-// ─── Drivers ───────────────────────────────────────────────────────
+// â”€â”€â”€ Drivers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model Driver {
   id              String       @id @default(uuid())
@@ -207,7 +208,7 @@ model HosLog {
   @@map("hos_logs")
 }
 
-// ─── Customers ─────────────────────────────────────────────────────
+// â”€â”€â”€ Customers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model Customer {
   id           String       @id @default(uuid())
@@ -235,7 +236,7 @@ model Customer {
   @@map("customers")
 }
 
-// ─── Loads ─────────────────────────────────────────────────────────
+// â”€â”€â”€ Loads â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model Load {
   id               String           @id @default(uuid())
@@ -304,7 +305,7 @@ model TrackingUpdate {
   @@map("tracking_updates")
 }
 
-// ─── Documents ─────────────────────────────────────────────────────
+// â”€â”€â”€ Documents â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model Document {
   id         String       @id @default(uuid())
@@ -321,7 +322,7 @@ model Document {
   @@map("documents")
 }
 
-// ─── Billing ───────────────────────────────────────────────────────
+// â”€â”€â”€ Billing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model Invoice {
   id            String        @id @default(uuid())
@@ -348,7 +349,7 @@ model Invoice {
   @@map("invoices")
 }
 
-// ─── Brokerage ─────────────────────────────────────────────────────
+// â”€â”€â”€ Brokerage â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 model ExternalCarrier {
   id              String        @id @default(uuid())
