@@ -1,43 +1,57 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, UserRole, TenantPlan } from "@prisma/client";
 import * as bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("Seeding demo users...");
+  console.log("Seeding database...");
 
+  // Create the Axon Demo tenant
+  const tenant = await prisma.tenant.upsert({
+    where: { slug: "axon-demo" },
+    update: {},
+    create: {
+      slug: "axon-demo",
+      companyName: "Axon Demo",
+      plan: TenantPlan.PROFESSIONAL,
+      isActive: true,
+      cargoWiseEnabled: true,
+      quickbooksEnabled: false,
+      netsuiteEnabled: false,
+      primaryColor: "#2563eb",
+    },
+  });
+  console.log(`Created tenant: ${tenant.companyName} (${tenant.id})`);
+
+  // Create 4 demo users under this tenant
   const users = [
-    { email: "admin@axontms.com",      password: "admin123",      firstName: "Henry",   lastName: "Fung",     role: "ADMIN"      as const },
-    { email: "dispatch@axontms.com",   password: "dispatch123",   firstName: "Sarah",   lastName: "Williams", role: "DISPATCHER" as const },
-    { email: "broker@axontms.com",     password: "broker123",     firstName: "Marcus",  lastName: "Reed",     role: "DISPATCHER" as const },
-    { email: "accounting@axontms.com", password: "accounting123", firstName: "Diana",   lastName: "Chen",     role: "ACCOUNTANT" as const },
+    { email: "admin@axontms.com",      password: "admin123",      role: UserRole.SUPER_ADMIN, firstName: "Admin",      lastName: "User" },
+    { email: "dispatch@axontms.com",   password: "dispatch123",   role: UserRole.DISPATCHER,  firstName: "Dispatch",   lastName: "User" },
+    { email: "broker@axontms.com",     password: "broker123",     role: UserRole.ADMIN,       firstName: "Broker",     lastName: "User" },
+    { email: "accounting@axontms.com", password: "accounting123", role: UserRole.ACCOUNTANT,  firstName: "Accounting", lastName: "User" },
   ];
 
-  for (const user of users) {
-    const passwordHash = await bcrypt.hash(user.password, 10);
-    await prisma.user.upsert({
-      where: { email: user.email },
+  for (const u of users) {
+    const passwordHash = await bcrypt.hash(u.password, 10);
+    const user = await prisma.user.upsert({
+      where: { tenantId_email: { tenantId: tenant.id, email: u.email } },
       update: {},
       create: {
-        email: user.email,
+        tenantId: tenant.id,
+        email: u.email,
         passwordHash,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
+        role: u.role,
+        firstName: u.firstName,
+        lastName: u.lastName,
         isActive: true,
       },
     });
-    console.log("Created user: " + user.email + " / " + user.password);
+    console.log(`  User: ${user.email} (${user.role})`);
   }
 
-  console.log("Seeding complete!");
+  console.log("Seed complete.");
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch((e) => { console.error(e); process.exit(1); })
+  .finally(async () => { await prisma.$disconnect(); });

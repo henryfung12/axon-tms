@@ -6,7 +6,7 @@ export class LoadsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(status?: string) {
-    return this.prisma.load.findMany({
+    return this.prisma.scoped.load.findMany({
       where: status ? { status: status as any } : undefined,
       include: {
         customer: { select: { id: true, name: true } },
@@ -22,7 +22,7 @@ export class LoadsService {
   }
 
   async findOne(id: string) {
-    return this.prisma.load.findUnique({
+    return this.prisma.scoped.load.findFirst({
       where: { id },
       include: {
         customer: true,
@@ -39,10 +39,12 @@ export class LoadsService {
   }
 
   async create(data: any) {
-    const count = await this.prisma.load.count();
+    // TODO: move "GE-" prefix to Tenant.loadNumberPrefix
+    // TODO: replace count-based numbering with a Postgres sequence
+    const count = await this.prisma.scoped.load.count();
     const loadNumber = `GE-${String(10001 + count).padStart(5, '0')}`;
 
-    return this.prisma.load.create({
+    return this.prisma.scoped.load.create({
       data: {
         loadNumber,
         customerId: data.customerId,
@@ -67,7 +69,7 @@ export class LoadsService {
             scheduledAt: stop.scheduledAt ? new Date(stop.scheduledAt).toISOString() : null,
           })),
         },
-      },
+      } as any,
       include: {
         customer: { select: { id: true, name: true } },
         stops: true,
@@ -76,6 +78,8 @@ export class LoadsService {
   }
 
   async updateStatus(id: string, status: string) {
+    const existing = await this.prisma.scoped.load.findFirst({ where: { id } });
+    if (!existing) return null;
     return this.prisma.load.update({
       where: { id },
       data: { status: status as any },
@@ -83,6 +87,8 @@ export class LoadsService {
   }
 
   async assignDriver(id: string, driverId: string) {
+    const existing = await this.prisma.scoped.load.findFirst({ where: { id } });
+    if (!existing) return null;
     return this.prisma.load.update({
       where: { id },
       data: {

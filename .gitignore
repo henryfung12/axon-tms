@@ -1,4 +1,4 @@
-﻿# Dependencies
+# Dependencies
 node_modules/
 .pnpm-store/
 
@@ -35,3 +35,8 @@ Thumbs.db
 
 # Zip files
 *.zip
+
+# Session backups (safety nets, not source of truth)
+src/_backup-*/
+*.backup
+*.backup2

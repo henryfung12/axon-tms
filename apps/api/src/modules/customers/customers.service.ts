@@ -6,13 +6,15 @@ export class CustomersService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll() {
-    return this.prisma.customer.findMany({
+    return this.prisma.scoped.customer.findMany({
       orderBy: { name: 'asc' },
     });
   }
 
   async create(data: any) {
-    return this.prisma.customer.create({
+    // `tenantId` is injected by the scoped extension at runtime.
+    // The `as any` silences TS which still expects tenantId/tenant on the input type.
+    return this.prisma.scoped.customer.create({
       data: {
         name: data.name,
         email: data.email,
@@ -22,7 +24,7 @@ export class CustomersService {
         state: data.state,
         zip: data.zip,
         paymentTerms: data.paymentTerms || 30,
-      },
+      } as any,
     });
   }
 }

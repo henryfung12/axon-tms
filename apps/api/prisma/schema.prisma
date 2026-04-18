@@ -1,4 +1,4 @@
-// Gemini Express TMS — Prisma Schema
+// AXON TMS — Multi-Tenant Prisma Schema
 // Run: pnpm db:generate  → regenerates the Prisma client
 // Run: pnpm db:migrate   → applies migrations to your local DB
 
@@ -11,7 +11,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ─── Enums ────────────────────────────────────────────────────────────────────
+// ─── Enums ─────────────────────────────────────────────────────────
+
+enum TenantPlan {
+  STARTER
+  PROFESSIONAL
+  ENTERPRISE
+}
 
 enum UserRole {
   SUPER_ADMIN
@@ -90,11 +96,48 @@ enum CarrierPaymentStatus {
   PAID
 }
 
-// ─── Users & Auth ─────────────────────────────────────────────────────────────
+// ─── Tenant (multi-tenant root) ────────────────────────────────────
+
+model Tenant {
+  id                 String           @id @default(uuid())
+  slug               String           @unique
+  companyName        String
+  logoUrl            String?
+  primaryColor       String?
+  isActive           Boolean          @default(true)
+  plan               TenantPlan       @default(STARTER)
+
+  // Integration flags
+  cargoWiseEnabled   Boolean          @default(false)
+  cargoWiseApiKey    String?
+  cargoWiseEndpoint  String?
+  quickbooksEnabled  Boolean          @default(false)
+  quickbooksRealmId  String?
+  netsuiteEnabled    Boolean          @default(false)
+  netsuiteAccountId  String?
+
+  // Relations
+  users              User[]
+  drivers            Driver[]
+  customers          Customer[]
+  loads              Load[]
+  invoices           Invoice[]
+  externalCarriers   ExternalCarrier[]
+  brokerLoads        BrokerLoad[]
+
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  @@map("tenants")
+}
+
+// ─── Users & Auth ──────────────────────────────────────────────────
 
 model User {
   id            String         @id @default(uuid())
-  email         String         @unique
+  tenantId      String
+  tenant        Tenant         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  email         String
   passwordHash  String
   role          UserRole       @default(DISPATCHER)
   firstName     String
@@ -106,6 +149,8 @@ model User {
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
+  @@unique([tenantId, email])
+  @@index([tenantId])
   @@map("users")
 }
 
@@ -120,10 +165,12 @@ model RefreshToken {
   @@map("refresh_tokens")
 }
 
-// ─── Drivers ──────────────────────────────────────────────────────────────────
+// ─── Drivers ───────────────────────────────────────────────────────
 
 model Driver {
   id              String       @id @default(uuid())
+  tenantId        String
+  tenant          Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   userId          String       @unique
   user            User         @relation(fields: [userId], references: [id])
   cdlNumber       String?
@@ -143,6 +190,7 @@ model Driver {
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 
+  @@index([tenantId])
   @@map("drivers")
 }
 
@@ -159,10 +207,12 @@ model HosLog {
   @@map("hos_logs")
 }
 
-// ─── Customers ────────────────────────────────────────────────────────────────
+// ─── Customers ─────────────────────────────────────────────────────
 
 model Customer {
   id           String       @id @default(uuid())
+  tenantId     String
+  tenant       Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   name         String
   email        String?
   phone        String?
@@ -181,14 +231,17 @@ model Customer {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
+  @@index([tenantId])
   @@map("customers")
 }
 
-// ─── Loads ────────────────────────────────────────────────────────────────────
+// ─── Loads ─────────────────────────────────────────────────────────
 
 model Load {
   id               String           @id @default(uuid())
-  loadNumber       String           @unique
+  tenantId         String
+  tenant           Tenant           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  loadNumber       String
   customerId       String
   customer         Customer         @relation(fields: [customerId], references: [id])
   driverId         String?
@@ -210,6 +263,8 @@ model Load {
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
 
+  @@unique([tenantId, loadNumber])
+  @@index([tenantId])
   @@map("loads")
 }
 
@@ -249,7 +304,7 @@ model TrackingUpdate {
   @@map("tracking_updates")
 }
 
-// ─── Documents ────────────────────────────────────────────────────────────────
+// ─── Documents ─────────────────────────────────────────────────────
 
 model Document {
   id         String       @id @default(uuid())
@@ -266,11 +321,13 @@ model Document {
   @@map("documents")
 }
 
-// ─── Billing ──────────────────────────────────────────────────────────────────
+// ─── Billing ───────────────────────────────────────────────────────
 
 model Invoice {
   id            String        @id @default(uuid())
-  invoiceNumber String        @unique
+  tenantId      String
+  tenant        Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  invoiceNumber String
   loadId        String        @unique
   load          Load          @relation(fields: [loadId], references: [id])
   customerId    String
@@ -286,16 +343,20 @@ model Invoice {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
+  @@unique([tenantId, invoiceNumber])
+  @@index([tenantId])
   @@map("invoices")
 }
 
-// ─── Brokerage ────────────────────────────────────────────────────────────────
+// ─── Brokerage ─────────────────────────────────────────────────────
 
 model ExternalCarrier {
   id              String        @id @default(uuid())
+  tenantId        String
+  tenant          Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
   name            String
-  mcNumber        String        @unique
-  dotNumber       String        @unique
+  mcNumber        String
+  dotNumber       String
   email           String?
   phone           String?
   address         String?
@@ -313,12 +374,17 @@ model ExternalCarrier {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
+  @@unique([tenantId, mcNumber])
+  @@unique([tenantId, dotNumber])
+  @@index([tenantId])
   @@map("external_carriers")
 }
 
 model BrokerLoad {
   id                 String               @id @default(uuid())
-  loadNumber         String               @unique
+  tenantId           String
+  tenant             Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  loadNumber         String
   customerId         String
   customer           Customer             @relation(fields: [customerId], references: [id])
   carrierId          String?
@@ -341,6 +407,8 @@ model BrokerLoad {
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
 
+  @@unique([tenantId, loadNumber])
+  @@index([tenantId])
   @@map("broker_loads")
 }
 

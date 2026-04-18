@@ -5,57 +5,41 @@ import {
   Body,
   Req,
   Res,
-  Headers,
   UseGuards,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { ApiTags, ApiBearerAuth, ApiOperation, ApiHeader } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 
-interface JwtUser {
-  sub: string;
-  email: string;
-  role: string;
-  tenantId: string;
-  tenantSlug: string;
-}
-
 @ApiTags('Auth')
-@ApiHeader({
-  name: 'X-Tenant-Slug',
-  required: false,
-  description: 'Tenant slug (derived from subdomain by frontend). Alternative to tenantSlug in request body.',
-})
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Login with email, password, and tenant' })
+  @ApiOperation({ summary: 'Login with email and password' })
   async login(
     @Body() dto: LoginDto,
-    @Headers('x-tenant-slug') tenantHeader: string | undefined,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const tenantSlug = dto.tenantSlug || tenantHeader || '';
-    const result = await this.authService.login(tenantSlug, dto.email, dto.password);
+    const result = await this.authService.login(dto.email, dto.password);
 
+    // Store refresh token in HTTP-only cookie
     res.cookie('refresh_token', result.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     return {
       user: result.user,
-      tenant: result.tenant,
       accessToken: result.accessToken,
     };
   }
@@ -84,24 +68,16 @@ export class AuthController {
   @Get('me')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get current logged-in user + tenant info' })
-  async getMe(@CurrentUser() user: JwtUser) {
-    return this.authService.getMe(user.sub, user.tenantId);
+  @ApiOperation({ summary: 'Get current logged-in user' })
+  async getMe(@CurrentUser() user: { sub: string }) {
+    return this.authService.getMe(user.sub);
   }
 
   @Post('register')
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   @HttpCode(HttpStatus.CREATED)
-  @ApiOperation({ summary: 'Create a new user within the current tenant (admin only)' })
-  async register(
-    @CurrentUser() currentUser: JwtUser,
-    @Body() dto: LoginDto & { firstName: string; lastName: string; role?: string },
-  ) {
-    // New users are always created within the caller's tenant.
-    // Axon staff cross-tenant user creation goes through a separate admin endpoint.
+  @ApiOperation({ summary: 'Create a new user (admin use only for now)' })
+  async register(@Body() dto: LoginDto & { firstName: string; lastName: string; role?: string }) {
     return this.authService.createUser(
-      currentUser.tenantId,
       dto.email,
       dto.password,
       dto.firstName,

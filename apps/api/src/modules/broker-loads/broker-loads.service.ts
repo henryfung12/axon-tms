@@ -6,7 +6,7 @@ export class BrokerLoadsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(status?: string) {
-    return this.prisma.brokerLoad.findMany({
+    return this.prisma.scoped.brokerLoad.findMany({
       where: status ? { status: status as any } : undefined,
       include: {
         customer: { select: { id: true, name: true } },
@@ -18,7 +18,7 @@ export class BrokerLoadsService {
   }
 
   async findOne(id: string) {
-    return this.prisma.brokerLoad.findUnique({
+    return this.prisma.scoped.brokerLoad.findFirst({
       where: { id },
       include: {
         customer: true,
@@ -30,10 +30,10 @@ export class BrokerLoadsService {
   }
 
   async create(data: any) {
-    const count = await this.prisma.brokerLoad.count();
+    const count = await this.prisma.scoped.brokerLoad.count();
     const loadNumber = `GB-${String(10001 + count).padStart(5, '0')}`;
 
-    return this.prisma.brokerLoad.create({
+    return this.prisma.scoped.brokerLoad.create({
       data: {
         loadNumber,
         customerId: data.customerId,
@@ -57,7 +57,7 @@ export class BrokerLoadsService {
             scheduledAt: stop.scheduledAt ? new Date(stop.scheduledAt).toISOString() : null,
           })),
         },
-      },
+      } as any,
       include: {
         customer: { select: { id: true, name: true } },
         stops: true,
@@ -66,13 +66,14 @@ export class BrokerLoadsService {
   }
 
   async assignCarrier(id: string, carrierId: string, carrierRate: number) {
-    const load = await this.prisma.brokerLoad.findUnique({ where: { id } });
+    const load = await this.prisma.scoped.brokerLoad.findFirst({ where: { id } });
+    if (!load) return null;
     return this.prisma.brokerLoad.update({
       where: { id },
       data: {
         carrierId,
         carrierRate,
-        margin: load ? load.shipperRate - carrierRate : null,
+        margin: load.shipperRate - carrierRate,
         status: 'CARRIER_ASSIGNED',
       },
       include: {
@@ -84,6 +85,8 @@ export class BrokerLoadsService {
   }
 
   async updateStatus(id: string, status: string) {
+    const existing = await this.prisma.scoped.brokerLoad.findFirst({ where: { id } });
+    if (!existing) return null;
     return this.prisma.brokerLoad.update({
       where: { id },
       data: { status: status as any },

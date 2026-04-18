@@ -1,13 +1,20 @@
-import { IsEmail, IsString, MinLength } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class LoginDto {
-  @ApiProperty({ example: 'dispatcher@gemini-express.com' })
+  @ApiProperty({ example: 'dispatch@axontms.com' })
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'securepassword' })
+  @ApiProperty({ example: 'dispatch123' })
   @IsString()
   @MinLength(6)
   password: string;
+
+  // Optional in the body — if missing, the server falls back to the
+  // X-Tenant-Slug header set by the frontend from the subdomain.
+  @ApiPropertyOptional({ example: 'axon-demo', description: 'Tenant slug (optional if sent via X-Tenant-Slug header)' })
+  @IsString()
+  @IsOptional()
+  tenantSlug?: string;
 }

@@ -6,14 +6,14 @@ export class CarriersService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(status?: string) {
-    return this.prisma.externalCarrier.findMany({
+    return this.prisma.scoped.externalCarrier.findMany({
       where: status ? { status: status as any } : undefined,
       orderBy: { name: 'asc' },
     });
   }
 
   async findOne(id: string) {
-    return this.prisma.externalCarrier.findUnique({
+    return this.prisma.scoped.externalCarrier.findFirst({
       where: { id },
       include: {
         brokerLoads: {
@@ -29,7 +29,7 @@ export class CarriersService {
   }
 
   async create(data: any) {
-    return this.prisma.externalCarrier.create({
+    return this.prisma.scoped.externalCarrier.create({
       data: {
         name: data.name,
         mcNumber: data.mcNumber,
@@ -45,11 +45,14 @@ export class CarriersService {
         notes: data.notes,
         insuranceExpiry: data.insuranceExpiry ? new Date(data.insuranceExpiry) : null,
         authorityExpiry: data.authorityExpiry ? new Date(data.authorityExpiry) : null,
-      },
+      } as any,
     });
   }
 
   async updateStatus(id: string, status: string) {
+    // Verify ownership within the current tenant before updating.
+    const existing = await this.prisma.scoped.externalCarrier.findFirst({ where: { id } });
+    if (!existing) return null;
     return this.prisma.externalCarrier.update({
       where: { id },
       data: { status: status as any },
@@ -57,6 +60,8 @@ export class CarriersService {
   }
 
   async markRmisVerified(id: string) {
+    const existing = await this.prisma.scoped.externalCarrier.findFirst({ where: { id } });
+    if (!existing) return null;
     return this.prisma.externalCarrier.update({
       where: { id },
       data: {
