@@ -24,10 +24,10 @@ async function main() {
   console.log(`Tenant: ${demo.companyName} (${demo.id})`);
 
   const demoUsers = [
-    { email: "admin@axontms.com",      password: "admin123",      role: UserRole.SUPER_ADMIN, firstName: "Admin",      lastName: "User" },
-    { email: "dispatch@axontms.com",   password: "dispatch123",   role: UserRole.DISPATCHER,  firstName: "Dispatch",   lastName: "User" },
-    { email: "broker@axontms.com",     password: "broker123",     role: UserRole.ADMIN,       firstName: "Broker",     lastName: "User" },
-    { email: "accounting@axontms.com", password: "accounting123", role: UserRole.ACCOUNTANT,  firstName: "Accounting", lastName: "User" },
+    { email: "admin@gemini-express.com",      password: "admin123",      role: UserRole.SUPER_ADMIN, firstName: "Admin",      lastName: "User" },
+    { email: "dispatch@gemini-express.com",   password: "dispatch123",   role: UserRole.DISPATCHER,  firstName: "Dispatch",   lastName: "User" },
+    { email: "broker@gemini-express.com",     password: "broker123",     role: UserRole.ADMIN,       firstName: "Broker",     lastName: "User" },
+    { email: "accounting@gemini-express.com", password: "accounting123", role: UserRole.ACCOUNTANT,  firstName: "Accounting", lastName: "User" },
   ];
   for (const u of demoUsers) {
     const passwordHash = await bcrypt.hash(u.password, 10);

@@ -16,7 +16,7 @@ export function LoginPage() {
       return data;
     },
     onSuccess: (data) => {
-      setAuth(data.user, data.accessToken);
+      setAuth(data.user, data.tenant, data.accessToken);
     },
     onError: () => {
       setError("Invalid email or password. Please try again.");

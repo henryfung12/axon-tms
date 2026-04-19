@@ -16,9 +16,29 @@ export interface AuthUser {
   role: UserRole;
 }
 
+export type TenantPlan = 'STARTER' | 'PROFESSIONAL' | 'ENTERPRISE';
+
+export interface Tenant {
+  id: string;
+  slug: string;
+  companyName: string;
+  logoUrl: string | null;
+  primaryColor: string | null;
+  plan: TenantPlan;
+  cargoWiseEnabled?: boolean;
+  quickbooksEnabled?: boolean;
+  netsuiteEnabled?: boolean;
+}
+
 export interface LoginResponse {
   user: AuthUser;
+  tenant: Tenant;
   accessToken: string;
+}
+
+export interface MeResponse {
+  user: AuthUser & { phone?: string };
+  tenant: Tenant;
 }
 
 // ─── Loads ────────────────────────────────────────────────────────────────────

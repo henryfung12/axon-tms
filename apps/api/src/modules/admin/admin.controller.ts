@@ -7,12 +7,14 @@ import {
   Patch,
   Post,
   UseGuards,
+  Delete,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { AxonStaffGuard } from '../../common/guards/axon-staff.guard';
 import { AdminService } from './admin.service';
 import { CreateTenantDto } from './dto/create-tenant.dto';
+import { UpdateTenantDto } from './dto/update-tenant.dto';
 
 @ApiTags('admin')
 @ApiBearerAuth()
@@ -44,5 +46,18 @@ export class AdminController {
   @Patch(':id/activate')
   activate(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.admin.setActive(id, true);
+  }
+  @Patch(':id')
+  update(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() dto: UpdateTenantDto,
+  ) {
+    return this.admin.updateTenant(id, dto);
+  }
+
+
+  @Delete(':id')
+  remove(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.admin.deleteTenant(id);
   }
 }

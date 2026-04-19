@@ -2,6 +2,7 @@ import {
   Injectable,
   ConflictException,
   NotFoundException,
+  ForbiddenException,
   Logger,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
@@ -144,4 +145,47 @@ export class AdminService {
     );
     return updated;
   }
-}
+
+  async updateTenant(id: string, data: {
+    companyName?: string;
+    plan?: string;
+    primaryColor?: string;
+    logoUrl?: string | null;
+  }) {
+    const tenant = await this.prisma.tenant.findUnique({ where: { id } });
+    if (!tenant) throw new NotFoundException(`Tenant ${id} not found`);
+
+    // Only include keys the caller actually sent so Prisma doesn't overwrite
+    // fields with undefined.
+    const update: Record<string, unknown> = {};
+    if (data.companyName !== undefined) update.companyName = data.companyName;
+    if (data.plan !== undefined) update.plan = data.plan;
+    if (data.primaryColor !== undefined) update.primaryColor = data.primaryColor;
+    if (data.logoUrl !== undefined) update.logoUrl = data.logoUrl;
+
+    const updated = await this.prisma.tenant.update({
+      where: { id },
+      data: update,
+    });
+    this.logger.log(`Updated tenant ${tenant.slug}: ${Object.keys(update).join(', ')}`);
+    return updated;
+  }
+
+  async deleteTenant(id: string) {
+    const tenant = await this.prisma.tenant.findUnique({
+      where: { id },
+      select: { id: true, slug: true, companyName: true },
+    });
+    if (!tenant) throw new NotFoundException(`Tenant ${id} not found`);
+
+    // Safety net: never allow the axon-internal tenant to be deleted.
+    if (tenant.slug === 'axon-internal') {
+      throw new ForbiddenException('Cannot delete the Axon Internal tenant');
+    }
+
+    // Schema has onDelete: Cascade on every child relation, so a single
+    // delete cleans up users/loads/customers/invoices/drivers/etc automatically.
+    await this.prisma.tenant.delete({ where: { id } });
+    this.logger.warn(`DELETED tenant ${tenant.slug} (${tenant.companyName})`);
+    return { id: tenant.id, slug: tenant.slug, deleted: true };
+  }}

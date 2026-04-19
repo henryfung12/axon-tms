@@ -142,7 +142,7 @@ export function DashboardLayout() {
     INFO: { bg: 'bg-blue-50', dot: 'bg-blue-500', icon: '🔵' },
   };
   const [expandedNav, setExpandedNav] = useState<string | null>('loads');
-  const { user, clearAuth } = useAuthStore();
+  const { user, tenant, clearAuth } = useAuthStore();
 
   const switchModule = (mod: Module) => {
     setActiveModule(mod);
@@ -233,10 +233,28 @@ export function DashboardLayout() {
       {/* Sidebar */}
       <aside className="w-56 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col">
 
-        {/* Logo */}
-        <div className="px-4 py-3 border-b border-gray-200">
-          <span className="text-sm font-bold text-gray-900">AXON TMS</span>
-          <p className="text-xs text-gray-400 mt-0.5">Enterprise Platform</p>
+        {/* Tenant Logo + Name */}
+        <div className="px-4 py-3 border-b border-gray-200 flex items-center gap-2">
+          {tenant?.logoUrl ? (
+            <img
+              src={tenant.logoUrl}
+              alt={`${tenant.companyName} logo`}
+              className="w-7 h-7 rounded-md object-cover flex-shrink-0"
+            />
+          ) : (
+            <div
+              className="w-7 h-7 rounded-md flex items-center justify-center text-[10px] font-semibold text-white flex-shrink-0"
+              style={{ background: tenant?.primaryColor ?? '#4f46e5' }}
+            >
+              {(tenant?.companyName ?? 'AX').slice(0, 2).toUpperCase()}
+            </div>
+          )}
+          <div className="min-w-0">
+            <div className="text-sm font-bold text-gray-900 truncate">
+              {tenant?.companyName ?? 'AXON TMS'}
+            </div>
+            <p className="text-xs text-gray-400 -mt-0.5 truncate">Enterprise Platform</p>
+          </div>
         </div>
 
         {/* Module Switcher - TWO ROWS */}
@@ -451,7 +469,7 @@ export function DashboardLayout() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 text-xs text-gray-500">
-                <span className="font-medium text-blue-600">🏠 AXON TMS</span>
+                <span className="font-medium" style={{ color: tenant?.primaryColor ?? '#2563eb' }}>🏠 {tenant?.companyName ?? 'AXON TMS'}</span>
                 {carrierPage !== 'dashboard' && (
                   <>
                     <span>/</span>
